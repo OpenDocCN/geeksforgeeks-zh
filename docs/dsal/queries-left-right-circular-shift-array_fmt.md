@@ -1,0 +1,128 @@
+# 数组左右平移的查询
+
+> 原文： [https://www.geeksforgeeks.org/queries-left-right-circular-shift-array/](https://www.geeksforgeeks.org/queries-left-right-circular-shift-array/)
+
+给定`N`个整数的数组。 有三种类型的命令：
+
+*   `1 x`：右循环将数组移动`x`次。 如果数组是`a[0], a[1], ...., a[n – 1]`，则在右移一圈后，该数组将变为`a[n – 1], a[0], a[1], …, a[n – 2]`。
+*   `2 y`：左循环将数组移动`y`次。 如果数组是`a[0], a[1], ...., a[n – 1]`，则在右移一圈后，该数组将变为`a[1], ...., a[n – 2], a[n – 1], a[0]`。
+*   `3 l r`：打印子数组`a[l…r]`（包括`l`和`r`）中所有整数的总和。
+
+给定`Q`个查询，该任务将在每个查询中执行。
+
+例子：
+
+```
+Input : n = 5, arr[] = { 1, 2, 3, 4, 5 }
+        query 1 = { 1, 3 }
+        query 2 = { 3, 0, 2 }
+        query 3 = { 2, 1 }
+        query 4 = { 3, 1, 4 }
+Output : 12
+
+Initial array arr[] = { 1, 2, 3, 4, 5 }
+After query 1, arr[] = { 3, 4, 5, 1, 2 }.
+After query 2, sum from index 0 to index 
+               2 is 12, so output 12.
+After query 3, arr[] = { 4, 5, 1, 2, 3 }.
+After query 4, sum from index 1 to index 
+               4 is 11, so output 11.
+```
+
+## 方法 1（暴力）
+
+实现三个函数：`rotateR(arr, k)`，将数组`arr`右旋转`k`倍； `rotateL(arr, k)`，将数组`arr`旋转`k`次，`sum(arr, l, r)`，它将输出数组`arr`从索引`l`到索引`r`的和。 在输入值 1、2、3 时，调用相应的函数。
+
+## 方法 2（有效方法）
+
+最初，没有轮换，并且我们有很多查询询问范围或者索引中存在的整数和。
+
+我们可以求值数组中所有元素的前缀和，`prefixsum[i]`将表示直到第`i`个索引的所有整数的和。
+
+现在，如果要查找两个索引即`l`和`r`之间的元素之和，我们只需计算`prefixsum[r] – prefixsum[l-1]`就可以在恒定时间内对其进行计算。
+
+现在，对于轮换而言，如果我们为每个查询旋转数组，那么效率将非常低下。
+
+我们只需要跟踪净旋转量即可。 如果跟踪的数字为负，则表示左旋已占域，否则右旋已占主导地位。 当我们跟踪净旋转时，我们需要执行`mod n`。 每旋转`n`次，数组将返回其原始状态。
+
+我们需要以这样一种方式进行观察：每次旋转数组时，只有其索引会发生变化。
+
+如果我们需要回答任何第三种查询，并且有`l`和`r`。 我们需要找到原始顺序的`l`和`r`。 我们可以通过将净旋转量添加到索引并取`mod n`来轻松找到它。
+
+每个命令都可以在`O(1)`时间内执行。
+
+以下是此方法的 C++ 实现：
+
+```cpp
+// CPP Program to solve queries on Left and Right 
+// Circular shift on array 
+#include <bits/stdc++.h> 
+using namespace std;
+
+// Function to solve query of type 1 x. 
+void querytype1(int* toRotate, int times, int n) 
+{ 
+    // Decreasing the absolute rotation 
+    (*toRotate) = ((*toRotate) - times) % n; 
+}
+
+// Function to solve query of type 2 y. 
+void querytype2(int* toRotate, int times, int n) 
+{ 
+    // Increasing the absolute rotation. 
+    (*toRotate) = ((*toRotate) + times) % n; 
+}
+
+// Function to solve queries of type 3 l r. 
+void querytype3(int toRotate, int l, int r, 
+                       int preSum[], int n) 
+{ 
+    // Finding absolute l and r. 
+    l = (l + toRotate + n) % n; 
+    r = (r + toRotate + n) % n;
+
+    // if l is before r. 
+    if (l <= r) 
+        cout << (preSum[r + 1] - preSum[l]) << endl;
+
+    // If r is before l. 
+    else 
+        cout << (preSum[n] + preSum[r + 1] - preSum[l]) 
+             << endl;     
+}
+
+// Wrapper Function solve all queries. 
+void wrapper(int a[], int n) 
+{ 
+    int preSum[n + 1]; 
+    preSum[0] = 0;
+
+    // Finding Prefix sum 
+    for (int i = 1; i <= n; i++) 
+        preSum[i] = preSum[i - 1] + a[i - 1];
+
+    int toRotate = 0;
+
+    // Solving each query 
+    querytype1(&toRotate, 3, n); 
+    querytype3(toRotate, 0, 2, preSum, n); 
+    querytype2(&toRotate, 1, n); 
+    querytype3(toRotate, 1, 4, preSum, n); 
+}
+
+// Driver Program 
+int main() 
+{ 
+    int a[] = { 1, 2, 3, 4, 5 }; 
+    int n = sizeof(a) / sizeof(a[0]); 
+    wrapper(a, n); 
+    return 0; 
+}
+```
+
+输出：
+
+```
+12
+11
+```
