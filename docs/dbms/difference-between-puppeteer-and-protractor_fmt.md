@@ -1,0 +1,21 @@
+# 木偶师和量角器的区别
+
+> 原文：[https://www.geeksforgeeks.org/difference-between-puppeteer-and-protractor/](https://www.geeksforgeeks.org/difference-between-puppeteer-and-protractor/)
+
+**1. [`Puppeteer`](https://www.geeksforgeeks.org/node-js-puppeteer/)：**
+这是一个由谷歌为 `Node.js` 开发的开源库，它提供了一个高级应用编程接口，用于通过开发工具协议自动运行 `Chrome`。这个库是开源的，并提供了一个高级应用编程接口来管理 `Chrome`。
+
+**2. `Protractor`：**
+`Protractor` 测试的主要目的不再仅仅是检查角度函数，而是为常规的网络应用程序编写自动回归评估。
+
+## 木偶师和量角器的区别：
+
+| No. | Puppeteer | Protractor |
+| --- | --- | --- |
+| 1. | 它只支持某些特定的引擎。 | 它可以支持不同类型的浏览器。 |
+| 2. | 在这种情况下，为了测试应用程序，不需要图像加载过程来执行任务。 | 在这种情况下，没有图像加载过程就无法进行测试，因此这是必需的。 |
+| 3. | 在这种情况下，开发人员可以统计应用程序中使用的 `CSS` 文件的数量。 | 在这种情况下，开发人员无法检查或计算应用程序中使用的 `CSS` 文件的数量。 |
+| 4. | 它支持开发工具来开发应用程序。 | 它不支持开发工具来开发应用程序。 |
+| 5. | 在这方面，与 `Protractor` 相比，仿真是一项简单的任务。 | 在这方面，与 `Puppeteer` 相比，仿真相当复杂。 |
+| 6. | 它可以用来检查加载任何页面的时间。 | 它不能用于检查加载任何页面的时间。 |
+| 7. | 与 `Protractor` 相比，它工作得更快。 | 与 `Puppeteer` 相比，它的工作速度更慢。 |
