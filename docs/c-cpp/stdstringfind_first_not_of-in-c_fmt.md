@@ -1,0 +1,325 @@
+# std::string::find_first_not_of in C++
+
+> 原文: [https://www.geeksforgeeks.org/stdstringfind_first_not_of-in-c/](https://www.geeksforgeeks.org/stdstringfind_first_not_of-in-c/)
+
+它在字符串中搜索与参数中指定的任何字符都不匹配的第一个字符。这里我们将描述它包含的所有语法。
+
+返回值：成功时第一个不匹配字符的索引，如果没有找到这样的字符，则返回 `string::npos`。
+
+## 语法 1：搜索不是字符串元素的第一个字符
+
+```cpp
+size_type string::find_first_not_of (const string& str) const
+```
+`str`：另一个字符串，包含用于搜索的字符集合。
+
+```cpp
+// CPP code for find_first_not_of (const string& str) const
+
+#include <iostream>
+using namespace std;
+
+// Function to demonstrate find_first_not_of
+void find_first_not_ofDemo(string str1, string str2)
+{
+    // Finds first character in str1 which
+    // is not present in str2
+    string::size_type ch = str1.find_first_not_of(str2);
+    cout << "First unmatched character : ";
+    cout << str1[ch];
+}
+
+// Driver code
+int main()
+{
+    string str1("Hello World!");
+    string str2("GeeksforGeeks");
+
+    cout << "Original String : " << str1 << endl;
+    cout << "String to be looked in : " << str2 << endl;
+    find_first_not_ofDemo(str1, str2);
+
+    return 0;
+}
+```
+
+输出：
+
+```cpp
+Original String : Hello World!
+String to be looked in : GeeksforGeeks
+First unmatched character : H
+```
+
+## 语法 2：从索引 `idx` 中搜索不是字符串元素的第一个字符
+
+```cpp
+size_type string::find_first_not_of (const string& str, size_type idx) const
+```
+`str`：另一个字符串，包含用于搜索的字符集合。
+`idx`：索引号，从该位置开始寻找第一个不匹配的字符。
+
+```cpp
+// CPP code for string::find_first_not_of
+// (const string& str, size_type idx) const
+
+#include <iostream>
+using namespace std;
+
+// Function to demonstrate find_first_not_of
+void find_first_not_ofDemo(string str1, string str2)
+{
+    // Finds first character in str1 from index 3 which
+    // is not present in str2
+    string::size_type ch = str1.find_first_not_of(str2, 3);
+    cout << "First unmatched character : ";
+    cout << str1[ch];
+}
+
+// Driver code
+int main()
+{
+    string str1("geeKsforgeeks");
+    string str2("GeeksforGeeks");
+
+    cout << "Original String : " << str1 << endl;
+    cout << "String to be looked in : " << str2 << endl;
+    find_first_not_ofDemo(str1, str2);
+
+    return 0;
+}
+```
+
+输出：
+
+```cpp
+Original String : geeKsforgeeks
+String to be looked in : GeeksforGeeks
+First unmatched character : K
+```
+
+## 语法 3：搜索第一个字符，该字符是或不是 C 字符串 `cstr` 的元素
+
+```cpp
+size_type string::find_first_not_of (const char* cstr) const
+```
+`cstr`：另一个 C 字符串，包含用于搜索的字符集合。
+
+**注意：** `cstr` 不能是空指针 (`nullptr`)。
+
+```cpp
+// CPP code for string::find_first_not_of (const char* cstr) const
+
+#include <iostream>
+using namespace std;
+
+// Function to demonstrate find_first_not_of
+void find_first_not_ofDemo(string str)
+{
+    // Finds first character in str which
+    // is not present in "geeksforgeeks"
+    string::size_type ch = str.find_first_not_of("geeksforgeeks");
+    cout << "First unmatched character : ";
+    cout << str[ch];
+}
+
+// Driver code
+int main()
+{
+    string str("GeeksforGeeks");
+
+    cout << "Original String : " << str << endl;
+    find_first_not_ofDemo(str);
+
+    return 0;
+}
+```
+
+输出：
+
+```cpp
+Original String : GeeksforGeeks
+First unmatched character : G
+```
+
+## 语法 4：从索引 `idx` 中搜索不是 C 字符串 `cstr` 元素的第一个字符
+
+```cpp
+size_type string:: find_first_not_of (const char* cstr, size_type idx) const
+```
+`cstr`：另一个字符串，包含用于搜索的字符集合。
+`idx`：索引号，从该位置开始寻找第一个不匹配的字符。
+
+**注意：** `cstr` 不能是空指针 (`nullptr`)。
+
+```cpp
+// CPP code for size_type string:: find_first_not_of
+// (const char* cstr, size_type idx) const
+
+#include <iostream>
+using namespace std;
+
+// Function to demonstrate find_first_not_of
+void find_first_not_ofDemo(string str)
+{
+    // Finds first character in str from 5th index which
+    // is not present in "geeksforgeeks"
+    string::size_type ch = str.find_first_not_of("geeksForgeeks", 5);
+    cout << "First unmatched character : ";
+    cout << str[ch];
+}
+
+// Driver code
+int main()
+{
+    string str("GeeksforGeeks");
+
+    cout << "Original String : " << str << endl;
+    find_first_not_ofDemo(str);
+
+    return 0;
+}
+```
+
+输出：
+
+```cpp
+Original String : GeeksforGeeks
+First unmatched character : f
+```
+
+## 语法 5：查找字符串中不等于字符 `c` 的第一个字符
+
+```cpp
+size_type string::find_first_not_of (char c) const
+```
+`c`：字符 `c`，用于与 `str` 的内容进行比较。
+
+```cpp
+// CPP code for size_type string:: find_first_not_of (char c) const
+
+#include <iostream>
+using namespace std;
+
+// Function to demonstrate find_first_not_of
+void find_first_not_ofDemo(string str)
+{
+    // Finds first character in str which
+    // is not equal to character 'G'
+    string::size_type ch = str.find_first_not_of('G');
+    cout << "First unmatched character : ";
+    cout << str[ch];
+}
+
+// Driver code
+int main()
+{
+    string str("GeeksforGeeks");
+
+    cout << "Original String : " << str << endl;
+    find_first_not_ofDemo(str);
+
+    return 0;
+}
+```
+
+输出：
+
+```cpp
+Original String : GeeksforGeeks
+First unmatched character : e
+```
+
+## 语法 6：从索引 `idx` 中查找字符串中不等于字符 `c` 的第一个字符
+
+```cpp
+size_type string::find_first_not_of (char c, size_type idx) const
+```
+`c`：字符 `c`，用于与 `str` 的内容进行比较。
+`idx`：索引，从该位置开始搜索第一个不匹配的字符。
+
+```cpp
+// CPP code for size_type string::find_first_not_of
+// (char c, size_type idx) const
+
+#include <iostream>
+using namespace std;
+
+// Function to demonstrate find_first_not_of
+void find_first_not_ofDemo(string str)
+{
+    // Finds first character in str from 6th index which
+    // is not equal to character 'G'
+    string::size_type ch = str.find_first_not_of('G', 6);
+    cout << "First unmatched character : ";
+    cout << str[ch];
+}
+
+// Driver code
+int main()
+{
+    string str("GeeksforGeeks");
+
+    cout << "Original String : " << str << endl;
+    find_first_not_ofDemo(str);
+
+    return 0;
+}
+```
+
+输出：
+
+```cpp
+Original String : GeeksforGeeks
+First unmatched character : o
+```
+
+## 语法 7：从索引 `idx` 开始搜索第一个字符，该字符也不是字符数组 `chars` 的 `chars_len` 字符的元素
+
+```cpp
+size_type string::find_first_not_of
+(const char* chars, size_type idx, size_type chars_len) const
+```
+`*chars`：字符数组，用于执行第一个不匹配字符的搜索。
+`idx`：字符串中的索引号。
+`chars_len`：`*chars` 中用于搜索目的的字符长度。
+
+```cpp
+// CPP code for size_type string::find_first_not_of
+// (const char* chars, size_type idx, size_type chars_len) const
+
+#include <iostream>
+using namespace std;
+
+// Function to demonstrate find_first_not_of
+void find_first_not_ofDemo(string str)
+{
+    // Finds first character in str from 4th index which
+    // is not equal to any of the first 3 characters from "svmnist"
+    string::size_type ch = str.find_first_not_of("svmnist", 4, 3);
+    cout << "First unmatched character : ";
+    cout << str[ch];
+}
+
+// Driver code
+int main()
+{
+    string str("GeeksforGeeks");
+
+    cout << "Original String : " << str << endl;
+    find_first_not_ofDemo(str);
+
+    return 0;
+}
+```
+
+输出：
+
+```cpp
+Original String : GeeksforGeeks
+First unmatched character : f
+```
+
+本文由 **Saketi Wari** 供稿。如果你喜欢 GeeksforGeeks（我们知道你喜欢！）并愿意投稿，也可以使用 [contribute.geeksforgeeks.org](http://www.contribute.geeksforgeeks.org) 写一篇文章或者将文章邮寄到 contribute@geeksforgeeks.org。看到你的文章出现在 GeeksforGeeks 主页上，帮助其他 Geeks。
+
+如果你发现任何不正确的地方，或者你想分享更多关于上面讨论的话题的信息，请写评论。
