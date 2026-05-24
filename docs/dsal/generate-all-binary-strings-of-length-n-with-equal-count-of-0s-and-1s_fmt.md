@@ -1,0 +1,242 @@
+# 生成所有长度为 N 的二进制字符串，0 和 1 的计数相等
+
+> 原文: [https://www.geeksforgeeks.org/generate-all-binary-strings-of-length-n-with-equal-count-of-0s-and-1s/](https://www.geeksforgeeks.org/generate-all-binary-strings-of-length-n-with-equal-count-of-0s-and-1s/)
+
+给定一个整数 `N`，任务是生成所有**二进制**字符串，其中 `0` 和 `1` 的数量**相等**。如果没有字符串，打印 `-1`。
+
+**示例:**
+
+> **输入**: `N = 2`
+> **输出**: `01` `10`
+> **解释**: 长度为 2 的所有可能的二进制字符串为: `01`、`10`、`11`、`00`。其中，只有 2 个具有相同数量的 `0` 和 `1`。
+>
+> **输入**: `N = 4`
+> **输出**: `0011` `0101` `0110` `1100` `1010` `1001`
+
+**方法:** 使用[递归](http://www.geeksforgeeks.org/recursion/)可以解决任务。如果 `N` 为**奇数**，那么答案为 `-1`，否则，我们可以使用**递归**生成所有 `0` 和 `1` 数量相等的二进制字符串。按照以下步骤解决问题:
+
+*   变量 `ones` 记录字符串中 `1` 的数量，变量 `zeros` 记录字符串中 `0` 的数量。
+*   `ones` 和 `zeros` 都应该有频率 `N/2`。
+*   **基础条件:** 字符串 `s` 存储**输出**字符串。因此，当 `s` 的长度达到 `N` 时，我们停止递归调用并打印输出字符串 `s`。
+*   如果 `ones` 的频率小于 `N/2`，则将 `1` 加到字符串上，并递增 `ones`。
+*   如果 `zeros` 的频率小于 `N/2`，则在字符串中添加 `0`，并且递增 `zeros`。
+
+下面是上述代码的实现:
+
+## C++
+
+```cpp
+// C++ code for the above approach
+#include <bits/stdc++.h>
+using namespace std;
+
+// Recursive function that prints
+// all strings of N length with equal 1's and 0's
+void binaryNum(int n, string s, int ones, int zeros)
+{
+    // String s contains the output to be printed
+    // ones stores the frequency of 1's
+    // zeros stores the frequency of 0's
+    // Base Condition: When the length of string s becomes N
+    if (s.length() == n)
+    {
+        cout << (s) << endl;
+        return;
+    }
+
+    // If frequency of 1's is less than N/2 then
+    // add 1 to the string and increment ones
+    if (ones < n / 2)
+        binaryNum(n, s + "1", ones + 1, zeros);
+
+    // If frequency of 0's is less than N/2 then
+    // add 0 to the string and increment zeros
+    if (zeros < n / 2)
+        binaryNum(n, s + "0", ones, zeros + 1);
+}
+
+// Driver Code
+int main()
+{
+    string s = "";
+    binaryNum(4, s, 0, 0);
+    return 0;
+}
+
+// This code is contributed by Potta Lokesh
+```
+
+## Java
+
+```java
+// Java program for the above approach
+import java.io.*;
+
+class GFG {
+
+    // Recursive function that prints
+    // all strings of N length with equal 1's and 0's
+    static void binaryNum(int n, String s, int ones, int zeros)
+    {
+        // String s contains the output to be printed
+        // ones stores the frequency of 1's
+        // zeros stores the frequency of 0's
+        // Base Condition: When the length of string s becomes N
+        if (s.length() == n) {
+            System.out.println(s);
+            return;
+        }
+
+        // If frequency of 1's is less than N/2 then
+        // add 1 to the string and increment ones
+        if (ones < n / 2)
+            binaryNum(n, s + "1", ones + 1, zeros);
+
+        // If frequency of 0's is less than N/2 then
+        // add 0 to the string and increment zeros
+        if (zeros < n / 2)
+            binaryNum(n, s + "0", ones, zeros + 1);
+    }
+
+    // Driver Code
+    public static void main(String[] args)
+    {
+        String s = "";
+        binaryNum(4, s, 0, 0);
+    }
+}
+```
+
+## Python 3
+
+```python
+# python code for the above approach
+
+# Recursive function that prints
+# all strings of N length with equal 1's and 0's
+def binaryNum(n, s, ones, zeros):
+    # String s contains the output to be printed
+    # ones stores the frequency of 1's
+    # zeros stores the frequency of 0's
+    # Base Condition: When the length of string s becomes N
+    if (len(s) == n):
+        print(s)
+        return
+
+    # If frequency of 1's is less than N/2 then
+    # add 1 to the string and increment ones
+    if (ones < n / 2):
+        binaryNum(n, s + "1", ones + 1, zeros)
+
+    # If frequency of 0's is less than N/2 then
+    # add 0 to the string and increment zeros
+    if (zeros < n / 2):
+        binaryNum(n, s + "0", ones, zeros + 1)
+
+# Driver Code
+if __name__ == "__main__":
+    s = ""
+    binaryNum(4, s, 0, 0)
+
+# This code is contributed by rakeshsahni
+```
+
+## C#
+
+```csharp
+// C# program for the above approach
+using System;
+
+class GFG {
+
+    // Recursive function that prints
+    // all strings of N length with equal 1's and 0's
+    static void binaryNum(int n, string s, int ones, int zeros)
+    {
+        // String s contains the output to be printed
+        // ones stores the frequency of 1's
+        // zeros stores the frequency of 0's
+        // Base Condition: When the length of string s becomes N
+        if (s.Length == n) {
+            Console.WriteLine(s);
+            return;
+        }
+
+        // If frequency of 1's is less than N/2 then
+        // add 1 to the string and increment ones
+        if (ones < n / 2)
+            binaryNum(n, s + "1", ones + 1, zeros);
+
+        // If frequency of 0's is less than N/2 then
+        // add 0 to the string and increment zeros
+        if (zeros < n / 2)
+            binaryNum(n, s + "0", ones, zeros + 1);
+    }
+
+    // Driver Code
+    public static void Main(string[] args)
+    {
+        string s = "";
+        binaryNum(4, s, 0, 0);
+    }
+}
+
+// This code is contributed by ukasp.
+```
+
+## JavaScript
+
+```javascript
+<script>
+// javascript program for the above approach
+
+// Recursive function that prints
+// all strings of N length with equal 1's and 0's
+function binaryNum(n, s, ones, zeros)
+{
+    // String s contains the output to be printed
+    // ones stores the frequency of 1's
+    // zeros stores the frequency of 0's
+    // Base Condition: When the length of string s becomes N
+    if (s.length == n) {
+        document.write(s+"<br>");
+        return;
+    }
+
+    // If frequency of 1's is less than N/2 then
+    // add 1 to the string and increment ones
+    if (ones < n / 2)
+        binaryNum(n, s + "1", ones + 1, zeros);
+
+    // If frequency of 0's is less than N/2 then
+    // add 0 to the string and increment zeros
+    if (zeros < n / 2)
+        binaryNum(n, s + "0", ones, zeros + 1);
+}
+
+// Driver Code
+var s = "";
+binaryNum(4, s, 0, 0);
+
+// This code is contributed by 29AjayKumar
+</script>
+```
+
+### Output
+
+```
+0011
+0101
+0110
+1001
+1010
+1100
+```
+
+### 时间复杂度
+
+`O(2^N)`
+
+### 辅助空间
+
+`O(1)`
