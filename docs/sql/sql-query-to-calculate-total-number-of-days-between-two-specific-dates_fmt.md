@@ -1,0 +1,97 @@
+# 计算两个特定日期之间总天数的 SQL 查询
+
+> 原文：[https://www.geeksforgeeks.org/sql-query-to-calculate-total-number-of-days-between-two-specific-dates/](https://www.geeksforgeeks.org/sql-query-to-calculate-total-number-of-days-between-two-specific-dates/)
+
+这里我们将看到，如何借助使用 `DATEDIFF()` 函数的 SQL 查询来计算两个给定日期之间的天数。
+
+为了演示，我们将在名为“极客”的数据库中创建一个 `demo_orders` 表。
+
+## 创建数据库
+
+使用下面的 SQL 语句创建一个名为 `geeks` 的数据库：
+
+```sql
+CREATE DATABASE geeks;
+```
+
+## 使用数据库
+
+使用下面的 SQL 语句将数据库上下文切换到 `geeks`：
+
+```sql
+USE geeks;
+```
+
+## 表结构定义
+
+我们的 `geeks` 数据库中有以下 `demo_orders` 表。
+
+```sql
+CREATE TABLE demo_orders(
+ORDER_ID INT IDENTITY(1,1) PRIMARY KEY, 
+ITEM_NAME VARCHAR(30) NOT NULL,
+ORDER_DATE DATE
+);
+```
+
+您可以使用下面的语句来查询创建的表的描述：
+
+```sql
+EXEC SP_COLUMNS demo_orders;
+```
+
+![](img/0f65a408a75cc7f3aaca61ca025691b5.png)
+
+## 向表中添加数据
+
+使用以下语句将数据添加到 `demo_orders` 表中：
+
+```sql
+INSERT INTO demo_orders --no need to mention columns explicitly as we are inserting into
+                        --all columns and ID gets
+                          --automatically incremented.
+VALUES
+('Maserati', '2007-10-03'),
+('BMW', '2010-07-23'),
+('Mercedes Benz', '2012-11-12'),
+('Ferrari', '2016-05-09'),
+('Lamborghini', '2020-10-20');
+```
+
+要验证表格的内容，请使用以下语句：
+
+```sql
+SELECT * FROM demo_orders;
+```
+
+![](img/19ab2e1f064146ce3f2556500b650615.png)
+
+现在让我们使用 `DATEDIFF()` 函数在表格中找到“玛莎拉蒂”和“法拉利”订单日期之间的天数。
+
+下面是 `DATEDIFF()` 函数的语法，用于查找两个给定日期之间的天数。
+
+```sql
+Syntax: DATEDIFF(day or dy or y, <start_date>, <end_date>);
+```
+
+## 示例
+
+```sql
+DECLARE 
+@start VARCHAR(10) = (
+  SELECT order_date FROM demo_orders
+  WHERE item_name = 'Maserati'),
+@end VARCHAR(10) = (
+  SELECT order_date FROM demo_orders
+  WHERE item_name = 'Ferrari')
+
+--@start variable holds the start date(i.e date of Maserati being purchased).
+
+--@end variable holds the end date (i.e date of Ferrari being purchased).
+
+SELECT DATEDIFF(day, @start, @end) AS number_of_days;
+```
+
+## 输出
+
+![](img/5cb54b7e6217bcb53f79e03e0a77b87b.png)

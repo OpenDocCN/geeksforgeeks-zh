@@ -1,0 +1,15 @@
+# 行级与语句级触发器的差异
+
+> 原文：[https://www.geeksforgeeks.org/difference-between-row-level-and-statement-level-triggers/](https://www.geeksforgeeks.org/difference-between-row-level-and-statement-level-triggers/)
+
+`触发器`被定义为存储的程序，每当发生一些事件（如创建、更改、更新、插入、删除）时，这些程序就会自动执行。它们可以在与事件相关联的数据库、表、视图中定义。
+
+触发器可大致分为`行级`和`语句级`触发器。
+概括地说，这些可以分为：
+
+| 行级触发器 | 语句级触发器 |
+| --- | --- |
+| 行级触发器对事务中的每一行执行一次。 | 对于每个事务，语句级触发器只执行一次。 |
+| 专门用于数据审计目的。 | 用于对表中执行的事务执行所有额外的安全性。 |
+| `FOR EACH ROW`子句出现在`CREATE TRIGGER`命令中。 | 在`CREATE TRIGGER`命令中省略了`FOR EACH ROW`子句。 |
+| 示例：如果要向表中插入1500行，行级触发器将执行1500次。 | 示例：如果要在表中插入1500行，语句级触发器将只执行一次。 |
