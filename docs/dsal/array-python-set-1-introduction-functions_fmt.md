@@ -1,0 +1,173 @@
+# Python 中的数组 | 系列 1（简介和函数）
+
+> 原文： [https://www.geeksforgeeks.org/array-python-set-1-introduction-functions/](https://www.geeksforgeeks.org/array-python-set-1-introduction-functions/)
+
+除了[列表](http://quiz.geeksforgeeks.org/python-set-3-strings-lists-tuples-iterations/)之类的通用容器外，Python 的定义还可以处理具有指定数据类型的容器。数组可以通过名为`array`的模块在 python 中进行处理。当我们只需要操作特定的数据类型值时，它们就很有用。
+
+## 数组上的操作
+
+1.  `array(data_type, value_list)`：此函数用于创建一个数组，并在其参数中指定数据类型和值列表。下表中提到了一些数据类型。
+
+| 类型代码 | C 类型 | Python 类型 | 最小大小（以字节为单位） |
+| --- | --- | --- | --- |
+| `'b'` | `signed char` | `int` | 1 |
+| `'B'` | `unsigned char` | `int` | 1 |
+| `'U'` | `Py_UNICODE` | `unicode`字符 | 2 |
+| `'H'` | `singned short` | `int` | 2 |
+| `'H'` | `unsigned short` | `int` | 2 |
+| `'i'` | `signed int` | `int` | 2 |
+| `'I'` | `unsigned int` | `int` | 2 |
+| `'L'` | `signed long` | `int` | 4 |
+| `'L'` | `unsigned long` | `int` | 4 |
+| `'q'` | `long long` | `int` | 8 |
+| `'Q'` | `unsigned long long` | `int` | 8 |
+| `'F'` | `float` | `float` | 4 |
+| `'d'` | `double` | `float` | 8 |
+
+2.  `append()`：此函数用于在数组的末尾处添加其自变量中提到的值。
+
+3.  `insert(i, x)`：此函数用于在其参数中指定的位置处添加值。
+
+```python
+# Python code to demonstrate the working of 
+# array(), append(), insert()
+
+# importing "array" for array operations 
+import array
+
+# initializing array with array values 
+# initializes array with signed integers 
+arr = array.array('i', [1, 2, 3])
+
+# printing original array 
+print ("The new created array is : ",end=" ") 
+for i in range (0, 3): 
+    print (arr[i], end=" ")
+
+print("\r")
+
+# using append() to insert new value at end 
+arr.append(4);
+
+# printing appended array 
+print("The appended array is : ", end="") 
+for i in range (0, 4): 
+    print (arr[i], end=" ")
+
+# using insert() to insert value at specific position 
+# inserts 5 at 2nd position 
+arr.insert(2, 5)
+
+print("\r")
+
+# printing array after insertion 
+print ("The array after insertion is : ", end="") 
+for i in range (0, 5): 
+    print (arr[i], end=" ")
+```
+
+输出：
+
+```
+The new created array is : 1 2 3 
+The appended array is : 1 2 3 4 
+The array after insertion is : 1 2 5 3 4
+```
+
+4.  `pop()`：此函数删除其参数中提到的位置的元素，并将其返回。
+
+5.  `remove()`：此函数用于删除其参数中提到的值的第一个出现。
+
+```python
+# Python code to demonstrate the working of 
+# pop() and remove()
+
+# importing "array" for array operations 
+import array
+
+# initializing array with array values 
+# initializes array with signed integers 
+arr= array.array('i',[1, 2, 3, 1, 5])
+
+# printing original array 
+print ("The new created array is : ",end="") 
+for i in range (0,5): 
+    print (arr[i],end=" ")
+
+print ("\r")
+
+# using pop() to remove element at 2nd position 
+print ("The popped element is : ",end="") 
+print (arr.pop(2));
+
+# printing array after popping 
+print ("The array after popping is : ",end="") 
+for i in range (0,4): 
+    print (arr[i],end=" ")
+
+print("\r")
+
+# using remove() to remove 1st occurrence of 1 
+arr.remove(1)
+
+# printing array after removing 
+print ("The array after removing is : ",end="") 
+for i in range (0,3): 
+    print (arr[i],end=" ")
+```
+
+Output:
+
+```
+The new created array is : 1 2 3 1 5 
+The popped element is : 3
+The array after popping is : 1 2 1 5 
+The array after removing is : 2 1 5
+```
+
+6.  `index()`：此函数返回参数中提到的值的首次出现的索引。
+
+7.  `reverse()`：此函数反转数组。
+
+```python
+# Python code to demonstrate the working of 
+# index() and reverse()
+
+# importing "array" for array operations 
+import array
+
+# initializing array with array values 
+# initializes array with signed integers 
+arr= array.array('i',[1, 2, 3, 1, 2, 5])
+
+# printing original array 
+print ("The new created array is : ",end="") 
+for i in range (0,6): 
+    print (arr[i],end=" ")
+
+print ("\r")
+
+# using index() to print index of 1st occurrenece of 2 
+print ("The index of 1st occurrence of 2 is : ",end="") 
+print (arr.index(2))
+
+#using reverse() to reverse the array 
+arr.reverse()
+
+# printing array after reversing 
+print ("The array after reversing is : ",end="") 
+for i in range (0,6): 
+    print (arr[i],end=" ")
+```
+
+Output:
+
+```
+The new created array is : 1 2 3 1 2 5 
+The index of 1st occurrence of 2 is : 1
+The array after reversing is : 5 2 1 3 2 1
+```
+
+**参考**：
+
+[https://docs.python.org/3/library/array.html#module-array](https://docs.python.org/3/library/array.html#module-array)
