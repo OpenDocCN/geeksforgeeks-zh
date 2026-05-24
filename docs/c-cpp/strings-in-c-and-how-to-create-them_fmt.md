@@ -1,0 +1,101 @@
+# C++ 中的字符串以及如何创建它们？
+
+> 原文: [https://www.geeksforgeeks.org/strings-in-c-and-how-to-create-them/](https://www.geeksforgeeks.org/strings-in-c-and-how-to-create-them/)
+
+**C++ 中的字符串**用于存储文本或字符序列。在 C++ 中，字符串可以通过以下两种方式之一存储：
+*   C 风格字符串（使用字符数组）
+*   `string` 类
+
+[![](img/d66be86f436d8751d882e60306b8ced5.png)](https://media.geeksforgeeks.org/wp-content/cdn-uploads/20191113124516/StringInC.png)
+
+以上每种方法讨论如下：
+
+## 1. C 风格字符串
+
+在 C 中，字符串被定义为字符数组。字符数组和字符串的区别在于字符串以一个特殊字符 `'\0'` 终止。在 C 中，字符串实际上表示为以空字符结尾的字符数组。因此，字符数组的大小总是比实际字符串中的字符数多一个。这在 C++ 中仍然得到支持。C++ 编译器在初始化数组时会自动在字符串末尾设置 `"\0"`。
+
+### 在 C++ 中初始化字符串：
+
+```cpp
+1. char str[] = "Geeks";
+2. char str[6] = "Geeks";
+3. char str[] = {'G', 'e', 'e', 'k', 's', '\0'};
+4. char str[6] = {'G', 'e', 'e', 'k', 's', '\0'};
+```
+
+下面是 C++ 中字符串“Geeks”的内存表示。
+![](img/3fce31cb4a5f6bc24c12b4358667f4df.png)
+
+让我们看一些例子来更好地理解 C++ 中使用 C 风格的字符串表示：
+
+```cpp
+// C++ program to demonstrate
+// Strings using C style
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    // Declare and initialize string
+    char str[] = "Geeks";
+
+    // Print string
+    cout << str;
+
+    return 0;
+}
+```
+
+**输出：**
+
+```cpp
+Geeks
+```
+
+## 2. 标准字符串表示和 `string` 类
+
+在 C++ 中，可以直接将字符或文本的集合存储在被双引号包围的字符串变量中。C++ 提供了 `string` 类，它支持复制字符串、连接字符串等各种操作。
+
+### 在 C++ 中初始化字符串：
+
+```cpp
+1. string str1 = "Geeks";
+2. string str2 = "Welcome to GeeksforGeeks!";
+```
+
+### 示例：
+
+```cpp
+// C++ program to demonstrate String
+// using Standard String representation
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    // Declare and initialize the string
+    string str1 = "Welcome to GeeksforGeeks!";
+
+    // Initialization by raw string
+    string str2("A Computer Science Portal");
+
+    // Print string
+    cout << str1 << endl << str2;
+
+    return 0;
+}
+```
+
+**输出：**
+
+```cpp
+Welcome to GeeksforGeeks!
+A Computer Science Portal
+```
+
+**相关文章：**
+*   [**C++ 字符串类及其应用 | 第 1 集**](https://www.geeksforgeeks.org/c-string-class-and-its-applications/)
+*   [**C++ 字符串类及其应用 | 第 2 集**](https://www.geeksforgeeks.org/c-string-class-applications-set-2/)
