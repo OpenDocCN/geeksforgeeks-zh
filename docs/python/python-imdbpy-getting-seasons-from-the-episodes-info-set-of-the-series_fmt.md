@@ -1,0 +1,86 @@
+# Python IMDbPY–从剧集信息集中获取季节
+
+> 原文: [https://www.geeksforgeeks.org/python-imdbpy-getting-seasons-from-the-episodes-info-set-of-the-series/](https://www.geeksforgeeks.org/python-imdbpy-getting-seasons-from-the-episodes-info-set-of-the-series/)
+
+## 介绍
+在本文中，我们将看到如何从剧集中获得该系列的季节。每个系列都有季节，每个季节都有多集，即每集是季节的子集，季节是系列的子集。我们通过向剧集添加剧集信息集来获得剧集。
+
+## 方法步骤
+为了做到这一点，我们必须做到以下几点：
+1.  借助 `get_movie` 方法获取系列详情。
+2.  使用 `update` 方法为其添加剧集信息集。
+3.  由于这个对象将作为字典，因此我们必须过滤对象。
+4.  借助返回字典的 `data` 方法获取对象的主要数据。
+5.  从字典中获取剧集，这本字典的关键词是季节。
+
+## 实现示例
+下面是实现：
+
+```py
+# importing the module
+import imdb
+
+# creating instance of IMDb
+ia = imdb.IMDb()
+
+# id
+code = "6468322"
+
+# getting information
+series = ia.get_movie(code)
+
+# adding new info set
+ia.update(series, 'episodes')
+
+# getting episodes of the series
+episodes = series.data['episodes']
+
+# printing the object i.e name
+print(series)
+
+# printing the keys of this dictionary
+for i in episodes.keys():
+    print(i)
+```
+
+**输出:**
+
+```py
+Money Heist
+```
+
+## 示例一
+另一个例子：
+
+```py
+# importing the module
+import imdb
+
+# creating instance of IMDb
+ia = imdb.IMDb()
+
+# id
+code = "0903747"
+
+# getting information
+series = ia.get_movie(code)
+
+# adding new info set
+ia.update(series, 'episodes')
+
+# getting episodes of the series
+episodes = series.data['episodes']
+
+# printing the object i.e name
+print(series)
+
+# printing the keys of this dictionary
+for i in episodes.keys():
+    print(i)
+```
+
+**输出:**
+
+```py
+Breaking Bad
+```

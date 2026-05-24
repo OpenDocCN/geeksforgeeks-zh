@@ -1,0 +1,108 @@
+# 如何在 Python 中安装 Selenium？
+
+> 原文：[https://www.geeksforgeeks.org/how-to-install-selenium-in-python/](https://www.geeksforgeeks.org/how-to-install-selenium-in-python/)
+
+Selenium 脚本是为了完成一些繁琐的任务而构建的，这些任务可以使用**无头网络浏览器**自动完成。
+
+例如，在不同的搜索引擎上搜索一些问题，并通过访问每个链接将结果存储在一个文件中。对于一个正常人来说，这项任务可能需要很长时间，但是在 Selenium 脚本的帮助下，人们可以轻松完成这项任务。
+
+现在，你们中的一些人可能想知道什么是无头网络浏览器。它只不过是一个浏览器，可以使用这些 Selenium 脚本进行自动化控制（网络任务）。Selenium 脚本可以使用各种语言进行编程，如 JavaScript、Java、Python 等。
+
+## 如何在 Python Linux 环境下使用 Selenium
+
+Python 应该已经安装了。可以是 2.* 或 3.* 版本。
+
+步骤：
+
+1.  安装 Selenium
+2.  安装网络驱动程序（无头）
+3.  创建简单代码
+
+### 安装 Selenium
+
+无论您使用什么操作系统，Python 命令对于安装 Selenium 库都是一样的。
+
+**第一种方法**
+
+打开终端/Cmd 并写下如下命令：
+
+```py
+python -m pip install selenium
+```
+
+**第二种方法**
+
+或者，您可以在这里下载源代码分发，将其取消归档，并运行以下命令：
+
+```py
+python setup.py install
+```
+
+### 安装网络驱动程序
+
+一个人可以安装 Firefox、Chromium、PhantomJs（现已弃用）等。
+
+*   要使用 Firefox，你可能需要安装 GeckoDriver
+*   要使用 Chrome，您可能需要安装 ChromeDriver
+
+在本文中，使用了 Firefox，因此可以按照下面的步骤进行安装：
+
+**Linux 的步骤：**
+
+1.  转到 [GeckoDriver 释放页面](https://github.com/mozilla/geckodriver/releases)。为您的平台找到最新版本的驱动程序并下载。
+
+例如：
+
+```py
+wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
+```
+
+2.  使用以下命令提取文件：
+
+```py
+tar -xvzf geckodriver*
+```
+
+3.  使其可执行：
+
+```py
+chmod +x geckodriver
+```
+
+4.  将文件移动到 `/usr/local/bin`
+
+```py
+sudo mv geckodriver /usr/local/bin/
+```
+
+**Windows 的步骤：**
+
+1.  与 Linux 中的步骤 1 相同，下载 [GeckoDriver](https://github.com/mozilla/geckodriver/releases)。
+2.  使用 WinRar 或您可能拥有的任何应用程序提取它。
+3.  使用命令提示符将其添加到路径中：
+
+```py
+setx path "%path%;GeckoDriver Path"
+```
+
+例如：
+
+```py
+setx path "%path%;c:/user/eliote/Desktop/geckodriver-v0.26.0-win64/geckodriver.exe"
+```
+
+### 创建简单代码
+
+```py
+# Python program to demonstrate
+# selenium
+
+from selenium import webdriver
+
+driver = webdriver.Firefox()
+driver.get("https://google.co.in")
+```
+
+**输出：**
+
+![python-selenium](img/31ac1e88432a086a9fb1e046c67532d7.png)

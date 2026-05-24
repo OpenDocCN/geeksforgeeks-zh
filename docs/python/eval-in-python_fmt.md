@@ -1,0 +1,186 @@
+# Python 中的 eval
+
+> 原文: [https://www.geeksforgeeks.org/eval-in-python/](https://www.geeksforgeeks.org/eval-in-python/)
+
+`eval()` 函数解析表达式参数并将其评估为 Python 表达式，并在程序内运行 Python 表达式（代码）。
+
+## Python `eval()` 语法
+
+> `eval(表达式，全局=无，局部=无)`
+
+## Python `eval()` 参数
+
+*   **表达式**: 该字符串作为 Python 表达式进行解析和计算
+*   **全局（可选）**: 指定可用全局方法和变量的字典。
+*   **局部变量（可选）**: 指定可用局部方法和变量的另一个字典。
+
+## Python `eval()` 示例
+
+### 示例 1: 演示 `eval()` 使用的示例
+
+让我们借助一个简单的 Python 程序来探索它。`function_creator` 是对用户创建的数学函数进行求值的函数。
+
+```py
+from math import *
+
+def secret_function():
+    return "Secret key is 1234"
+
+def function_creator():
+    # expression to be evaluated
+    expr = input("Enter the function(in terms of x):")
+    # variable used in expression
+    x = int(input("Enter the value of x:"))
+    # evaluating expression
+    y = eval(expr)
+    # printing evaluated result
+    print("y = {}".format(y))
+
+if __name__ == "__main__":
+    function_creator()
+```
+
+**输出:**
+
+```py
+Enter the function(in terms of x):x*(x+1)*(x+2)
+Enter the value of x:3
+y = 60
+```
+
+**让我们稍微分析一下代码:**
+
+*   上面的函数接受变量 `x` 的任何表达式作为输入。
+*   然后用户必须输入一个值 `x`。
+*   最后，我们传递 `expr` 作为参数，并使用 `eval()` 内置函数来评估 Python 表达式。
+
+### 示例 2: 使用求值函数的数学运算
+
+```py
+evaluate = 'x*(x+1)*(x+2)'
+print(evaluate)
+print(type(evaluate))
+
+x = 3
+print(type(x))
+
+expression = eval(evaluate)
+print(expression)
+print(type(expression))
+```
+
+**输出**
+
+```py
+x*(x+1)*(x+2)
+<class 'str'>
+<class 'int'>
+60
+<class 'int'>
+```
+
+## 评估的漏洞问题
+
+我们当前版本的 `function_creator` 有几个漏洞。用户可以很容易地暴露程序中隐藏的值，或者调用一个危险的函数，因为 `eval` 会执行传递给它的任何东西。
+
+**比如你这样输入:**
+
+```py
+Enter the function(in terms of x):secret_function()
+Enter the value of x:0
+```
+
+**你会得到输出:**
+
+```py
+y = Secret key is 1234
+```
+
+另外，考虑一下在 Python 程序中导入 `os` 模块的情况。`os` 模块提供了使用操作系统功能（如读取或写入文件）的可移植方式。一个命令就可以删除系统中的所有文件。当然，在大多数情况下（比如桌面程序），用户不能通过编写自己的 Python 脚本做更多的事情，但是在某些应用程序中（比如 Web 应用程序、kiosk 计算机），这可能是一个风险！
+
+解决方案是将 `eval` 限制为我们想要提供的函数和变量。
+
+## 确保评估安全
+
+`eval` 函数具有显式传递它可以访问的函数或变量列表的功能。我们需要以字典的形式把它作为一个论点传递出去。
+
+```py
+from math import *
+
+def secret_function():
+    return "Secret key is 1234"
+
+def function_creator():
+    # expression to be evaluated
+    expr = input("Enter the function(in terms of x):")
+    # variable used in expression
+    x = int(input("Enter the value of x:"))
+    # passing variable x in safe dictionary
+    safe_dict['x'] = x
+    # evaluating expression
+    y = eval(expr, {"__builtins__": None}, safe_dict)
+    # printing evaluated result
+    print("y = {}".format(y))
+
+if __name__ == "__main__":
+    # list of safe methods
+    safe_list = ['acos', 'asin', 'atan', 'atan2', 'ceil', 'cos',
+                 'cosh', 'degrees', 'e', 'exp', 'fabs', 'floor',
+                 'fmod', 'frexp', 'hypot', 'ldexp', 'log', 'log10',
+                 'modf', 'pi', 'pow', 'radians', 'sin', 'sinh', 'sqrt',
+                 'tan', 'tanh']
+    # creating a dictionary of safe methods
+    safe_dict = dict([(k, locals().get(k, None)) for k in safe_list])
+    function_creator()
+```
+
+**现在如果我们尝试运行上面的程序，比如:**
+
+```py
+Enter the function(in terms of x):secret_function()
+Enter the value of x:0
+```
+
+**我们得到输出:**
+
+```py
+NameError: name 'secret_function' is not defined
+```
+
+**让我们一步一步分析上面的代码:**
+
+*   首先，我们创建一个我们希望允许的方法列表 `safe_list`。
+*   接下来，我们创建一个安全方法的字典。在这个字典中，`key` 是方法名，`value` 是它们的本地命名空间。
+
+```py
+safe_dict = dict([(k, locals().get(k, None)) for k in safe_list])
+```
+
+*   `locals()` 是一个内置方法，它返回一个字典，该字典将本地作用域中的所有方法和变量映射到它们的命名空间。
+
+```py
+safe_dict['x'] = x
+```
+
+在这里，我们也将局部变量 `x` 添加到 `safe_dict` 中。除了 `x` 之外，没有任何局部变量会被 `eval` 函数识别。
+
+*   `eval` 接受 `local` 和 `global` 变量的字典作为参数。因此，为了确保没有内置方法可用于 `eval` 表达式，我们传递另一个字典，其中 `__builtins__` 设置为 `None`，如下所示：
+
+```py
+y = eval(expr, {"__builtins__":None}, safe_dict)
+```
+
+因此，通过这种方式，我们使我们的 `eval` 功能免受任何可能的黑客攻击！
+
+## 评估的用途
+
+`eval` 由于安全原因使用不多，正如我们上面探讨的那样。
+
+**尽管如此，它在某些情况下还是派上了用场，比如:**
+
+*   你可能想用它来让用户输入他们自己的“脚本小程序”：小表达式（甚至小函数），可用于定制复杂系统的行为。
+*   `eval` 有时用于需要计算数学表达式的应用程序中。这比编写表达式解析器要容易得多。
+
+本博客由 [尼克尔·库马尔](https://www.facebook.com/nikhilksingh97) 投稿。如果你喜欢极客博客并想投稿，你也可以用 contribute.geeksforgeeks.org 写一篇文章或者把你的文章邮寄到 contribute@geeksforgeeks.org。看到你的文章出现在极客博客主页上，帮助其他极客。
+
+如果你发现任何不正确的地方，或者你想分享更多关于上面讨论的话题的信息，请写评论。

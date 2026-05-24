@@ -1,0 +1,113 @@
+# 如何在 Python 中从函数中获取参数名称列表？
+
+> 原文：[https://www.geeksforgeeks.org/how-to-get-list-of-parameters-name-from-a-function-in-python/](https://www.geeksforgeeks.org/how-to-get-list-of-parameters-name-from-a-function-in-python/)
+
+在本文中，我们将讨论如何从 Python 中的函数获取列表参数。[`inspect`](https://www.geeksforgeeks.org/inspect-module-in-python/) 模块有助于检查我们编写的代码中存在的对象。我们将使用两种方法，即 `inspect` 模块中的 `signature()` 和 `getargspec()` 方法，以获取在其中一种方法中作为参数传递的函数或方法的参数名称列表。
+
+## 使用 `signature()` 方法
+
+下面是一些程序，描述了如何使用 `inspect` 模块的 `signature()` 方法来获取参数名称列表：
+
+**例 1:** 获取某方法的参数表。
+
+```py
+# import required modules
+import inspect
+import collections
+
+# use signature()
+print(inspect.signature(collections.Counter))
+```
+
+**输出：**
+
+```py
+(*args, **kwds)
+```
+
+**示例 2:** 获取显式函数的参数列表。
+
+```py
+# explicit function
+def fun(a, b):
+    return a**b
+
+# import required modules
+import inspect
+
+# use signature()
+print(inspect.signature(fun))
+```
+
+**输出：**
+
+```py
+(a, b)
+```
+
+**例 3:** 获取内置函数的参数表。
+
+```py
+# import required modules
+import inspect
+
+# use signature()
+print(inspect.signature(len))
+```
+
+**输出：**
+
+```py
+(obj, /)
+```
+
+## 使用 `getargspec()` 方法
+
+下面是一些程序，描述了如何使用 `inspect` 模块的 `getargspec()` 方法来获取参数名称列表：
+
+**例 1:** 获取某方法的参数表。
+
+```py
+# import required modules
+import inspect
+import collections
+
+# use getargspec()
+print(inspect.getargspec(collections.Counter))
+```
+
+**输出：**
+
+> ArgSpec(args=[], varargs='args', keywords='kwds', defaults=None)
+
+**示例 2:** 获取显式函数的参数列表。
+
+```py
+# explicit function
+def fun(a, b):
+    return a**b
+
+# import required modules
+import inspect
+
+# use getargspec()
+print(inspect.getargspec(fun))
+```
+
+**输出：**
+
+> ArgSpec(args=['a', 'b'], varargs=None, keywords=None, defaults=None)
+
+**例 3:** 获取内置函数的参数表。
+
+```py
+# import required modules
+import inspect
+
+# use getargspec()
+print(inspect.getargspec(len))
+```
+
+**输出：**
+
+> ArgSpec(args=['obj'], varargs=None, keywords=None, defaults=None)

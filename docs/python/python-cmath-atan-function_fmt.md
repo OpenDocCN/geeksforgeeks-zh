@@ -1,0 +1,65 @@
+# Python `cmath.atan()` 函数
+
+> 原文: [https://www.geeksforgeeks.org/python-cmath-atan-function/](https://www.geeksforgeeks.org/python-cmath-atan-function/)
+
+`cmath` 模块包含许多用于复数数学运算的函数。`cmath.atan()` 函数返回复数的反正切值。该函数传递的值可以是整数、浮点数和复数。
+
+> **语法:** `cmath.atan(x)`
+>
+> **参数:**
+> 此方法只接受单个参数。
+> - **x:** 该参数是传递给 `atan()` 的值。
+>
+> **返回:**
+> 该函数返回一个复数的反正切值。
+
+下面的例子说明了上述功能的使用:
+
+**示例 1:**
+在本例中，我们可以通过使用 `cmath.atan()` 方法，向反正切传递任何值来获得它的值。
+
+## Python 3 示例
+
+```py
+# Python code to implement
+# the atan()function
+
+# importing "cmath"
+# for mathematical operations  
+import cmath
+
+# using cmath.atan() method 
+val = cmath.atan(3)
+
+print(val)
+```
+
+**输出:**
+
+```py
+(1.2490457723982544+0j)
+```
+
+**示例 2:**
+
+## Python 3 示例
+
+```py
+# Python code to implement
+# the atan()function
+
+# importing "cmath"
+# for mathematical operations  
+import cmath
+
+# using cmath.atan() method 
+val = cmath.atan(2 + 5j)
+
+print(val)
+```
+
+**输出:**
+
+```py
+(1.4998477994928145+0.17328679513998632j)
+```

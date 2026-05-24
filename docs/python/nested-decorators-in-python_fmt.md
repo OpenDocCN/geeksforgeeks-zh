@@ -1,0 +1,60 @@
+# Python 中的嵌套装饰器
+
+> 原文:[https://www.geeksforgeeks.org/nested-decorators-in-python/](https://www.geeksforgeeks.org/nested-decorators-in-python/)
+
+Python 中的一切都是一个对象。偶数函数是 Python 中的一种对象类型。[装饰器](https://www.geeksforgeeks.org/decorators-in-python/)是返回包装函数的一种特殊类型的函数。它们在 Python 中被认为非常强大，用于临时修改函数的行为，而不会改变其实际值。
+
+嵌套意味着放置或储存在另一个里面。因此，嵌套装饰器意味着在一个函数中应用多个装饰器。Python 允许我们为一个函数实现多个装饰器。它使装饰者对可重用的构建块有用，因为它将几种效果累积在一起。
+
+## 几个装饰器是怎么应用的？
+
+一个函数可以修饰多次。我们需要首先定义我们想要包装输出字符串的装饰器，然后使用“@”将它们应用于函数。人们只需要把装饰者放在想要的功能之上。
+
+**语法:**
+
+```py
+@function1
+@function2
+def function(name):
+    print(f"{name}")
+```
+
+嵌套装饰遵循自下而上的方法，即相反的顺序。它可以与我们从底部(地面)开始建造，然后开始建造楼层的建筑相关。
+
+**例:**
+
+### Python 3
+
+```py
+# Python program to demonstrate
+# nested decorators
+
+def italic(func):
+    def wrapper():
+        return '<i>' + func() + '</i>'
+    return wrapper
+
+def strong(func):
+    def wrapper():
+        return '<strong>' + func() + '</strong>'
+    return wrapper
+
+@italic
+@strong
+def introduction():
+    return 'This is a basic program'
+
+print(introduction())
+```
+
+**输出:**
+
+```py
+<i><strong>This is a basic program</strong></i>
+```
+
+**说明:**
+
+1.  首先，我们定义两个装饰器，它们用于将装饰器函数的输出字符串包装在`HTML`的`'strong'`和`'italics'`标签中。
+2.  然后我们通过使用`@`和函数名将这两个装饰器应用到我们的`"Introduction"`函数上。例如，在这个程序中，我们使用了`@italic`和`@strong`。
+3.  它遵循的层级是从下到上。因此，根据它，字符串首先被`"strong"`包装，然后被`"italic"`包装。
