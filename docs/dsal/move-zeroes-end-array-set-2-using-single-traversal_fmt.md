@@ -1,0 +1,245 @@
+# 将所有零移动到数组的末尾 | 系列 2（使用单次遍历）
+
+> 原文： [https://www.geeksforgeeks.org/move-zeroes-end-array-set-2-using-single-traversal/](https://www.geeksforgeeks.org/move-zeroes-end-array-set-2-using-single-traversal/)
+
+给定`n`个数字的数组。问题是将所有 0 移到数组的末尾，同时保持其他元素的顺序。只需要数组的一次遍历。
+
+例子：
+
+```
+Input : arr[]  = {1, 2, 0, 0, 0, 3, 6}
+Output : 1 2 3 6 0 0 0
+
+Input: arr[] = {0, 1, 9, 8, 4, 0, 0, 2, 7, 0, 6, 0, 9}
+Output: 1 9 8 4 2 7 6 9 0 0 0 0 0
+```
+
+**算法**：
+
+```
+moveZerosToEnd(arr, n)
+    Initialize count = 0
+    for i = 0 to n-1
+        if (arr[i] != 0) then
+            swap(arr[count++], arr[i])
+```
+
+## CPP
+
+```cpp
+// C++ implementation to move all zeroes at 
+// the end of array 
+#include <iostream> 
+using namespace std; 
+
+// function to move all zeroes at 
+// the end of array 
+void moveZerosToEnd(int arr[], int n) 
+{ 
+    // Count of non-zero elements 
+    int count = 0; 
+
+    // Traverse the array. If arr[i] is non-zero, then 
+    // swap the element at index 'count' with the 
+    // element at index 'i' 
+    for (int i = 0; i < n; i++) 
+        if (arr[i] != 0) 
+            swap(arr[count++], arr[i]); 
+} 
+
+// function to print the array elements 
+void printArray(int arr[], int n) 
+{ 
+    for (int i = 0; i < n; i++) 
+        cout << arr[i] << " "; 
+} 
+
+// Driver program to test above 
+int main() 
+{ 
+    int arr[] = { 0, 1, 9, 8, 4, 0, 0, 2, 
+                         7, 0, 6, 0, 9 }; 
+    int n = sizeof(arr) / sizeof(arr[0]); 
+
+    cout << "Original array: "; 
+    printArray(arr, n); 
+
+    moveZerosToEnd(arr, n); 
+
+    cout << "\nModified array: "; 
+    printArray(arr, n); 
+
+    return 0; 
+} 
+```
+
+## Java
+
+```java
+// Java implementation to move 
+// all zeroes at the end of array 
+import java.io.*; 
+
+class GFG { 
+
+// function to move all zeroes at 
+// the end of array 
+static void moveZerosToEnd(int arr[], int n) { 
+
+    // Count of non-zero elements 
+    int count = 0; 
+    int temp; 
+
+    // Traverse the array. If arr[i] is 
+    // non-zero, then swap the element at 
+    // index 'count' with the element at 
+    // index 'i' 
+    for (int i = 0; i < n; i++) { 
+    if ((arr[i] != 0)) { 
+        temp = arr[count]; 
+        arr[count] = arr[i]; 
+        arr[i] = temp; 
+        count = count + 1; 
+    } 
+    } 
+} 
+
+// function to print the array elements 
+static void printArray(int arr[], int n) { 
+    for (int i = 0; i < n; i++) 
+    System.out.print(arr[i] + " "); 
+} 
+
+// Driver program to test above 
+public static void main(String args[]) { 
+    int arr[] = {0, 1, 9, 8, 4, 0, 0, 2, 
+                         7, 0, 6, 0, 9}; 
+    int n = arr.length; 
+
+    System.out.print("Original array: "); 
+    printArray(arr, n); 
+
+    moveZerosToEnd(arr, n); 
+
+    System.out.print("\nModified array: "); 
+    printArray(arr, n); 
+} 
+} 
+
+// This code is contributed by Nikita Tiwari. 
+```
+
+## Python3
+
+```py
+# Python implementation to move all zeroes at 
+# the end of array 
+
+# function to move all zeroes at 
+# the end of array 
+def moveZerosToEnd (arr, n): 
+
+    # Count of non-zero elements 
+    count = 0; 
+
+    # Traverse the array. If arr[i] is non-zero, then 
+    # swap the element at index 'count' with the 
+    # element at index 'i' 
+    for i in range(0, n): 
+        if (arr[i] != 0): 
+            arr[count], arr[i] = arr[i], arr[count] 
+            count+=1
+
+# function to print the array elements 
+def printArray(arr, n): 
+
+    for i in range(0, n): 
+        print(arr[i],end=" ") 
+
+# Driver program to test above 
+arr = [ 0, 1, 9, 8, 4, 0, 0, 2, 
+    7, 0, 6, 0, 9 ] 
+n = len(arr) 
+
+print("Original array:", end=" ") 
+printArray(arr, n) 
+
+moveZerosToEnd(arr, n) 
+
+print("\nModified array: ", end=" ") 
+printArray(arr, n) 
+
+# This code is contributed by 
+# Smitha Dinesh Semwal 
+```
+
+## C#
+
+```cs
+// C# implementation to move 
+// all zeroes at the end of array 
+using System; 
+
+class GFG { 
+
+    // function to move all zeroes at 
+    // the end of array 
+    static void moveZerosToEnd(int[] arr, int n) 
+    { 
+        // Count of non-zero elements 
+        int count = 0; 
+        int temp; 
+
+        // Traverse the array. If arr[i] is 
+        // non-zero, then swap the element at 
+        // index 'count' with the element at 
+        // index 'i' 
+        for (int i = 0; i < n; i++) 
+        { 
+            if ((arr[i] != 0)) 
+            { 
+                temp = arr[count]; 
+                arr[count] = arr[i]; 
+                arr[i] = temp; 
+                count = count + 1; 
+            } 
+        } 
+    } 
+
+    // function to print the array elements 
+    static void printArray(int[] arr, int n) 
+    { 
+        for (int i = 0; i < n; i++) 
+            Console.Write(arr[i] + " "); 
+    } 
+
+    // Driver program to test above 
+    public static void Main() 
+    { 
+        int[] arr = { 0, 1, 9, 8, 4, 0, 0, 2, 
+                    7, 0, 6, 0, 9 }; 
+        int n = arr.Length; 
+
+        Console.Write("Original array: "); 
+        printArray(arr, n); 
+
+        moveZerosToEnd(arr, n); 
+
+        Console.Write("\nModified array: "); 
+        printArray(arr, n); 
+    } 
+} 
+
+// This code is contributed by Sam007 
+```
+
+Output:
+
+```
+Original array: 0 1 9 8 4 0 0 2 7 0 6 0 9 
+Modified array: 1 9 8 4 2 7 6 9 0 0 0 0 0
+```
+
+时间复杂度：`O(n)`。
+
+辅助空间：`O(1)`。
