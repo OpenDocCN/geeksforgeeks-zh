@@ -1,0 +1,90 @@
+# C++ 中 ios::operator() 函数使用示例
+
+> 原文：[https://www.geeksforgeks.org/ios-operator-function-in-c-with-examples-2/](https://www.geeksforgeks.org/ios-operator-function-in-c-with-examples-2/)
+
+C++ 中 `ios` 类的 `operator()` 方法用于设置该流的任何错误标志。这包括故障位或坏位。
+
+## 语法
+
+```cpp
+operator void*() const;
+```
+
+## 参数
+
+此方法不接受任何参数。
+
+## 返回值
+
+如果在该流中设置了任何错误位，则该方法返回空指针。
+
+## 示例 1
+
+```cpp
+// C++ code to demonstrate
+// the working of operator() function
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+
+// Stream
+    stringstream ss;
+
+// Using operator() function
+    if (ss) {
+        cout << "No error bit is set.\n";
+    }
+    else {
+        cout << "Error bit is set.\n";
+    }
+
+return 0;
+}
+```
+
+**输出：**
+
+```cpp
+No error bit is set.
+```
+
+## 示例 2
+
+```cpp
+// C++ code to demonstrate
+// the working of operator() function
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+
+// Stream
+    stringstream ss;
+    ss.clear(ss.failbit);
+
+// Using operator() function
+    if (ss) {
+        cout << "No error bit is set.\n";
+    }
+    else {
+        cout << "Error bit is set.\n";
+    }
+
+return 0;
+}
+```
+
+**输出：**
+
+```cpp
+Error bit is set.
+```
+
+## 参考
+
+[http://www.cplusplus.com/reference/ios/ios/operator/](http://www.cplusplus.com/reference/ios/ios/operator/)
