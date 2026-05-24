@@ -1,0 +1,154 @@
+# C# |获取排序列表对象中指定值的索引
+
+> 原文:[https://www . geeksforgeeks . org/c-sharp-get-index-of-the-spected-value-in-sorted list-object/](https://www.geeksforgeeks.org/c-sharp-getting-index-of-the-specified-value-in-a-sortedlist-object/)
+
+***排序列表。IndexOfValue(Object)方法*** 用于获取 SortedList 对象中指定值第一次出现的从零开始的索引。
+
+**语法:**
+
+```cs
+public virtual int IndexOfValue (object value);
+```
+
+这里，*值*是位于排序列表对象中的值。该值可以为空。
+
+**返回值:**如果在 SortedList 对象中找到了*值*，则该方法返回第一个出现的*值*参数的从零开始的索引，否则返回-1。
+
+以下程序说明了上述方法的使用:
+
+**例 1:**
+
+```cs
+// C# code to get the zero-based index 
+// of the first occurrence of the specified
+// value in a SortedList object
+using System;
+using System.Collections;
+
+class Geeks {
+
+    // Main Method
+    public static void Main(String[] args)
+    {
+
+        // Creating a SortedList of integers
+        SortedList mylist = new SortedList();
+
+        // Adding elements to SortedList
+        mylist.Add("First", "Ram");
+        mylist.Add("Second", "Rohit");
+        mylist.Add("Third", "Mohit");
+
+        //taking value "Rohit" twice
+        // but it give the first occurrence
+        mylist.Add("Fourth", "Rohit");
+
+        mylist.Add("Fifth", "Manish");
+
+        // printing the keys and values of mylist
+        Console.WriteLine("Index \t\t Keys \t\tValues");
+
+        for (int i = 0; i < mylist.Count; i++) 
+        {
+            Console.WriteLine("[{0}]\t\t{1}\t\t{2}", i,
+                mylist.GetKey(i), mylist.GetByIndex(i));
+        }
+
+        Console.Write("\nThe index of value 'Rohit' is: "); 
+
+        // getting the index of value "Rohit"
+        Console.Write(mylist.IndexOfValue("Rohit"));
+
+        // getting the index of value which is
+        // not present in mylist so it will
+        // return -1
+        Console.Write("\nThe index of value 'Kirti' is: "); 
+        Console.Write(mylist.IndexOfValue("Kirti"));
+    }
+}
+```
+
+**输出:**
+
+```cs
+Index          Keys         Values
+[0]        Fifth        Manish
+[1]        First        Ram
+[2]        Fourth        Rohit
+[3]        Second        Shyam
+[4]        Third        Mohit
+
+The index of value 'Rohit' is: 2
+The index of value 'Kirti' is: -1
+
+```
+
+**例 2:**
+
+```cs
+// C# code to get the  zero-based index 
+// of the first occurrence of the specified
+// value in a SortedList object
+using System;
+using System.Collections;
+
+class Geeks {
+
+    // Main Method
+    public static void Main(String[] args)
+    {
+
+        // Creating a SortedList of integers
+        SortedList mylist = new SortedList();
+
+        // Adding elements to SortedList
+        mylist.Add("1", "C++");
+        mylist.Add("2", "Java");
+        mylist.Add("3", "DSA");
+
+        // taking a value null
+        mylist.Add("4", null);
+
+        mylist.Add("5", "C#");
+
+        // printing the keys and values of mylist
+        Console.WriteLine("Index \t\t Keys \t\tValues");
+
+        for (int i = 0; i < mylist.Count; i++) 
+        {
+            Console.WriteLine("[{0}]\t\t{1}\t\t{2}", i,
+                mylist.GetKey(i), mylist.GetByIndex(i));
+        }
+
+        Console.Write("\nThe index of value 'null' is: "); 
+
+        // getting the index of value "null"
+        // it will give ArgumentNullException
+        Console.Write(mylist.IndexOfValue(null));
+    }
+}
+```
+
+**输出:**
+
+```cs
+Index          Keys         Values
+[0]        1        C++
+[1]        2        Java
+[2]        3        DSA
+[3]        4        
+[4]        5        C#
+
+The index of value 'null' is: 3
+
+```
+
+**注:**
+
+*   索引序列基于排序序列。当一个元素被添加时，它会以正确的排序顺序被插入到 SortedList 中，索引也会相应地进行调整。当元素被移除时，索引也会相应地调整。因此，特定键/值对的索引可能会改变。
+*   使用 Equals 方法将 SortedList 的元素值与指定值进行比较。
+*   此方法使用线性搜索；因此，这个方法是一个 O(n)运算，其中 n 是 Count。
+
+**参考:**
+
+*   [https://docs . Microsoft . com/en-us/dotnet/API/system . collections . sorted list . indexofvalue？视图=netframework-4.7.2](https://docs.microsoft.com/en-us/dotnet/api/system.collections.sortedlist.indexofvalue?view=netframework-4.7.2)
