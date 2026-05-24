@@ -1,0 +1,37 @@
+# CSS `pause-before` 属性
+
+> 原文: [https://www.geeksforgeeks.org/css-pause-before-property/](https://www.geeksforgeeks.org/css-pause-before-property/)
+
+CSS `pause-before` 属性用于定义元素之前的暂停时间。这个属性可以看作是语音媒体，相当于视觉媒体中的页边距属性。
+
+**语法:**
+```html
+pause-before: time | percentage;
+```
+
+**参数:** 该属性接受两个参数，如上所述，如下所述:
+*   `time`: This parameter holds a value, and the pause will be the length of the specified value.
+*   `percentage`: The length of pause depends on the value of speech speed. If it is set to 50% before pause, it will generate 250 milliseconds.
+
+## 示例 1:
+
+### HTML
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            audio {
+                 pause-before : 20ms;
+            }
+        </style>
+    </head>
+    <body style="text-align: center;">
+        <h1 style="color: green;">GeeksforGeeks</h1>
+        <p>CSS pause-before Property</p>
+        <audio controls> 
+            <source src="https://media.geeksforgeeks.org/wp-content/uploads/20190625153922/frog.mp3" type="audio/mp3"> 
+        </audio> 
+    </body>
+</html>
+```
