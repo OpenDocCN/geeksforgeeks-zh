@@ -1,0 +1,522 @@
+# 按行和列对矩阵排序
+
+> 原文： [https://www.geeksforgeeks.org/sort-matrix-row-wise-column-wise/](https://www.geeksforgeeks.org/sort-matrix-row-wise-column-wise/)
+
+给定一个`n x n`矩阵。 问题是按行和列对矩阵进行排序。
+
+**示例**：
+
+```
+Input : mat[][] = { {4, 1, 3},
+                    {9, 6, 8},
+                    {5, 2, 7} }
+Output : 1 3 4
+         2 5 7
+         6 8 9
+
+Input : mat[][] = { {12, 7, 1, 8},
+                    {20, 9, 11, 2},
+                    {15, 4, 5, 13},
+                    {3, 18, 10, 6} } 
+Output : 1 5 8 12
+         2 6 10 15
+         3 7 11 18
+         4 9 13 20
+
+```
+
+
+
+**方法**：步骤如下：
+
+1.  对矩阵的每一行进行排序。
+
+2.  获取矩阵的转置。
+
+3.  再次对矩阵的每一行进行排序。
+
+4.  再次得到矩阵的转置。
+
+**使用 C++  STL `sort()`对矩阵的每一行进行排序的算法**：
+
+```
+for (int i = 0 ; i < n; i++)
+    sort(mat[i], mat[i] + n);
+
+```
+
+**用于获取矩阵转置的算法**：
+
+```
+for (int i = 0; i < n; i++) {
+    for (int j = i + 1; i < n; i++) {
+        int temp = mat[i][j];
+        mat[i][j] = mat[j][i];
+        mat[j][i] = temp;
+    }
+}
+
+```
+
+## C++ 
+
+```cpp
+
+// C++ implementation to sort the matrix row-wise 
+// and column-wise 
+#include <bits/stdc++.h> 
+
+using namespace std; 
+
+#define MAX_SIZE 10 
+
+// function to sort each row of the matrix 
+void sortByRow(int mat[MAX_SIZE][MAX_SIZE], int n) 
+{ 
+    for (int i = 0; i < n; i++) 
+
+        // sorting row number 'i' 
+        sort(mat[i], mat[i] + n); 
+} 
+
+// function to find transpose of the matrix 
+void transpose(int mat[MAX_SIZE][MAX_SIZE], int n) 
+{ 
+    for (int i = 0; i < n; i++) 
+        for (int j = i + 1; j < n; j++)  
+
+            // swapping element at index (i, j)  
+            // by element at index (j, i) 
+            swap(mat[i][j], mat[j][i]); 
+} 
+
+// function to sort the matrix row-wise 
+// and column-wise 
+void sortMatRowAndColWise(int mat[MAX_SIZE][MAX_SIZE], 
+                                               int n) 
+{ 
+    // sort rows of mat[][] 
+    sortByRow(mat, n); 
+
+    // get transpose of mat[][] 
+    transpose(mat, n); 
+
+    // again sort rows of mat[][] 
+    sortByRow(mat, n); 
+
+    // again get transpose of mat[][] 
+    transpose(mat, n); 
+} 
+
+// function to print the matrix 
+void printMat(int mat[MAX_SIZE][MAX_SIZE], int n) 
+{ 
+    for (int i = 0; i < n; i++) { 
+        for (int j = 0; j < n; j++) 
+            cout << mat[i][j] << " "; 
+        cout << endl; 
+    } 
+} 
+
+// Driver program to test above 
+int main() 
+{ 
+    int mat[MAX_SIZE][MAX_SIZE] = { { 4, 1, 3 }, 
+                            { 9, 6, 8 }, 
+                            { 5, 2, 7 } }; 
+    int n = 3; 
+
+    cout << "Original Matrix:\n"; 
+    printMat(mat, n); 
+
+    sortMatRowAndColWise(mat, n); 
+
+    cout << "\nMatrix After Sorting:\n"; 
+    printMat(mat, n); 
+
+    return 0; 
+} 
+
+```
+
+## Java
+
+```java
+
+// Java implementation to sort the  
+// matrix row-wise and column-wise 
+import java.util.Arrays; 
+
+class GFG 
+{ 
+    static final int MAX_SIZE=10; 
+
+    // function to sort each row of the matrix 
+    static void sortByRow(int mat[][], int n) 
+    { 
+        for (int i = 0; i < n; i++) 
+
+            // sorting row number 'i' 
+            Arrays.sort(mat[i]); 
+    } 
+
+    // function to find transpose of the matrix 
+    static void transpose(int mat[][], int n) 
+    { 
+        for (int i = 0; i < n; i++) 
+            for (int j = i + 1; j < n; j++)  
+                { 
+                // swapping element at index (i, j)  
+                // by element at index (j, i) 
+                int temp=mat[i][j]; 
+                mat[i][j]=mat[j][i]; 
+                mat[j][i]=temp; 
+                } 
+    } 
+
+    // function to sort the matrix row-wise 
+    // and column-wise 
+    static void sortMatRowAndColWise(int mat[][],int n) 
+    { 
+        // sort rows of mat[][] 
+        sortByRow(mat, n); 
+
+        // get transpose of mat[][] 
+        transpose(mat, n); 
+
+        // again sort rows of mat[][] 
+        sortByRow(mat, n); 
+
+        // again get transpose of mat[][] 
+        transpose(mat, n); 
+    } 
+
+    // function to print the matrix 
+    static void printMat(int mat[][], int n) 
+    { 
+        for (int i = 0; i < n; i++) { 
+            for (int j = 0; j < n; j++) 
+                System.out.print(mat[i][j] + " "); 
+            System.out.println(); 
+        } 
+    }  
+
+    // Driver code  
+    public static void main (String[] args) 
+    { 
+        int mat[][] = { { 4, 1, 3 }, 
+                        { 9, 6, 8 }, 
+                        { 5, 2, 7 } }; 
+        int n = 3; 
+
+        System.out.print("Original Matrix:\n"); 
+        printMat(mat, n); 
+
+        sortMatRowAndColWise(mat, n); 
+
+        System.out.print("\nMatrix After Sorting:\n"); 
+        printMat(mat, n); 
+    } 
+} 
+
+// This code is contributed by Anant Agarwal. 
+
+```
+
+## Python 3
+
+```py
+
+# Python 3 implementation to  
+# sort the matrix row-wise 
+# and column-wise 
+MAX_SIZE = 10
+
+# function to sort each 
+# row of the matrix 
+def sortByRow(mat, n): 
+    for i in range (n): 
+
+        # sorting row number 'i' 
+        for j in range(n-1): 
+            if mat[i][j] > mat[i][j + 1]: 
+                temp = mat[i][j] 
+                mat[i][j] = mat[i][j + 1] 
+                mat[i][j + 1] = temp 
+
+# function to find  
+# transpose of the matrix 
+def transpose(mat, n): 
+    for i in range (n): 
+        for j in range(i + 1, n): 
+
+            # swapping element at  
+            # index (i, j) by element  
+            # at index (j, i) 
+            t = mat[i][j] 
+            mat[i][j] = mat[j][i] 
+            mat[j][i] = t 
+
+# function to sort 
+# the matrix row-wise 
+# and column-wise 
+def sortMatRowAndColWise(mat, n): 
+
+    # sort rows of mat[][] 
+    sortByRow(mat, n) 
+
+    # get transpose of mat[][] 
+    transpose(mat, n) 
+
+    # again sort rows of mat[][] 
+    sortByRow(mat, n) 
+
+    # again get transpose of mat[][] 
+    transpose(mat, n) 
+
+# function to print the matrix 
+def printMat(mat, n): 
+    for i in range(n): 
+        for j in range(n): 
+            print(str(mat[i][j] ), end = " ") 
+        print(); 
+
+# Driver Code 
+mat = [[ 4, 1, 3 ], 
+       [ 9, 6, 8 ], 
+       [ 5, 2, 7 ]] 
+n = 3
+
+print("Original Matrix:") 
+printMat(mat, n) 
+
+sortMatRowAndColWise(mat, n) 
+
+print("\nMatrix After Sorting:") 
+printMat(mat, n) 
+
+# This code is contributed  
+# by ChitraNayal 
+
+```
+
+## C# 
+
+```cs
+
+// C# implementation to sort the  
+// matrix row-wise and column-wise 
+using System; 
+
+class GFG 
+{  
+    // function to sort each 
+    // row of the matrix 
+    static void sortByRow(int [,]mat,  
+                          int n) 
+    { 
+
+    // sorting row number 'i' 
+    for (int i = 0; i < n ; i++) 
+        { 
+        for(int j = 0;  
+                j < n - 1; j++) 
+        { 
+            if(mat[i, j] > mat[i, j + 1]) 
+            { 
+
+                var temp = mat[i, j]; 
+                mat[i, j] = mat[i, j + 1]; 
+                mat[i, j + 1] = temp; 
+
+            } 
+        } 
+        } 
+    } 
+
+    // function to find transpose 
+    // of the matrix 
+    static void transpose(int [,]mat, 
+                          int n) 
+    { 
+        for (int i = 0; i < n; i++) 
+            for (int j = i + 1;  
+                     j < n; j++)  
+                { 
+
+                    // swapping element at  
+                    // index (i, j) by 
+                    // element at index (j, i) 
+                    var temp = mat[i, j]; 
+                    mat[i, j] = mat[j, i]; 
+                    mat[j, i] = temp; 
+                } 
+    } 
+
+    // function to sort 
+    // the matrix row-wise 
+    // and column-wise 
+    static void sortMatRowAndColWise(int [,]mat,  
+                                     int n) 
+    { 
+        // sort rows of mat[,] 
+        sortByRow(mat, n); 
+
+        // get transpose of mat[,] 
+        transpose(mat, n); 
+
+        // again sort rows of mat[,] 
+        sortByRow(mat, n); 
+
+        // again get transpose of mat[,] 
+        transpose(mat, n); 
+    } 
+
+    // function to print the matrix 
+    static void printMat(int [,]mat, int n) 
+    { 
+        for (int i = 0; i < n; i++)  
+        { 
+            for (int j = 0; j < n; j++) 
+                Console.Write(mat[i, j] + " "); 
+            Console.Write("\n"); 
+        } 
+    }  
+
+    // Driver code  
+    public static void Main () 
+    { 
+        int [,]mat = {{4, 1, 3}, 
+                      {9, 6, 8}, 
+                      {5, 2, 7}}; 
+        int n = 3; 
+
+        Console.Write("Original Matrix:\n"); 
+        printMat(mat, n); 
+
+        sortMatRowAndColWise(mat, n); 
+
+        Console.Write("\nMatrix After Sorting:\n"); 
+        printMat(mat, n); 
+    } 
+} 
+
+// This code is contributed  
+// by ChitraNayal 
+
+```
+
+## PHP
+
+```php
+
+<?php 
+// PHP implementation to sort  
+// the matrix row-wise and  
+// column-wise 
+$MAX_SIZE = 10; 
+
+// function to sort each 
+// row of the matrix 
+function sortByRow(&$mat, $n) 
+{ 
+    for ($i = 0; $i < $n; $i++) 
+
+        // sorting row number 'i' 
+        sort($mat[$i]); 
+} 
+
+// function to find 
+// transpose of the matrix 
+function transpose(&$mat, $n) 
+{ 
+    for ($i = 0; $i < $n; $i++) 
+    { 
+        for ($j = $i + 1;  
+             $j < $n; $j++)  
+        { 
+            // swapping element at index (i, j)  
+            // by element at index (j, i) 
+            $t = $mat[$i][$j]; 
+            $mat[$i][$j] = $mat[$j][$i]; 
+            $mat[$j][$i] = $t; 
+        } 
+    } 
+} 
+
+// function to sort  
+// the matrix row-wise 
+// and column-wise 
+function sortMatRowAndColWise(&$mat, $n) 
+{ 
+    // sort rows of mat[][] 
+    sortByRow($mat, $n); 
+
+    // get transpose of mat[][] 
+    transpose($mat, $n); 
+
+    // again sort rows of mat[][] 
+    sortByRow($mat, $n); 
+
+    // again get transpose of mat[][] 
+    transpose($mat, $n); 
+} 
+
+// function to print the matrix 
+function printMat(&$mat, $n) 
+{ 
+    for ($i = 0; $i < $n; $i++)  
+    { 
+        for ($j = 0; $j < $n; $j++) 
+            echo $mat[$i][$j] . " "; 
+        echo "\n"; 
+    } 
+} 
+
+// Driver Code 
+$mat = array(array( 4, 1, 3 ), 
+             array( 9, 6, 8 ), 
+             array( 5, 2, 7 )); 
+$n = 3; 
+
+echo "Original Matrix:\n"; 
+printMat($mat, $n); 
+
+sortMatRowAndColWise($mat, $n); 
+
+echo "\nMatrix After Sorting:\n"; 
+printMat($mat, $n); 
+
+// This code is contributed  
+// by ChitraNayal 
+?> 
+
+```
+
+**输出**：
+
+```
+Original Matrix:
+4 1 3
+9 6 8
+5 2 7
+
+Matrix After Sorting:
+1 3 4
+2 5 7
+6 8 9
+
+```
+
+**时间复杂度**：`O(n ^ 2 log2(n))`。
+
+辅助空间：`O(1)`。
+
+
+
+* * *
+
+* * *
+
+
+

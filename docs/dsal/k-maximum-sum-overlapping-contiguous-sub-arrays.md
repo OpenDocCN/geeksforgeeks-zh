@@ -1,0 +1,293 @@
+# 重叠的连续子数组的`K`个最大和
+
+> 原文： [https://www.geeksforgeeks.org/k-maximum-sum-overlapping-contiguous-sub-arrays/](https://www.geeksforgeeks.org/k-maximum-sum-overlapping-contiguous-sub-arrays/)
+
+给定一个整数数组和一个整数值`k`，找出`k`个最大和为`k`的子数组（可能重叠）。
+
+**示例**：
+
+```
+Input : arr = {4, -8, 9, -4, 1, -8, -1, 6}, k = 4
+Output : 9 6 6 5
+
+Input : arr = {-2, -3, 4, -1, -2, 1, 5, -3}, k= 3
+Output : 7 6 5
+
+```
+
+
+
+使用 [Kadane 的算法](https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/)，我们可以找到数组的最大连续子数组和。 但在[一些情况下](https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/)，Kadane 的算法不起作用。 当我们在数组中命中负数时，会将`max_ending_here`变量设置为零，因此我们错过了第二大值的可能性。
+
+这里我们是由 [Sung Eun Bae 和 Tadao Takaoka](http://ieeexplore.ieee.org/abstract/document/1300488/) 提出的算法，该算法计算`O(n)`时间中的[最大子数组和问题](https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/)和`O(k * n)`时间中的`k`个最大子数组和问题。
+
+**首先，我们看一下使用这种方法的最大子数组和的问题**：
+
+**先决条件**：
+
+1.  [前缀和数组](https://www.geeksforgeeks.org/prefix-sum-array-implementation-applications-competitive-programming/)
+
+2.  [使用前缀和的`O(n)`中最大子数组和](https://www.geeksforgeeks.org/maximum-subarray-sum-using-prefix-sum/)
+
+**`k`个最大子数组的方法**：
+
+```
+1\. Calculate the prefix sum of the input array.
+2\. Take cand, maxi and mini as arrays of size k. 
+3\. Initialize mini[0] = 0 for the same reason as previous.
+4\. for each value of the prefix_sum[i] do
+       (i). update cand[j] value by prefix_sum[i] - mini[j]
+       (ii). maxi will be the maximum k elements of maxi and cand
+       (iii). if prefix_sum is minimum than all values of mini then 
+              include it in mini and remove maximum element form mini
+       // After the ith iteration mini holds k minimum prefix sum upto
+       // index i and maxi holds k maximum overlapping sub-array sums 
+       // upto index i.
+5\. return maxi 
+
+```
+
+在整个计算方法中，我们将`maxi`保持不变，而`mini`则保持不变。
+
+## C++ 
+
+```cpp
+
+// C++ program to find out k maximum sum of 
+// overlapping sub-arrays 
+#include <iostream> 
+#include <limits> 
+#include <vector> 
+
+using namespace std; 
+
+// Function to compute prefix-sum of the input array 
+vector<int> prefix_sum(vector<int> arr, int n) 
+{ 
+    vector<int> pre_sum; 
+    pre_sum.push_back(arr[0]); 
+    for (int i = 1; i < n; i++)  
+        pre_sum.push_back(pre_sum[i - 1] + arr[i]);     
+    return pre_sum; 
+} 
+
+// Update maxi by k maximum values from maxi and cand 
+void maxMerge(vector<int>& maxi, vector<int> cand) 
+{ 
+    // Here cand and maxi arrays are in non-increasing 
+    // order beforehand. Now, j is the index of the 
+    // next cand element and i is the index of next 
+    // maxi element. Traverse through maxi array. 
+    // If cand[j] > maxi[i] insert cand[j] at the ith 
+    // position in the maxi array and remove the minimum 
+    // element of the maxi array i.e. the last element 
+    // and increase j by 1 i.e. take the next element 
+    // from cand. 
+    int k = maxi.size(); 
+    int j = 0; 
+    for (int i = 0; i < k; i++) { 
+        if (cand[j] > maxi[i]) { 
+            maxi.insert(maxi.begin() + i, cand[j]); 
+            maxi.erase(maxi.begin() + k); 
+            j += 1; 
+        } 
+    } 
+} 
+
+// Insert prefix_sum[i] to mini array if needed 
+void insertMini(vector<int>& mini, int pre_sum) 
+{ 
+    // Traverse the mini array from left to right. 
+    // If prefix_sum[i] is less than any element 
+    // then insert prefix_sum[i] at that position 
+    // and delete maximum element of the mini array 
+    // i.e. the rightmost element from the array. 
+    int k = mini.size(); 
+    for (int i = 0; i < k; i++) { 
+        if (pre_sum < mini[i]) { 
+            mini.insert(mini.begin() + i, pre_sum); 
+            mini.erase(mini.begin() + k); 
+            break; 
+        } 
+    } 
+} 
+
+// Function to compute k maximum overlapping sub- 
+// array sums 
+void kMaxOvSubArray(vector<int> arr, int k) 
+{ 
+    int n = arr.size(); 
+
+    // Compute the prefix sum of the input array. 
+    vector<int> pre_sum = prefix_sum(arr, n); 
+
+    // Set all the elements of mini as +infinite 
+    // except 0th. Set the 0th element as 0\. 
+    vector<int> mini(k, numeric_limits<int>::max()); 
+    mini[0] = 0; 
+
+    // Set all the elements of maxi as -infinite. 
+    vector<int> maxi(k, numeric_limits<int>::min()); 
+
+    // Initialize cand array. 
+    vector<int> cand(k); 
+
+    // For each element of the prefix_sum array do: 
+    // compute the cand array. 
+    // take k maximum values from maxi and cand 
+    // using maxmerge function. 
+    // insert prefix_sum[i] to mini array if needed 
+    // using insertMini function. 
+    for (int i = 0; i < n; i++) { 
+        for (int j = 0; j < k; j++) { 
+             if(pre_sum[i] < 0 && mini[j]==numeric_limits<int>::max()) 
+           cand[j]=(-pre_sum[i])-mini[j]; 
+         else cand[j] = pre_sum[i] - mini[j]; 
+        } 
+        maxMerge(maxi, cand); 
+        insertMini(mini, pre_sum[i]); 
+    } 
+
+    // Elements of maxi array is the k 
+    // maximum overlapping sub-array sums. 
+    // Print out the elements of maxi array. 
+    for (int ele : maxi) 
+        cout << ele << " "; 
+    cout << endl; 
+} 
+
+// Driver Program 
+int main() 
+{ 
+    // Test case 1 
+    vector<int> arr1 = { 4, -8, 9, -4, 1, -8, -1, 6 }; 
+    int k1 = 4; 
+    kMaxOvSubArray(arr1, k1); 
+
+    // Test case 2 
+    vector<int> arr2 = { -2, -3, 4, -1, -2, 1, 5, -3 }; 
+    int k2 = 3; 
+    kMaxOvSubArray(arr2, k2); 
+    return 0; 
+} 
+
+```
+
+## Python3
+
+```py
+
+# Python program to find out k maximum sum of 
+# overlapping sub-arrays 
+
+# Function to compute prefix-sum of the input array 
+def prefix_sum(arr, n): 
+    pre_sum = list() 
+    pre_sum.append(arr[0]) 
+    for i in range(1, n): 
+        pre_sum.append(pre_sum[i-1] + arr[i]) 
+    return pre_sum 
+
+# Update maxi by k maximum values from maxi and cand 
+def maxMerge(maxi, cand): 
+
+    # Here cand and maxi arrays are in non-increasing 
+    # order beforehand. Now, j is the index of the 
+    # next cand element and i is the index of next 
+    # maxi element. Traverse through maxi array. 
+    # If cand[j] > maxi[i] insert cand[j] at the ith 
+    # position in the maxi array and remove the minimum 
+    # element of the maxi array i.e. the last element 
+    # and increase j by 1 i.e. take the next element 
+    # from cand. 
+    k = len(maxi) 
+    j = 0
+    for i in range(k): 
+        if (cand[j] > maxi[i]): 
+            maxi.insert(i, cand[j]) 
+            del maxi[-1] 
+            j += 1
+
+# Insert prefix_sum[i] to mini array if needed 
+def insertMini(mini, pre_sum): 
+
+    # Traverse the mini array from left to right. 
+    # If prefix_sum[i] is less than any element 
+    # then insert prefix_sum[i] at that position 
+    # and delete maximum element of the mini array 
+    # i.e. the rightmost element from the array. 
+    k = len(mini) 
+    for i in range(k): 
+        if (pre_sum < mini[i]): 
+            mini.insert(i, pre_sum) 
+            del mini[-1] 
+            break
+
+# Function to compute k maximum overlapping sub-array sums 
+def kMaxOvSubArray(arr, k): 
+    n = len(arr) 
+
+    # Compute the prefix sum of the input array. 
+    pre_sum = prefix_sum(arr, n) 
+
+    # Set all the elements of mini as + infinite 
+    # except 0th. Set the 0th element as 0\. 
+    mini = [float('inf') for i in range(k)] 
+    mini[0] = 0
+
+    # Set all the elements of maxi as -infinite. 
+    maxi = [-float('inf') for i in range(k)] 
+
+    # Initialize cand array. 
+    cand = [0 for i in range(k)] 
+
+    # For each element of the prefix_sum array do: 
+    # compute the cand array. 
+    # take k maximum values from maxi and cand 
+    # using maxmerge function. 
+    # insert prefix_sum[i] to mini array if needed 
+    # using insertMini function. 
+    for i in range(n): 
+        for j in range(k): 
+            cand[j] = pre_sum[i] - mini[j] 
+        maxMerge(maxi, cand) 
+        insertMini(mini, pre_sum[i]) 
+
+    # Elements of maxi array is the k 
+    # maximum overlapping sub-array sums. 
+    # Print out the elements of maxi array. 
+    for ele in maxi: 
+        print(ele, end = ' ') 
+    print('') 
+
+# Driver Program 
+# Test case 1 
+arr1 = [4, -8, 9, -4, 1, -8, -1, 6] 
+k1 = 4
+kMaxOvSubArray(arr1, k1) 
+
+# Test case 2 
+arr2 = [-2, -3, 4, -1, -2, 1, 5, -3] 
+k2 = 3
+kMaxOvSubArray(arr2, k2) 
+
+```
+
+**输出**：
+
+```
+9 6 6 5
+7 6 5
+
+```
+
+**时间复杂度**：`insertMini`和`maxMerge`函数以`O(k)`时间运行，并且需要`O(k)`时间来更新`cand`数组。 我们执行此过程`n`次。 因此，总时间复杂度为`O(k * n)`。
+
+
+
+* * *
+
+* * *
+
+
+

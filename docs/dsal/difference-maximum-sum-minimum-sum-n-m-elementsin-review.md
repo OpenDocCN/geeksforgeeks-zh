@@ -1,0 +1,244 @@
+# `m`个元素的两个子集之间的最大差
+
+> 原文： [https://www.geeksforgeeks.org/difference-maximum-sum-minimum-sum-n-m-elementsin-review/](https://www.geeksforgeeks.org/difference-maximum-sum-minimum-sum-n-m-elementsin-review/)
+
+给定一个由`n`个整数和一个数字`m`组成的数组，请找到从给定数组中选择的两组`m`个元素之间的最大可能差。
+
+例子：
+
+```
+Input : arr[] = 1 2 3 4 5
+            m = 4
+Output : 4
+The maximum four elements are 2, 3, 
+4 and 5\. The minimum four elements are 
+1, 2, 3 and 4\. The difference between
+two sums is (2 + 3 + 4 + 5) - (1 + 2
++ 3 + 4) = 4
+
+Input : arr[] = 5 8 11 40 15
+           m = 2
+Output : 42
+The difference is (40 + 15) - (5  + 8)           
+
+```
+
+
+
+这个想法是先对数组排序，然后找到前`m`个元素的和与后`m`个元素的和。 最后返回两个和之间的差。
+
+## CPP
+
+```
+
+// C++ program to find difference 
+// between max and min sum of array 
+#include <bits/stdc++.h> 
+using namespace std; 
+
+// utility function 
+int find_difference(int arr[], int n, int m) 
+{ 
+    int max = 0, min = 0; 
+
+    // sort array 
+    sort(arr, arr + n); 
+
+    for (int i = 0, j = n - 1; 
+         i < m; i++, j--) { 
+        min += arr[i]; 
+        max += arr[j]; 
+    } 
+
+    return (max - min); 
+} 
+
+// Driver code 
+int main() 
+{ 
+    int arr[] = { 1, 2, 3, 4, 5 }; 
+    int n = sizeof(arr) / sizeof(arr[0]); 
+    int m = 4; 
+    cout << find_difference(arr, n, m); 
+    return 0; 
+} 
+
+```
+
+## Java
+
+```java
+
+// Java program to find difference 
+// between max and min sum of array 
+import java.util.Arrays; 
+
+class GFG { 
+    // utility function 
+    static int find_difference(int arr[], int n, 
+                               int m) 
+    { 
+        int max = 0, min = 0; 
+
+        // sort array 
+        Arrays.sort(arr); 
+
+        for (int i = 0, j = n - 1; 
+             i < m; i++, j--) { 
+            min += arr[i]; 
+            max += arr[j]; 
+        } 
+
+        return (max - min); 
+    } 
+
+    // Driver program 
+    public static void main(String arg[]) 
+    { 
+        int arr[] = { 1, 2, 3, 4, 5 }; 
+        int n = arr.length; 
+        int m = 4; 
+        System.out.print(find_difference(arr, n, m)); 
+    } 
+} 
+
+// This code is contributed by Anant Agarwal. 
+
+```
+
+## Python3
+
+```py
+
+# Python program to 
+# find difference  
+# between max and 
+# min sum of array 
+
+def find_difference(arr, n, m): 
+    max = 0; min = 0
+
+    # sort array  
+    arr.sort(); 
+    j = n-1 
+    for i in range(m): 
+        min += arr[i] 
+        max += arr[j] 
+        j = j - 1
+
+    return (max - min) 
+
+# Driver code 
+if __name__ == "__main__": 
+    arr = [1, 2, 3, 4, 5] 
+    n = len(arr) 
+    m = 4
+
+    print(find_difference(arr, n, m))    
+
+# This code is contributed by 
+# Harshit Saini 
+
+```
+
+## C# 
+
+```cs
+
+// C# program to find difference 
+// between max and min sum of array 
+using System; 
+
+class GFG { 
+
+    // utility function 
+    static int find_difference(int[] arr, int n, 
+                                          int m) 
+    { 
+        int max = 0, min = 0; 
+
+        // sort array 
+        Array.Sort(arr); 
+
+        for (int i = 0, j = n - 1; 
+            i < m; i++, j--) { 
+            min += arr[i]; 
+            max += arr[j]; 
+        } 
+
+        return (max - min); 
+    } 
+
+    // Driver program 
+    public static void Main() 
+    { 
+        int[] arr = { 1, 2, 3, 4, 5 }; 
+        int n = arr.Length; 
+        int m = 4; 
+        Console.Write(find_difference(arr, n, m)); 
+    } 
+} 
+
+// This code is contributed by nitin mittal 
+
+```
+
+## PHP
+
+```php
+
+<?php 
+// PHP program to find difference 
+// between max and min sum of array 
+
+// utility function 
+function find_difference($arr, $n, $m) 
+{ 
+    $max = 0; $min = 0; 
+
+    // sort array 
+    sort($arr); 
+    sort( $arr,$n); 
+
+    for($i = 0, $j = $n - 1; $i <$m; $i++, $j--) 
+    { 
+        $min += $arr[$i]; 
+        $max += $arr[$j]; 
+    } 
+
+    return ($max - $min); 
+} 
+
+// Driver code 
+{ 
+    $arr = array(1, 2, 3, 4, 5); 
+    $n = sizeof($arr) / sizeof($arr[0]); 
+    $m = 4; 
+    echo find_difference($arr, $n, $m); 
+    return 0; 
+} 
+
+// This code is contributed by nitin mittal. 
+?> 
+
+```
+
+Output:
+
+```
+4
+
+```
+
+我们可以使用下文中讨论的更有效的方法来优化上述解决方案。
+
+[数组中的`k`个最大（或最小）元素 | 新增的最小堆方法](https://www.geeksforgeeks.org/k-largestor-smallest-elements-in-an-array/)
+
+
+
+* * *
+
+* * *
+
+
+

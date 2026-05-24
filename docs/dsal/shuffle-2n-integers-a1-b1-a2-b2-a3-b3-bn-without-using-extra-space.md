@@ -1,0 +1,343 @@
+# 不使用多余空间将`2n`个整数打乱为`a1-b1-a2-b2-a3-b3-....-bn`
+
+> 原文： [https://www.geeksforgeeks.org/shuffle-2n-integers-a1-b1-a2-b2-a3-b3-bn-without-using-extra-space/](https://www.geeksforgeeks.org/shuffle-2n-integers-a1-b1-a2-b2-a3-b3-bn-without-using-extra-space/)
+
+我们有一个格式为`{a0, a1, a2, ....., an, b0, b1, b2, …, bn}`的数组，我们的任务是使用`O(1)`空间重新排列下面给出的格式，`{a0, b0, a1, b1, a2, b2, ………, an, bn}`。
+
+**示例**：
+
+```
+Input : arr[] = {1, 3, 5, 7, 2, 4, 6, 8}
+Output : {1, 2, 3, 4, 5, 6, 7, 8}
+
+Input : arr[] = {11, 13, 15, 12, 14, 16}
+Output : {11, 12, 13, 14, 15, 16}
+
+```
+
+
+
+我们已经讨论了两种方法-
+
+*   [https://www.geeksforgeeks.org/shuffle-2n-integers-format-a1-b1-a2-b2-a2-b3-bn-without-using-extra-space/](https://www.geeksforgeeks.org/shuffle-2n-integers-format-a1-b1-a2-b2-a3-b3-bn-without-using-extra-space/)
+
+*   [https://www.geeksforgeeks.org/shuffle-array-a1-b1-a2-b2-a3-b3-bn-without-using-extra-space/](https://www.geeksforgeeks.org/shuffle-array-a1-b1-a2-b2-a3-b3-bn-without-using-extra-space/)
+
+如我们所见，我们必须转换数组，所以必须有一个偶数大小的数组。要重新排列数组，我们将从数组的中间开始，每次我们将后一半的 1 个元素向左移到所需位置 。 该算法将采用`O(n ^ 2)`。
+
+算法-
+
+```
+1- Take the input array
+2- If size is null or odd return
+3- find the middle index of the array
+4- While (midindex>0)
+    set count = midindex and 
+        swapindex = midindex
+    while (count-->0){
+      swap(swapindex+1, swapindedx)
+      swapindex++
+    }
+    midindex--
+5- End
+
+```
+
+**工作正常**：
+
+```
+array- 1 3 5 7 2 4 6 8
+1st Loop- 1 2 3 5 7 4 6 8
+2nd Loop- 1 2 3 4 5 7 6 8
+3rd loop- 1 2 3 4 5 6 7 8
+
+```
+
+## C++ 
+
+```cpp
+
+// CPP program to shuffle an array in 
+// the form of a1, b1, a2, b2,... 
+#include<iostream> 
+using namespace std; 
+
+// function to rearrange the array 
+void rearrange(int arr[], int n)  
+{ 
+
+    // if size is null or odd return because it 
+    // is not possible to rearrange 
+    if (arr == NULL || n % 2 == 1) 
+        return; 
+
+    // start from the middle index 
+    int currIdx = (n - 1) / 2; 
+
+    // each time we will set two elements from the  
+    // start to the valid position by swapping 
+    while (currIdx > 0) 
+    { 
+        int count = currIdx, swapIdx = currIdx; 
+
+        while (count-- > 0)  
+        { 
+            int temp = arr[swapIdx + 1]; 
+            arr[swapIdx + 1] = arr[swapIdx]; 
+            arr[swapIdx] = temp; 
+            swapIdx++; 
+        } 
+
+        currIdx--; 
+    } 
+} 
+
+// Driver Program 
+int main() 
+{ 
+    int arr[] = {1, 3, 5, 2, 4, 6}; 
+    int n = sizeof(arr) / sizeof(arr[0]); 
+    rearrange(arr, n); 
+    for (int i = 0; i < n; i++) 
+    cout << " " << arr[i]; 
+
+} 
+
+// This code is contributed by Smitha Dinesh Semwal 
+
+```
+
+## Java
+
+```java
+
+// Java program to shuffle an array in 
+// the form of a1, b1, a2, b2,... 
+import java.io.*; 
+
+class GFG { 
+
+  // function to rearrange the array 
+  public static void rearrange(int[] arr) { 
+
+    // if size is null or odd return because it 
+    // is not possible to rearrange 
+    if (arr == null || arr.length % 2 == 1) 
+      return; 
+
+    // start from the middle index 
+    int currIdx = (arr.length - 1) / 2; 
+
+    // each time we will set two elements from the  
+    // start to the valid position by swapping 
+    while (currIdx > 0) { 
+      int count = currIdx, swapIdx = currIdx; 
+
+      while (count-- > 0) { 
+        int temp = arr[swapIdx + 1]; 
+        arr[swapIdx + 1] = arr[swapIdx]; 
+        arr[swapIdx] = temp; 
+        swapIdx++; 
+      } 
+      currIdx--; 
+    } 
+  } 
+
+  public static void main(String[] args) { 
+    int arr[] = {1, 3, 5, 2, 4, 6}; 
+    rearrange(arr); 
+    for (int i = 0; i < arr.length; i++) 
+      System.out.print(" " + arr[i]); 
+  } 
+} 
+
+```
+
+## Python3
+
+```py
+
+# Python program to shuffle  
+# an array in the form  
+# of a1, b1, a2, b2,... 
+
+arr = [1, 3, 5, 2, 4, 6] 
+
+# function to 
+# rearrange the array 
+def rearrange(n) : 
+
+    global arr 
+
+    # if size is null or  
+    # odd return because  
+    # it is not possible  
+    # to rearrange 
+    if (n % 2 == 1) : 
+        return
+
+    # start from the 
+    # middle index 
+    currIdx = int((n - 1) / 2) 
+
+    # each time we will set  
+    # two elements from the  
+    # start to the valid  
+    # position by swapping 
+    while (currIdx > 0) : 
+
+        count = currIdx 
+        swapIdx = currIdx 
+
+        while (count > 0) :  
+
+            temp = arr[swapIdx + 1] 
+            arr[swapIdx + 1] = arr[swapIdx] 
+            arr[swapIdx] = temp 
+            swapIdx = swapIdx + 1
+            count = count - 1    
+
+        currIdx = currIdx - 1
+
+# Driver Code 
+n = len(arr) 
+rearrange(n) 
+for i in range(0, n) : 
+    print ("{} " . format(arr[i]),  
+                        end = "") 
+
+# This code is contributed by  
+# Manish Shaw(manishshaw1) 
+
+```
+
+## C# 
+
+```cs
+
+// C# program to shuffle an array in 
+// the form of a1, b1, a2, b2,... 
+using System; 
+
+class GFG { 
+
+    // function to rearrange the array 
+    public static void rearrange(int[] arr) 
+    { 
+
+        // if size is null or odd return  
+        // because it is not possible to 
+        // rearrange 
+        if (arr == null || arr.Length % 2 == 1) 
+            return; 
+
+        // start from the middle index 
+        int currIdx = (arr.Length - 1) / 2; 
+
+        // each time we will set two elements 
+        // from the start to the valid position  
+        // by swapping 
+        while (currIdx > 0) { 
+            int count = currIdx, swapIdx = currIdx; 
+
+            while (count-- > 0) { 
+                int temp = arr[swapIdx + 1]; 
+                arr[swapIdx + 1] = arr[swapIdx]; 
+                arr[swapIdx] = temp; 
+                swapIdx++; 
+            } 
+
+            currIdx--; 
+        } 
+    } 
+
+    // Driver Program 
+    public static void Main() { 
+
+        int []arr = {1, 3, 5, 2, 4, 6}; 
+
+        rearrange(arr); 
+
+        for (int i = 0; i < arr.Length; i++) 
+            Console.Write(" " + arr[i]); 
+    } 
+} 
+
+// This code is contributed by vt_m. 
+
+```
+
+## PHP
+
+```php
+
+<?php 
+// PHP program to shuffle  
+// an array in the form  
+// of a1, b1, a2, b2,... 
+
+// function to 
+// rearrange the array 
+function rearrange(&$arr, $n)  
+{ 
+    // if size is null or  
+    // odd return because  
+    // it is not possible  
+    // to rearrange 
+    if ($arr == NULL || 
+        $n % 2 == 1) 
+        return; 
+
+    // start from the 
+    // middle index 
+    $currIdx = intval(($n - 1) / 2); 
+
+    // each time we will set  
+    // two elements from the  
+    // start to the valid  
+    // position by swapping 
+    while ($currIdx > 0) 
+    { 
+        $count = $currIdx; 
+        $swapIdx = $currIdx; 
+
+        while ($count-- > 0)  
+        { 
+            $temp = $arr[$swapIdx + 1]; 
+            $arr[$swapIdx + 1] = $arr[$swapIdx]; 
+            $arr[$swapIdx] = $temp; 
+            $swapIdx++; 
+        } 
+
+        $currIdx--; 
+    } 
+} 
+
+// Driver Code 
+$arr = array(1, 3, 5, 2, 4, 6); 
+$n = count($arr); 
+rearrange($arr, $n); 
+for ($i = 0; $i < $n; $i++) 
+    echo ($arr[$i] . " "); 
+
+// This code is contributed by  
+// Manish Shaw(manishshaw1) 
+?> 
+
+```
+
+**输出**：
+
+```
+1 2 3 4 5 6
+
+```
+
+
+
+* * *
+
+* * *
+
+
+

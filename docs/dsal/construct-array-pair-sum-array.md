@@ -1,0 +1,187 @@
+# 从偶对和数组构造一个数组
+
+> 原文： [https://www.geeksforgeeks.org/construct-array-pair-sum-array/](https://www.geeksforgeeks.org/construct-array-pair-sum-array/)
+
+给定一个成对和数组和原始数组的大小（`n`），构造原始数组。
+
+数组的成对和数组是包含有序形式的所有对的和的数组。 例如，`arr[] = {6, 8, 3, 4}`的成对和数组为`{14, 9, 10, 11, 12, 7}`。
+
+通常，`arr[0..n-1]`的成对和数组为`{arr[0] + arr[1], arr[0] + arr[2], ……, arr[1] + arr[2], arr[1] + arr[3], ……, arr[2] + arr[3], arr[2] + arr[4], …, arr[n-2] + arr[n-1]}`。
+
+“给出一个成对和数组，构造原始数组。”
+
+**我们强烈建议您最小化浏览器并自己尝试。**
+
+假设给定的数组为`pair[]`，并且原始数组中有`n`个元素。 如果我们看几个示例，我们可以看到`arr[0]`是`pair[0] + pair[1] – pair[n-1]`的一半。 请注意，`pair[0] + pair[1] – pair[n-1]`的值是`(arr[0] + arr[1]) + (arr[0] + arr [2]) – (arr[1] + arr[2])`。
+
+一旦我们求值了`arr[0]`，我们就可以通过减去`arr[0]`来求值其他元素。 例如，可以通过从`pair[0]`中减去`arr[0]`来求值`arr[1]`，通过从`pair[1]`中减去`arr[0]`来求值`arr[2]`。
+
+以下是上述想法的实现。
+
+## C++ 
+
+```cpp
+
+#include <bits/stdc++.h> 
+using namespace std; 
+
+// Fills element in arr[] from its pair sum array pair[].  
+// n is size of arr[] 
+void constructArr(int arr[], int pair[], int n) 
+{ 
+    arr[0] = (pair[0]+pair[1]-pair[n-1]) / 2; 
+    for (int i=1; i<n; i++) 
+        arr[i] = pair[i-1]-arr[0]; 
+} 
+
+// Driver program to test above function 
+int main() 
+{ 
+    int pair[] = {15, 13, 11, 10, 12, 10, 9, 8, 7, 5}; 
+    int n = 5; 
+    int arr[n]; 
+    constructArr(arr, pair, n); 
+    for (int i = 0; i < n; i++) 
+        cout << arr[i] << " "; 
+    return 0; 
+} 
+
+```
+
+## Java
+
+```java
+
+import java.io.*; 
+
+class PairSum { 
+
+    // Fills element in arr[] from its pair sum array pair[].  
+    // n is size of arr[] 
+    static void constructArr(int arr[], int pair[], int n) 
+    { 
+        arr[0] = (pair[0]+pair[1]-pair[n-1]) / 2; 
+        for (int i=1; i<n; i++) 
+            arr[i] = pair[i-1]-arr[0]; 
+    } 
+
+    // Driver program to test above function 
+    public static void main(String[] args) 
+    { 
+        int pair[] = {15, 13, 11, 10, 12, 10, 9, 8, 7, 5}; 
+        int n = 5; 
+        int[] arr = new int[n]; 
+        constructArr(arr, pair, n); 
+        for (int i = 0; i < n; i++) 
+            System.out.print(arr[i]+" ");         
+    } 
+} 
+/* This code is contributed by Devesh Agrawal */
+
+```
+
+## Python3
+
+```py
+
+# Fills element in arr[] from its  
+# pair sum array pair[].  
+# n is size of arr[]  
+
+def constructArr(arr,pair,n): 
+    arr [0] = (pair[0]+pair[1]-pair[n-1])//2
+    for i in range(1,n): 
+        arr[i] = pair[i-1]-arr[0] 
+
+# Driver code 
+if __name__=='__main__': 
+    pair = [15, 13, 11, 10, 12, 10, 9, 8, 7, 5] 
+    n =5
+    arr = [0]*n 
+    constructArr(arr,pair,n) 
+    for i in range(n): 
+        print(arr[i],end =" ") 
+
+# This code is contributed by  
+# Shrikant13 
+
+```
+
+## C# 
+
+```cs
+
+// C# program to construct an 
+// array from its pair-sum array 
+using System; 
+
+class PairSum  
+{ 
+    // Fills element in arr[] from its 
+    // pair sum array pair[].  
+    // n is size of arr[] 
+    static void constructArr(int []arr, int []pair, 
+                                             int n) 
+    { 
+        arr[0] = (pair[0] + pair[1] - pair[n - 1]) / 2; 
+        for (int i = 1; i < n; i++) 
+            arr[i] = pair[i - 1] - arr[0]; 
+    } 
+
+    // Driver program to test above function 
+    public static void Main() 
+    { 
+        int []pair = {15, 13, 11, 10, 12, 
+                         10, 9, 8, 7, 5}; 
+        int n = 5; 
+        int []arr = new int[n]; 
+        constructArr(arr, pair, n); 
+        for (int i = 0; i < n; i++) 
+            Console.Write(arr[i] + " ");      
+    } 
+} 
+
+// This code is contributed by nitin mittal 
+
+```
+
+## PHP
+
+```php
+
+<?php 
+// Fills element in arr[] from   
+// its pair sum array pair[].  
+// n is size of arr[] 
+function constructArr($pair) 
+{ 
+    $arr = array(); 
+    $n = 5; 
+    $arr[0] = intval(($pair[0] + $pair[1] -  
+                      $pair[$n - 1]) / 2); 
+    for ($i = 1; $i < $n; $i++) 
+        $arr[$i] = $pair[$i - 1] - $arr[0]; 
+
+    for ($i = 0; $i < $n; $i++) 
+        echo $arr[$i] . " ";  
+} 
+
+// Driver Code 
+$pair = array(15, 13, 11, 10,  
+              12, 10, 9, 8, 7, 5); 
+constructArr($pair); 
+
+// This code is contributed by Sam007 
+?> 
+
+```
+
+**输出**：
+
+```
+ 8 7 5 3 2 
+```
+
+`ConstructArr()`的时间复杂度为`O(n)`，其中`n`是`arr[]`中元素的数量。
+
+

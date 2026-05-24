@@ -1,0 +1,67 @@
+# 链表数据结构的应用
+
+> 原文：[https://www.geeksforgeeks.org/applications-of-linked-list-data-structure/](https://www.geeksforgeeks.org/applications-of-linked-list-data-structure/)
+
+链表是一种线性数据结构，其中的元素未存储在连续的内存位置。 链表中的元素使用指针链接，如下图所示：
+
+![](img/d97a233bf3c89e80c46e6a3193e851d6.png)
+
+**链表在计算机科学中的应用**：
+
+1.  [栈](https://www.geeksforgeeks.org/stack-data-structure/)和[队列](https://www.geeksforgeeks.org/queue-data-structure/)的实现
+
+2.  图的实现：[图的相邻列表表示法](https://www.geeksforgeeks.org/graph-and-its-representations/)最流行，它使用链表来存储相邻的顶点。
+
+3.  动态内存分配：我们使用空闲块的链表。
+
+4.  维护名称目录
+
+5.  对长整数执行算术运算
+
+6.  通过将常数存储在链表的节点中来处理多项式
+
+7.  代表稀疏矩阵
+
+**链表在现实世界中的应用**：
+
+1.  *图像查看器* – 上一个和下一个图像已链接，因此可以通过下一个和上一个按钮进行访问。
+
+2.  *Web 浏览器中的上一页和下一页* – 我们可以通过按`Back`和`Next`按钮访问在 Web 浏览器中搜索的上一个和下一个 URL，因为它们被链接为链表。
+
+3.  *音乐播放器* – 音乐播放器中的歌曲链接到上一首和下一首歌曲。 您可以从列表的开头或结尾播放歌曲。
+
+**循环链表的应用**：
+
+1.  对于实现队列很有用。 与[这个实现](http://quiz.geeksforgeeks.org/queue-set-2-linked-list-implementation/)不同，如果我们使用循环链表，则不需要在前后都保留两个指针。 我们可以维护一个指向最后插入的节点的指针，并且始终可以将前一个作为倒数第二个。
+
+2.  循环列表在应用中反复遍历列表很有用。 例如，当一台 PC 上运行多个应用时，操作系统通常会将正在运行的应用放在列表中，然后在它们之间循环，给它们每个执行时间，然后让它们等待，并将 CPU 分配给另一个应用。 操作系统使用循环列表很方便，这样，当循环列表到达列表末尾时，它可以循环到列表的开头。
+
+3.  循环双链表用于实现高级数据结构，例如[斐波那契堆](http://en.wikipedia.org/wiki/Fibonacci_heap)。
+
+**一个示例问题**：
+
+设计一个数据结构，以有效支持以下操作。
+
+1.  `getMin`：获取最小值
+
+2.  `extractMin`：删除最小值
+
+3.  `getMax`：获取最大值
+
+4.  `extractMax`：删除最大值
+
+5.  `insert`：插入一个项目。 可以假定插入的项目始终大于到目前为止的最大值。 例如，有效的插入顺序是 10、12、13、20、50。
+
+双链表是这里最好的解决方案。 我们保持头和尾指针，因为插入的项总是最大的，所以我们在尾插入。 可以在`O(1)`时间内从头部或尾部删除项目。 因此，所有操作都需要`O(1)`时间。
+
+[**链表**](https://www.geeksforgeeks.org/category/linked-list/)上的最新文章。
+
+
+
+* * *
+
+* * *
+
+如果您喜欢 GeeksforGeeks 并希望做出贡献，则还可以使用 [tribution.geeksforgeeks.org](https://contribute.geeksforgeeks.org/) 撰写文章，或将您的文章邮寄至 tribution@geeksforgeeks.org。 查看您的文章出现在 GeeksforGeeks 主页上，并帮助其他 Geeks。
+
+如果您发现任何不正确的地方，请单击下面的“改进文章”按钮，以改进本文。

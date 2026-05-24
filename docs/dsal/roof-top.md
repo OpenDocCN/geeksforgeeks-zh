@@ -1,0 +1,272 @@
+# 到屋顶的连续步长
+
+> 原文： [https://www.geeksforgeeks.org/roof-top/](https://www.geeksforgeeks.org/roof-top/)
+
+给定连续建筑物的高度，找到一个人可以提出的最大连续台阶数，这样他从一栋建筑物的屋顶转到下一栋相邻建筑物的屋顶时，高度会增加。
+
+ **示例**：
+
+```
+Input : arr[] = {1, 2, 2, 3, 2}
+Output : 1
+Explanation :
+Maximum consecutive steps from 1 to 2 OR  2 to 3.
+
+Input : arr[] = {1, 2, 3, 4}
+Output : 3
+
+```
+
+
+
+![](img/e347e13f7770a8097a1a783940c79fe6.png)
+
+此问题基本上是[最长递增子数组](https://www.geeksforgeeks.org/longest-increasing-subarray/)的变体。
+
+方法：
+
+```
+initialize count = 0
+initialize maximum = 0
+    if arr[i]>a[i-1]
+then count increment
+    else
+maximum = max(maximum, count)
+
+at the end maximum=max(maximum, count)
+
+```
+
+## C++ 
+
+```cpp
+
+// CPP code to find maximum  
+// number of consecutive steps. 
+#include <bits/stdc++.h> 
+using namespace std; 
+
+// Function to count consecutive steps 
+int find_consecutive_steps(int arr[], int len) 
+{ 
+    int count = 0; 
+    int maximum = 0; 
+
+    for (int index = 1; index < len; index++) { 
+
+        // count the number of consecutive  
+        // increasing height building 
+        if (arr[index] > arr[index - 1]) 
+            count++; 
+        else
+        { 
+            maximum = max(maximum, count); 
+            count = 0; 
+        } 
+    } 
+
+    return max(maximum, count);     
+} 
+
+// Driver code 
+int main() 
+{ 
+    int arr[] = { 1, 2, 3, 4 }; 
+    int len = sizeof(arr) / sizeof(arr[0]); 
+
+    cout << find_consecutive_steps(arr, len); 
+} 
+
+```
+
+## Java
+
+```java
+
+// Java code to find maximum  
+// number of consecutive steps. 
+import java.io.*; 
+
+class GFG { 
+
+    // Function to count consecutive steps 
+    static int find_consecutive_steps(int arr[], 
+                                        int len) 
+    { 
+        int count = 0; 
+        int maximum = 0; 
+
+        for (int index = 1; index < len; index++) { 
+
+            // count the number of consecutive  
+            // increasing height building 
+            if (arr[index] > arr[index - 1]) 
+                count++; 
+            else
+            { 
+                maximum = Math.max(maximum, count); 
+                count = 0; 
+            } 
+        } 
+
+        return Math.max(maximum, count);  
+    } 
+
+    // Driver code 
+    public static void main (String[] args) { 
+
+        int arr[] = { 1, 2, 3, 4 }; 
+        int len = arr.length; 
+
+        System.out.println(find_consecutive_steps(arr, 
+                                                len)); 
+    } 
+} 
+
+// This code is contributed by Gitanjali. 
+
+```
+
+## Python3
+
+```py
+
+# Python3 code to find maximum  
+# number of consecutive steps 
+import math 
+
+# Function to count consecutive steps 
+def find_consecutive_steps(arr, len): 
+
+    count = 0; maximum = 0
+
+    for index in range(1, len): 
+
+        # count the number of consecutive  
+        # increasing height building 
+        if (arr[index] > arr[index - 1]): 
+            count += 1
+
+        else: 
+            maximum = max(maximum, count) 
+            count = 0
+
+    return max(maximum, count) 
+
+# Driver code 
+arr = [ 1, 2, 3, 4 ] 
+len = len(arr) 
+print(find_consecutive_steps(arr, len)) 
+
+# This code is contributed by Gitanjali. 
+
+```
+
+## C# 
+
+```cs
+
+// C# code to find maximum  
+// number of consecutive steps. 
+using System; 
+
+class GFG { 
+
+    // Function to count consecutive steps 
+    static int find_consecutive_steps(int []arr, 
+                                        int len) 
+    { 
+        int count = 0; 
+        int maximum = 0; 
+
+        for (int index = 1; index < len; index++) { 
+
+            // count the number of consecutive  
+            // increasing height building 
+            if (arr[index] > arr[index - 1]) 
+                count++; 
+            else
+            { 
+                maximum = Math.Max(maximum, count); 
+                count = 0; 
+            } 
+        } 
+
+        return Math.Max(maximum, count);  
+    } 
+
+    // Driver code 
+    public static void Main () { 
+
+        int []arr = { 1, 2, 3, 4 }; 
+        int len = arr.Length; 
+
+        Console.WriteLine(find_consecutive_steps(arr, 
+                                                len)); 
+    } 
+} 
+
+// This code is contributed by vt_m. 
+
+```
+
+## PHP
+
+```php
+
+<?php 
+// PHP code to find maximum  
+// number of consecutive steps. 
+
+// Function to count 
+// consecutive steps 
+function find_consecutive_steps($arr,  
+                                $len) 
+{ 
+    $count = 0; 
+    $maximum = 0; 
+
+    for ($index = 1; $index < $len;  
+                          $index++)  
+    { 
+
+        // count the number of consecutive  
+        // increasing height building 
+        if ($arr[$index] > $arr[$index - 1]) 
+            $count++; 
+        else
+        { 
+            $maximum = max($maximum, $count); 
+            $count = 0; 
+        } 
+    } 
+
+    return max($maximum, $count);  
+} 
+
+// Driver code 
+$arr = array( 1, 2, 3, 4 ); 
+$len = count($arr); 
+
+echo find_consecutive_steps($arr, $len); 
+
+// This code is contributed by vt_m.  
+?> 
+
+```
+
+ **输出**：
+
+```
+3
+
+```
+
+
+
+* * *
+
+* * *
+
+
+

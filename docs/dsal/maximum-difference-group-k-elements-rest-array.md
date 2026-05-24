@@ -1,0 +1,362 @@
+# `k`元素分组与数组其余部分之间的最大差值
+
+> 原文： [https://www.geeksforgeeks.org/maximum-difference-group-k-elements-rest-array/](https://www.geeksforgeeks.org/maximum-difference-group-k-elements-rest-array/)
+
+您将得到一个由`n`个元素组成的数组。 您必须将给定数组分为两组，以便一组精确地包含`k`个元素，第二组包含其余元素。 您的结果必须是这两组元素之和的最大可能差。
+
+**示例**：
+
+```
+Input : arr[n] = {1, 5, 2, 6, 3}  , k = 2
+Output : Maximum Difference = 11
+Explanation : group1 = 1+2 , group2 = 3+5+6
+              Maximum Difference = 14 - 3 = 11
+
+Input : arr[n] = {1, -1, 3, -2, -3} , k = 2
+Output : Maximum Difference = 10
+Explanation : group1 = -1-2-3 , group2 = 1+3
+              Maximum Difference = 4 - (-6) = 10
+
+```
+
+为了找到最大的群体差异，我们有两种可能性。 对于第一种情况，`k`个最小元素属于一个组，其余元素属于另一组。 对于第二种情况，`k`个最大元素属于一个组，其余元素属于另一组。
+
+因此，首先对整个数组进行排序，并为上述两种情况找到组差异，然后最终找到它们之间的最大差异。
+
+**算法**：
+
+```
+sort the array
+find sum of whole array
+case-1
+    -> find sum of first k-smallest elements
+    -> differece1 = abs( arraySum - 2*k_Smallest)
+case-2
+    -> find sum of first k-largest elements
+    -> differece2 = abs( arraySum - 2*k_largest)
+ print max(difference1, difference2)
+ ```
+
+## C++ 
+
+```cpp
+
+// CPP to find maximum group difference 
+#include<bits/stdc++.h> 
+using namespace std; 
+
+// utility function for array sum 
+long long int arraySum(int arr[], int n) 
+{ 
+    long long int sum = 0; 
+    for (int i=0; i<n; i++) 
+        sum = sum + arr[i]; 
+    return sum; 
+} 
+
+// function for finding 
+// maximum group difference of array 
+long long int maxDiff (int arr[], int n, int k) 
+{ 
+    // sort the array 
+    sort(arr, arr+n); 
+
+    // find array sum 
+    long long int arraysum = arraySum(arr, n); 
+
+    // difference for k-smallest 
+    // diff1 = (arraysum-k_smallest)-k_smallest 
+    long long int diff1 = abs(arraysum - 2*arraySum(arr, k)); 
+
+    // reverse array for finding sum 0f 1st k-largest 
+    reverse(arr, arr+n); 
+
+    // difference for k-largest 
+    // diff2 = (arraysum-k_largest)-k_largest 
+    long long int diff2 = abs(arraysum - 2*arraySum(arr, k)); 
+
+    // return maximum difference value 
+    return(max(diff1,diff2)); 
+
+} 
+
+// driver program 
+int main() 
+{ 
+    int arr[] = {1, 7, 4, 8, -1, 5, 2, 1}; 
+    int n = sizeof(arr)/sizeof(arr[0]); 
+    int k = 3; 
+    cout << "Maximum Difference = " << maxDiff(arr,n,k); 
+    return 0; 
+} 
+
+```
+
+## Java
+
+```java
+
+// java to find maximum group difference 
+import java.util.Arrays; 
+
+public class GFG { 
+
+    // utility function for array sum 
+    static long arraySum(int arr[], int n) 
+    { 
+        long sum = 0; 
+        for (int i = 0; i < n; i++) 
+            sum = sum + arr[i]; 
+
+        return sum; 
+    } 
+
+    // function for finding maximum group 
+    // difference of array 
+    static long maxDiff (int arr[], int n, int k) 
+    { 
+
+        // sort the array 
+        Arrays.sort(arr); 
+
+        // find array sum 
+        long arraysum = arraySum(arr, n); 
+
+        // difference for k-smallest 
+        // diff1 = (arraysum-k_smallest)-k_smallest 
+        long diff1 = Math.abs(arraysum - 
+                            2 * arraySum(arr, k)); 
+
+        // reverse array for finding sum of 
+        // 1st k-largest 
+        int end = arr.length - 1; 
+        int start = 0; 
+        while (start < end) 
+        { 
+            int temp = arr[start];  
+            arr[start] = arr[end]; 
+            arr[end] = temp; 
+            start++; 
+            end--; 
+        }  
+
+        // difference for k-largest 
+        // diff2 = (arraysum-k_largest)-k_largest 
+        long diff2 = Math.abs(arraysum - 
+                            2 * arraySum(arr, k)); 
+
+        // return maximum difference value 
+        return(Math.max(diff1, diff2)); 
+
+    } 
+
+    public static void main(String args[]) { 
+        int arr[] = {1, 7, 4, 8, -1, 5, 2, 1}; 
+        int n = arr.length; 
+        int k = 3; 
+
+        System.out.println("Maximum Difference = "
+                            + maxDiff(arr, n, k)); 
+
+    } 
+} 
+
+// This code is contributed by Sam007\. 
+
+```
+
+## Python3
+
+```py
+
+# Python3 to find maximum group difference 
+
+# utility function for array sum 
+def arraySum(arr, n): 
+
+    sum = 0
+    for i in range(n): 
+        sum = sum + arr[i] 
+    return sum
+
+# function for finding 
+# maximum group difference of array 
+def maxDiff (arr, n, k): 
+
+    # sort the array 
+    arr.sort() 
+
+    # find array sum 
+    arraysum = arraySum(arr, n) 
+
+    # difference for k-smallest 
+    # diff1 = (arraysum-k_smallest)-k_smallest 
+    diff1 = abs(arraysum - 2 * arraySum(arr, k)) 
+
+    # reverse array for finding sum  
+    # 0f 1st k-largest 
+    arr.reverse() 
+
+    # difference for k-largest 
+    # diff2 = (arraysum-k_largest)-k_largest 
+    diff2 = abs(arraysum - 2 * arraySum(arr, k)) 
+
+    # return maximum difference value 
+    return(max(diff1, diff2)) 
+
+# Driver Code 
+if __name__ == "__main__": 
+    arr = [1, 7, 4, 8, -1, 5, 2, 1] 
+    n = len(arr) 
+    k = 3
+    print ("Maximum Difference =",  
+               maxDiff(arr, n, k)) 
+
+# This code is contributed by ita_c 
+
+```
+
+## C# 
+
+```cs
+
+// C# to find maximum group difference 
+using System; 
+
+public class GFG { 
+
+    // utility function for array sum 
+    static long arraySum(int []arr, int n) 
+    { 
+        long sum = 0; 
+        for (int i = 0; i < n; i++) 
+            sum = sum + arr[i]; 
+
+        return sum; 
+    } 
+
+    // function for finding maximum group 
+    // difference of array 
+    static long maxDiff (int []arr, int n, int k) 
+    { 
+
+        // sort the array 
+        Array.Sort(arr); 
+
+        // find array sum 
+        long arraysum = arraySum(arr, n); 
+
+        // difference for k-smallest 
+        // diff1 = (arraysum-k_smallest)-k_smallest 
+        long diff1 = Math.Abs(arraysum - 
+                             2 * arraySum(arr, k)); 
+
+        // reverse array for finding sum of 
+        // 1st k-largest 
+        Array.Reverse(arr); 
+
+        // difference for k-largest 
+        // diff2 = (arraysum-k_largest)-k_largest 
+        long diff2 = Math.Abs(arraysum - 
+                            2 * arraySum(arr, k)); 
+
+        // return maximum difference value 
+        return(Math.Max(diff1, diff2)); 
+
+    } 
+
+    // Driver program 
+    static public void Main () 
+    { 
+        int []arr = {1, 7, 4, 8, -1, 5, 2, 1}; 
+        int n = arr.Length; 
+        int k = 3; 
+
+        Console.WriteLine("Maximum Difference = "
+                           + maxDiff(arr, n, k)); 
+    } 
+} 
+
+// This Code is contributed by vt_m. 
+
+```
+
+## PHP
+
+```php
+
+<?php 
+// PHP to find maximum group difference 
+
+// utility function for array sum 
+function arraySum($arr, $n) 
+{ 
+    $sum = 0; 
+    for ($i = 0; $i < $n; $i++) 
+        $sum = $sum + $arr[$i]; 
+    return $sum; 
+} 
+
+// function for finding 
+// maximum group difference 
+// of array 
+function maxDiff ($arr, $n, $k) 
+{ 
+
+    // sort the array 
+    sort($arr); 
+
+    // find array sum 
+    $arraysum = arraySum($arr, $n); 
+
+    // difference for k-smallest 
+    // diff1 = (arraysum - k_smallest)  
+    // - k_smallest 
+    $diff1 = abs($arraysum - 2 *  
+             arraySum($arr, $k)); 
+
+    // reverse array for finding 
+    // sum 0f 1st k-largest 
+    array_reverse($arr); 
+
+    // difference for k-largest 
+    // diff2 = (arraysum - k_largest)  
+    // - k_largest 
+    $diff2 = abs($arraysum - 2 *  
+             arraySum($arr, $k)); 
+
+    // return maximum difference value 
+    return(max($diff1,$diff2)); 
+
+} 
+
+    // Driver Code 
+    $arr = array(1, 7, 4, 8, -1, 5, 2, 1); 
+    $n = count($arr); 
+
+    $k = 3; 
+    echo "Maximum Difference = " ,  
+          maxDiff($arr, $n, $k); 
+
+// This Code is contributed by vt_m. 
+?> 
+
+```
+
+**输出**：
+
+```
+Maximum Difference = 25
+
+```
+
+**对上述解决方案的优化**：
+
+1.  我们可以避免对数组进行求逆，并使用不同的循环从末尾求和`k`个元素。
+
+2.  我们还可以使用以下文章中讨论的方法更有效地找到`k`个最大和最小元素的总和。
+
+[未排序数组中第`K`个最小/最大元素 | 系列 2（预期线性时间）](https://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array-set-2-expected-linear-time/)
+
+[未排序数组中第`K`个最小/最大元素 | 系列 3（最差情况的线性时间）](https://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array-set-3-worst-case-linear-time/)
+

@@ -1,0 +1,580 @@
+# 在经过排序和旋转的数组中搜索元素
+
+> 原文： [https://www.geeksforgeeks.org/search-an-element-in-a-sorted-and-pivoted-array/](https://www.geeksforgeeks.org/search-an-element-in-a-sorted-and-pivoted-array/)
+
+通过[二分搜索](https://www.geeksforgeeks.org/binary-search/)可以在`O(log n)`时间找到排序数组中的元素。 但是，假设我们在您事先不知道的某个枢轴处旋转一个升序排序的数组。 因此，例如`1 2 3 4 5`可能变成`3 4 5 1 2`。设计一种在`O(log n)`时间内在旋转数组中查找元素的方法。
+
+![sortedPivotedArray](img/c522cf12d6b34447ea37b38f556b4bfe.png "sortedPivotedArray")
+
+```
+Input  : arr[] = {5, 6, 7, 8, 9, 10, 1, 2, 3};
+         key = 3
+Output : Found at index 8
+
+Input  : arr[] = {5, 6, 7, 8, 9, 10, 1, 2, 3};
+         key = 30
+Output : Not found
+
+Input : arr[] = {30, 40, 50, 10, 20}
+        key = 10   
+Output : Found at index 3
+
+```
+
+
+
+**这里提供的所有解决方案均假定数组中的所有元素都是不同的。**
+
+这个想法是找到枢轴点，将数组分为两个子数组，然后调用二分搜索。
+
+查找枢轴的主要思想是–对于排序（按递增顺序）和枢轴化的数组，枢轴元素是唯一一个其下一个元素小于它的元素。
+
+使用上述标准和二分搜索方法，我们可以在`O(logn)`时间中获取枢轴元素。
+
+```
+Input arr[] = {3, 4, 5, 1, 2}
+Element to Search = 1
+  1) Find out pivot point and divide the array in two
+      sub-arrays. (pivot = 2) /*Index of 5*/
+  2) Now call binary search for one of the two sub-arrays.
+      (a) If element is greater than 0th element then
+             search in left array
+      (b) Else Search in right array
+          (1 will go in else as 1 < 0th element(3))
+  3) If element is found in selected sub-array then return index
+     Else return -1.
+
+```
+
+下面是上述方法的实现：
+
+## C++ 
+
+```cpp
+
+/* C++ Program to search an element 
+   in a sorted and pivoted array*/
+#include <bits/stdc++.h> 
+using namespace std; 
+
+/* Standard Binary Search function*/
+int binarySearch(int arr[], int low,  
+                  int high, int key) 
+{ 
+  if (high < low) 
+    return -1; 
+
+  int mid = (low + high)/2; /*low + (high - low)/2;*/
+  if (key == arr[mid]) 
+    return mid; 
+
+  if (key > arr[mid]) 
+    return binarySearch(arr, (mid + 1), high, key); 
+
+  // else 
+    return binarySearch(arr, low, (mid -1), key); 
+} 
+
+/* Function to get pivot. For array 3, 4, 5, 6, 1, 2 
+   it returns 3 (index of 6) */
+int findPivot(int arr[], int low, int high) 
+{ 
+  // base cases 
+  if (high < low) return -1; 
+  if (high == low) return low; 
+
+   int mid = (low + high)/2; /*low + (high - low)/2;*/
+   if (mid < high && arr[mid] > arr[mid + 1]) 
+    return mid; 
+
+   if (mid > low && arr[mid] < arr[mid - 1]) 
+    return (mid-1); 
+
+   if (arr[low] >= arr[mid]) 
+    return findPivot(arr, low, mid-1); 
+
+   return findPivot(arr, mid + 1, high); 
+} 
+
+/* Searches an element key in a pivoted 
+   sorted array arr[] of size n */
+int pivotedBinarySearch(int arr[], int n, int key) 
+{ 
+  int pivot = findPivot(arr, 0, n-1); 
+
+  // If we didn't find a pivot,  
+  // then array is not rotated at all 
+  if (pivot == -1) 
+    return binarySearch(arr, 0, n-1, key); 
+
+  // If we found a pivot, then first compare with pivot 
+  // and then search in two subarrays around pivot 
+  if (arr[pivot] == key) 
+    return pivot; 
+
+  if (arr[0] <= key) 
+    return binarySearch(arr, 0, pivot-1, key); 
+
+    return binarySearch(arr, pivot+1, n-1, key); 
+} 
+
+/* Driver program to check above functions */
+int main() 
+{ 
+  // Let us search 3 in below array 
+  int arr1[] = {5, 6, 7, 8, 9, 10, 1, 2, 3}; 
+  int n = sizeof(arr1)/sizeof(arr1[0]); 
+  int key = 3; 
+
+  // Function calling 
+  cout << "Index of the element is : " <<  
+           pivotedBinarySearch(arr1, n, key); 
+
+  return 0; 
+} 
+
+```
+
+## C
+
+```c
+/* Program to search an element in  
+   a sorted and pivoted array*/
+#include <stdio.h> 
+  
+int findPivot(int[], int, int); 
+int binarySearch(int[], int, int, int); 
+  
+/* Searches an element key in a pivoted  
+   sorted array arrp[] of size n */
+int pivotedBinarySearch(int arr[], int n, int key) 
+{ 
+    int pivot = findPivot(arr, 0, n - 1); 
+  
+    // If we didn't find a pivot,  
+// then array is not rotated at all 
+    if (pivot == -1) 
+        return binarySearch(arr, 0, n - 1, key); 
+  
+    // If we found a pivot, then first  
+// compare with pivot and then 
+    // search in two subarrays around pivot 
+    if (arr[pivot] == key) 
+        return pivot; 
+    if (arr[0] <= key) 
+        return binarySearch(arr, 0, pivot - 1, key); 
+    return binarySearch(arr, pivot + 1, n - 1, key); 
+} 
+  
+/* Function to get pivot. For array  
+   3, 4, 5, 6, 1, 2 it returns 3 (index of 6) */
+int findPivot(int arr[], int low, int high) 
+{ 
+    // base cases 
+    if (high < low) 
+        return -1; 
+    if (high == low) 
+        return low; 
+  
+    int mid = (low + high) / 2; /*low + (high - low)/2;*/
+    if (mid < high && arr[mid] > arr[mid + 1]) 
+        return mid; 
+    if (mid > low && arr[mid] < arr[mid - 1]) 
+        return (mid - 1); 
+    if (arr[low] >= arr[mid]) 
+        return findPivot(arr, low, mid - 1); 
+    return findPivot(arr, mid + 1, high); 
+} 
+  
+/* Standard Binary Search function*/
+int binarySearch(int arr[], int low, int high, int key) 
+{ 
+    if (high < low) 
+        return -1; 
+    int mid = (low + high) / 2; /*low + (high - low)/2;*/
+    if (key == arr[mid]) 
+        return mid; 
+    if (key > arr[mid]) 
+        return binarySearch(arr, (mid + 1), high, key); 
+    return binarySearch(arr, low, (mid - 1), key); 
+} 
+  
+/* Driver program to check above functions */
+int main() 
+{ 
+    // Let us search 3 in below array 
+    int arr1[] = { 5, 6, 7, 8, 9, 10, 1, 2, 3 }; 
+    int n = sizeof(arr1) / sizeof(arr1[0]); 
+    int key = 3; 
+    printf("Index of the element is : %d", 
+           pivotedBinarySearch(arr1, n, key)); 
+    return 0; 
+} 
+```
+
+## Java
+
+```java
+/* Java program to search an element  
+   in a sorted and pivoted array*/
+  
+class Main { 
+  
+    /* Searches an element key in a  
+       pivoted sorted array arrp[] 
+       of size n */
+    static int pivotedBinarySearch(int arr[], int n, int key) 
+    { 
+        int pivot = findPivot(arr, 0, n - 1); 
+  
+        // If we didn't find a pivot, then 
+        // array is not rotated at all 
+        if (pivot == -1) 
+            return binarySearch(arr, 0, n - 1, key); 
+  
+        // If we found a pivot, then first 
+        // compare with pivot and then 
+        // search in two subarrays around pivot 
+        if (arr[pivot] == key) 
+            return pivot; 
+        if (arr[0] <= key) 
+            return binarySearch(arr, 0, pivot - 1, key); 
+        return binarySearch(arr, pivot + 1, n - 1, key); 
+    } 
+  
+    /* Function to get pivot. For array  
+       3, 4, 5, 6, 1, 2 it returns 
+       3 (index of 6) */
+    static int findPivot(int arr[], int low, int high) 
+    { 
+        // base cases 
+        if (high < low) 
+            return -1; 
+        if (high == low) 
+            return low; 
+  
+        /* low + (high - low)/2; */
+        int mid = (low + high) / 2; 
+        if (mid < high && arr[mid] > arr[mid + 1]) 
+            return mid; 
+        if (mid > low && arr[mid] < arr[mid - 1]) 
+            return (mid - 1); 
+        if (arr[low] >= arr[mid]) 
+            return findPivot(arr, low, mid - 1); 
+        return findPivot(arr, mid + 1, high); 
+    } 
+  
+    /* Standard Binary Search function */
+    static int binarySearch(int arr[], int low, int high, int key) 
+    { 
+        if (high < low) 
+            return -1; 
+  
+        /* low + (high - low)/2; */
+        int mid = (low + high) / 2; 
+        if (key == arr[mid]) 
+            return mid; 
+        if (key > arr[mid]) 
+            return binarySearch(arr, (mid + 1), high, key); 
+        return binarySearch(arr, low, (mid - 1), key); 
+    } 
+  
+    // main function 
+    public static void main(String args[]) 
+    { 
+        // Let us search 3 in below array 
+        int arr1[] = { 5, 6, 7, 8, 9, 10, 1, 2, 3 }; 
+        int n = arr1.length; 
+        int key = 3; 
+        System.out.println("Index of the element is : "
+                           + pivotedBinarySearch(arr1, n, key)); 
+    } 
+} 
+```
+
+## Python3
+
+```py
+# Python Program to search an element 
+# in a sorted and pivoted array 
+  
+# Searches an element key in a pivoted 
+# sorted array arrp[] of size n  
+def pivotedBinarySearch(arr, n, key): 
+  
+    pivot = findPivot(arr, 0, n-1); 
+  
+    # If we didn't find a pivot,  
+    # then array is not rotated at all 
+    if pivot == -1: 
+        return binarySearch(arr, 0, n-1, key); 
+  
+    # If we found a pivot, then first 
+    # compare with pivot and then 
+    # search in two subarrays around pivot 
+    if arr[pivot] == key: 
+        return pivot 
+    if arr[0] <= key: 
+        return binarySearch(arr, 0, pivot-1, key); 
+    return binarySearch(arr, pivot + 1, n-1, key); 
+  
+  
+# Function to get pivot. For array  
+# 3, 4, 5, 6, 1, 2 it returns 3  
+# (index of 6)  
+def findPivot(arr, low, high): 
+      
+    # base cases 
+    if high < low: 
+        return -1
+    if high == low: 
+        return low 
+      
+    # low + (high - low)/2; 
+    mid = int((low + high)/2) 
+      
+    if mid < high and arr[mid] > arr[mid + 1]: 
+        return mid 
+    if mid > low and arr[mid] < arr[mid - 1]: 
+        return (mid-1) 
+    if arr[low] >= arr[mid]: 
+        return findPivot(arr, low, mid-1) 
+    return findPivot(arr, mid + 1, high) 
+  
+# Standard Binary Search function*/ 
+def binarySearch(arr, low, high, key): 
+  
+    if high < low: 
+        return -1
+          
+    # low + (high - low)/2;     
+    mid = int((low + high)/2) 
+      
+    if key == arr[mid]: 
+        return mid 
+    if key > arr[mid]: 
+        return binarySearch(arr, (mid + 1), high, 
+                                            key); 
+    return binarySearch(arr, low, (mid -1), key); 
+  
+  
+# Driver program to check above functions */ 
+# Let us search 3 in below array 
+arr1 = [5, 6, 7, 8, 9, 10, 1, 2, 3] 
+n = len(arr1) 
+key = 3
+print("Index of the element is : ",  
+      pivotedBinarySearch(arr1, n, key)) 
+        
+# This is contributed by Smitha Dinesh Semwal 
+```
+
+## C#
+
+```cs
+// C# program to search an element 
+// in a sorted and pivoted array 
+using System; 
+  
+class main { 
+  
+    // Searches an element key in a 
+    // pivoted sorted array arrp[] 
+    // of size n 
+    static int pivotedBinarySearch(int[] arr, 
+                                   int n, int key) 
+    { 
+        int pivot = findPivot(arr, 0, n - 1); 
+  
+        // If we didn't find a pivot, then 
+        // array is not rotated at all 
+        if (pivot == -1) 
+            return binarySearch(arr, 0, n - 1, key); 
+  
+        // If we found a pivot, then first 
+        // compare with pivot and then 
+        // search in two subarrays around pivot 
+        if (arr[pivot] == key) 
+            return pivot; 
+  
+        if (arr[0] <= key) 
+            return binarySearch(arr, 0, pivot - 1, key); 
+  
+        return binarySearch(arr, pivot + 1, n - 1, key); 
+    } 
+  
+    /* Function to get pivot. For array  
+    3, 4, 5, 6, 1, 2 it returns 
+    3 (index of 6) */
+    static int findPivot(int[] arr, int low, int high) 
+    { 
+        // base cases 
+        if (high < low) 
+            return -1; 
+        if (high == low) 
+            return low; 
+  
+        /* low + (high - low)/2; */
+        int mid = (low + high) / 2; 
+  
+        if (mid < high && arr[mid] > arr[mid + 1]) 
+            return mid; 
+  
+        if (mid > low && arr[mid] < arr[mid - 1]) 
+            return (mid - 1); 
+  
+        if (arr[low] >= arr[mid]) 
+            return findPivot(arr, low, mid - 1); 
+  
+        return findPivot(arr, mid + 1, high); 
+    } 
+  
+    /* Standard Binary Search function */
+    static int binarySearch(int[] arr, int low, 
+                            int high, int key) 
+    { 
+        if (high < low) 
+            return -1; 
+  
+        /* low + (high - low)/2; */
+        int mid = (low + high) / 2; 
+  
+        if (key == arr[mid]) 
+            return mid; 
+        if (key > arr[mid]) 
+            return binarySearch(arr, (mid + 1), high, key); 
+  
+        return binarySearch(arr, low, (mid - 1), key); 
+    } 
+  
+    // Driver Code 
+    public static void Main() 
+    { 
+        // Let us search 3 in below array 
+        int[] arr1 = { 5, 6, 7, 8, 9, 10, 1, 2, 3 }; 
+        int n = arr1.Length; 
+        int key = 3; 
+        Console.Write("Index of the element is : "
+                      + pivotedBinarySearch(arr1, n, key)); 
+    } 
+} 
+  
+// This code is contributed by vt_m. 
+```
+
+## PHP
+
+```php
+<?php 
+// PHP Program to search an element 
+// in a sorted and pivoted array 
+  
+// Standard Binary Search function 
+function binarySearch($arr, $low,  
+                      $high, $key) 
+{ 
+    if ($high < $low) 
+        return -1; 
+          
+    /*low + (high - low)/2;*/    
+    $mid = floor($low + $high) / 2; 
+      
+    if ($key == $arr[$mid]) 
+        return $mid; 
+          
+    if ($key > $arr[$mid]) 
+        return binarySearch($arr, ($mid + 1), 
+                                $high, $key); 
+          
+    else
+        return binarySearch($arr, $low, 
+                      ($mid -1), $key); 
+} 
+  
+// Function to get pivot.  
+// For array 3, 4, 5, 6, 1, 2 
+// it returns 3 (index of 6) 
+function findPivot($arr, $low, $high) 
+{ 
+      
+    // base cases 
+    if ($high < $low)  
+        return -1; 
+    if ($high == $low)  
+        return $low; 
+      
+    /*low + (high - low)/2;*/
+    $mid = ($low + $high)/2;  
+    if ($mid < $high and $arr[$mid] >  
+                     $arr[$mid + 1]) 
+        return $mid; 
+          
+    if ($mid > $low and $arr[$mid] <  
+                    $arr[$mid - 1]) 
+        return ($mid - 1); 
+          
+    if ($arr[$low] >= $arr[$mid]) 
+        return findPivot($arr, $low, 
+                          $mid - 1); 
+          
+    return findPivot($arr, $mid + 1, $high); 
+} 
+  
+// Searches an element key 
+// in a pivoted sorted array 
+// arr[] of size n */ 
+function pivotedBinarySearch($arr, $n, $key) 
+{ 
+    $pivot = findPivot($arr, 0, $n - 1); 
+      
+    // If we didn't find a pivot,  
+    // then array is not rotated 
+    // at all 
+    if ($pivot == -1) 
+        return binarySearch($arr, 0,  
+                       $n - 1, $key); 
+      
+    // If we found a pivot,  
+    // then first compare 
+    // with pivot and then  
+    // search in two subarrays 
+    // around pivot 
+    if ($arr[$pivot] == $key) 
+        return $pivot; 
+          
+    if ($arr[0] <= $key) 
+        return binarySearch($arr, 0,  
+                   $pivot - 1, $key); 
+          
+        return binarySearch($arr, $pivot + 1,  
+                                $n - 1, $key); 
+} 
+  
+// Driver Code 
+// Let us search 3  
+// in below array 
+$arr1 = array(5, 6, 7, 8, 9, 10, 1, 2, 3); 
+$n = count($arr1); 
+$key = 3; 
+  
+// Function calling 
+echo "Index of the element is : ",  
+      pivotedBinarySearch($arr1, $n, $key); 
+              
+// This code is contributed by anuj_67. 
+?> 
+```
+
+输出：
+
+```
+Index of the element is : 8
+```
+
+复杂度分析：
+
+时间复杂度：`O(log n)`。
+
+二分搜索需要`log n`比较才能找到元素。 因此，时间复杂度为`O(log n)`。
+
+空间复杂度：`O(1)`，不需要额外的空间。
