@@ -143,7 +143,7 @@
     +   [PyMiner 开发者指南](https://opendoccn.github.io/pyminer-dev-guide)
 +   人工智能
     +   [JavaTPoint 数据科学与人工智能中文教程📚](https://opendoccn.github.io/javatpoint-dsai-zh)
-    +   [GeeksForGeeks 人工智能中文教程📚](https://opendoccn.github.io/geeksforgeeks-ai-zh)
+    +   [GeeksForGeeks 中文教程📚](https://opendoccn.github.io/geeksforgeeks-zh)
     +   [AILearning📚](https://opendoccn.github.io/ailearning)
     +   [飞龙的计算机视觉译文集📚](https://opendoccn.github.io/opendoccn-cv-zh)
     +   [飞龙的计算机视觉译文集（二）📚](https://opendoccn.github.io/opendoccn-cv-zh-pt2)

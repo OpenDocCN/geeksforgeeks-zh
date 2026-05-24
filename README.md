@@ -1,4 +1,4 @@
-# GeeksForGeeks 人工智能中文教程
+# GeeksForGeeks 中文教程
 
 > 原文：[GeeksForGeeks](https://geeksforgeeks.org/)
 > 
@@ -8,22 +8,22 @@
 > 
 > 欢迎任何人参与和完善：一个人可以走的很快，但是一群人却可以走的更远。
 
-* [在线阅读](https://g4g-ai.flygon.net)
+* [在线阅读](https://g4g.flygon.net)
 ## 下载
 
 ### Docker
 
 ```
-docker pull apachecn0/geeksforgeeks-ai-zh
-docker run -tid -p <port>:80 apachecn0/geeksforgeeks-ai-zh
+docker pull apachecn0/geeksforgeeks-zh
+docker run -tid -p <port>:80 apachecn0/geeksforgeeks-zh
 # 访问 http://localhost:{port} 查看文档
 ```
 
 ### NPM
 
 ```
-npm install -g geeksforgeeks-ai-zh
-geeksforgeeks-ai-zh <port>
+npm install -g geeksforgeeks-zh
+geeksforgeeks-zh <port>
 # 访问 http://localhost:{port} 查看文档
 ```
 
