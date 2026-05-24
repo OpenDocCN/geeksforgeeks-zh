@@ -1,0 +1,120 @@
+# UInt16.ToString() 方法详解（C#）
+
+> 原文：[https://www.geeksforgeeks.org/uint16-tostring-method-in-c-sharp-with-examples-set-1/](https://www.geeksforgeeks.org/uint16-tostring-method-in-c-sharp-with-examples-set-1/)
+
+`UInt16.ToString()` 方法用于将当前 `UInt16` 实例的数值转换为其等效的字符串表示形式。该方法的重载列表中有以下 4 种方法：
+*   `ToString(IFormatProvider)` 方法
+*   `ToString(String, IFormatProvider)` 方法
+*   `ToString()` 方法
+*   `ToString(String)` 方法
+
+在这里，我们将讨论前两种方法。
+
+## ToString(IFormatProvider) 方法
+
+此方法用于使用指定的区域性特定格式信息将当前实例的数值转换为其等效的字符串表示形式。
+
+**语法：**
+```cs
+public string ToString (IFormatProvider provider);
+```
+
+**参数：** 该方法获取类型为 `IFormatProvider` 的对象，该对象提供特定于区域性的格式信息。
+
+**返回值：** 此方法返回当前实例值的字符串表示形式，由 0 到 9 的数字序列组成，没有符号或前导零。
+
+**示例：**
+```cs
+// C# program to demonstrate
+// UInt16.ToString(IFormatProvider)
+// Method
+using System;
+using System.Globalization;
+
+class GFG {
+    // Main Method
+    public static void Main()
+    {
+        // declaring and initializing
+        // UInt16 value
+        ushort s1 = 104;
+
+        // creating and initializing
+        // the object of CultureInfo
+        CultureInfo provider = new CultureInfo("en-us");
+
+        // Using the method
+        string str = s1.ToString(provider);
+
+        // Display the value
+        Console.WriteLine("The Value is {0} and provider is {1}",
+                          str, provider.Name);
+    }
+}
+```
+
+**输出：**
+```cs
+The Value is 104 and provider is en-US
+```
+
+## UInt16.ToString(String, IFormatProvider) 方法
+
+此方法用于使用指定的格式和区域性特定的格式信息将此实例的数值转换为其等效的字符串表示形式。
+
+**语法：**
+```cs
+public string ToString (string format, IFormatProvider provider);
+```
+
+**参数：**
+> **`format`：** 是数字格式字符串。
+> **`provider`：** 它是一个提供特定于区域性的格式信息的对象。
+
+**返回值：** 该方法返回由 `format` 和 `provider` 参数指定的当前实例的字符串表示形式。
+
+**异常：** 如果 `format` 参数无效，此方法将给出 `FormatException`。
+
+**示例：**
+```cs
+// C# program to demonstrate the
+// UInt16.ToString(String,
+// IFormatProvider) Method
+using System;
+using System.Globalization;
+
+class GFG {
+    // Main Method
+    public static void Main()
+    {
+        // declaring and initializing
+        // UInt16 value
+        ushort s1 = UInt16.MaxValue;
+
+        // creating and initializing
+        // the object of CultureInfo
+        CultureInfo provider = new CultureInfo("fr-FR");
+
+        // declaring and initializing format
+        string format = "D5";
+
+        // using the method
+        string str = s1.ToString(format, provider);
+
+        // Displaying the details
+        Console.WriteLine("The value is {0}", str);
+        Console.WriteLine("The Format is {0}", format);
+        Console.WriteLine("The Provider is {0}", provider.Name);
+    }
+}
+```
+
+**输出：**
+```cs
+The value is 65535
+The Format is D5
+The Provider is fr-FR
+```
+
+**参考：**
+*   [https://docs.microsoft.com/en-us/dotnet/api/system.uint16.tostring?view=netstandard-2.1](https://docs.microsoft.com/en-us/dotnet/api/system.uint16.tostring?view=netstandard-2.1)
