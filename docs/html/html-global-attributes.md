@@ -1,0 +1,21 @@
+# HTML 全局属性
+
+> 原文:[https://www.geeksforgeeks.org/html-global-attributes/](https://www.geeksforgeeks.org/html-global-attributes/)
+
+**HTML 全局属性**
+
+HTML 全局属性是指所有 HTML 元素共有的属性，尽管它们可能对某些元素没有影响。在标准和非标准元素上指定的全局属性。
+
+**全局属性列表:**
+
+*   [**Access key**](https://www.geeksforgeeks.org/html-accesskey-attribute/) **:** is a keyboard shortcut to activate/focus specific elements.
+*   **Automatic Capitalization:** Used to automatically capitalize the text entered/edited by the user.
+*   [**Auto-focus**](https://www.geeksforgeeks.org/html-autofocus-attribute/) **:** The auto-focus attribute in HTML is used to specify that the element should get the focus when the page is loaded. It is a Boolean attribute.
+*   [**Class:**](https://www.geeksforgeeks.org/html-class-attribute/) It specifies one or more class names for an HTML element.
+*   [**Content editable**](https://www.geeksforgeeks.org/html-contenteditable-attribute/) **: used to specify whether the content existing in the element can be edited. When this attribute is not set in the element, this element will inherit from its parent element.**
+*   **contextmenu** : The id of a < menu > is provided for this element.
+*   [**Data-***](https://www.geeksforgeeks.org/html-data-attributes/) **:** It can be used to define our own custom data attributes.
+*   [**dir**](https://www.geeksforgeeks.org/html-dir-attribute/) **: used to specify the text direction of element content.**
+*   [](https://www.geeksforgeeks.org/html-draggable-attribute/)****:** is used to specify whether the element can be dragged. By default, links and images are draggable.**
+*   **[T0】 enter key hint: 【T1] It provides a hint of what label or icon should be displayed on the virtual keyword while pressing the key.**
+***   [**Hide**](https://www.geeksforgeeks.org/html-hidden-attribute/) **: used to define the visibility of elements. It contains a Boolean value. If this attribute is used, the browser will not display the element with the hidden attribute specified.***   [**ID**](https://www.geeksforgeeks.org/html-id-attributes/) **:** is a unique identifier for specifying documents, which is used by CSS and JavaScript to perform a task for a unique element.*   **Input mode:** It is mainly used to provide the browser with a hint of which virtual keyboard to use when editing this element or its contents.*   **Yes:** It specifies that standard HTML is represented as a registered custom built-in element.*   **itemid:** It is a unique global identifier of a project.*   **Itemprop:** Add attributes to items.*   **itemscope:** It works with the item type to ensure that the HTML contained in the block is about a specific item.*   [T0】 item type: 【T1] Specify the URL vocabulary used to define itemprops.*   [**Lang**](https://www.geeksforgeeks.org/html-lang-attribute/) **:** The language used to specify the content of elements. Some examples of languages are English en, Spanish es and so on.*   **Random number:** It is an encrypted random number ("one-time number"), which is used by the content security policy to check whether the given extraction is allowed to continue.*   **Part:** is a space-separated list of element part names.*   **Slot:** Used to assign a slot in shadow DOM shadow tree to an element.*   [**Spelling check**](https://www.geeksforgeeks.org/html-spell-check/) **:** The spelling check function in HTML is used to detect grammar or spelling errors in text fields.*   [**Style**](https://www.geeksforgeeks.org/html-style-attribute/) **: The** style in HTML is basically a rule describing how documents are presented in the browser.*   [**tabindex**](https://www.geeksforgeeks.org/html-tabindex-attribute/) **:** Used to specify the tab order of elements. Used when tab buttons are used for navigation.*   [**Title**](https://www.geeksforgeeks.org/html-title-tag/) **:** It is used to define the title of HTML documents, set the title in the browser toolbar, and provide the title for web pages when added to favorites.*   [**Translation:**](https://www.geeksforgeeks.org/html5-translate-attribute/#:~:text=The%20translate%20attribute%20in%20HTML,It%20supports%20all%20HTML%20elements.) **The translate attribute in HTML is used to specify whether the content of the element is translated or not.****
