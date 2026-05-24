@@ -1,3 +1,4 @@
++   [FabricJS](README.md)
 +   [织物活性选举角度属性](fabric-js-activeselection-angle-property.md)
 +   [织物活性选举边框颜色属性](fabric-js-activeselection-bordercolor-property.md)
 +   [fabric . js active selection bordersharray 属性](fabric-js-activeselection-borderdasharray-property.md)

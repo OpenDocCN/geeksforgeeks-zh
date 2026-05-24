@@ -1,3 +1,4 @@
++   [组成原理](README.md)
 +   [使用多路复用器的 1 位全加器](1-bit-full-adder-using-multiplexer.md)
 +   [2D 和 2.5D 记忆组织](2d-and-2-5d-memory-organization.md)
 +   [3 位同步递减计数器](3-bit-synchronous-down-counter.md)

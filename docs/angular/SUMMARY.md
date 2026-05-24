@@ -1,3 +1,4 @@
++   [Angular](README.md)
 +   [10 个适合初学者的最佳角度项目创意](10-best-angular-projects-ideas-for-beginners.md)
 +   [使用 AngularJS 进行网络开发的 6 个理由](6-reason-you-should-be-using-angularjs-for-web-development.md)
 +   [安古拉杰的 7 本最佳书籍](7-best-books-for-angularjs.md)

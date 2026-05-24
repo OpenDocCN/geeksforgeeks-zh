@@ -1,3 +1,4 @@
++   [Jquery](README.md)
 +   [使用 jQuery 和维基百科 OpenSearch API 自动完成搜索](autocomplete-search-using-jquery-and-wikipedia-opensearch-api.md)
 +   [检查 jquery 是否已经加载](check-if-a-jquery-has-been-loaded-or-not.md)
 +   [jQuery 中的内容可编辑变更事件](content-editable-change-event-in-jquery.md)

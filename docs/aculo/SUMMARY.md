@@ -1,3 +1,4 @@
++   [Aculo](README.md)
 +   [脚本. aculo.us 出现效果](script-aculo-us-appear-effect.md)
 +   [script.aculo.us 自动完成器。本地选择选项](script-aculo-us-autocompleter-local-choices-option.md)
 +   [script.aculo.us 自动完成器。本地完整搜索选项](script-aculo-us-autocompleter-local-fullsearch-option.md)

@@ -1,3 +1,4 @@
++   [理论计算机科学](README.md)
 +   [∑-L 的 NFA =(a *+b *)](%e2%88%88-nfa-of-l-a-b.md)
 +   [∑-正则语言的 NFA L = 0(0+1)* 1 和 L = (00)*1(11)*](%e2%88%88-nfa-of-regular-language-l-0011-and-l-00111.md)
 +   [∑-正则语言的 NFA L =(0+1)*(00+11)L = b+ ba *](%e2%88%88-nfa-of-regular-language-l-0100-11-and-l-b-ba.md)

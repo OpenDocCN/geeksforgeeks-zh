@@ -1,3 +1,4 @@
++   [TypeScript](README.md)
 +   [2020 年学习打字稿的 5 个理由](5-reasons-to-learn-typescript-in-2020.md)
 +   [TypeScript 相对于 JavaScript 的优缺点](advantages-and-disadvantages-of-typescript-over-javascript.md)
 +   [类型脚本中的类](classes-in-typescript.md)

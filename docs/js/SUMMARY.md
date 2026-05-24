@@ -1,3 +1,4 @@
++   [JavaScript](README.md)
 +   [使用 JavaScript 可以构建的 10 个神奇的东西](10-amazing-things-you-can-build-using-javascript.md)
 +   [7 个有趣的游戏项目提升你的 JavaScript 技能](7-interesting-game-projects-to-enhance-your-javascript-skills.md)
 +   [7 种节省你时间的 JavaScript 速记技术](7-javascript-shorthand-techniques-that-will-save-your-time.md)

@@ -1,3 +1,4 @@
++   [软件工程](README.md)
 +   [软件项目规划中的管理谱| 4p](4-ps-in-software-project-planning.md)
 +   [改善项目软件测试的 5 种方法](5-ways-to-improve-software-testing-on-your-projects.md)
 +   [7 大数据错误](7-big-data-mistakes.md)

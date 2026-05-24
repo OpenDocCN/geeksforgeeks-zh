@@ -1,3 +1,4 @@
++   [SciPy](README.md)
 +   [使用高斯脉冲](create-a-gauss-pulse-using-scipy-signal-gausspulse.md)
 +   [使用 Python 中的 SciPy 将层次树图切割成簇](cutting-hierarchical-dendrogram-into-clusters-using-scipy-in-python.md)
 +   [用 SciPy 进行数据分析](data-analysis-with-scipy.md)

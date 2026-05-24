@@ -1,3 +1,4 @@
++   [NumPy](README.md)
 +   [使用 NumPy | Python 的绝对偏差和绝对平均偏差](absolute-deviation-and-absolute-mean-deviation-using-numpy-python.md)
 +   [在 Python Numpy 中沿多维数组访问数据](accessing-data-along-multiple-dimensions-arrays-in-python-numpy.md)
 +   [在 NumPy 数组末尾追加值](appending-values-at-the-end-of-an-numpy-array.md)

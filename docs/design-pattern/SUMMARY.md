@@ -1,3 +1,4 @@
++   [设计模式](README.md)
 +   [抽象工厂模式](abstract-factory-pattern.md)
 +   [适配器模式](adapter-pattern.md)
 +   [Amadeus Labs R & D |校内(新生)|全职+实习](amadeus-labs-r-d-on-campus-freshers-full-timeinternship.md)

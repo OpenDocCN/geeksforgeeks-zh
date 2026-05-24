@@ -1,3 +1,4 @@
++   [SymPy](README.md)
 +   [Python 中的素数函数](prime-functions-python-sympy.md)
 +   [Python |开始使用 SymPy 模块](python-getting-started-with-sympy-module.md)
 +   [Python | sympy.acos(x)方法](python-sympy-acosx-method.md)

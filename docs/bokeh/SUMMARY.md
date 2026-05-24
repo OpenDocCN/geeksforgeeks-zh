@@ -1,3 +1,4 @@
++   [Bokeh](README.md)
 +   [将交互式滑块添加到博克图](add-interactive-slider-to-bokeh-plots.md)
 +   [在 Bokeh 中添加按钮](adding-button-in-bokeh.md)
 +   [向博克图添加标签](adding-labels-to-a-bokeh-plot.md)

@@ -1,3 +1,4 @@
++   [Seaborn](README.md)
 +   [在 Python 中使用海鸟绘制条形图](barplot-using-seaborn-in-python.md)
 +   [熊猫和海鸟的箱线图可视化](box-plot-visualization-with-pandas-and-seaborn.md)
 +   [使用 Python 中的 Seaborn 绘制箱线图](boxplot-using-seaborn-in-python.md)

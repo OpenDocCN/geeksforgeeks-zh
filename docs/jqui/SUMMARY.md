@@ -1,3 +1,4 @@
++   [JQUI](README.md)
 +   [测量 jQuery 数字框小工具](easui-jquery-numberbox-widget.md)
 +   [easy ui jquery 日历小部件](easyui-jquery-calendar-widget.md)
 +   [easy ui jquery checkbox widget](easyui-jquery-checkbox-widget.md)
