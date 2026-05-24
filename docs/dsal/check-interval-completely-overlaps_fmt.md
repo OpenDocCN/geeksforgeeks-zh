@@ -1,0 +1,102 @@
+# 检查是否有任何间隔完全重叠
+
+> 原文： [https://www.geeksforgeeks.org/check-interval-completely-overlaps/](https://www.geeksforgeeks.org/check-interval-completely-overlaps/)
+
+间隔表示为开始时间和结束时间的组合。给定一组间隔，我们需要编写一个程序来检查是否有任何间隔**完全**重叠。
+
+例子：
+
+```
+Input:  arr[] = {{1, 3}, {1, 7}, {4, 8}, {2, 5}}
+Output: true
+The intervals {1, 3} completely overlaps in {1, 7}.
+
+Input:  arr[] = {{1, 3}, {7, 9}, {4, 6}, {10, 13}}
+Output: false
+No pair of intervals overlap.
+```
+
+## 简单解决方案
+
+是考虑每对间隔，并检查该对是否重叠。该解决方案的时间复杂度为 `O(n^2)`。
+
+## 更好的解决方案
+
+是使用**排序**。以下是完整的算法。
+
+1.  按照开始时间的升序对所有间隔进行排序。此步骤花费 `O(n Logn)` 时间。
+2.  在排序数组中，如果一个间隔的结束时间不超过前一个间隔的结束，则存在完全重叠。此步骤花费 `O(n)` 时间。
+
+以下是上述方法的实现：
+
+```cpp
+// A C++ program to check if any two intervals 
+// completely overlap 
+#include <bits/stdc++.h> 
+using namespace std;
+
+// An interval has start time and end time 
+struct Interval { 
+    int start; 
+    int end; 
+};
+
+// Compares two intervals according to their staring  
+// time. This is needed for sorting the intervals  
+// using library function std::sort(). 
+bool compareInterval(Interval i1, Interval i2) 
+{ 
+    return (i1.start < i2.start) ? true : false; 
+}
+
+// Function to check if any two intervals  
+// completely overlap 
+bool isOverlap(Interval arr[], int n) 
+{ 
+    // Sort intervals in increasing order of 
+    // start time 
+    sort(arr, arr + n - 1, compareInterval);
+
+    // In the sorted array, if end time of an  
+    // interval is not more than that of 
+    // end of previous interval, then there 
+    // is an overlap 
+    for (int i = 1; i < n; i++) 
+        if (arr[i].end <= arr[i - 1].end) 
+            return true;
+
+    // If we reach here, then no overlap 
+    return false; 
+}
+
+// Driver code 
+int main() 
+{ 
+    // 1st example 
+    Interval arr1[] = { { 1, 3 }, { 1, 7 }, { 4, 8 },  
+                                      { 2, 5 } }; 
+    int n1 = sizeof(arr1) / sizeof(arr1[0]); 
+    if (isOverlap(arr1, n1)) 
+        cout << "Yes\n"; 
+    else
+        cout << "No\n";
+
+    // 2nd example 
+    Interval arr2[] = { { 1, 3 }, { 7, 9 }, { 4, 6 },  
+                                      { 10, 13 } }; 
+    int n2 = sizeof(arr2) / sizeof(arr2[0]); 
+    if (isOverlap(arr2, n2)) 
+        cout << "Yes\n"; 
+    else
+        cout << "No\n";
+
+    return 0; 
+}
+```
+
+输出：
+
+```
+Yes
+No
+```
