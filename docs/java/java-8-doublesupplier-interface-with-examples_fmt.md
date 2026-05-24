@@ -1,0 +1,52 @@
+# Java 8 DoubleSupplier 接口示例
+
+> 原文: [https://www.geeksforgeeks.org/java-8-doublesupplier-interface-with-examples/](https://www.geeksforgeeks.org/java-8-doublesupplier-interface-with-examples/)
+
+`DoubleSupplier` 接口是从 Java 8 开始引入的 `java.util.function` 包的一部分，用于在 Java 中实现[函数式编程](https://www.geeksforgeeks.org/functional-programming-paradigm/)。它表示一个不接受任何参数但产生一个 `double` 值的函数。
+
+分配给 `DoubleSupplier` 类型的对象的 Lambda 表达式用于定义其 `getAsDouble()` 方法，该方法最终对其参数应用给定的操作。类似于使用 [`Supplier<Double>`](https://www.geeksforgeeks.org/supplier-interface-in-java-with-examples/) 类型的对象。
+
+## DoubleSupplier 接口中的方法
+
+`DoubleSupplier` 接口只有一个方法：
+
+### 1. `getAsDouble()`
+
+此方法不接受任何值，但会产生一个 `double` 值结果。
+
+**语法：**
+
+```java
+double getAsDouble()
+```
+
+**返回值：** 该方法返回一个 `double` 值。
+
+下面是演示 `getAsDouble()` 方法的代码：
+
+**程序：**
+
+```java
+// Java Program to illustrate
+// getAsDouble method of
+// DoubleSupplier Interface
+import java.util.function.DoubleSupplier;
+
+public class GFG {
+    public static void main(String args[])
+    {
+        // Create a DoubleSupplier instance
+        DoubleSupplier sup = () -> Math.random();
+
+        // Get the double value
+        // Using getAsDouble() method
+        System.out.println(sup.getAsDouble());
+    }
+}
+```
+
+**输出：**
+
+```java
+0.10283070415816953
+```

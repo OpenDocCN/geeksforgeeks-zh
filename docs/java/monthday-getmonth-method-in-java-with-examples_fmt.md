@@ -1,0 +1,75 @@
+# Java 中的 MonthDay getMonth()方法，带示例
+
+> 原文：[`https://www.geeksforgeeks.org/monthday-getmonth-method-in-java-with-examples/`](https://www.geeksforgeeks.org/monthday-getmonth-method-in-java-with-examples/)
+
+Java 中 `MonthDay` 类的 `getMonth()` 方法从时态对象中获取 `MonthDay` 的一个实例。
+
+## 语法：
+```java
+public Month getMonth()
+```
+
+## 参数：
+此方法不接受参数。
+
+## 返回：
+函数返回一年中的月份，不为空。
+
+下面的程序说明了 `MonthDay.getMonth()` 方法：
+
+## 程序 1：
+```java
+// Program to illustrate the getMonth() method
+
+import java.util.*;
+import java.time.*;
+
+public class GfG {
+    public static void main(String[] args)
+    {
+        // Parses the date
+        MonthDay tm1 = MonthDay.parse("--12-06");
+
+        // Uses the function
+        LocalDate dt1 = tm1.atYear(2018);
+
+        // Prints the date
+        System.out.println(dt1.getMonth());
+    }
+}
+```
+
+### 输出：
+```java
+DECEMBER
+```
+
+## 程序 2：
+```java
+// Program to illustrate the getMonth() method
+
+import java.util.*;
+import java.time.*;
+
+public class GfG {
+    public static void main(String[] args)
+    {
+        // Parses the date
+        MonthDay tm1 = MonthDay.parse("--01-09");
+
+        // Uses the function
+        LocalDate dt1 = tm1.atYear(2016);
+
+        // Prints the date
+        System.out.println(dt1.getMonth());
+    }
+}
+```
+
+### 输出：
+```java
+JANUARY
+```
+
+## 参考：
+[`https://docs.oracle.com/javase/8/docs/api/java/time/MonthDay.html#getMonth--`](https://docs.oracle.com/javase/8/docs/api/java/time/MonthDay.html#getMonth--)

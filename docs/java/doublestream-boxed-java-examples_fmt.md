@@ -1,0 +1,100 @@
+# 用 Java 装箱的 DoubleStream()，示例
+
+> 原文：[https://www.geeksforgeeks.org/doublestream-boxed-java-examples/](https://www.geeksforgeeks.org/doublestream-boxed-java-examples/)
+
+`DoubleStream.boxed()` 返回一个由该流的元素组成的流，每个元素都被装箱为一个 `Double`。
+
+**注意：** `DoubleStream.boxed()` 是一个中间操作。这些操作总是惰性的。中间操作在流实例上被调用，在它们完成处理后，它们给出一个流实例作为输出。
+
+**语法：**
+
+```java
+Stream<Double> boxed()
+```
+
+**参数：**
+
+1.  **流（Stream）：** 支持顺序和并行聚合操作的元素序列。
+2.  **Double：** `Double` 类在对象中包装一个基元类型 `double` 的值。类型为 `double` 的对象包含类型为 `Double` 的单个字段。
+
+**返回值：** 该函数返回一个被装箱为 `Double` 的流。
+
+**例 1：**
+
+```java
+// Java code for DoubleStream boxed()
+import java.util.*;
+import java.util.stream.Stream;
+import java.util.stream.DoubleStream;
+
+class GFG {
+
+    // Driver code
+    public static void main(String[] args)
+    {
+        // Creating an DoubleStream
+        DoubleStream stream = DoubleStream.of(3.2, 8.4, 3.6, 4.7);
+
+        // Creating a Stream of Doubles
+        // Using DoubleStream boxed() to return
+        // a Stream consisting of the elements
+        // of this stream, each boxed to a Double.
+        Stream<Double> stream1 = stream.boxed();
+
+        // Displaying the elements
+        stream1.forEach(System.out::println);
+    }
+}
+```
+
+输出：
+
+```java
+3.2
+8.4
+3.6
+4.7
+```
+
+**例 2：**
+
+```java
+// Java code for DoubleStream boxed()
+import java.util.*;
+import java.util.stream.Stream;
+import java.util.stream.DoubleStream;
+
+class GFG {
+
+    // Driver code
+    public static void main(String[] args)
+    {
+        // Creating an DoubleStream
+        DoubleStream stream = DoubleStream.of(3.2, 8.4, 3.6, 4.7);
+
+        // Creating a Stream of Doubles
+        // Using DoubleStream boxed() to return
+        // a Stream consisting of the elements
+        // of this stream, each boxed to a Double.
+        Stream<Double> stream1 = stream.boxed();
+
+        Stream<Object> stream2 = Stream.concat(stream1,
+                                   Stream.of("Geeks", "for", "Geeks"));
+
+        // Displaying the elements
+        stream2.forEach(System.out::println);
+    }
+}
+```
+
+输出：
+
+```java
+3.2
+8.4
+3.6
+4.7
+Geeks
+for
+Geeks
+```

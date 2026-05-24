@@ -1,0 +1,184 @@
+# Java 中的 Nashorn JavaScript 引擎，带示例
+
+> 原文：[https://www.geeksforgeeks.org/nashorn-javascript-engine-in-java-with-examples/](https://www.geeksforgeeks.org/nashorn-javascript-engine-in-java-with-examples/)
+
+**Nashorn**：Nashorn 是一款 [JavaScript 引擎](https://www.geeksforgeeks.org/what-happens-inside-javascript-engine/)，在 JDK 8 推出。在 Nashorn 的帮助下，我们可以在 [Java 虚拟机](https://www.geeksforgeeks.org/jvm-works-jvm-architecture/)上执行 JavaScript 代码。Nashorn 在 JDK 8 中推出，取代现有的 JavaScript 引擎，即 Rhino。就性能而言，Nashorn 远远优于 Rhino。调用动态特性、将 JavaScript 代码转换成字节码并直接存入内存等功能的使用使得 Nashorn 在 JDK 8 中更加出名。我们可以通过使用命令行工具和将 JavaScript 代码嵌入到 Java 源代码中来执行 JavaScript 代码。
+
+## 使用控制台执行 JavaScript 代码
+
+对于 Nashorn 引擎，Java 8 引入了一个新的命令行工具，即 `jjs`。我们必须按照以下步骤通过控制台执行 JavaScript 代码：
+
+*   创建一个名为 `geeks.js` 的文件。
+*   打开 `geeks.js`，将以下代码写入文件并保存。
+
+```java
+var gfg= function(){
+    print("Welcome to Geeksforgeeks!!!");
+};
+gfg();
+```
+
+*   打开 CMD，写 `jjs geeks.js` 按回车键。它将生成以下输出：
+
+```java
+Welcome to Geeksforgeeks!!!
+```
+
+## 通过将 JavaScript 文件嵌入到 Java 代码中来执行 JavaScript 文件
+
+借助 `ScriptEngine` 类，我们可以通过将 JavaScript 文件嵌入到 Java 代码中来执行 JavaScript 文件。`ScriptEngine` 类在 JDK 6 中引入。在 `ScriptEngine` 类的帮助下，我们可以创建一个 JavaScript 引擎，通过 JavaScript 引擎，我们可以执行 JavaScript 文件。
+
+### 例 1
+
+```java
+// Program to illustrate embedding
+// of JavaScript file into Java code
+
+import javax.script.*;
+import java.io.*;
+
+public class Geeksforgeeks {
+    public static void main(String[] args)
+        throws Exception
+    {
+        // Here we are generating Nashorn JavaScript Engine
+        ScriptEngine ee = new ScriptEngineManager()
+                              .getEngineByName("Nashorn");
+
+        // Reading JavaScript file create in first approach
+        ee.eval(new FileReader("geeks.js"));
+    }
+}
+```
+
+**输出：**
+
+```java
+Welcome to Geeksforgeeks!!!
+```
+
+### 例 2
+
+```java
+// Program to illustrate embedding
+// of JavaScript code into Java code
+
+import javax.script.*;
+import java.io.*;
+
+public class Geeksforgeeks {
+    public static void main(String[] args)
+        throws Exception
+    {
+        // Here we are generating Nashorn JavaScript Engine
+        ScriptEngine ee = new ScriptEngineManager()
+                              .getEngineByName("Nashorn");
+
+        // Instead of reading JavaScript code from a file.
+        // We can directly paste the JavaScript
+        // code inside Java Code
+        ee.eval("print('Welcome to Geeksforgeeks!!!"
+                + " Executing JavaScript code with the"
+                + " help of Nashorn engine');");
+    }
+}
+```
+
+**输出：**
+
+> 欢迎来到极客乐园！！！在 Nashorn 引擎的帮助下执行 JavaScript 代码
+
+除此之外，在 Nashorn JavaScript Engine 的帮助下，我们可以执行多个操作：
+
+## 从 Java 代码提供 JavaScript 变量
+
+假设我们有一个名为 `geeks.js` 的 JavaScript 文件，并且 `geeks.js` 在执行时需要一个变量。借助 Nashorn，我们可以从 Java 代码将变量传递给 JavaScript 文件。
+
+### 示例 1：`geeks.js` 文件，需要 `name` 变量才能执行
+
+```java
+// JavaScript file name with geeks.js
+print("Welcome to Geeksforgeeks!!! Mr. "+name);
+```
+
+### 示例 2：为 JS 文件提供 `name` 变量的 Java 代码
+
+```java
+// Program to illustrate passing of variable
+// from java code to javascript file
+
+import javax.script.*;
+import java.io.*;
+
+public class Geeksforgeeks {
+    public static void main(String[] args)
+        throws Exception
+    {
+        ScriptEngine ee
+            = new ScriptEngineManager()
+                  .getEngineByName("Nashorn");
+        Bindings bind
+            = ee.getBindings(
+                ScriptContext.ENGINE_SCOPE);
+        bind.put("name", "Bishal Kumar Dubey");
+        ee.eval(new FileReader("geeks.js"));
+    }
+}
+```
+
+**输出：**
+
+```java
+Welcome to Geeksforgeeks!!! Mr. Bishal Kumar Dubey
+```
+
+## 从 Java 代码调用 JavaScript 函数
+
+我们可以借助 Nashorn 从 Java 代码调用 JavaScript 函数。假设我们创建一个名为 `geeks.js` 的文件，该文件包含两个函数，如下所示：
+
+```java
+// JavaScript file name with geeks.js
+
+var func1 = function(){
+    print("Simple JavaScript function!!!");
+}
+
+var func2 = function(reader){
+    print("Hello "+reader);
+}
+```
+
+```java
+// Program to illustrate calling of
+// JavaScript function from Java code
+
+import javax.script.*;
+import java.io.*;
+
+public class Geeksforgeeks {
+    public static void main(String[] args)
+        throws Exception
+    {
+        ScriptEngine ee
+            = new ScriptEngineManager()
+                  .getEngineByName("Nashorn");
+        ee.eval(new FileReader("geeks.js"));
+        Invocable invocable = (Invocable)ee;
+
+        // Here we are calling func1
+        invocable.invokeFunction("func1");
+
+        // Here we are calling func2
+        // as well as passing argument
+        invocable.invokeFunction("func2",
+                                 "Bishal Kumar Dubey");
+    }
+}
+```
+
+**输出：**
+
+```java
+Simple JavaScript function!!!
+Hello Bishal Kumar Dubey
+```

@@ -1,0 +1,97 @@
+# Java 中的 DoubleAccumulator.get() 方法示例
+
+> 原文：[https://www.geeksforgeeks.org/doubleaccumulator-get-method-in-java-with-examples/](https://www.geeksforgeeks.org/doubleaccumulator-get-method-in-java-with-examples/)
+
+## `DoubleAccumulator.get()`
+
+`DoubleAccumulator.get()` 方法是 Java 中的一个内置方法，它返回此 `DoubleAccumulator` 实例的当前值。这意味着它只返回当前值，不接受任何参数。返回类型是 `double`。
+
+## 语法
+
+```java
+public double get()
+```
+
+## 参数
+
+该函数不接受任何参数。
+
+## 返回值
+
+该方法返回 `DoubleAccumulator` 对象的当前值。
+
+下面的程序说明了上述方法：
+
+## 程序 1
+
+```java
+// Java program to demonstrate
+// the get() method
+
+import java.lang.*;
+import java.util.concurrent.atomic.DoubleAccumulator;
+
+public class GFG {
+    public static void main(String args[])
+    {
+
+        DoubleAccumulator num
+            = new DoubleAccumulator(
+                Double::sum, 0L);
+
+        // accumulate operation on num
+        num.accumulate(2);
+        num.accumulate(10);
+
+        // Gets current value
+        double x = num.get();
+
+        // Print after get operation
+        System.out.println("Current value is: "
+                           + x);
+    }
+}
+```
+
+**输出：**
+
+```java
+Current value is: 12.0
+```
+
+## 程序 2
+
+```java
+// Java program to demonstrate
+// the get() method
+
+import java.lang.*;
+import java.util.concurrent.atomic.DoubleAccumulator;
+
+public class GFG {
+    public static void main(String args[])
+    {
+
+        DoubleAccumulator num
+            = new DoubleAccumulator(
+                Double::sum, 0L);
+
+        // accumulate operation on num
+        num.accumulate(24);
+        num.accumulate(1);
+
+        // Gets current value
+        double x = num.get();
+
+        // Print after get operation
+        System.out.println("Current value is: "
+                           + x);
+    }
+}
+```
+
+**输出：**
+
+```java
+Current value is: 25.0
+```

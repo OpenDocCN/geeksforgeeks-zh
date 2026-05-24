@@ -1,0 +1,97 @@
+# Java 中的 NavigableMap floorKey() 方法
+
+> 原文: `https://www.geeksforgeeks.org/navigablemap-floorkey-method-in-java/`
+
+Java 中 `NavigableMap` 接口的 `floorKey()` 方法用于返回小于等于给定键的最大键，如果没有该键则返回 `null`。
+
+## 语法
+
+```java
+K floorKey(K key)
+```
+
+其中，`K` 是该地图维护的密钥类型。
+
+## 参数
+
+该功能接受单个参数 `key`，指的是该地图容器维护的键的类型。
+
+## 返回值
+
+返回小于等于给定键的最大键，如果没有该键则返回空。
+
+下面的程序说明了 Java 中的 `floorKey()` 方法：
+
+### 程序 1：按键为整数时
+
+```java
+// Java code to demonstrate the working of
+// floorKey() method
+
+import java.io.*;
+import java.util.*;
+
+public class GFG {
+
+    public static void main(String[] args)
+    {
+
+        // Declaring the NavigableMap of Integer and String
+        NavigableMap<Integer, String> nmmp = new TreeMap<>();
+
+        // assigning the values in the NavigableMap
+        // using put()
+        nmmp.put(2, "two");
+        nmmp.put(7, "seven");
+        nmmp.put(3, "three");
+
+        System.out.println("The mapping with greatest"
+                           + " key is : " + nmmp.floorKey(7));
+    }
+}
+```
+
+**输出:**
+
+```java
+The mapping with greatest key is : 7
+```
+
+### 程序 2：键为字符串时
+
+```java
+// Java code to demonstrate the working of
+// floorKey() method
+
+import java.io.*;
+import java.util.*;
+
+public class GFG {
+
+    public static void main(String[] args)
+    {
+
+        // Declaring the NavigableMap of Integer and String
+        NavigableMap<String, String> tmmp = new TreeMap<>();
+
+        // assigning the values in the NavigableMap
+        // using put()
+        tmmp.put("one", "two");
+        tmmp.put("six", "seven");
+        tmmp.put("two", "three");
+
+        System.out.println("The mapping associated with greatest"
+                           + " key is : " + tmmp.floorKey("one"));
+    }
+}
+```
+
+**输出:**
+
+```java
+The mapping associated with greatest key is : one
+```
+
+## 参考
+
+`https://docs.oracle.com/javase/10/docs/api/java/util/NavigableMap.html#floorKey(K)`

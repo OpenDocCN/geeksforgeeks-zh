@@ -1,0 +1,62 @@
+# Java 中的 HashSet isEmpty()方法
+
+> 原文: [`https://www.geeksforgeeks.org/hashset-isempty-method-in-java/`](https://www.geeksforgeeks.org/hashset-isempty-method-in-java/)
+
+`java.util.HashSet.isEmpty()`方法用于检查`HashSet`是否为空。如果哈希表为空，则返回真，否则返回假。
+
+## 语法:
+
+```java
+Hash_Set.isEmpty()
+```
+
+## 参数:
+
+该方法不取任何参数。
+
+## 返回值:
+
+如果集合为空，函数返回真，否则返回假。
+
+下面程序举例说明了`isEmpty()`方法的使用：
+
+```java
+// Java code to illustrate contains()
+import java.io.*;
+import java.util.HashSet;
+
+public class HashSetDemo {
+    public static void main(String args[])
+    {
+        // Creating an empty HashSet
+        HashSet<String> set = new HashSet<String>();
+
+        // Use add() method to add elements into the Set
+        set.add("Welcome");
+        set.add("To");
+        set.add("Geeks");
+        set.add("4");
+        set.add("Geeks");
+
+        // Displaying the HashSet
+        System.out.println("HashSet: " + set);
+
+        // Check for the empty set
+        System.out.println("Is the set empty: " + set.isEmpty());
+
+        // Clearing the set using clear() method
+        set.clear();
+
+        // Again Checking for the empty set
+        System.out.println("Is the set empty: " + set.isEmpty());
+    }
+}
+```
+
+## 输出:
+
+```java
+HashSet: [4, Geeks, Welcome, To]
+Is the set empty: false
+Is the set empty: true
+```

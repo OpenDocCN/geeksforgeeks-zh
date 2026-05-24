@@ -1,0 +1,109 @@
+# Java 中 MonthDay 类的 with() 方法示例
+
+> 原文：[https://www.geeksforgeeks.org/monthday-with-method-in-java-with-examples/](https://www.geeksforgeeks.org/monthday-with-method-in-java-with-examples/)
+
+## 使用 MonthDay 类的 with() 方法
+
+`MonthDay` 类的 `with(Month month)` 方法使用作为参数传递的月份来更改 `MonthDay` 对象中的月份，然后该方法返回更改后的 `MonthDay` 的副本。如果更改操作后指定月份的月日值无效，则该日期将被调整为最后一个有效的月日。
+
+### 语法
+
+```java
+public MonthDay with(Month month)
+```
+
+### 参数
+
+该方法接受 `Month` 类型的 `month` 作为参数，该参数是返回的 `MonthDay` 中要设置的月份。
+
+### 返回值
+
+此方法返回一个 `MonthDay`，该 `MonthDay` 基于请求的月份。
+
+下面的程序说明了 `with()` 方法：
+
+### 程序 1
+
+```java
+// Java program to demonstrate
+// MonthDay.with() method
+
+import java.time.*;
+import java.time.temporal.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create a MonthDay object
+        MonthDay monthday
+            = MonthDay.of(8, 28);
+
+        // print instance
+        System.out.println("MonthDay before"
+                           + " applying method: "
+                           + monthday);
+
+        // apply with method of MonthDay class
+        MonthDay updatedlocal
+            = monthday.with(Month.OCTOBER);
+
+        // print instance
+        System.out.println("MonthDay after"
+                           + " applying method: "
+                           + updatedlocal);
+    }
+}
+```
+
+**输出：**
+
+```java
+MonthDay before applying method: --08-28
+MonthDay after applying method: --10-28
+```
+
+### 程序 2
+
+```java
+// Java program to demonstrate
+// MonthDay.with() method
+
+import java.time.*;
+import java.time.temporal.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create a MonthDay object
+        MonthDay monthday
+            = MonthDay.of(10, 31);
+
+        // print instance
+        System.out.println("MonthDay before"
+                           + " applying method: "
+                           + monthday);
+
+        // apply with method of MonthDay class
+        MonthDay updatedlocal
+            = monthday.with(Month.FEBRUARY);
+
+        // print instance
+        System.out.println("MonthDay after"
+                           + " applying method: "
+                           + updatedlocal);
+    }
+}
+```
+
+**输出：**
+
+```java
+MonthDay before applying method: --10-31
+MonthDay after applying method: --02-29
+```
+
+### 参考文献
+
+[https://docs.oracle.com/javase/10/docs/api/java/time/MonthDay.html#with(java.time.Month)](https://docs.oracle.com/javase/10/docs/api/java/time/MonthDay.html#with(java.time.Month))

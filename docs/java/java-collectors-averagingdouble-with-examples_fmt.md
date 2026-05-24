@@ -1,0 +1,138 @@
+# Java Collectors averagingDouble() 带示例
+
+> 原文: [https://www.geeksforgeeks.org/java-collectors-averagingdouble-with-examples/](https://www.geeksforgeeks.org/java-collectors-averagingdouble-with-examples/)
+
+`Collectors.averagingDouble(ToDoubleFunction<? super T> mapper)` 方法用于查找参数中传递的双值的平均值。此方法返回一个收集器，该收集器生成应用于输入元素的双值函数的算术平均值。如果没有元素作为输入元素传递，则此方法返回 `0`。
+
+该方法计算[算术平均值](https://www.geeksforgeeks.org/progressions-ap-gp-hp-and-practice-problems/)的公式为:
+
+![Rendered by QuickLaTeX.com](img/e365b32e748913eb82cc5b6423b274fd.png)
+
+**语法:**
+
+```java
+public static <T> 
+    Collector<T, ?, Double> 
+        averagingDouble(ToDoubleFunction<? super T> mapper)
+```
+
+其中术语如下:
+
+*   `Collector<T, A, R>`: 一种可变的约简操作，将输入元素累积到一个可变的结果容器中，在处理完所有输入元素后，可选地将累积的结果转换为最终表示。还原操作可以顺序执行，也可以并行执行。
+    *   `T`: 归约运算的输入元素类型。
+    *   `A`: 还原操作的可变累加类型。
+    *   `R`: 归约运算的结果类型。
+*   `Double`: `Double` 类在对象中包装一个基元类型 `double` 的值。类型为 `double` 的对象包含类型为 `Double` 的单个字段。
+*   `ToDoubleFunction`: 表示产生双值结果的函数。
+
+**参数:** 该方法接受一个参数 `mapper`，该参数是使用 `ToDoubleFunction` 转换为 `Double` 的双值流。`ToDoubleFunction` 是一个函数，当它作用于流的对象时，提取一个 `double` 类型的值。
+
+以下是说明 `averagingDouble()` 方法的示例:
+
+**程序 1:**
+
+```java
+// Java code to show the implementation of
+// averagingDouble(ToDoubleFunction mapper) function
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+class GFG {
+
+    // Driver code
+    public static void main(String[] args)
+    {
+        // creating a string stream
+        Stream<String> s = Stream.of("3", "4", "5");
+
+        // using Collectors averagingDouble(ToDoubleFunction mapper)
+        // method to find arithmetic mean of inputs given
+        double ans = s
+                         .collect(Collectors
+                                      .averagingDouble(
+                                          num -> Double.parseDouble(num)));
+
+        // displaying the result
+        System.out.println(ans);
+    }
+}
+```
+
+**Output:**
+
+```java
+4.0
+```
+
+**程序 2:**
+
+```java
+// Java code to show the implementation of
+// averagingDouble(ToDoubleFunction mapper) function
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+class GFG {
+
+    // Driver code
+    public static void main(String[] args)
+    {
+        // creating a string stream
+        Stream<String> s = Stream.of("7", "8", "9", "10");
+
+        // using Collectors averagingDouble(ToDoubleFunction mapper)
+        // method to find arithmetic mean of inputs given
+        double ans = s
+                         .collect(Collectors
+                                      .averagingDouble(
+                                          num -> Double.parseDouble(num)));
+
+        // displaying the result
+        System.out.println(ans);
+    }
+}
+```
+
+**Output:**
+
+```java
+8.5
+```
+
+**程序 3:** 当没有值作为参数传递时。
+
+```java
+// Java code to show the implementation of
+// averagingDouble(ToDoubleFunction mapper) function
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+class GFG {
+
+    // Driver code
+    public static void main(String[] args)
+    {
+        // creating a string stream
+        Stream<String> s = Stream.of();
+
+        // using Collectors averagingDouble(ToDoubleFunction mapper)
+        // method to find arithmetic mean of inputs given
+        double ans = s
+                         .collect(Collectors
+                                      .averagingDouble(
+                                          num -> Double.parseDouble(num)));
+
+        // displaying the result
+        System.out.println(ans);
+    }
+}
+```
+
+**Output:**
+
+```java
+0.0
+```

@@ -1,0 +1,163 @@
+# Java 中的 Instant isAfter() 方法示例
+
+> 原文：[https://www.geeksforgeeks.org/instant-isafter-method-in-java-with-examples/](https://www.geeksforgeeks.org/instant-isafter-method-in-java-with-examples/)
+
+`isAfter()` 是 `Instant` 类的一个方法，用来检查这个瞬间是否在作为参数传递的瞬间之后。此方法返回一个布尔值，显示比较结果。
+
+## 语法
+
+```java
+public boolean isAfter(Instant otherInstant)
+```
+
+## 参数
+
+该方法取一个参数 `otherInstant`，即与该瞬间比较的另一个瞬间。它不应为 `null`。
+
+## 返回值
+
+如果这个瞬间在指定的瞬间之后，这个方法返回 `true`。否则返回 `false`。
+
+## 异常
+
+如果作为参数传递的 `otherInstant` 为 `null`，则该方法抛出 `NullPointerException`。
+
+## 示例
+
+下面的程序说明了 `isAfter()` 方法：
+
+### 程序 1
+
+```java
+// Java program to demonstrate
+// Instant.isAfter() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create a Instant object
+        Instant instant1
+            = Instant.parse("2018-12-30T19:34:50.63Z");
+
+        // create other Instant
+        Instant instant2
+            = Instant.parse("2018-12-29T09:24:00.63Z");
+
+        // print instances
+        System.out.println("Instance 1: " + instant1);
+        System.out.println("Instance 2: " + instant2);
+
+        // check if instant1 is after instant2
+        // using isAfter()
+        boolean value = instant1.isAfter(instant2);
+
+        // print result
+        System.out.println("Is Instant1 after Instant2: "
+                           + value);
+    }
+}
+```
+
+**输出：**
+
+```java
+Instance 1: 2018-12-30T19:34:50.630Z
+Instance 2: 2018-12-29T09:24:00.630Z
+Is Instant1 after Instant2: true
+```
+
+### 程序 2
+
+```java
+// Java program to demonstrate
+// Instant.isAfter() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create a Instant object
+        Instant instant1
+            = Instant.parse("2018-10-30T19:34:50.63Z");
+
+        // create other Instant
+        Instant instant2 = Instant.now();
+
+        // print instances
+        System.out.println("Instance 1: " + instant1);
+        System.out.println("Instance 2: " + instant2);
+
+        // check if instant1 is after instant2
+        // using isAfter()
+        boolean value = instant1.isAfter(instant2);
+
+        // print result
+        System.out.println("Is Instant1 after Instant2: "
+                           + value);
+    }
+}
+```
+
+**输出：**
+
+```java
+Instance 1: 2018-10-30T19:34:50.630Z
+Instance 2: 2018-11-27T04:52:08.970Z
+Is Instant1 after Instant2: false
+```
+
+### 程序 3
+
+显示 `isAfter()` 抛出的异常。
+
+```java
+// Java program to demonstrate
+// Instant.isAfter() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create a Instant object
+        Instant instant1
+            = Instant.parse("2018-10-30T19:34:50.63Z");
+
+        // create other Instant
+        Instant instant2 = null;
+
+        try {
+
+            // print instances
+            System.out.println("Instance 1: " + instant1);
+            System.out.println("Instance 2: " + instant2);
+
+            // check if instant1 is after instant2
+            // using isAfter()
+            boolean value = instant1.isAfter(instant2);
+        }
+        catch (Exception e) {
+            // print result
+            System.out.println("Exception: " + e);
+        }
+    }
+}
+```
+
+**输出：**
+
+```java
+Instance 1: 2018-10-30T19:34:50.630Z
+Instance 2: null
+Exception: java.lang.NullPointerException
+```
+
+## 参考文献
+
+[https://docs.oracle.com/javase/10/docs/api/java/time/Instant.html#isAfter(java.time.Instant)](https://docs.oracle.com/javase/10/docs/api/java/time/Instant.html#isAfter(java.time.Instant))

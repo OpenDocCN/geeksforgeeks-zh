@@ -1,0 +1,125 @@
+# Java LinkedList descendingIterator() 方法详解及示例
+
+> 原文：[https://www.geeksforgeeks.org/linkedlist-descendingiterator-method-in-java-with-examples/](https://www.geeksforgeeks.org/linkedlist-descendingiterator-method-in-java-with-examples/)
+
+`java.util.LinkedList` 类的 `descendingIterator()` 方法用于以相反的顺序返回该链表中元素的迭代器。元素将按从最后（尾部）到第一（头部）的顺序返回。
+
+**语法：**
+
+```java
+public Iterator descendingIterator()
+```
+
+**返回值：** 这个方法返回一个 `Iterator`，在这个链表中的元素上以相反的顺序迭代。
+
+下面是说明 `descendingIterator` 方法的例子。
+
+**例 1：**
+
+```java
+// Java program to demonstrate
+// descendingIterator() method
+// for String value
+
+import java.util.*;
+
+public class GFG1 {
+    public static void main(String[] argv)
+        throws Exception
+    {
+
+        try {
+
+            // creating object of LinkedList<String>
+            LinkedList<String> list = new LinkedList<String>();
+
+            // add some elements to list
+            list.add("A");
+            list.add("B");
+            list.add("C");
+
+            // print the linked list
+            System.out.println("LinkedList:" + list);
+
+            // set Iterator as descending
+            // using descendingIterator() method
+            Iterator x = list.descendingIterator();
+
+            // print list with descending order
+            while (x.hasNext()) {
+                System.out.println("Value is : "
+                                   + x.next());
+            }
+        }
+
+        catch (NullPointerException e) {
+            System.out.println("Exception thrown : "
+                               + e);
+        }
+    }
+}
+```
+
+**Output：**
+
+```java
+LinkedList:[A, B, C]
+Value is : C
+Value is : B
+Value is : A
+```
+
+**例 2：**
+
+```java
+// Java program to demonstrate
+// descendingIterator() method
+// for Integer value
+
+import java.util.*;
+
+public class GFG1 {
+    public static void main(String[] argv)
+        throws Exception
+    {
+
+        try {
+
+            // creating object of LinkedList<Integer>
+            LinkedList<Integer>
+                list = new LinkedList<Integer>();
+
+            // add some elements to list
+            list.add(10);
+            list.add(20);
+            list.add(30);
+
+            // print the linked list
+            System.out.println("LinkedList:" + list);
+
+            // set Iterator as descending
+            // using descendingIterator() method
+            Iterator x = list.descendingIterator();
+
+            // print list with descending order
+            while (x.hasNext()) {
+                System.out.println("Value is : "
+                                   + x.next());
+            }
+        }
+
+        catch (NullPointerException e) {
+            System.out.println("Exception thrown : " + e);
+        }
+    }
+}
+```
+
+**Output：**
+
+```java
+LinkedList:[10, 20, 30]
+Value is : 30
+Value is : 20
+Value is : 10
+```

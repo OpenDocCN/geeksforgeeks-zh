@@ -1,0 +1,150 @@
+# AnnotatedElement.getDeclaredAnnotationsByType() 方法详解（含示例）
+
+> 原文：[https://www.geeksforgeeks.org/annotatedelement-getdeclaredannotationsbytype-method-in-java-with-examples/](https://www.geeksforgeeks.org/annotatedelement-getdeclaredannotationsbytype-method-in-java-with-examples/)
+
+## 方法介绍
+
+`AnnotatedElement` 接口的 `getDeclaredAnnotationsByType()` 方法用于获取实现该接口的类中存在的指定声明注释类型的声明注释。该方法返回指定声明注释类型的声明注释数组。
+
+## 语法
+
+```java
+public <A extends Annotation> A[] getDeclaredAnnotationsByType(Class<A> annotationClass)
+```
+
+## 参数
+
+该方法接受一个参数 `annotationClass`，它是要获取的声明注释的类型。
+
+## 返回值
+
+该方法为指定的声明注释类型返回一个声明注释的数组。
+
+## 异常
+
+此方法抛出：
+
+*   `NullPointerException`：如果给定的声明注释类为空。
+
+## 示例
+
+下面的程序演示了 `getDeclaredAnnotationsByType()` 方法。
+
+### 示例 1
+
+```java
+// Java program to demonstrate
+// getDeclaredAnnotationsByType() method
+
+import java.util.*;
+import java.lang.reflect.*;
+import java.lang.annotation.*;
+
+// create a custom DeclaredAnnotation
+@Retention(RetentionPolicy.RUNTIME)
+@interface DeclaredAnnotation {
+
+    // This declared annotation has two attributes.
+    public String key();
+
+    public String value();
+}
+
+// call DeclaredAnnotation for method
+// and pass values for declared annotation
+@DeclaredAnnotation(key = "GFG", value = "GeeksForGeeks")
+public class Test {
+
+    public Object obj;
+
+    public static void main(String[] args)
+        throws ClassNotFoundException
+    {
+
+        // returns the Class object
+        // for this myAnnotatedElement
+        AnnotatedElement myAnnotatedElement
+            = Test.class;
+
+        System.out.println(
+            "AnnotatedElement represented"
+            + " by myAnnotatedElement: "
+            + myAnnotatedElement.toString());
+
+        // Get the declared annotation
+        // using getDeclaredAnnotationsByType() method
+        System.out.println(
+            "DeclaredAnnotation of myAnnotatedElement"
+            + " of type DeclaredAnnotation: "
+            + Arrays.toString(
+                  myAnnotatedElement
+                      .getDeclaredAnnotationsByType(
+                          DeclaredAnnotation.class)));
+    }
+}
+```
+
+**输出：**
+
+```
+AnnotatedElement represented by myAnnotatedElement: class Test
+DeclaredAnnotation of myAnnotatedElement of type DeclaredAnnotation: [@DeclaredAnnotation(key=GFG, value=GeeksForGeeks)]
+```
+
+### 示例 2
+
+```java
+// Java program to demonstrate
+// getDeclaredAnnotationsByType() method
+
+import java.util.*;
+import java.lang.reflect.*;
+import java.lang.annotation.*;
+
+@Deprecated
+public class Test {
+
+    public Object obj;
+
+    public static void main(String[] args)
+        throws ClassNotFoundException
+    {
+        try {
+
+            // returns the Class object
+            // for this myAnnotatedElement
+            AnnotatedElement myAnnotatedElement
+                = Test.class;
+
+            System.out.println(
+                "AnnotatedElement represented"
+                + " by myAnnotatedElement: "
+                + myAnnotatedElement.toString());
+
+            // Get the declared annotation
+            // using getDeclaredAnnotationsByType() method
+            System.out.println(
+                "DeclaredAnnotation of myAnnotatedElement"
+                + " of type Deprecated: "
+                + Arrays.toString(
+                      myAnnotatedElement
+                          .getDeclaredAnnotationsByType(
+                              Deprecated.class)));
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+```
+
+**输出：**
+
+```
+AnnotatedElement represented by myAnnotatedElement: class Test
+DeclaredAnnotation of myAnnotatedElement of type Deprecated: [@java.lang.Deprecated()]
+```
+
+## 参考
+
+[https://docs.oracle.com/javase/9/docs/api/java/lang/reflect/AnnotatedElement.html#getAnnotationsByType-java.lang.Class-](https://docs.oracle.com/javase/9/docs/api/java/lang/reflect/AnnotatedElement.html#getAnnotationsByType-java.lang.Class-)

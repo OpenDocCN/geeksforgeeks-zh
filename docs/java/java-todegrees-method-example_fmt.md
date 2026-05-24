@@ -1,0 +1,56 @@
+# Java toDegrees()方法示例
+
+> 原文：[https://www.geeksforgeeks.org/java-todegrees-method-example/](https://www.geeksforgeeks.org/java-todegrees-method-example/)
+
+`java.lang.Math.toDegrees()`用于将以弧度度量的角度转换为以度数度量的近似等效角度。
+
+**注**：弧度到度数的转换一般不精确；用户不应该期望`cos(toRadians(90.0))`正好等于`0.0`。
+
+## 语法
+
+```java
+public static double toDegrees(double rad)
+```
+
+**参数**：
+`rad`：此参数是我们想要转换为度数的弧度角度。
+
+**返回值**：
+此方法返回角度`rad`的度数测量值。
+
+## 示例
+
+展示`Math.toDegrees()`方法的工作。
+
+```java
+// Java program to demonstrate working
+// of java.lang.Math.toDegrees() method
+import java.lang.Math;
+
+class Gfg {
+
+    // driver code
+    public static void main(String args[])
+    {
+        // value of PI in degrees
+        double rad = Math.PI;
+        System.out.println(Math.toDegrees(rad));
+
+        // value of PI/2 in degrees
+        rad = (Math.PI) / 2;
+        System.out.println(Math.toDegrees(rad));
+
+        // value of PI/4 in degrees
+        rad = (Math.PI) / 4;
+        System.out.println(Math.toDegrees(rad));
+    }
+}
+```
+
+**输出**：
+
+```java
+180.0
+90.0
+45.0
+```

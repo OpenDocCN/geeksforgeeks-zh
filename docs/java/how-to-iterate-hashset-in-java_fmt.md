@@ -1,0 +1,177 @@
+# 如何在 Java 中迭代 HashSet？
+
+> 原文：[https://www.geeksforgeeks.org/how-to-iterate-hashset-in-java/](https://www.geeksforgeeks.org/how-to-iterate-hashset-in-java/)
+
+[`HashSet`](https://www.geeksforgeeks.org/hashset-in-java/) 扩展 [`AbstractSet`](https://www.geeksforgeeks.org/abstractset-class-in-java-with-examples/) 并实现 `Set` 接口。它创建一个集合，该集合使用一个散列表进行存储。它通过一种叫做散列的机制来存储信息。在哈希中，密钥的信息内容用于确定一个唯一的值，称为其哈希代码。
+
+有三种简单的方法可以迭代 `HashSet`，如下所示：
+
+1.  使用迭代器
+2.  不使用迭代器（用于循环）
+3.  使用 for-each 循环
+
+## 方法 1：迭代器方法
+
+在这个方法中，我们借助迭代器迭代 `HashSet`。首先，我们借助 Java 中的 `iterator()` 方法，制作一个迭代器来迭代 `HashSet`。
+
+```java
+// Create a iterator of integer type to iterate HashSet
+Iterator<Integer> it = set.iterator();
+```
+
+然后借助 Java 中的 `hasNext()` 和 `next()` 方法迭代 `HashSet`。其中 `hasNext()` 方法检查 `HashSet` 是否有元素，`next()` 方法访问 `HashSet` 的数据。
+
+**注意：** 在 `hasNext()` 之后只使用 `next()` 方法一次。
+
+**示例：**
+
+```java
+// Java program to iterate the HashSet
+// using iterator
+
+import java.util.*;
+
+class GFG {
+    public static void main(String[] args)
+    {
+        // Creating a new HashSet for iteration
+        HashSet<Integer> set = new HashSet<>();
+
+        // Add data to HashSet
+        set.add(10);
+        set.add(20);
+
+        // Duplicates not allowed in HashSet, so avoid by
+        // HashSet
+        set.add(10);
+        set.add(50);
+
+        // Duplicates not allowed in HashSet, so avoid by
+        // HashSet
+        set.add(50);
+
+        // Create a iterator of type integer to iterate
+        // HashSet
+        Iterator<Integer> it = set.iterator();
+
+        System.out.println(
+            "Iterate HashSet using iterator : ");
+
+        // Iterate HashSet with the help of hasNext() and
+        // next() method
+        while (it.hasNext()) {
+
+            // Print HashSet values
+            System.out.print(it.next() + " ");
+        }
+    }
+}
+```
+
+**Output**
+
+```java
+Iterate HashSet using iterator : 
+50 20 10
+```
+
+## 方法 2：使用 for 循环迭代
+
+在这个方法中，我们使用一个简单的 `for` 循环来迭代 `HashSet`。下面是这种方法的实现：
+
+**示例：**
+
+```java
+// Java program to iterate the HashSet
+// using for loop
+
+import java.util.*;
+
+class GFG {
+    public static void main(String[] args)
+    {
+        // Creating a new HashSet for iteration
+        HashSet<String> set = new HashSet<>();
+
+        // Add data to HashSet
+        set.add("Hello");
+        set.add("geeks");
+        set.add("on");
+
+        //  duplicates not allowed in HashSet, so avoid by
+        //  HashSet
+        set.add("geeks");
+        set.add("for");
+
+        //  duplicates not allowed in HashSet, so avoid by
+        //  HashSet
+        set.add("geeks");
+
+        System.out.println(
+            "Iterate HashSet using for loop : ");
+
+        // Iterate throw a simple for loop
+        for (String ele : set) {
+            // Print HashSet data
+            System.out.print(ele + " ");
+        }
+    }
+}
+```
+
+**Output**
+
+```java
+Iterate HashSet using for loop : 
+Hello geeks for on
+```
+
+## 方法三：使用 `forEach()` 方法
+
+在这个方法中，我们使用 Java 中的 `forEach()` 循环迭代 `HashSet`。下面是这种方法的实现：
+
+**示例：**
+
+```java
+// Java program to iterate using forEach() loop
+
+import java.util.*;
+
+class GFG {
+    public static void main(String[] args)
+    {
+        // Creating a new HashSet for iteration
+        HashSet<String> set = new HashSet<>();
+
+        // Add data to HashSet
+        set.add("Hello");
+        set.add("geeks");
+        set.add("on");
+
+        //  duplicates not allowed in HashSet, so avoid by
+        //  HashSet
+        set.add("geeks");
+        set.add("for");
+
+        //  duplicates not allowed in HashSet, so avoid by
+        //  HashSet
+        set.add("geeks");
+
+        System.out.println(
+            "Iterate HashSet using forEach loop : ");
+
+        // Iterate throw a forEach method in Java
+        set.forEach(System.out::println);
+    }
+}
+```
+
+**Output**
+
+```java
+Iterate HashSet using forEach loop : 
+Hello
+geeks
+for
+on
+```

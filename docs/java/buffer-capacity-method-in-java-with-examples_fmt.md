@@ -1,0 +1,105 @@
+# Java 中的 `capacity()` 方法，示例
+
+> 原文：[https://www.geeksforgeeks.org/buffer-capacity-method-in-java-with-examples/](https://www.geeksforgeeks.org/buffer-capacity-method-in-java-with-examples/)
+
+[`java.nio.Buffer`](https://www.geeksforgeeks.org/tag/java-buffer/) 类的 `capacity()` 方法用于返回该缓冲区的容量。
+
+## 语法
+
+```java
+public final int capacity()
+```
+
+## 返回值
+
+该缓冲区的容量。
+
+以下是说明 `capacity()` 方法的示例：
+
+## 示例 1
+
+```java
+// Java program to demonstrate
+// capacity() method
+
+import java.nio.*;
+import java.util.*;
+
+public class GFG {
+
+    public static void main(String[] args)
+    {
+        // creating object of ByteBuffer
+        // and allocating size capacity
+        ByteBuffer bb = ByteBuffer.allocate(7);
+
+        // putting the int to byte typecast
+        // value in ByteBuffer
+        bb.put((byte)20);
+        bb.put((byte)30);
+        bb.put((byte)40);
+        bb.put((byte)50);
+
+        // Typecasting ByteBuffer into Buffer
+        Buffer bb1 = (Buffer)bb;
+
+        // getting capacity of Buffer
+        // using capacity() method
+        int cap = bb1.capacity();
+
+        // display the result
+        System.out.println("capacity is: " + cap);
+    }
+}
+```
+
+### 输出
+
+```java
+capacity is: 7
+```
+
+## 示例 2
+
+```java
+// Java program to demonstrate
+// capacity() method
+
+import java.nio.*;
+import java.util.*;
+
+public class GFG {
+
+    public static void main(String[] args)
+    {
+        // Declaring and initializing byte array
+        byte[] byt = { (byte)20, (byte)30,
+                       (byte)40, (byte)50,
+                       (byte)60 };
+
+        // creating object of ByteBuffer
+        // and allocating size capacity
+        ByteBuffer bb = ByteBuffer.wrap(byt);
+
+        // Typecasting ByteBuffer into Buffer
+        Buffer bb1 = (Buffer)bb;
+
+        // getting capacity of Buffer
+        // using capacity() method
+        int cap = bb1.capacity();
+
+        // display the result
+        System.out.println("capacity is: " + cap);
+    }
+}
+```
+
+### 输出
+
+```java
+capacity is: 5
+```
+
+## 参考
+
+[https://docs.oracle.com/javase/9/docs/api/java/nio/Buffer.html#capacity--](https://docs.oracle.com/javase/9/docs/api/java/nio/Buffer.html#capacity--)

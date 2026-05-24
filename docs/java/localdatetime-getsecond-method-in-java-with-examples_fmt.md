@@ -1,0 +1,87 @@
+# Java 中的 `LocalDateTime getSecond()` 方法，示例
+
+> 原文：[https://www.geeksforgeeks.org/localdatetime-getsecond-method-in-java-with-examples/](https://www.geeksforgeeks.org/localdatetime-getsecond-method-in-java-with-examples/)
+
+`LocalDateTime` 类的 `getSecond()` 方法用于返回分钟秒字段。此方法返回一个从 0 到 59 的整数值，即一分钟的秒数。
+
+## 语法
+
+```java
+public int getSecond()
+```
+
+## 参数
+
+此方法不接受任何参数。
+
+## 返回
+
+该方法返回一个 `int` 值，代表分钟的秒数，范围从 0 到 59。
+
+下面的程序说明了 `LocalDateTime.getSecond()` 方法：
+
+### 程序 1
+
+```java
+// Java program to demonstrate
+// LocalDateTime.getSecond() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create a LocalDateTime Object
+        LocalDateTime local
+            = LocalDateTime.parse("2018-12-03T12:39:10");
+
+        // get SecondOfMinute
+        int secondOfMinute = local.getSecond();
+
+        // print result
+        System.out.println("SecondOfMinute: "
+                           + secondOfMinute);
+    }
+}
+```
+
+**输出：**
+
+```java
+SecondOfMinute: 10
+```
+
+### 程序 2
+
+```java
+// Java program to demonstrate
+// LocalDateTime.getSecond() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create a LocalDateTime Object
+        LocalDateTime local
+            = LocalDateTime.parse("2019-01-28T22:29:59");
+
+        // get SecondOfMinute
+        int secondOfMinute = local.getSecond();
+
+        // print result
+        System.out.println("SecondOfMinute: "
+                           + secondOfMinute);
+    }
+}
+```
+
+**输出：**
+
+```java
+SecondOfMinute: 59
+```
+
+参考：[https://docs.oracle.com/javase/9/docs/api/java/time/LocalDateTime.html#getSecond](https://docs.oracle.com/javase/9/docs/api/java/time/LocalDateTime.html#getSecond)

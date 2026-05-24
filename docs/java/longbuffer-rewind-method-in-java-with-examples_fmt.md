@@ -1,0 +1,154 @@
+# Java中的LongBuffer rewind()方法，带示例
+
+> 原文：[https://www.geeksforgeeks.org/longbuffer-rewind-method-in-java-with-examples/](https://www.geeksforgeeks.org/longbuffer-rewind-method-in-java-with-examples/)
+
+[java.nio.LongBuffer](https://www.geeksforgeeks.org/tag/java-longbuffer/)类的`rewind()`方法用来倒带这个缓冲区。通过倒带此缓冲区，采取以下操作：
+
+*   当前位置被设置为零。
+*   标记被丢弃（如果有的话），但标记值保持不变。
+
+## 语法
+
+```java
+public LongBuffer rewind()
+```
+
+## 参数
+
+此方法不接受任何参数。
+
+## 返回值
+
+该方法在倒带后返回该缓冲区。
+
+以下是说明`rewind()`方法的示例：
+
+## 示例1
+
+```java
+// Java program to demonstrate
+// rewind() method
+
+import java.nio.*;
+import java.util.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+        // defining and allocating LongBuffer
+        // using allocate() method
+        LongBuffer longBuffer = LongBuffer.allocate(4);
+
+        // put long value in longBuffer
+        // using put() method
+        longBuffer.put(10);
+        longBuffer.put(20);
+
+        // print the long buffer
+        System.out.println(
+            "Buffer before operation: "
+            + Arrays.toString(
+                  longBuffer.array())
+            + "\nPosition: "
+            + longBuffer.position()
+            + "\nLimit: "
+            + longBuffer.limit());
+
+        // rewind the Buffer
+        // using rewind() method
+        longBuffer.rewind();
+
+        // print the longbuffer
+        System.out.println(
+            "\nBuffer after operation: "
+            + Arrays.toString(
+                  longBuffer.array())
+            + "\nPosition: "
+            + longBuffer.position()
+            + "\nLimit: "
+            + longBuffer.limit());
+    }
+}
+```
+
+## 输出
+
+```java
+Buffer before operation: [10, 20, 0, 0]
+Position: 2
+Limit: 4
+
+Buffer after operation: [10, 20, 0, 0]
+Position: 0
+Limit: 4
+```
+
+## 示例2
+
+```java
+// Java program to demonstrate
+// rewind() method
+
+import java.nio.*;
+import java.util.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+        // defining and allocating LongBuffer
+        // using allocate() method
+        LongBuffer longBuffer
+            = LongBuffer.allocate(5);
+
+        // put long value in longBuffer
+        // using put() method
+        longBuffer.put(10);
+        longBuffer.put(20);
+        longBuffer.put(30);
+
+        // mark will be going to
+        // discarded by rewind()
+        longBuffer.mark();
+
+        // print the buffer
+        System.out.println(
+            "Buffer before operation: "
+            + Arrays.toString(
+                  longBuffer.array())
+            + "\nPosition: "
+            + longBuffer.position()
+            + "\nLimit: "
+            + longBuffer.limit());
+
+        // Rewind the Buffer
+        // using rewind() method
+        longBuffer.rewind();
+
+        // print the buffer
+        System.out.println(
+            "\nBuffer after operation: "
+            + Arrays.toString(
+                  longBuffer.array())
+            + "\nPosition: "
+            + longBuffer.position()
+            + "\nLimit: "
+            + longBuffer.limit());
+    }
+}
+```
+
+## 输出
+
+```java
+Buffer before operation: [10, 20, 30, 0, 0]
+Position: 3
+Limit: 5
+
+Buffer after operation: [10, 20, 30, 0, 0]
+Position: 0
+Limit: 5
+```
+
+## 参考
+
+[https://docs.oracle.com/javase/9/docs/api/java/nio/LongBuffer.html#mark--](https://docs.oracle.com/javase/9/docs/api/java/nio/LongBuffer.html#mark--)

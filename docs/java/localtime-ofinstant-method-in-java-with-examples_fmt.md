@@ -1,0 +1,102 @@
+# Java 中的 LocalTime ofInstant()方法，示例
+
+> 原文: [https://www.geeksforgeeks.org/localtime-ofinstant-method-in-java-with-examples/](https://www.geeksforgeeks.org/localtime-ofinstant-method-in-java-with-examples/)
+
+`LocalTime`类的`ofInstant()`方法用于从作为参数传递的`Instant`和区域ID中获取`LocalTime`的实例。在这种方法中，首先，从世界协调时/格林威治时间的偏移是使用区域标识和瞬间获得的。然后，从瞬间和偏移计算出当地时间。
+
+## 语法:
+```java
+public static LocalTime 
+       ofInstant(Instant instant, ZoneId zone)
+```
+
+## 参数:
+此方法接受两个参数:
+*   `instant`：它是创建`LocalTime`对象时的瞬间。它不应为空。
+*   `zone`：它是一个具有指定时间的区域。它不应为空。
+
+## 返回值:
+该方法返回从传递的瞬间创建的`LocalTime`对象。
+
+下面的程序说明了`ofInstant()`方法:
+
+## 节目 1:
+```java
+// Java program to demonstrate
+// LocalTime.ofInstant() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create an Instant object
+        Instant instant
+            = Instant.parse("2018-12-17T19:59:44.770Z");
+
+        // print Instant
+        System.out.println("Instant: " + instant);
+
+        // create ZoneId
+        ZoneId zoneid = ZoneId.systemDefault();
+
+        // print ZoneId
+        System.out.println("ZoneId: " + zoneid);
+
+        // apply ofInstant()
+        LocalTime value
+            = LocalTime.ofInstant(instant, zoneid);
+
+        // print result
+        System.out.println("Generated LocalTime: "
+                           + value);
+    }
+}
+```
+
+## 输出:
+```java
+Instant: 2018-12-17T19:59:44.770Z
+ZoneId: Etc/UTC
+Generated LocalTime: 19:59:44.770
+```
+
+## 节目 2:
+```java
+// Java program to demonstrate
+// LocalTime.ofInstant() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create an Instant object
+        Instant instant
+            = Instant.parse("2016-11-11T09:19:22Z");
+
+        // print Instant
+        System.out.println("Instant: " + instant);
+
+        // apply ofInstant()
+        LocalTime value
+            = LocalTime.ofInstant(instant,
+                                  ZoneId.of("Asia/Dhaka"));
+
+        // print result
+        System.out.println("Generated LocalTime: "
+                           + value);
+    }
+}
+```
+
+## 输出:
+```java
+Instant: 2016-11-11T09:19:22Z
+Generated LocalTime: 15:19:22
+```
+
+## 参考文献:
+[https://docs.oracle.com/javase/10/docs/api/java/time/LocalTime.html#ofInstant(java.time.Instant, java.time.ZoneId)](https://docs.oracle.com/javase/10/docs/api/java/time/LocalTime.html#ofInstant(java.time.Instant, java.time.ZoneId))

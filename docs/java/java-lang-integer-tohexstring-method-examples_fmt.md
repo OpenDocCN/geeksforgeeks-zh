@@ -1,0 +1,151 @@
+# Java Integer.toHexString() 方法示例
+
+> 原文：[https://www.geeksforgeeks.org/java-lang-integer-tohexstring-method-examples/](https://www.geeksforgeeks.org/java-lang-integer-tohexstring-method-examples/)
+
+`java.lang.Integer.toHexString()` 是 Java 中的内置函数，它将整数参数的字符串表示形式作为基数为 16 的无符号整数返回。该函数在整数数据类型中接受单个参数作为参数。
+
+## 语法
+
+```java
+public static String toHexString(int num)
+```
+
+参数：该函数接受一个强制参数 `num`，此参数指定要转换为十六进制字符串的数字。数据类型为 `int`。
+
+## 返回值
+
+该函数返回 `int` 参数的字符串表示形式，以 16 为底的无符号整数表示。
+
+## 示例
+
+```java
+Input : 11
+Output : b
+
+Input : 12
+Output : c
+```
+
+## 程序 1
+
+下面的程序演示了功能的工作。
+
+```java
+// Java program to demonstrate working
+// of java.lang.Integer.toHexString() method
+import java.lang.Math;
+
+class Gfg1 {
+
+// driver code
+    public static void main(String args[])
+    {
+
+        int l = 234;
+
+        // returns the string representation of the unsigned int value
+        // represented by the argument in binary (base 2)
+        System.out.println("Hex string is " + Integer.toHexString(l));
+
+        l = 11;
+        System.out.println("Hex string is " + Integer.toHexString(l));
+    }
+}
+```
+
+输出：
+
+```java
+Hex string is ea
+Hex string is b
+```
+
+## 程序 2
+
+下面的程序演示了负数通过时的工作功能。
+
+```java
+// Java program to demonstrate
+// of java.lang.Integer.toHexString() method
+// negative number
+
+import java.lang.Math;
+
+class Gfg1 {
+
+// driver code
+    public static void main(String args[])
+    {
+        // when negative number is passed
+        System.out.println("Hex is " + Integer.toHexString(-10));
+    }
+}
+```
+
+输出：
+
+```java
+Hex is fffffff6
+```
+
+## 错误和异常
+
+每当十进制数或字符串作为参数传递时，它都会返回一条错误消息，上面写着“不兼容的类型”。
+
+## 程序 3
+
+下面的程序演示了当一个字符串数字被传递时的工作函数。
+
+```java
+// Java program to demonstrate
+// of java.lang.Integer.toHexString() method
+// string number
+
+import java.lang.Math;
+
+class Gfg1 {
+
+// driver code
+    public static void main(String args[])
+    {
+        // when negative number is passed
+        System.out.println("Hex is " + Integer.toHexString("12"));
+    }
+}
+```
+
+输出：
+
+```java
+prog.java:13: error: incompatible types: String cannot be converted to int
+    System.out.println("Hex is " + Integer.toHexString("12"));
+```
+
+## 程序 4
+
+下面的程序演示了传递小数时的工作功能。
+
+```java
+// Java program to demonstrate
+// of java.lang.Integer.toHexString() method
+// decimal
+
+import java.lang.Math;
+
+class Gfg1 {
+
+// driver code
+    public static void main(String args[])
+    {
+        // when decimal number is passed
+        System.out.println("Hex is " + Integer.toHexString(12.34));
+    }
+}
+```
+
+输出：
+
+```java
+prog.java:13: error: incompatible types: possible lossy conversion from double to int
+    System.out.println("Hex is " + Integer.toHexString(12.34));
+```

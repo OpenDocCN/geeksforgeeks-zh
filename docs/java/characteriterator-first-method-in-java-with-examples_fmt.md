@@ -1,0 +1,50 @@
+# 用示例描述 Java 中的 `CharacterIterator.first()` 方法
+
+> 原文：[https://www.geeksforgeeks.org/characteriterator-first-method-in-java-with-examples/](https://www.geeksforgeeks.org/characteriterator-first-method-in-java-with-examples/)
+
+`first()` 方法是 [`CharacterIterator`](https://www.geeksforgeeks.org/tag/java-text-package/) 接口在 Java 中的一个方法，用于获取迭代器开头的字符。此方法使用 `getBeginIndex()` 将迭代器的位置设置为第一个字符，然后返回该字符。
+
+## 语法
+
+```java
+public char first()
+```
+
+## 参数
+
+此方法不接受任何参数。
+
+## 返回值
+
+该方法使用 `getBeginIndex()`，将迭代器的位置设置为第一个字符，然后返回该字符。
+
+## 异常
+
+这个方法不抛出任何异常。
+
+## 程序
+
+```java
+// Java program to demonstrate
+// the above method
+
+import java.text.*;
+import java.util.*;
+
+public class CharacterIteratorDemo {
+    public static void main(String[] args) {
+        CharacterIterator characterIterator = new StringCharacterIterator("GeeksForGeeks");
+        System.out.println("First character: " + characterIterator.first());
+    }
+}
+```
+
+## 输出
+
+```java
+First character: G
+```
+
+## 参考
+
+[https://docs.oracle.com/javase/9/docs/api/java/text/CharacterIterator.html#first--](https://docs.oracle.com/javase/9/docs/api/java/text/CharacterIterator.html#first--)

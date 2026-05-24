@@ -1,0 +1,143 @@
+# 如何替换 Java 数组列表中的一个元素？
+
+> 原文: [https://www.geeksforgeeks.org/how-to-replace-a-element-in-java-arraylist/](https://www.geeksforgeeks.org/how-to-replace-a-element-in-java-arraylist/)
+
+要替换 Java 数组列表中的元素，可以使用 `java.util.ArrayList` 类的 `set()` 方法。`set()` 方法接受两个参数——需要替换的元素的索引和新元素。数组列表的索引是从零开始的。因此，要替换第一个元素，`0` 应该是作为参数传递的索引。
+
+**声明:**
+
+```java
+public Object set(int index, Object element)
+```
+
+**返回值:** 位于指定索引处的元素。
+
+**异常抛出:** [`IndexOutOfBoundsException`](https://www.geeksforgeeks.org/understanding-array-indexoutofbounds-exception-in-java/) 当索引超出范围时，就会出现这种情况。
+
+```java
+index < 0 or index >= size()
+```
+
+**实现:**
+
+在这里，我们将提出两个例子，其中一个例子中，我们将设置范围内的索引，另一个例子中，我们将设置范围外的索引。
+
+### 示例 1: 其中索引在界限内
+
+**Java 代码**
+
+```java
+// Java program to demonstrate set() Method of ArrayList
+// Where Index is Within Bound
+
+// Importing required classes
+import java.io.*;
+import java.util.*;
+
+// Main class
+class GFG {
+
+// Main driver method
+  public static void main(String[] args) {
+
+// Try block to check for exceptions
+    try {
+
+// Creating an object of Arraylist class
+      ArrayList<String> list = new ArrayList<>();
+
+// Adding elements to the List
+      // using add() method
+
+// Custom input elements
+      list.add("A");
+      list.add("B");
+      list.add("C");
+      list.add("D");
+
+// Print all the elements added in the above object
+      System.out.println(list);
+
+// 2 is the index of the element "C".
+      //"C" will be replaced by "E"
+      list.set(2, "E");
+
+// Printing the newly updated List
+      System.out.println(list);
+
+}
+
+// Catch block to handle the exceptions
+    catch (Exception e) {
+
+// Display the exception on the console
+      System.out.println(e);
+    }
+  }
+}
+```
+
+**输出**
+
+```java
+[A, B, C, D]
+[A, B, E, D]
+```
+
+### 示例 2: 其中索引超出界限
+
+**Java 代码**
+
+```java
+// Java program to demonstrate set() Method of ArrayList
+// Where Index is Out of Bound
+
+// Importing required classes
+import java.io.*;
+import java.util.*;
+
+// Main class
+class GFG {
+
+// Main driver method
+  public static void main(String[] args) {
+
+// Try block to check for exceptions
+    try {
+
+// Creating an object of Arraylist class
+      ArrayList<String> list = new ArrayList<>();
+
+// Adding elements to the List
+      // using add() method
+
+// Custom input elements
+      list.add("A");
+      list.add("B");
+      list.add("C");
+      list.add("D");
+
+// Print all the elements added in the above object
+      System.out.println(list);
+
+// Setting the element at the 6 th index which
+      // does not exist in our input list object
+      list.set(6, "F");
+
+// Printing the newly updated List
+      System.out.println(list);
+    }
+
+// Catch block to handle the exceptions
+    catch (Exception e) {
+
+// Display the exception on the console
+      System.out.println(e);
+    }
+  }
+}
+```
+
+**输出:**
+
+![](img/325bca911ab87c6d340c596ac90c16b6.png)

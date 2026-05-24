@@ -1,0 +1,85 @@
+# Java 中的 Instant.parse() 方法示例
+
+> 原文：[https://www.geeksforgeeks.org/instant-parse-method-in-java-with-examples/](https://www.geeksforgeeks.org/instant-parse-method-in-java-with-examples/)
+
+`Instant`类的`parse()`方法有助于从作为参数传递的字符串值中获取`Instant`的实例。该字符串是世界协调时时区中的一个瞬间。它是使用`DateTimeFormatter`解析的`ISO_INSTANT`。
+
+## 语法
+
+```java
+public static Instant parse(CharSequence text)
+```
+
+## 参数
+
+该方法接受一个参数`text`，即要解析的文本。它不应为空。
+
+## 返回
+
+该方法返回一个`Instant`，这是作为参数传递的字符串在世界协调时的有效时刻。
+
+## 异常
+
+如果文本无法解析，这个方法抛出`DateTimeException`。
+
+下面的程序说明了`parse()`方法：
+
+### 程序 1
+
+```java
+// Java program to demonstrate
+// Instant.parse() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // get Instant using parse method
+        Instant instant
+            = Instant.parse("2018-11-30T18:35:24.00Z");
+
+        // print result
+        System.out.println("Instant: "
+                           + instant);
+    }
+}
+```
+
+**输出：**
+
+```java
+Instant: 2018-11-30T18:35:24Z
+```
+
+### 程序 2
+
+```java
+// Java program to demonstrate
+// Instant.parse() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // get Instant using parse method
+        Instant instant
+            = Instant.parse("2019-10-01T08:25:24.00Z");
+
+        // print result
+        System.out.println("Instant: "
+                           + instant);
+    }
+}
+```
+
+**输出：**
+
+```java
+Instant: 2019-10-01T08:25:24Z
+```
+
+参考文献：[https://docs.oracle.com/javase/10/docs/api/java/time/Instant.html#parse(java.lang.CharSequence)](https://docs.oracle.com/javase/10/docs/api/java/time/Instant.html#parse(java.lang.CharSequence))

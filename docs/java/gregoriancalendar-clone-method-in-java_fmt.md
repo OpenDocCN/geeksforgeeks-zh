@@ -1,0 +1,121 @@
+# Java 中的 GregorianCalendar clone() 方法
+
+> 原文：[https://www.geeksforgeeks.org/gregoriancalendar-clone-method-in-java/](https://www.geeksforgeeks.org/gregoriancalendar-clone-method-in-java/)
+
+使用 `GregorianCalendar` 类的 `java.util.GregorianCalendar.clone()` 方法创建一个新对象，并将这个 `GregorianCalendar` 实例的所有内容复制到新对象中。
+
+## 语法
+
+```java
+public Object clone()
+```
+
+## 参数
+
+此功能不接受任何参数。
+
+## 返回值
+
+该函数返回这个对象的副本。
+
+## 示例
+
+```java
+Input: Mon Jul 23 14:35:27 UTC 2018
+Output: Mon Jul 23 14:35:27 UTC 2018
+
+Input: Current Date and Time is Mon Jul 23 14:35:27 UTC 2018
+       cal1.add((GregorianCalendar.MONTH), -7);
+       cal1.clone();
+Output: Sat Dec 23 14:36:42 UTC 2017
+```
+
+下面的程序说明了 `java.util GregorianCalendar.clone()` 方法：
+
+### 程序 1
+
+```java
+// Java Program to illustrate GregorianCalendar.clone()
+// function
+
+import java.io.*;
+import java.util.*;
+
+class GFG {
+    public static void main(String[] args)
+    {
+
+// Creating a new calendar
+        GregorianCalendar cal = (GregorianCalendar)
+                   GregorianCalendar.getInstance();
+
+// Display the date and time
+        System.out.println("Date and Time in"
+                +" cal object : "+ cal.getTime());
+
+GregorianCalendar newcalender = 
+                          new GregorianCalendar();
+
+// Cloning the object
+        newcalender = (GregorianCalendar)cal.clone();
+
+// Display date and time
+        System.out.println("Date and Time in"+
+        " newcalender object : "+ newcalender.getTime());
+    }
+}
+```
+
+**Output:**
+
+```java
+Date and Time in cal object : Fri Aug 03 11:01:24 UTC 2018
+Date and Time in newcalender object : Fri Aug 03 11:01:24 UTC 2018
+```
+
+### 程序 2
+
+```java
+// Java Program to illustrate 
+// GregorianCalendar.clone()
+// function
+
+import java.io.*;
+import java.util.*;
+
+class GFG {
+    public static void main(String[] args)
+    {
+
+// Creating a new calendar
+        GregorianCalendar cal1, cal2;
+
+cal1 = (GregorianCalendar)GregorianCalendar.
+                                     getInstance();
+
+// Display the current date and time
+        System.out.println("Current Date and Time : "
+                                   + cal1.getTime());
+        // Modifying the current date and time
+        cal1.add((GregorianCalendar.MONTH), 2);
+
+// Cloning the object
+        cal2 = (GregorianCalendar)cal1.clone();
+
+// Display date and time
+        System.out.println("New Date and Time : "
+                       + cal2.getTime());
+    }
+}
+```
+
+**Output:**
+
+```java
+Current Date and Time : Fri Aug 03 11:01:27 UTC 2018
+New Date and Time : Wed Oct 03 11:01:27 UTC 2018
+```
+
+## 参考
+
+[https://docs.oracle.com/javase/7/docs/api/java/util/GregorianCalendar.html#clone()](https://docs.oracle.com/javase/7/docs/api/java/util/GregorianCalendar.html#clone())

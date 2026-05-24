@@ -1,0 +1,78 @@
+# Java 中的 LinkedList getLast() 方法
+
+> 原文: [https://www.geeksforgeeks.org/linkedlist-getlast-method-in-java/](https://www.geeksforgeeks.org/linkedlist-getlast-method-in-java/)
+
+链表是 [`java.util`](https://www.geeksforgeeks.org/java-util-package-java/) 包中[集合框架](https://www.geeksforgeeks.org/collections-in-java-2/)的一部分。这个类是[链表数据结构](https://www.geeksforgeeks.org/data-structures/linked-list/)的实现，它是一个线性数据结构，其中元素不存储在连续的位置，每个元素都是一个单独的对象，有一个数据部分和一个链接部分。`java.util.LinkedList.getLast()` 方法用于从 `LinkedList` 中获取或检索最后一个元素或列表尾部的元素。
+
+![](img/b8b33a92c00d059e80ecc5b62687a143.png)
+
+插图:
+
+```java
+Input : 4 --> 1 --> 5 --> 6 --> 1 --> 3
+Output: 3
+```
+
+众所周知，`getLast()` 是 [`LinkedList`](https://www.geeksforgeeks.org/linked-list-in-java/) 类中已经存在的方法之一。它从 `LinkedList` 的元素所在的对象中检索最后一个元素。正如我们所知，`LinkedList` 是存在于 [`java.util`](https://www.geeksforgeeks.org/java-util-package-java/) 包中的一个类，因此，如果我们操作以下方法，语法将如下所示:
+
+```java
+import java.util.LinkedList;
+LinkedList ll = new LinkedList<T>();  
+ll.getLast();
+```
+
+简单地说，如果我们想知道 `LinkedList` 的最后一个元素或尾部，那么请执行下面列出的检查。稍后，它将作为一个示例在实现时进行说明。
+
+**语法:**
+
+```java
+LinkedList.getLast();
+```
+
+**返回类型:** 列表尾部的最后一个元素或元素。
+
+## 示例
+
+```java
+// Java Program to Illustrate getLast() method
+
+// Importing required classes
+import java.io.*;
+import java.util.LinkedList;
+
+// Main class
+public class GFG {
+
+    // Main driver method
+    public static void main(String args[])
+    {
+        // Creating an empty LinkedList class object
+        // Declaring object of string type
+        LinkedList<String> list = new LinkedList<String>();
+
+        // Adding elements in the list
+        // using add() method
+        list.add("Geeks");
+        list.add("for");
+        list.add("Geeks");
+        list.add("10");
+        list.add("20");
+
+        // Displaying all elements of LinkedList
+        System.out.println("LinkedList:" + list);
+
+        // Now from these elements procuring
+        // last element from the list
+        // using getLast() method
+        System.out.println("The last element is: "
+                           + list.getLast());
+    }
+}
+```
+
+**输出:**
+
+```java
+LinkedList:[Geeks, for, Geeks, 10, 20]
+The last element is: 20
+```

@@ -1,0 +1,91 @@
+# Java 中的 ChronoLocalDate isAfter()方法，示例
+
+> 原文：[https://www.geeksforgeeks.org/chronolocaldate-isafter-method-in-java-with-examples/](https://www.geeksforgeeks.org/chronolocaldate-isafter-method-in-java-with-examples/)
+
+Java 中`ChronoLocalDate`接口的`isAfter()`方法检查该日期是否在指定日期之后，并返回一个表示该日期的布尔值。
+
+## 语法
+
+```java
+public boolean isAfter(ChronoLocalDate date2)
+```
+
+## 参数
+
+该方法接受单个强制参数`date2`，即要进行比较的其他日期，不可为空。
+
+## 返回值
+
+如果该日期在指定日期之后，则函数返回`true`。
+
+下面的程序说明了 Java 中的`isAfter()`方法：
+
+## 程序 1
+
+```java
+// Program to illustrate the isAfter() method
+
+import java.util.*;
+import java.time.*;
+import java.time.chrono.*;
+
+public class GfG {
+    public static void main(String[] args)
+    {
+        // Parses the first date
+        ChronoLocalDate dt1
+            = LocalDate.parse("2018-11-27");
+
+        // Parses the second date
+        ChronoLocalDate dt2
+            = LocalDate.parse("2017-11-27");
+
+        // Check if the specified date
+        // is after this date
+        System.out.println(dt1.isAfter(dt2));
+    }
+}
+```
+
+## 输出
+
+```java
+true
+```
+
+## 程序 2
+
+```java
+// Program to illustrate the isAfter() method
+
+import java.util.*;
+import java.time.*;
+import java.time.chrono.*;
+
+public class GfG {
+    public static void main(String[] args)
+    {
+        // Parses the first date
+        ChronoLocalDate dt1
+            = LocalDate.parse("2018-11-27");
+
+        // Parses the second date
+        ChronoLocalDate dt2
+            = LocalDate.parse("2019-11-27");
+
+        // Check if the specified date
+        // is after this date
+        System.out.println(dt1.isAfter(dt2));
+    }
+}
+```
+
+## 输出
+
+```java
+false
+```
+
+## 参考
+
+[https://docs.oracle.com/javase/9/docs/api/java/time/chrono/ChronoLocalDate.html#isAfter-java.time.chrono.ChronoLocalDate-](https://docs.oracle.com/javase/9/docs/api/java/time/chrono/ChronoLocalDate.html#isAfter-java.time.chrono.ChronoLocalDate-)

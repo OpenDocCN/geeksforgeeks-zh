@@ -1,0 +1,127 @@
+# Java 中的 CopyOnWriteArrayList toArray()方法
+
+> 原文: [https://www.geeksforgeeks.org/copyonwritearraylist-toarray-method-in-java/](https://www.geeksforgeeks.org/copyonwritearraylist-toarray-method-in-java/)
+
+`toArray()` 方法用于返回一个数组，该数组包含以正确顺序排列的 `CopyOnWriteArrayList` 中的所有元素。
+
+## 语法
+
+```java
+public Object[] toArray()
+           or
+public <T> T[] toArray(T[] a)
+```
+
+## 参数
+
+这个方法要么不接受参数，要么取一个数组 `T[] a` 作为参数，如果足够大的话，这个数组就是要存储列表元素的数组；否则，将为此目的分配一个相同运行时类型的新数组。
+
+## 返回值
+
+该函数返回一个包含该列表中所有元素的数组。
+
+## 异常
+
+这个方法的第一个重载没有抛出异常。但是，第二个重载抛出以下异常:
+
+*   `ArrayStoreException`: If the runtime type of the specified array is not the supertype of the runtime type of each element in the list.
+*   `NullPointerException`: If the specified array is empty.
+
+下面的程序说明了 `CopyOnWriteArrayList.toArray()` 方法:
+
+### 程序 1
+
+```java
+// Java Program to illustrate the
+// CopyOnWriteArrayList toArray() method in Java
+
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+// create object of CopyOnWriteArrayList
+        CopyOnWriteArrayList<Integer> ArrLis
+            = new CopyOnWriteArrayList<Integer>();
+
+// Add elements
+        ArrLis.add(32);
+        ArrLis.add(67);
+        ArrLis.add(98);
+        ArrLis.add(100);
+
+// print CopyOnWriteArrayList
+        System.out.println("CopyOnWriteArrayList: "
+                           + ArrLis);
+
+// Get the array of the elements
+        // of the CopyOnWriteArrayList
+        // using toArray() method
+        Object[] arr = ArrLis.toArray();
+
+        System.out.println("Elements of CopyOnWriteArrayList"
+                           + " as Array: "
+                           + Arrays.toString(arr));
+    }
+}
+```
+
+### 输出
+
+```java
+CopyOnWriteArrayList: [32, 67, 98, 100]
+Elements of CopyOnWriteArrayList as Array: [32, 67, 98, 100]
+```
+
+### 程序二
+
+```java
+// Java Program to illustrate the
+// CopyOnWriteArrayList toArray(T[]) method in Java
+
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+// create object of CopyOnWriteArrayList
+        CopyOnWriteArrayList<Integer> ArrLis
+            = new CopyOnWriteArrayList<Integer>();
+
+// Add elements
+        ArrLis.add(32);
+        ArrLis.add(67);
+        ArrLis.add(98);
+        ArrLis.add(100);
+
+// print CopyOnWriteArrayList
+        System.out.println("CopyOnWriteArrayList: "
+                           + ArrLis);
+
+// Get the array of the elements
+        // of the CopyOnWriteArrayList
+        // using toArray(T[]) method
+        Integer arr[] = new Integer[ArrLis.size()];
+        arr = ArrLis.toArray(arr);
+
+        System.out.println("Elements of CopyOnWriteArrayList"
+                           + " as Array: "
+                           + Arrays.toString(arr));
+    }
+}
+```
+
+### 输出
+
+```java
+CopyOnWriteArrayList: [32, 67, 98, 100]
+Elements of CopyOnWriteArrayList as Array: [32, 67, 98, 100]
+```
+
+## 参考
+
+[`CopyOnWriteArrayList.toArray()` 文档](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/CopyOnWriteArrayList.html#toArray--), [`CopyOnWriteArrayList.toArray(T[])` 文档](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/CopyOnWriteArrayList.html#toArray-T:A-)

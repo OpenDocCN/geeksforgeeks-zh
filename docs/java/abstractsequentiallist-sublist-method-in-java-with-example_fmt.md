@@ -1,0 +1,128 @@
+# Java 中的 AbstractSequentialList.subList() 方法示例
+
+> 原文：[https://www.geeksforgeeks.org/abstractsequentiallist-sublist-method-in-java-with-example/](https://www.geeksforgeeks.org/abstractsequentiallist-sublist-method-in-java-with-example/)
+
+Java 中 `AbstractSequentialList` 的 `subList()` 方法用于获取此列表中指定的 `fromIndex`（包含）和 `toIndex`（不包含）之间的部分的视图。（如果 `fromIndex` 和 `toIndex` 相等，则返回的列表为空。）返回的列表由该列表支持，因此返回列表中的非结构性变化反映在该列表中，反之亦然。返回的列表支持该列表支持的所有可选列表操作。
+
+## 语法
+
+```java
+protected List<E> subList(int fromIndex, int toIndex)
+```
+
+## 参数
+
+此方法接受两个参数：
+
+*   `fromIndex`：要从中提取元素的起始索引。
+*   `toIndex`：要从中提取元素的结束索引（不包含）。
+
+## 返回值
+
+此方法返回此列表内指定范围的视图。
+
+## 异常
+
+此方法抛出：
+
+*   `IndexOutOfBoundsException`：如果端点索引值超出范围。
+*   `IllegalArgumentException`：如果端点索引出现故障。
+
+## 示例 1
+
+以下示例说明了 `AbstractSequentialList.subList()` 方法：
+
+```java
+// Java program to demonstrate the
+// working of subList() method
+
+import java.util.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // creating an AbstractSequentialList
+        AbstractSequentialList<Integer> arr
+            = new LinkedList<Integer>();
+
+        // use add() method
+        // to add values in the list
+        arr.add(1);
+        arr.add(2);
+        arr.add(3);
+        arr.add(12);
+        arr.add(9);
+        arr.add(13);
+
+        // prints the list before removing
+        System.out.println("AbstractSequentialList: "
+                           + arr);
+
+        // Getting subList of 1st 2 elements
+        // using subList() method
+        System.out.println("subList of 1st 2 elements: "
+                           + arr.subList(0, 2));
+    }
+}
+```
+
+**输出：**
+
+```java
+AbstractSequentialList: [1, 2, 3, 12, 9, 13]
+subList of 1st 2 elements: [1, 2]
+```
+
+## 示例 2
+
+```java
+// Java program to demonstrate the
+// working of subList() method
+
+import java.util.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // creating an AbstractSequentialList
+        AbstractSequentialList<Integer> arr
+            = new LinkedList<Integer>();
+
+        // use add() method
+        // to add values in the list
+        arr.add(1);
+        arr.add(2);
+        arr.add(3);
+        arr.add(12);
+        arr.add(9);
+        arr.add(13);
+
+        // prints the list before removing
+        System.out.println("AbstractSequentialList: "
+                           + arr);
+
+        System.out.println("Trying to get "
+                           + "subList of 11th elements: ");
+
+        try {
+
+            // Getting subList of 10th
+            // using subList() method
+            arr.subList(10, 11);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+```
+
+**输出：**
+
+```java
+AbstractSequentialList: [1, 2, 3, 12, 9, 13]
+Trying to get subList of 11th elements: 
+java.lang.IndexOutOfBoundsException: toIndex = 11
+```

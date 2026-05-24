@@ -1,0 +1,82 @@
+# ConcurrentSkipListMap containsValue() 方法详解与示例
+
+> 原文：[https://www.geeksforgeeks.org/concurrentskiplistmap-containsvalue-method-in-java-with-examples/](https://www.geeksforgeeks.org/concurrentskiplistmap-containsvalue-method-in-java-with-examples/)
+
+`java.util.concurrent.ConcurrentSkipListMap` 的 `containsValue()` 方法是 Java 中的内置函数，如果此映射将一个或多个键映射到指定值，则返回 `true`。如果没有要映射的键，该方法将返回 `false`。当指定的值为空时，该方法引发 `NullPointerException`。
+
+**语法：**
+```java
+public boolean containsValue(Object ob)
+```
+
+**参数：** 该函数接受单个强制参数 `ob`，该参数指定要测试其存在的值。
+**返回值：** 如果存在映射，函数返回真，否则返回假。
+**异常：** 当指定值为空时，该方法抛出 `NullPointerException`。
+
+以下程序举例说明上述方法：
+
+## 示例程序 1
+
+```java
+// Java Program Demonstrate containsValue()
+// method of ConcurrentSkipListMap
+
+import java.util.concurrent.*;
+
+class GFG {
+    public static void main(String[] args)
+    {
+
+        // Initializing the map
+        ConcurrentSkipListMap<Integer, Integer>
+            mpp = new ConcurrentSkipListMap<Integer,
+                                            Integer>();
+
+        // Adding elements to this map
+        for (int i = 1; i <= 5; i++)
+            mpp.put(i, i);
+
+        // checking whether object present in map
+        System.out.println(mpp.containsValue(4));
+    }
+}
+```
+
+**输出：**
+```java
+true
+```
+
+## 示例程序 2
+
+```java
+// Java Program Demonstrate containsValue()
+// method of ConcurrentSkipListMap
+
+import java.util.concurrent.*;
+
+class GFG {
+    public static void main(String[] args)
+    {
+
+        // Initializing the map
+        ConcurrentSkipListMap<Integer, Integer>
+            mpp = new ConcurrentSkipListMap<Integer,
+                                            Integer>();
+
+        // Adding elements to this map
+        for (int i = 1; i <= 5; i++)
+            mpp.put(i, i);
+
+        // checking whether object present in map
+        System.out.println(mpp.containsValue(7));
+    }
+}
+```
+
+**输出：**
+```java
+false
+```
+
+**参考：** [https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentSkipListMap.html#containsValue-java.lang.Object-](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentSkipListMap.html#containsValue-java.lang.Object-)

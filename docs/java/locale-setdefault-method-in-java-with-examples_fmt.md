@@ -1,0 +1,108 @@
+# Java 中的 Locale setDefault() 方法示例
+
+> 原文：[https://www.geeksforgeeks.org/locale-setdefault-method-in-java-with-examples/](https://www.geeksforgeeks.org/locale-setdefault-method-in-java-with-examples/)
+
+Java 中 [`Locale`](https://www.geeksforgeeks.org/java-util-locale-class-java-set-1/) 类的 `setDefault(Locale newLoc)` 方法用于设置 JVM（Java 虚拟机）的默认区域设置，这不会影响主机区域设置。
+
+## 语法
+
+```java
+public static void setDefault(Locale newLoc)
+```
+
+## 参数
+
+该方法采用一个 `Locale` 类型的参数 `newLoc`，指要设置的新默认区域设置。
+
+## 返回值
+
+该方法不返回值。
+
+## 异常
+
+该方法可以抛出如下异常：
+
+*   如果安全管理器存在并且其 `checkPermission` 方法不允许该操作，则会引发 `SecurityException`。
+*   如果 `newLoc` 为 `null`，将引发 `NullPointerException`。
+
+下面的程序说明了 `Locale` 类的 `setDefault()` 方法：
+
+### 示例 1
+
+```java
+// Java code to illustrate hashCode() method
+
+import java.util.*;
+
+class Locale_Demo {
+    public static void main(String[] args)
+    {
+
+// Creating a new locale
+        Locale first_locale
+            = new Locale("nu", "NO", "NY");
+
+// Displaying first locale
+        System.out.println("First Locale: "
+                           + first_locale);
+
+// Setting the Locale
+        Locale.setDefault(new Locale("ar", "SA"));
+
+Locale new_locale = Locale.getDefault();
+
+// Displaying the hash_code of new locale
+        System.out.println("The Hash Code: "
+                           + new_locale);
+    }
+}
+```
+
+**输出：**
+
+```java
+First Locale: nu_NO_NY
+The Hash Code: ar_SA
+```
+
+### 示例 2
+
+```java
+// Java code to illustrate hashCode() method
+
+import java.util.*;
+
+class Locale_Demo {
+    public static void main(String[] args)
+    {
+
+// Creating a new locale
+        Locale first_locale
+            = new Locale("en", "In");
+
+// Displaying first locale
+        System.out.println("First Locale: "
+                           + first_locale);
+
+// Setting the Locale
+        Locale.setDefault(new Locale("en", "GB"));
+
+Locale new_locale = Locale.getDefault();
+
+// Displaying the hash_code of new locale
+        System.out.println("The Hash Code: "
+                           + new_locale);
+    }
+}
+```
+
+**输出：**
+
+```java
+First Locale: en_IN
+The Hash Code: en_GB
+```
+
+## 参考
+
+[https://docs.oracle.com/javase/7/docs/api/java/util/Locale.html#setDefault(java.util.Locale)](https://docs.oracle.com/javase/7/docs/api/java/util/Locale.html#setDefault(java.util.Locale))

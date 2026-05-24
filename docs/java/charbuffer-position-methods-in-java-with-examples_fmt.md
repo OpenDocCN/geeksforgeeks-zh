@@ -1,0 +1,123 @@
+# Java 中的 `CharBuffer` `position()` 方法示例
+
+> 原文：[https://www.geeksforgeeks.org/charbuffer-position-methods-in-java-with-examples/](https://www.geeksforgeeks.org/charbuffer-position-methods-in-java-with-examples/)
+
+[`java.nio.CharBuffer`](https://www.geeksforgeeks.org/tag/java-charbuffer/) 类的 `position(int newPosition)` 方法用于设置该缓冲区的位置。如果标记被定义并且比新位置大，则它被丢弃。
+
+## 语法
+
+```java
+public CharBuffer position(int newPosition)
+```
+
+## 参数
+
+该方法以 `newPosition` 为参数，为新位置值。它必须是非负的，并且不大于当前限制。
+
+## 返回值
+
+这个方法返回这个缓冲区。
+
+以下是说明 `position()` 方法的例子：
+
+## 示例 1
+
+```java
+// Java program to demonstrate
+// position() method
+
+import java.nio.*;
+import java.util.*;
+
+public class GFG {
+
+    public static void main(String[] args)
+    {
+        char[] carr = { 'a', 'b', 'c', 'd' };
+
+        // creating object of CharBuffer
+        // and allocating size capacity
+        CharBuffer cb = CharBuffer.wrap(carr);
+
+        // try to set the position at index 2
+        // using position() method
+        cb.position(2);
+
+        // Set this buffer mark position
+        cb.mark();
+
+        // try to set the position at index 4
+        // using position() method
+        cb.position(4);
+
+        // display position
+        System.out.println("position before reset: "
+                           + cb.position());
+
+        // try to call reset() to restore
+        // to the position we marked
+        cb.reset();
+
+        // display position
+        System.out.println("position after reset: "
+                           + cb.position());
+    }
+}
+```
+
+## 输出
+
+```java
+position before reset: 4
+position after reset: 2
+```
+
+## 示例 2
+
+```java
+// Java program to demonstrate
+// position() method
+
+import java.nio.*;
+import java.util.*;
+
+public class GFG {
+
+    public static void main(String[] args)
+    {
+        // creating object of CharBuffer
+        // and allocating size capacity
+        CharBuffer cb = CharBuffer.allocate(4);
+
+        // try to set the position at index 1
+        // using position() method
+        cb.position(1);
+
+        // putting the value of CharBuffer
+        // using append() method
+        cb.append('x');
+
+        // try to set the position at index 3
+        // using position() method
+        cb.position(3);
+
+        // putting the value of CharBuffer
+        // using append() method
+        cb.append("y");
+
+        // display position
+        System.out.println("CharBuffer: "
+                           + Arrays.toString(cb.array()));
+    }
+}
+```
+
+## 输出
+
+```java
+CharBuffer: [,  x,,  y]
+```
+
+## 参考
+
+[https://docs.oracle.com/javase/9/docs/api/java/nio/CharBuffer.html#position-int-](https://docs.oracle.com/javase/9/docs/api/java/nio/CharBuffer.html#position-int-)

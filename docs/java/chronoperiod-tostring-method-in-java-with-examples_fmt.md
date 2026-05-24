@@ -1,0 +1,89 @@
+# Java 中的 `ChronoPeriod.toString()` 方法示例
+
+> 原文：[https://www.geeksforgeeks.org/chronoperiod-tostring-method-in-java-with-examples/](https://www.geeksforgeeks.org/chronoperiod-tostring-method-in-java-with-examples/)
+
+Java 中 `ChronoPeriod` 接口的 `toString()` 方法用来返回这个计时周期的字符串表示。
+
+## 语法
+
+```java
+ChronoPeriod toString()
+```
+
+## 参数
+
+该方法不接受任何参数。
+
+## 返回值
+
+这个方法返回这个计时周期的字符串表示。
+
+下面的程序说明了上面的方法：
+
+## 程序 1
+
+```java
+// Java code to show the toString() function
+import java.time.*;
+import java.time.chrono.*;
+import java.time.temporal.ChronoUnit;
+
+public class ChronoPeriodClass {
+    // Function to negate given periods
+    static void printString(ChronoPeriod p1) {
+        System.out.println(p1.toString());
+    }
+
+    // Driver Code
+    public static void main(String[] args) {
+        // Defining period
+        int year = 4;
+        int months = 11;
+        int days = 10;
+        ChronoPeriod p1 = Period.of(year, months, days);
+        printString(p1);
+    }
+}
+```
+
+## 输出
+
+```java
+P4Y11M10D
+```
+
+## 程序 2
+
+```java
+// Java code to show the toString() function
+import java.time.*;
+import java.time.chrono.*;
+import java.time.temporal.ChronoUnit;
+
+public class ChronoPeriodClass {
+    // Function to negate given periods
+    static void printString(ChronoPeriod p1) {
+        System.out.println(p1.toString());
+    }
+
+    // Driver Code
+    public static void main(String[] args) {
+        // Defining period
+        int year = -4;
+        int months = -11;
+        int days = -10;
+        ChronoPeriod p1 = Period.of(year, months, days);
+        printString(p1);
+    }
+}
+```
+
+## 输出
+
+```java
+P-4Y-11M-10D
+```
+
+## 参考
+
+[https://docs.oracle.com/javase/9/docs/api/java/time/chrono/ChronoPeriod.html#toString--](https://docs.oracle.com/javase/9/docs/api/java/time/chrono/ChronoPeriod.html#toString--)

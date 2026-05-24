@@ -1,0 +1,55 @@
+# 被 0 除时 Java 中的无穷大还是异常？
+
+> 原文：[https://www.geeksforgeeks.org/g-fact-33-infinity-or-exception/](https://www.geeksforgeeks.org/g-fact-33-infinity-or-exception/)
+
+考虑以下代码片段：
+
+### 示例 1：浮点数除以零
+
+```java
+public class Geeksforgeeks
+{
+    public static void main(String[] args)
+    {
+        double p = 1;
+        System.out.println(p/0);
+    }
+}
+```
+
+**输出**：
+
+```java
+Infinity
+```
+
+### 示例 2：整数除以零
+
+```java
+public class Geeksforgeeks
+{
+    public static void main(String[] args)
+    {
+        int p = 1;
+        System.out.println(p/0);
+    }
+}
+```
+
+**输出：**
+
+```java
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+    at Geeksforgeeks.main(Geeksforgeeks.java:8)
+```
+
+## 解释
+
+在第一段代码中，一个双精度值被除以 0，而在另一种情况下，一个整数值被除以 0。然而，两者的解决方案是不同的。
+
+*   在双精度/浮点数除法的情况下，输出是 **infinity**，其根本原因在于它实现了浮点运算，该运算根据 `IEEE 754` 标准为除以零的情况指定了一个特殊值，例如“非数字”或“无穷大”。
+*   在整数除法的情况下，会抛出一个算术异常。
+
+本文由**普拉哈尔·马图尔**供稿。如果你喜欢极客博客并想投稿，你也可以写一篇文章并把你的文章邮寄到 `contribute@geeksforgeeks.org`。看到你的文章出现在极客博客主页上，帮助其他极客。
+
+如果您发现任何不正确的地方，或者您想分享更多关于上面讨论的主题的信息，请写评论。

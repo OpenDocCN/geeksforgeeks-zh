@@ -1,0 +1,82 @@
+# Java 中的 Double intValue()方法，带示例
+
+> 原文: [https://www.geeksforgeeks.org/double-intvalue-method-in-java-with-examples/](https://www.geeksforgeeks.org/double-intvalue-method-in-java-with-examples/)
+
+## 方法描述
+
+`Double` 类的 `intValue()` 方法是一个内置方法，用于在类型转换后将调用对象指定的值作为 `int` 返回。
+
+**语法:**
+
+```java
+DoubleObject.intValue()
+```
+
+**返回值:** 返回双对象的值为 `int` 。
+
+下面的程序用 Java 说明了 `intValue()`方法:
+
+### 程序 1
+
+```java
+// Java code to demonstrate
+// Double intValue() method
+
+class GFG {
+    public static void main(String[] args)
+    {
+
+// Double value
+        Double a = 17.47;
+
+// wrapping the Double value
+        // in the wrapper class Double
+        Double b = new Double(a);
+
+// intValue of the Double Object
+        int output = b.intValue();
+
+// printing the output
+        System.out.println("Int value of "
+                           + b + " is : " + output);
+    }
+}
+```
+
+**Output:**
+
+```java
+Int value of 17.47 is : 17
+```
+
+### 程序 2
+
+```java
+// Java code to demonstrate
+// Double intValue() method
+
+class GFG {
+    public static void main(String[] args)
+    {
+
+String value = "54.1";
+
+// wrapping the Double value
+        // in the wrapper class Double
+        Double b = new Double(value);
+
+// intValue of the Double Object
+        int output = b.intValue();
+
+// printing the output
+        System.out.println("Int value of "
+                           + b + " is : " + output);
+    }
+}
+```
+
+**Output:**
+
+```java
+Int value of 54.1 is : 54
+```

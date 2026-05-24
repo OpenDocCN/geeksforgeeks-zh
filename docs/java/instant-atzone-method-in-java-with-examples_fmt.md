@@ -1,0 +1,151 @@
+# Java 中的 Instant atZone()方法，示例
+
+> 原文：[https://www.geeksforgeeks.org/instant-atzone-method-in-java-with-examples/](https://www.geeksforgeeks.org/instant-atzone-method-in-java-with-examples/)
+
+`Instant`类的`atZone(ZoneId zone)`方法用于将该即时与一个时区相结合，该时区的`ZoneId`作为参数给出，以创建一个`ZonedDateTime`对象。此方法将`ZoneId`作为参数，并在操作返回`ZonedDateTime`对象后，将时区与此即时消息相结合。如果瞬间太大，无法放入分区日期时间，那么这个方法将抛出一个异常。该方法与`ofInstant(Instant instant, ZoneId zone)`相同。
+
+## 语法
+
+```java
+public ZonedDateTime atZone(ZoneId zone)
+```
+
+## 参数
+
+该方法接受一个参数`zone`，该区域是要组合到该即时对象的区域。它不应为`null`。
+
+## 返回值
+
+该方法返回一个`ZonedDateTime`，它是当前即时区域和作为参数传递的区域的组合。
+
+## 异常
+
+如果瞬间太大，无法适应分区的日期时间，这个方法抛出`DateTimeException`。
+
+下面的程序说明了`Instant.atZone()`方法：
+
+## 程序 1
+
+```java
+// Java program to demonstrate
+// Instant.atZone() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+// create an instance object
+        Instant instant
+            = Instant.parse("2018-10-20T16:55:30.00Z");
+
+// print Instant Value
+        System.out.println("Instant: "
+                           + instant);
+
+// create ZoneId object
+        ZoneId zone = ZoneId.of("Europe/Paris");
+
+// apply atZone method of Instant class
+        ZonedDateTime result = instant.atZone(zone);
+
+// print results
+        System.out.println("ZonedDateTime: "
+                           + result);
+    }
+}
+```
+
+**输出：**
+
+```java
+Instant: 2018-10-20T16:55:30Z
+ZonedDateTime: 2018-10-20T18:55:30+02:00[Europe/Paris]
+```
+
+## 程序 2
+
+```java
+// Java program to demonstrate
+// Instant.atZone() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+// create an instance object
+        Instant instant
+            = Instant.parse("2018-11-18T06:55:30.00Z");
+
+// print Instant Value
+        System.out.println("Instant: "
+                           + instant);
+
+// create ZoneId object
+        ZoneId zone = ZoneId.of("Asia/Aden");
+
+// apply atZone method
+        ZonedDateTime result
+            = instant.atZone(zone);
+
+// print results
+        System.out.println("ZonedDateTime: "
+                           + result);
+    }
+}
+```
+
+**输出：**
+
+```java
+Instant: 2018-11-18T06:55:30Z
+ZonedDateTime: 2018-11-18T09:55:30+03:00[Asia/Aden]
+```
+
+## 程序 3
+
+```java
+// Java program to demonstrate
+// Instant.atZone() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+// create an instance object
+        Instant instant
+            = Instant.now();
+
+// print Instant Value
+        System.out.println("Instant: "
+                           + instant);
+
+// create ZoneId object
+        ZoneId zone = ZoneId.of("Pacific/Midway");
+
+// apply atZone method
+        ZonedDateTime result
+            = instant.atZone(zone);
+
+// print results
+        System.out.println("ZonedDateTime: "
+                           + result);
+    }
+}
+```
+
+**输出：**
+
+```java
+Instant: 2018-11-22T08:11:48.029Z
+ZonedDateTime: 2018-11-21T21:11:48.029-11:00[Pacific/Midway]
+```
+
+## 参考文献
+
+[https://docs.oracle.com/javase/10/docs/api/java/time/Instant.html#atZone(java.time.ZoneId)](https://docs.oracle.com/javase/10/docs/api/java/time/Instant.html#atZone(java.time.ZoneId))

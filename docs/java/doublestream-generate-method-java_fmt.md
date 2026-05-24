@@ -1,0 +1,56 @@
+# Java 中的 DoubleStream generate()方法
+
+> 原文: [https://www.geeksforgeeks.org/doublestream-generate-method-java/](https://www.geeksforgeeks.org/doublestream-generate-method-java/)
+
+`DoubleStream generate(DoubleSupplier s)` 返回一个无限顺序无序流，其中每个元素由提供的 `DoubleSupplier`（生成双值结果的供应商）生成。这适用于生成恒定流、随机元素流等。
+
+## 语法
+
+```java
+static DoubleStream generate(DoubleSupplier s)
+```
+
+## 参数
+
+1.  **s**：一个 `DoubleSupplier`，用于生成元素。
+
+## 返回值
+
+一个新的无限顺序无序 `DoubleStream`。
+
+## 例 1：生成随机双精度流
+
+```java
+// Java code for DoubleStream.generate()
+// to generate an infinite sequential
+// unordered DoubleStream
+import java.util.*;
+import java.util.stream.DoubleStream;
+
+class GFG {
+
+    // Driver code
+    public static void main(String[] args)
+    {
+        // using DoubleStream.generate() method
+        // to generate 7 random Double values
+        DoubleStream stream = DoubleStream.generate(()
+           -> { return (double)(Math.random() * 10000); });
+
+        // Displaying the randomly generated values
+        stream.limit(7).forEach(System.out::println);
+    }
+}
+```
+
+### 输出
+
+```java
+2428.4470875214092
+1339.9762523410686
+302.44560518440267
+9004.604086737152
+3627.071411231598
+2865.762726856176
+4029.711939243109
+```

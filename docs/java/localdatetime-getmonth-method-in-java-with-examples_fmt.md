@@ -1,0 +1,87 @@
+# Java 中的 LocalDateTime getMonth()方法，带示例
+
+> 原文: [https://www.geeksforgeeks.org/localdatetime-getmonth-method-in-java-with-examples/](https://www.geeksforgeeks.org/localdatetime-getmonth-method-in-java-with-examples/)
+
+`LocalDateTime`类的`getMonth()`方法用于返回年月字段。此字段使用`Month`枚举返回。枚举可以提供基元`int`值。
+
+## 语法
+
+```java
+public Month getMonth()
+```
+
+## 参数
+
+此方法不接受任何参数。
+
+## 返回
+
+该方法返回该本地日期时间所在月份的`Month`枚举。
+
+下面的程序说明了`LocalDateTime.getMonth()`方法：
+
+### 程序 1
+
+```java
+// Java program to demonstrate
+// LocalDateTime.getMonth() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create a LocalDateTime Object
+        LocalDateTime local
+            = LocalDateTime.parse("2007-12-02T22:48:29");
+
+        // get Month enum value field
+        Month month = local.getMonth();
+
+        // print result
+        System.out.println("Month: "
+                           + month);
+    }
+}
+```
+
+**输出:**
+
+```java
+Month: DECEMBER
+```
+
+### 程序 2
+
+```java
+// Java program to demonstrate
+// LocalDateTime.getMonth() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create a LocalDateTime Object
+        LocalDateTime local
+            = LocalDateTime.parse("2017-07-22T09:32:42");
+
+        // get Month enum value field
+        Month month = local.getMonth();
+
+        // print result
+        System.out.println("Month: "
+                           + month);
+    }
+}
+```
+
+**输出:**
+
+```java
+Month: JULY
+```
+
+参考: [https://docs.oracle.com/javase/10/docs/api/java/time/LocalDateTime.html#getMonth()](https://docs.oracle.com/javase/10/docs/api/java/time/LocalDateTime.html#getMonth())

@@ -1,0 +1,85 @@
+# 修饰符类修饰符()方法在 Java 中用例子
+
+> 原文: [https://www.geeksforgeeks.org/modifiers-classmodifiers-method-in-java-with-examples/](https://www.geeksforgeeks.org/modifiers-classmodifiers-method-in-java-with-examples/)
+
+`java.lang.reflect.Modifier` 类的 `classModifiers()` 方法用于获取整数值以及可应用于类的源语言的修饰符。
+
+## 语法
+
+```java
+public static boolean classModifiers()
+```
+
+## 参数
+
+此方法不接受任何内容。
+
+## 返回
+
+这个方法返回一个 `int` 值，将可以应用于一个类的源语言修饰符组合在一起。
+
+下面的程序说明了 `classModifiers()` 方法:
+
+## 程序 1
+
+```java
+// Java program to illustrate
+// classModifiers() method
+
+import java.lang.reflect.*;
+
+public class GFG {
+
+    public static void main(String[] args)
+        throws NoSuchFieldException,
+               SecurityException
+    {
+
+        // get Modifier using classModifiers()
+        int result = Modifier.classModifiers();
+
+        System.out.println(
+            "Modifiers: "
+            + Modifier.toString(result));
+    }
+}
+```
+
+**Output:**
+
+```java
+Modifiers: public protected private abstract static final strictfp
+```
+
+## 程序 2
+
+```java
+// Java program to illustrate classModifiers()
+
+import java.lang.reflect.*;
+
+public class GFG {
+
+    public static void main(String[] args)
+        throws NoSuchFieldException,
+               SecurityException
+    {
+
+        // get Modifier using classModifiers()
+        int result = Modifier.classModifiers();
+
+        System.out.println("Int Value: "
+                           + result);
+    }
+}
+```
+
+**Output:**
+
+```java
+Int Value: 3103
+```
+
+## 参考文献
+
+[https://docs.oracle.com/javase/10/docs/api/java/lang/reflect/Modifier.html#classModifiers--](https://docs.oracle.com/javase/10/docs/api/java/lang/reflect/Modifier.html#classModifiers--)

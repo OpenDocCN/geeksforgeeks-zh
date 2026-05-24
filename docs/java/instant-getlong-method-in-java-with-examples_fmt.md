@@ -1,0 +1,186 @@
+# Java 中的 Instant getLong()方法
+
+> 原文：[https://www.geeksforgeeks.org/instant-getlong-method-in-java-with-examples/](https://www.geeksforgeeks.org/instant-getlong-method-in-java-with-examples/)
+
+`Instant`类的`getLong(TemporalField field)`方法用于从该时刻获取作为参数传递的指定字段的长值。此方法立即查询字段的值，返回值将始终在字段值的有效范围内。当字段不受支持并且方法无法返回`int`值时，将引发异常。
+
+## 语法
+
+```java
+public int getLong(TemporalField field)
+```
+
+## 参数
+
+该方法接受一个参数`field`，即要获取的字段。它不应为`null`。
+
+## 返回值
+
+该方法返回该字段的`long`值。
+
+## 异常
+
+此方法抛出以下异常：
+
+*   `DateTimeException`：如果无法获取此字段的值，或者它超出了此字段的有效范围。
+*   `UnsupportedTemporalTypeException`：如果此字段不受支持，或者值的范围超过了`int`类型。
+*   `ArithmeticException`：如果发生数值溢出。
+
+## 示例
+
+下面的程序说明了`Instant.getLong()`方法：
+
+### 程序 1
+
+```java
+// Java program to demonstrate
+// Instant.getLong(TemporalField field) method
+
+import java.time.*;
+import java.time.temporal.ChronoField;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create a Instant object
+        Instant instant
+            = Instant.parse("2018-12-30T01:34:50.93Z");
+
+        // get all enum of ChronoField
+        // and iterate through all enum values
+        for (ChronoField field : ChronoField.values()) {
+
+            try {
+                // get long value of field
+                long value = instant.getLong(field);
+                System.out.println("field : " + field
+                                   + " || value : " + value);
+            }
+            catch (Exception e) {
+
+                System.out.println("field : " + field
+                                   + " is not supported");
+            }
+        }
+    }
+}
+```
+
+### 输出
+
+```java
+field : NanoOfSecond || value : 930000000
+field : NanoOfDay is not supported
+field : MicroOfSecond || value : 930000
+field : MicroOfDay is not supported
+field : MilliOfSecond || value : 930
+field : MilliOfDay is not supported
+field : SecondOfMinute is not supported
+field : SecondOfDay is not supported
+field : MinuteOfHour is not supported
+field : MinuteOfDay is not supported
+field : HourOfAmPm is not supported
+field : ClockHourOfAmPm is not supported
+field : HourOfDay is not supported
+field : ClockHourOfDay is not supported
+field : AmPmOfDay is not supported
+field : DayOfWeek is not supported
+field : AlignedDayOfWeekInMonth is not supported
+field : AlignedDayOfWeekInYear is not supported
+field : DayOfMonth is not supported
+field : DayOfYear is not supported
+field : EpochDay is not supported
+field : AlignedWeekOfMonth is not supported
+field : AlignedWeekOfYear is not supported
+field : MonthOfYear is not supported
+field : ProlepticMonth is not supported
+field : YearOfEra is not supported
+field : Year is not supported
+field : Era is not supported
+field : InstantSeconds || value : 1546133690
+field : OffsetSeconds is not supported
+```
+
+### 程序 2
+
+```java
+// Java program to demonstrate
+// Instant.getLong(TemporalField field) method
+
+import java.time.*;
+import java.time.temporal.ChronoField;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create a Instant object
+        Instant instant
+            = Instant.parse("2018-12-30T01:34:50.93Z");
+
+        // get Instant second value from this Instant
+        // using getLong method
+        long secondvalue
+            = instant.getLong(
+                ChronoField.INSTANT_SECONDS);
+
+        // print result
+        System.out.println("Instant Seconds: "
+                           + secondvalue);
+    }
+}
+```
+
+### 输出
+
+```java
+Instant Seconds: 1546133690
+```
+
+### 程序 3：获取不支持的临时异常
+
+```java
+// Java program to demonstrate
+// Instant.getLong(TemporalField field) method
+
+import java.time.*;
+import java.time.temporal.ChronoField;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create a Instant object
+        Instant instant
+            = Instant.parse("2018-12-30T01:34:50.93Z");
+
+        // try to find AMPM_OF_DAY
+        // using ChronoField.AMPM_OF_DAY
+        // in getLong method
+        try {
+
+            long secondvalue
+                = instant.getLong(
+                    ChronoField.AMPM_OF_DAY);
+        }
+        catch (Exception e) {
+
+            // print exception
+            System.out.println("Exception: " + e);
+        }
+    }
+}
+```
+
+### 输出
+
+```java
+Exception:
+ java.time.temporal.UnsupportedTemporalTypeException:
+ Unsupported field: AmPmOfDay
+```
+
+## 参考文献
+
+[https://docs.oracle.com/javase/10/docs/api/java/time/Instant.html#getLong(java.time.temporal.TemporalField)](https://docs.oracle.com/javase/10/docs/api/java/time/Instant.html#getLong(java.time.temporal.TemporalField))

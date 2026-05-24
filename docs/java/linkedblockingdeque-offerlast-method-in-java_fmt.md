@@ -1,0 +1,115 @@
+# Java 中的 `offerLast()` 方法
+
+> 原文: [https://www.geeksforgeeks.org/linkedblockingdeque-offerlast-method-in-java/](https://www.geeksforgeeks.org/linkedblockingdeque-offerlast-method-in-java/)
+
+`offerLast(E e)` 方法在 `LinkedBlockingDeque` 中将参数中传递的元素插入到 Deque 容器的末尾。如果容器的容量已经超出，那么它不会像 `add()` 和 `addLast()` 函数那样抛出异常。
+
+## 语法
+
+```java
+public boolean offerLast(E e)
+```
+
+## 参数
+
+该方法接受一个强制参数 `e`，它是要插入到 `LinkedBlockingDeque` 末尾的元素。
+
+## 返回值
+
+这个方法返回 `true` 如果元素已经插入，否则返回 `false`。
+
+下面的程序说明了 `LinkedBlockingDeque` 的 `offerLast()` 方法：
+
+## 程序 1
+
+```java
+// Java Program Demonstrate offerLast()
+// method of LinkedBlockingDeque
+
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.*;
+
+public class GFG {
+    public static void main(String[] args)
+        throws IllegalStateException
+    {
+
+        // create object of LinkedBlockingDeque
+        LinkedBlockingDeque<Integer> LBD
+            = new LinkedBlockingDeque<Integer>(4);
+
+        // Add numbers to end of LinkedBlockingDeque
+        LBD.offerLast(7855642);
+        LBD.offerLast(35658786);
+        LBD.offerLast(5278367);
+        LBD.offerLast(74381793);
+
+        // Cannot be inserted
+        LBD.offerLast(10);
+
+        // cannot be inserted hence returns false
+        if (!LBD.offerLast(10))
+            System.out.println("The element 10 cannot be inserted"+
+                                " as capacity is full");
+
+        // before removing print queue
+        System.out.println("Linked Blocking Deque: " + LBD);
+    }
+}
+```
+
+## 输出
+
+```java
+The element 10 cannot be inserted as capacity is full
+Linked Blocking Deque: [7855642, 35658786, 5278367, 74381793]
+```
+
+## 程序 2
+
+```java
+// Java Program Demonstrate offerLast()
+// method of LinkedBlockingDeque
+
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.*;
+
+public class GFG {
+    public static void main(String[] args)
+        throws IllegalStateException
+    {
+
+        // create object of LinkedBlockingDeque
+        LinkedBlockingDeque<String> LBD
+            = new LinkedBlockingDeque<String>(4);
+
+        // Add numbers to end of LinkedBlockingDeque
+        LBD.offerLast("abc");
+        LBD.offerLast("gopu");
+        LBD.offerLast("geeks");
+        LBD.offerLast("richik");
+
+        // Cannot be inserted
+        LBD.offerLast("hii");
+
+        // cannot be inserted hence returns false
+        if (!LBD.offerLast("hii"))
+            System.out.println("The element 'hii' cannot be"+
+                             " inserted as capacity is full");
+
+        // before removing print queue
+        System.out.println("Linked Blocking Deque: " + LBD);
+    }
+}
+```
+
+## 输出
+
+```java
+The element 'hii' cannot be inserted as capacity is full
+Linked Blocking Deque: [abc, gopu, geeks, richik]
+```
+
+## 参考
+
+[https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/LinkedBlockingDeque.html#offerLast(E)](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/LinkedBlockingDeque.html#offerLast(E))

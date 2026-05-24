@@ -1,0 +1,87 @@
+# LocalDateTime 的 getMonthValue() 方法
+
+> 原文：[https://www.geeksforgeks.org/localdatetime-getmonthvalue-method-in-java-with-examples/](https://www.geeksforgeks.org/localdatetime-getmonthvalue-method-in-java-with-examples/)
+
+`LocalDateTime` 类的 `getMonthValue()` 方法用于返回年月字段。此方法将 `LocalDateTime` 中的月份作为 1 到 12 之间的整数返回。
+
+## 语法
+
+```java
+public int getMonthValue()
+```
+
+## 参数
+
+此方法不接受任何参数。
+
+## 返回
+
+该方法返回 `int` 值，该整数值为年月字段，取值范围为 1-12。
+
+下面的程序说明了 `LocalDateTime.getMonthValue()` 方法：
+
+## 程序 1
+
+```java
+// Java program to demonstrate
+// LocalDateTime.getMonthValue() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create a LocalDateTime Object
+        LocalDateTime local
+            = LocalDateTime.parse("2018-10-23T22:29:10");
+
+        // get Month value field
+        int monthvalue = local.getMonthValue();
+
+        // print result
+        System.out.println("Month Value: "
+                           + monthvalue);
+    }
+}
+```
+
+## 输出
+
+```java
+Month Value: 10
+```
+
+## 程序 2
+
+```java
+// Java program to demonstrate
+// LocalDateTime.getMonthValue() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create a LocalDateTime Object
+        LocalDateTime local
+            = LocalDateTime.parse("2018-12-13T12:28:13");
+
+        // get Month value field
+        int monthvalue = local.getMonthValue();
+
+        // print result
+        System.out.println("Month Value: "
+                           + monthvalue);
+    }
+}
+```
+
+## 输出
+
+```java
+Month Value: 12
+```
+
+参考：[https://docs.oracle.com/javase/10/docs/api/java/time/LocalDateTime.html#getMonthValue()](https://docs.oracle.com/javase/10/docs/api/java/time/LocalDateTime.html#getMonthValue())

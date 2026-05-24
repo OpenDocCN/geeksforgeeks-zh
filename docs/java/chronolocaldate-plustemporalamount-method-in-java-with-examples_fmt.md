@@ -1,0 +1,57 @@
+# Java 中的 ChronoLocalDate.plus(TemporalAmount) 方法示例
+
+> 原文：[`https://www.geeksforgeeks.org/chronolocaldate-plustemporalamount-method-in-java-with-examples/`](https://www.geeksforgeeks.org/chronolocaldate-plustemporalamount-method-in-java-with-examples/)
+
+`ChronoLocalDate` 接口的 `plus()` 方法用于返回该日期时间的副本，并添加指定的日期时间金额。该金额通常为 `Period` 或 `Duration`，但也可以是实现 `TemporalAmount` 接口的任何其他类型。
+
+## 语法
+
+```java
+public ChronoLocalDate plus(TemporalAmount amountToAdd)
+```
+
+## 参数
+
+此方法只接受一个参数 `amountToAdd`，即要加的金额，不应该为 `null`。
+
+## 返回值
+
+该方法基于该日期时间返回 `ChronoLocalDate`，并进行加法运算。
+
+下面的程序说明了 `plus()` 方法：
+
+## 程序 1
+
+```java
+// Java program to demonstrate
+// ChronoLocalDate.plus() method
+
+import java.time.*;
+import java.time.chrono.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create a ChronoLocalDate object
+        ChronoLocalDate zonedlt
+            = LocalDate.parse("2018-12-06");
+
+        // add 100 Days to ChronoLocalDate
+        ChronoLocalDate value
+            = zonedlt.plus(Period.ofDays(100));
+
+        // print result
+        System.out.println("ChronoLocalDate after adding Days: "
+                           + value);
+    }
+}
+```
+
+## 输出
+
+```java
+ChronoLocalDate after adding Days: 2019-03-16
+```
+
+## 参考文献

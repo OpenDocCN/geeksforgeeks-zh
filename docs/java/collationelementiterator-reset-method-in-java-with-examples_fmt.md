@@ -1,0 +1,127 @@
+# Java 中的 `reset()` 方法示例
+
+> 原文：[https://www.geeksforgeeks.org/collationelementiterator-reset-method-in-java-with-examples/](https://www.geeksforgeeks.org/collationelementiterator-reset-method-in-java-with-examples/)
+
+`CollationElementIterator` 类的 `reset()` 方法用于将迭代器的光标重置到输入字符串的开头。
+
+**语法：**
+```java
+public void reset()
+```
+
+**参数：** 此方法不接受任何参数。
+**返回值：** 这个方法没有什么可返回的。
+
+以下是说明 `reset()` 方法的例子：
+
+## 示例 1
+
+```java
+// Java program to demonstrate
+// reset() method
+
+import java.text.*;
+import java.util.*;
+import java.io.*;
+
+public class GFG {
+    public static void main(String[] argv)
+    {
+        // creating and initializing testString
+        String test = "abcd";
+
+        // creating and initializing
+        // RuleBasedCollator object
+        RuleBasedCollator rbc
+            = (RuleBasedCollator)(Collator.getInstance());
+
+        // creating and initializing
+        // CollationElementIterator
+        CollationElementIterator cel
+            = rbc.getCollationElementIterator(test);
+
+        // setting cursor of iterator
+        cel.setOffset(2);
+        cel.next();
+
+        // display the result
+        System.out.println(
+            "current offset before calling reset() "
+            + cel.getOffset());
+
+        // reset the cursor to the
+        // beginning of the string
+        // using reset() method
+        cel.reset();
+
+        // display the result
+        System.out.println(
+            "\ncurrent offset after calling reset() "
+            + cel.getOffset());
+    }
+}
+```
+
+**Output：**
+```java
+current offset before calling reset() 3
+
+current offset after calling reset() 0
+```
+
+## 示例 2
+
+```java
+// Java program to demonstrate
+// reset() method
+
+import java.text.*;
+import java.util.*;
+import java.io.*;
+
+public class GFG {
+    public static void main(String[] argv)
+    {
+        // creating and initializing
+        // testString
+        String test = "abcd";
+
+        // creating and initializing
+        // RuleBasedCollator object
+        RuleBasedCollator rbc
+            = (RuleBasedCollator)(Collator.getInstance());
+
+        // creating and initializing
+        // CollationElementIterator
+        CollationElementIterator cel
+            = rbc.getCollationElementIterator(test);
+
+        // setting cursor of iterator
+        cel.setOffset(3);
+        cel.previous();
+
+        // display the result
+        System.out.println(
+            "current offset before calling reset() "
+            + cel.getOffset());
+
+        // reset the cursor to the beginning of the string
+        // using reset() method
+        cel.reset();
+
+        // display the result
+        System.out.println(
+            "\ncurrent offset after calling reset() "
+            + cel.getOffset());
+    }
+}
+```
+
+**Output：**
+```java
+current offset before calling reset() 2
+
+current offset after calling reset() 0
+```
+
+**参考：** [https://docs.oracle.com/javase/9/docs/api/java/text/CollationElementIterator.html#reset--](https://docs.oracle.com/javase/9/docs/api/java/text/CollationElementIterator.html#reset--)

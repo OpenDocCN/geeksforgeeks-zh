@@ -1,0 +1,106 @@
+# Java 中的 ChronoZonedDateTime 的 query() 方法，带示例
+
+> 原文：[https://www.geeksforgeeks.org/chronozoneddatetime-query-method-in-java-with-examples/](https://www.geeksforgeeks.org/chronozoneddatetime-query-method-in-java-with-examples/)
+
+`ChronoZonedDateTime` 接口的 `query()` 方法，用于使用指定的查询作为参数查询该时区日期时间。作为参数传递的 `TemporalQuery` 对象定义了用于从该时区获取结果的逻辑。
+
+## 语法
+
+```java
+default <R> R query(TemporalQuery<R> query)
+```
+
+## 参数
+
+该方法只接受一个参数 `query`，即要调用的查询。
+
+## 返回值
+
+该方法返回查询结果，可能返回 `null`。
+
+## 异常
+
+此方法抛出以下异常：
+
+*   **日期时间异常** - 如果无法查询。
+*   **[算术异常](https://www.geeksforgeeks.org/types-of-exception-in-java-with-examples/)** - 如果存在数值溢出。
+
+下面的程序说明了 `query()` 方法：
+
+## 程序 1
+
+```java
+// Java program to demonstrate
+// ChronoZonedDateTime.query() method
+
+import java.time.*;
+import java.time.chrono.*;
+import java.time.temporal.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create ChronoZonedDateTime object
+        ChronoZonedDateTime zlt
+            = ZonedDateTime.parse(
+                "2018-10-25T23:12:31.123+02:00[Europe/Paris]");
+
+        // apply the query method of ChronoZonedDateTime class
+        String value
+            = zlt.query(
+                     TemporalQueries.precision())
+                  .toString();
+
+        // print the result
+        System.out.println("Precision value"
+                           + " for ChronoZonedDateTime is "
+                           + value);
+    }
+}
+```
+
+## 输出
+
+```java
+Precision value for ChronoZonedDateTime is Nanos
+```
+
+## 程序 2
+
+```java
+// Java program to demonstrate
+// ChronoZonedDateTime.query() method
+
+import java.time.*;
+import java.time.chrono.*;
+import java.time.temporal.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create ChronoZonedDateTime object
+        ChronoZonedDateTime zlt
+            = ZonedDateTime.parse(
+                "2018-10-25T23:12:31.123+02:00[Europe/Paris]");
+
+        // apply query method of ChronoZonedDateTime class
+        // print the result
+        System.out.println("offset value for "
+                           + "ChronoZonedDateTime is "
+                           + zlt.query(
+                                 TemporalQueries.offset()));
+    }
+}
+```
+
+## 输出
+
+```java
+offset value for ChronoZonedDateTime is +02:00
+```
+
+## 参考文献
+
+[https://docs.oracle.com/javase/9/docs/api/java/time/chrono/ChronoZonedDateTime.html#query-java.time.temporal.TemporalQuery-](https://docs.oracle.com/javase/9/docs/api/java/time/chrono/ChronoZonedDateTime.html#query-java.time.temporal.TemporalQuery-)

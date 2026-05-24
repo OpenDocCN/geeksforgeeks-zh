@@ -1,0 +1,89 @@
+# MathContext.equals() 方法
+
+> 原文: [https://www.geeksforgeeks.org/mathcontext-equals-method-in-java/](https://www.geeksforgeeks.org/mathcontext-equals-method-in-java/)
+
+`java.math.MathContext.equals()` 是 Java 中的内置函数，它检查这个 `MathContext` 对象与作为参数传递给函数的对象之间的相等性。如果上述两个对象的上下文设置相同，则该函数返回 `true`。
+
+**语法:**
+
+```java
+public boolean equals(Object obj)
+```
+
+**参数:** 该函数接受一个对象 `obj` 作为强制参数，使用该参数检查数学上下文是否相等。
+
+**返回值:** 当且仅当指定的对象是与该对象具有相同上下文设置的 `MathContext` 对象时，该方法返回 `true`。
+
+**示例:**
+
+```java
+Input : m1 = new MathContext(2, RoundingMode.UP), 
+        m2 = new MathContext(2, RoundingMode.HALF_UP)
+Output : false
+
+Input :  m1 = new MathContext(2), 
+         m2 = new MathContext(2, RoundingMode.HALF_UP)
+Output : true
+```
+
+下面的程序将说明 `java.math.MathContext.equals()`:
+
+**程序 1:**
+
+```java
+// Java program to demonstrate equals() method
+import java.math.*;
+import java.io.*;
+
+class GFG {
+    public static void main(String[] args)
+    {
+        // Creating 2 MathContext objects m1 and m2
+        MathContext m1, m2;
+
+        // Assigning context settings to m1, m2
+        m1 = new MathContext(2);
+        m2 = new MathContext(2, RoundingMode.FLOOR);
+
+        // Displaying the result
+        System.out.println(m1.equals(m2));
+    }
+}
+```
+
+**Output:**
+
+```java
+false
+```
+
+**程序 2:**
+
+```java
+// Java program to demonstrate equals() method
+import java.math.*;
+import java.io.*;
+
+class GFG {
+    public static void main(String[] args)
+    {
+        // Creating 2 MathContext objects m1 and m2
+        MathContext m1, m2;
+
+        // Assigning context settings to m1, m2
+        m1 = new MathContext(2);
+        m2 = new MathContext(2, RoundingMode.HALF_UP);
+
+        // Displaying the result
+        System.out.println(m1.equals(m2));
+    }
+}
+```
+
+**Output:**
+
+```java
+true
+```
+
+**参考:** [https://docs.oracle.com/javase/7/docs/api/java/math/MathContext.html#equals(java.lang.Object)](https://docs.oracle.com/javase/7/docs/api/java/math/MathContext.html#equals(java.lang.Object))

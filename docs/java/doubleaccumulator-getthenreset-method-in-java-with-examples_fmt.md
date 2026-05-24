@@ -1,0 +1,103 @@
+# Java 中的 DoubleAccumulator.getThenReset() 方法示例
+
+> 原文：[https://www.geeksforgeeks.org/doubleaccumulator-getthenreset-method-in-java-with-examples/](https://www.geeksforgeeks.org/doubleaccumulator-getthenreset-method-in-java-with-examples/)
+
+`DoubleAccumulator.getThenReset()` 是 Java 中的一个内置方法，实际上相当于 `get()` 后跟 `reset()`。首先，它获取当前值，然后重置该值。复位值为零。返回类型是 `double`。
+
+**语法：**
+
+```java
+public double getThenReset()
+```
+
+**参数：** 该方法不接受任何参数。
+
+**返回值：** 该方法返回复位前的值。
+
+下面的程序说明了上述方法：
+
+**程序 1：**
+
+```java
+// Java program to demonstrate
+// the getThenReset() method
+
+import java.lang.*;
+import java.util.concurrent.atomic.DoubleAccumulator;
+
+public class GFG {
+    public static void main(String args[])
+    {
+
+        DoubleAccumulator num
+            = new DoubleAccumulator(
+                Double::sum, 0L);
+
+        // accumulate operation on num
+        num.accumulate(42);
+        num.accumulate(10);
+
+        num.get();
+        // before getThenReset the value is
+        System.out.println("Old value is: "
+                           + num);
+
+        // getThenResets current value
+        num.getThenReset();
+
+        // Print after getThenReset operation
+        System.out.println("Current value is: "
+                           + num);
+    }
+}
+```
+
+**Output：**
+
+```java
+Old value is: 52.0
+Current value is: 0.0
+```
+
+**程序 2：**
+
+```java
+// Java program to demonstrate
+// the getThenReset() method
+import java.lang.*;
+
+import java.util.concurrent.atomic.DoubleAccumulator;
+
+public class GFG {
+    public static void main(String args[])
+    {
+
+        DoubleAccumulator num
+            = new DoubleAccumulator(
+                Double::sum, 0L);
+
+        // accumulate operation on num
+        num.accumulate(74);
+        num.accumulate(1);
+
+        num.get();
+        // before getThenReset the value is
+        System.out.println("Old value is: "
+                           + num);
+
+        // getThenResets current value
+        num.getThenReset();
+
+        // Print after getThenReset operation
+        System.out.println("Current value is: "
+                           + num);
+    }
+}
+```
+
+**Output：**
+
+```java
+Old value is: 75.0
+Current value is: 0.0
+```

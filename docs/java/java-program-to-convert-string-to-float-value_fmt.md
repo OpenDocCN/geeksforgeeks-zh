@@ -1,0 +1,68 @@
+# 将字符串转换为浮点值的 Java 程序
+
+> 原文：[https://www.geeksforgeeks.org/java-program-to-convert-string-to-float-value/](https://www.geeksforgeeks.org/java-program-to-convert-string-to-float-value/)
+
+在 Java 中给定一个字符串 `str`，任务是将这个字符串转换为浮点类型。
+
+## 方法
+
+这可以通过下面列出的两种方法来完成：
+
+1.  `parseFloat()`
+2.  `valueOf()`
+
+让我们讨论以上两种实现方法，以便更好地理解字符串到浮点值的转换。
+
+### 方法 1：使用 `parseFloat()`
+
+`float` 类中的 `parseFloat()` 方法是 Java 中的一个内置方法，它返回一个新的 `Float`，该 `Float` 被初始化为由指定字符串表示的值，就像 `Float` 类的 `valueOf` 方法所做的那样。
+
+**语法：**
+
+```java
+public static float parseFloat(String s) ;
+```
+
+**参数：** 它接受一个指定要解析的字符串的强制参数 `s`。
+
+**返回类型：** 返回字符串参数表示的浮点值。
+
+**异常：**
+
+*   `NullPointerException`：当被解析的字符串为 `null` 时。
+*   `NumberFormatException`：当被解析的字符串不包含可解析的浮点数时。
+
+**例 1**
+
+```java
+// Java Program to Convert String to Float Value by
+// Implementing parseFloat() method of Float class
+
+// Importing input output classes
+import java.io.*;
+
+// Main class
+class GFG {
+
+    // Main driver method
+    public static void main(String[] args)
+    {
+        // Input string
+        String str = "100";
+
+        // Returning the float value
+        // represented by the string argument
+        float val = Float.parseFloat(str);
+
+        // Prints the float value of the string
+        System.out.println("String is converted to float "
+                           + val);
+    }
+}
+```
+
+**输出**
+
+```java
+String is converted to float 100.0
+```

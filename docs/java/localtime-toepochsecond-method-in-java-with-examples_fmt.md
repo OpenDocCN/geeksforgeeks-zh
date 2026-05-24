@@ -1,0 +1,122 @@
+# Java 中的 LocalTime toEpochSecond() 方法示例
+
+> 原文：`https://www.geeksforgeeks.org/localtime-toepochsecond-method-in-java-with-examples/`
+
+`LocalTime` 类的 `toEpochSecond()` 方法用于将该 `LocalTime` 转换为 1970-01-01T00:00:00Z 纪元以来的秒数。该方法将该本地时间与作为参数传递的指定日期和偏移量相结合，以计算历元秒值，该值是从 1970-01-01T00:00:00Z 经过的秒数。纪元后时间线上的瞬间是正的，更早的是负的。
+
+## 语法
+
+```java
+public long toEpochSecond(LocalDate date, ZoneOffset offset)
+```
+
+## 参数
+
+该方法接受两个参数：
+
+*   `date`：用于历元秒计算的目标日期。
+*   `offset`：区域偏移量。
+
+## 返回值
+
+此方法返回 1970-01-01T00:00:00Z 纪元以来的秒数。可能是负数。
+
+## 示例程序
+
+以下程序说明了 `toEpochSecond()` 方法：
+
+### 程序 1
+
+```java
+// Java program to demonstrate
+// LocalTime.toEpochSecond() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+        // create a LocalDate object
+        LocalDate date
+            = LocalDate.parse("2018-12-29");
+
+        // create a LocalTime object
+        LocalTime time
+            = LocalTime.parse("20:12:32");
+
+        // print Instant
+        System.out.println("LocalDate: " + date);
+
+        // create ZoneId
+        ZoneOffset zone = ZoneOffset.of("Z");
+
+        // print ZoneId
+        System.out.println("ZoneOffset: " + zone);
+
+        // apply ofInstant()
+        long value = time.toEpochSecond(date, zone);
+
+        // print result
+        System.out.println("Epoch Second: "
+                           + value);
+    }
+}
+```
+
+**输出：**
+
+```java
+LocalDate: 2018-12-29
+ZoneOffset: Z
+Epoch Second: 1546114352
+```
+
+### 程序 2
+
+```java
+// Java program to demonstrate
+// LocalTime.toEpochSecond() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+        // create a LocalDate object
+        LocalDate date
+            = LocalDate.parse("1909-04-18");
+
+        // create a LocalTime object
+        LocalTime time
+            = LocalTime.parse("00:10:09");
+
+        // print Instant
+        System.out.println("LocalDate: " + date);
+
+        // create ZoneId
+        ZoneOffset zone = ZoneOffset.of("Z");
+
+        // print ZoneId
+        System.out.println("ZoneOffset: " + zone);
+
+        // apply ofInstant()
+        long value = time.toEpochSecond(date, zone);
+
+        // print result
+        System.out.println("Epoch Second: "
+                           + value);
+    }
+}
+```
+
+**输出：**
+
+```java
+LocalDate: 1909-04-18
+ZoneOffset: Z
+Epoch Second: -1915746591
+```
+
+## 参考文献
+
+`https://docs.oracle.com/javase/10/docs/api/java/time/LocalTime.html#toEpochSecond(java.time.LocalDate, java.time.ZoneOffset)`

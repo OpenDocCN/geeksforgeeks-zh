@@ -1,0 +1,101 @@
+# Java 中的 LocalTime atOffset()方法，带示例
+
+> 原文：[https://www.geeksforgeeks.org/localtime-atoffset-method-in-java-with-examples/](https://www.geeksforgeeks.org/localtime-atoffset-method-in-java-with-examples/)
+
+`LocalTime`类的`atOffset()`方法用于将该时间与偏移对象组合以创建偏移时间对象。时间和偏移量的所有可能组合都有效。
+
+## 语法
+
+```java
+public OffsetTime atOffset(ZoneOffset offset)
+```
+
+## 参数
+
+该方法接受单个参数`offset`，该偏移量是要与`LocalTime`对象组合的偏移量，不为`null`。
+
+## 返回值
+
+该方法返回由该时间和指定偏移量形成的`OffsetTime`，不为`null`。
+
+下面的程序说明了`atOffset()`方法：
+
+### 程序 1
+
+```java
+// Java program to demonstrate
+// LocalTime.atOffset() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create a LocalTime Object
+        LocalTime time
+            = LocalTime.parse("16:12:49");
+
+        // create a ZoneOffset object
+        // with 7200 sec means 2 hours
+        ZoneOffset offset
+            = ZoneOffset.ofTotalSeconds(7200);
+
+        // apply atOffset()
+        OffsetTime offsettime
+            = time.atOffset(offset);
+
+        // print LocalDateTime
+        System.out.println("Offset Time:"
+                           + offsettime.toString());
+    }
+}
+```
+
+**输出：**
+
+```java
+Offset Time:16:12:49+02:00
+```
+
+### 程序 2
+
+```java
+// Java program to demonstrate
+// LocalTime.atOffset() method
+
+import java.time.*;
+
+public class GFG {
+    public static void main(String[] args)
+    {
+
+        // create a LocalTime Object
+        LocalTime time
+            = LocalTime.parse("17:52:49");
+
+        // create a ZoneOffset object
+        // with 3 hours 45 minutes
+        ZoneOffset offset
+            = ZoneOffset.ofHoursMinutes(3, 45);
+
+        // apply atOffset()
+        OffsetTime offsettime
+            = time.atOffset(offset);
+
+        // print LocalDateTime
+        System.out.println("Offset Time:"
+                           + offsettime.toString());
+    }
+}
+```
+
+**输出：**
+
+```java
+Offset Time:17:52:49+03:45
+```
+
+## 参考
+
+[https://docs.oracle.com/javase/10/docs/api/java/time/LocalTime.html#atOffset(java.time.ZoneOffset)](https://docs.oracle.com/javase/10/docs/api/java/time/LocalTime.html#atOffset(java.time.ZoneOffset))
