@@ -1,0 +1,105 @@
+# C# 查找 LinkedList<T> 中包含指定值的第一个节点
+
+> 原文：[https://www.geeksforgeeks.org/c-sharp-find-the-first-node-in-linkedlistt-containing-the-specified-value/](https://www.geeksforgeeks.org/c-sharp-find-the-first-node-in-linkedlistt-containing-the-specified-value/)
+
+`LinkedList<T>.Find(T)` 方法用于查找包含指定值的第一个节点。
+
+## 语法
+
+```cs
+public System.Collections.Generic.LinkedListNode<T> Find (T value);
+```
+
+这里，`value` 是链表中要定位的值。
+
+## 返回值
+
+该方法返回包含指定值的第一个 `LinkedListNode<T>`，否则，为 `null`。
+
+下面给出了一些例子，以便更好地理解实现：
+
+### 例 1
+
+```cs
+// C# code to find the first node
+// that contains the specified value
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+class GFG {
+
+// Driver code
+    public static void Main()
+    {
+        // Creating a LinkedList of Strings
+        LinkedList<String> myList = new LinkedList<String>();
+
+        // Adding nodes in LinkedList
+        myList.AddLast("A");
+        myList.AddLast("B");
+        myList.AddLast("C");
+        myList.AddLast("D");
+        myList.AddLast("E");
+
+        // Finding the first node that
+        // contains the specified value
+        LinkedListNode<String> temp = myList.Find("B");
+
+        Console.WriteLine(temp.Value);
+    }
+}
+```
+
+**输出：**
+
+```cs
+B
+```
+
+### 例 2
+
+```cs
+// C# code to find the first node
+// that contains the specified value
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+class GFG {
+
+// Driver code
+    public static void Main()
+    {
+        // Creating a LinkedList of Integers
+        LinkedList<int> myList = new LinkedList<int>();
+
+        // Adding nodes in LinkedList
+        myList.AddLast(5);
+        myList.AddLast(7);
+        myList.AddLast(9);
+        myList.AddLast(11);
+        myList.AddLast(12);
+
+        // Finding the first node that
+        // contains the specified value
+        LinkedListNode<int> temp = myList.Find(15);
+
+        Console.WriteLine(temp.Value);
+    }
+}
+```
+
+**运行时错误：**
+
+> 未处理异常:
+> System.NullReferenceException: 对象引用未设置为对象的实例
+
+## 注
+
+*   链表从**第一个**节点开始向前搜索，到**最后一个**节点结束。
+*   此方法执行线性搜索。因此，这个方法是一个 **O(n)** 运算，其中 n 是 `Count`。
+
+## 参考
+
+*   [https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1.find?view=netframework-4.7.2](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1.find?view=netframework-4.7.2)
