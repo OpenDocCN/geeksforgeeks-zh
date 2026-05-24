@@ -1,0 +1,367 @@
+# 矩阵中两行元素之和的最大差
+
+> 原文： [https://www.geeksforgeeks.org/maximum-difference-sum-elements-two-rows-matrix/](https://www.geeksforgeeks.org/maximum-difference-sum-elements-two-rows-matrix/)
+
+给定一个`m * n`阶矩阵，任务是找到两行`Rj`和`Ri`之间的最大差，使得`i < j`，即，我们需要找到`sum(Rj) – sum(Ri)`的最大值，满足行`i`在第`j`行上方。
+
+## 示例
+
+```
+Input : mat[5][4] = {{-1, 2, 3, 4},
+                     {5, 3, -2, 1},
+                     {6, 7, 2, -3},
+                     {2, 9, 1, 4},
+                     {2, 1, -2, 0}}
+Output: 9
+// difference of R3 - R1 is maximum
+```
+
+针对此问题的简单解决方案是逐行选择每一行，计算其中的元素总和，并从正方向上与下一行的总和取差。 最后返回最大差。 该方法的时间复杂度将为`O(n * m ^ 2)`。
+
+针对此问题的有效解决方案是，首先计算每行所有元素的总和，并将它们存储在辅助数组`rowSum[]`中，然后计算两个元素的最大差`max(rowSum[j] – rowSum[i])`使得`rowSum[i] < rowSum[j]`在线性时间内。 请参阅[这里](https://www.geeksforgeeks.org/maximum-difference-between-two-elements/)文章。 在此方法中，我们需要跟踪 2 件事情：
+
+1.  到目前为止找到的最大差异（`max_diff`）。
+2.  到目前为止访问的最小人数（`min_element`）。
+
+## C++
+
+```cpp
+// C++ program to find maximum difference of sum of 
+// elements of two rows 
+#include<bits/stdc++.h> 
+#define MAX 100 
+using namespace std; 
+
+// Function to find maximum difference of sum of 
+// elements of two rows such that second row appears 
+// before first row. 
+int maxRowDiff(int mat[][MAX], int m, int n) 
+{ 
+    // auxiliary array to store sum of all elements 
+    // of each row 
+    int rowSum[m]; 
+
+    // calculate sum of each row and store it in 
+    // rowSum array 
+    for (int i=0; i<m; i++) 
+    { 
+        int sum = 0; 
+        for (int j=0; j<n; j++) 
+            sum += mat[i][j]; 
+        rowSum[i] = sum; 
+    } 
+
+    // calculating maximum difference of two elements 
+    // such that rowSum[i]<rowsum[j] 
+    int max_diff = rowSum[1] - rowSum[0]; 
+    int min_element = rowSum[0]; 
+    for (int i=1; i<m; i++) 
+    { 
+        // if current difference is greater than 
+        // previous then update it 
+        if (rowSum[i] - min_element > max_diff) 
+            max_diff = rowSum[i] - min_element; 
+
+        // if new element is less than previous minimum 
+        // element then update it so that 
+        // we may get maximum difference in remaining array 
+        if (rowSum[i] < min_element) 
+            min_element = rowSum[i]; 
+    } 
+
+    return max_diff; 
+} 
+
+// Driver program to run the case 
+int main() 
+{ 
+    int m = 5, n = 4; 
+    int mat[][MAX] = {{-1, 2, 3, 4}, 
+                     {5, 3, -2, 1}, 
+                     {6, 7, 2, -3}, 
+                     {2, 9, 1, 4}, 
+                     {2, 1, -2, 0}}; 
+
+    cout << maxRowDiff(mat, m, n); 
+    return 0; 
+} 
+```
+
+## Java
+
+```java
+// Java program to find maximum difference 
+// of sum of elements of two rows 
+class GFG { 
+static final int MAX = 100; 
+  
+// Function to find maximum difference of sum 
+// of elements of two rows such that second 
+// row appears before first row. 
+static int maxRowDiff(int mat[][], int m, int n) { 
+  
+    // auxiliary array to store sum 
+    // of all elements of each row 
+    int rowSum[] = new int[m]; 
+  
+    // calculate sum of each row and 
+    // store it in rowSum array 
+    for (int i = 0; i < m; i++) { 
+    int sum = 0; 
+    for (int j = 0; j < n; j++) 
+        sum += mat[i][j]; 
+    rowSum[i] = sum; 
+    } 
+  
+    // calculating maximum difference of two elements 
+    // such that rowSum[i]<rowsum[j] 
+    int max_diff = rowSum[1] - rowSum[0]; 
+    int min_element = rowSum[0]; 
+    for (int i = 1; i < m; i++) { 
+  
+    // if current difference is greater than 
+    // previous then update it 
+    if (rowSum[i] - min_element > max_diff) 
+        max_diff = rowSum[i] - min_element; 
+  
+    // if new element is less than previous 
+    // minimum element then update it so that 
+    // we may get maximum difference in remaining array 
+    if (rowSum[i] < min_element) 
+        min_element = rowSum[i]; 
+    } 
+  
+    return max_diff; 
+} 
+  
+// Driver code 
+public static void main(String[] args) { 
+    int m = 5, n = 4; 
+    int mat[][] = {{-1, 2,  3, 4 }, 
+                     {5,  3, -2, 1 }, 
+                    {6,  7,  2, -3}, 
+                   {2,  9,  1, 4 }, 
+                   {2,  1, -2, 0}}; 
+  
+    System.out.print(maxRowDiff(mat, m, n)); 
+} 
+} 
+// This code is contributed by Anant Agarwal.
+```
+
+## Python3
+
+```py
+# Python3 program to find maximum difference 
+# of sum of elements of two rows 
+  
+# Function to find maximum difference of 
+# sum of elements of two rows such that 
+# second row appears before first row. 
+def maxRowDiff(mat, m, n): 
+      
+    # auxiliary array to store sum of 
+    # all elements of each row 
+    rowSum = [0] * m 
+      
+    # calculate sum of each row and 
+    # store it in rowSum array 
+    for i in range(0, m): 
+        sum = 0
+        for j in range(0, n): 
+            sum += mat[i][j]  
+        rowSum[i] = sum
+      
+    # calculating maximum difference of 
+    # two elements such that 
+    # rowSum[i]<rowsum[j] 
+    max_diff = rowSum[1] - rowSum[0]  
+    min_element = rowSum[0] 
+      
+    for i in range(1, m): 
+      
+        # if current difference is greater 
+        # than previous then update it 
+        if (rowSum[i] - min_element > max_diff): 
+            max_diff = rowSum[i] - min_element 
+          
+        # if new element is less than previous 
+        # minimum element then update it so 
+        # that we may get maximum difference 
+        # in remaining array 
+        if (rowSum[i] < min_element): 
+            min_element = rowSum[i]  
+    return max_diff  
+  
+# Driver program to run the case 
+m = 5
+n = 4
+mat = [[-1, 2, 3, 4], 
+       [5, 3, -2, 1], 
+       [6, 7, 2, -3], 
+       [2, 9, 1, 4], 
+       [2, 1, -2, 0]] 
+  
+print( maxRowDiff(mat, m, n)) 
+  
+# This code is contributed by Swetank Modi
+```
+
+## C#
+
+```cs
+// C# program to find maximum difference 
+// of sum of elements of two rows 
+using System; 
+  
+class GFG { 
+      
+    // Function to find maximum difference 
+    // of sum of elements of two rows such 
+    // that second row appears before 
+    // first row. 
+    static int maxRowDiff(int [,] mat, 
+                              int m, int n) 
+    { 
+  
+        // auxiliary array to store sum 
+        // of all elements of each row 
+        int [] rowSum = new int[m]; 
+  
+        // calculate sum of each row and 
+        // store it in rowSum array 
+        for (int i = 0; i < m; i++) 
+        { 
+            int sum = 0; 
+              
+            for (int j = 0; j < n; j++) 
+                sum += mat[i,j]; 
+                  
+            rowSum[i] = sum; 
+        } 
+  
+        // calculating maximum difference 
+        // of two elements such that 
+        // rowSum[i] < rowsum[j] 
+        int max_diff = rowSum[1] - rowSum[0]; 
+        int min_element = rowSum[0]; 
+          
+        for (int i = 1; i < m; i++) 
+        { 
+  
+            // if current difference is 
+            // greater than previous then 
+            // update it 
+            if (rowSum[i] - min_element 
+                                  > max_diff) 
+                max_diff = rowSum[i] 
+                             - min_element; 
+  
+            // if new element is less than 
+            // previous minimum element then 
+            // update it so that we may get 
+            // maximum difference in 
+            // remaining array 
+            if (rowSum[i] < min_element) 
+                min_element = rowSum[i]; 
+        } 
+  
+        return max_diff; 
+    } 
+      
+    // Driver code 
+    public static void Main() 
+    { 
+        int m = 5, n = 4; 
+        int [,] mat = { {-1, 2, 3, 4 }, 
+                        {5, 3, -2, 1 }, 
+                        {6, 7, 2, -3}, 
+                        {2, 9, 1, 4 }, 
+                        {2, 1, -2, 0} }; 
+  
+        Console.Write(maxRowDiff(mat, m, n)); 
+    } 
+} 
+  
+// This code is contributed by KRV.
+```
+
+## PHP
+
+```php
+<?php 
+// PHP program to find maximum  
+// difference of sum of 
+// elements of two rows 
+$MAX = 100; 
+  
+// Function to find maximum  
+// difference of sum of 
+// elements of two rows such 
+// that second row appears 
+// before first row. 
+function maxRowDiff($mat, $m, $n) 
+{ 
+    global $MAX; 
+    // auxiliary array to store 
+    // sum of all elements 
+    // of each row 
+    $rowSum = array(); 
+  
+    // calculate sum of each  
+    // row and store it in 
+    // rowSum array 
+    for ($i = 0; $i < $m; $i++) 
+    { 
+        $sum = 0; 
+        for ($j = 0; $j < $n; $j++) 
+            $sum += $mat[$i][$j]; 
+        $rowSum[$i] = $sum; 
+    } 
+  
+    // calculating maximum  
+    // difference of two  
+    // elements such that  
+    // rowSum[i]<rowsum[j] 
+    $max_diff = $rowSum[1] - $rowSum[0]; 
+    $min_element = $rowSum[0]; 
+    for ($i = 1; $i < $m; $i++) 
+    { 
+        // if current difference  
+        // is greater than 
+        // previous then update it 
+        if ($rowSum[$i] - $min_element > $max_diff) 
+            $max_diff = $rowSum[$i] - $min_element; 
+  
+        // if new element is less  
+        // than previous minimum 
+        // element then update it  
+        // so that we may get maximum 
+        // difference in remaining array 
+        if ($rowSum[$i] < $min_element) 
+            $min_element = $rowSum[$i]; 
+    } 
+  
+    return $max_diff; 
+} 
+  
+// Driver Code 
+$m = 5; 
+$n = 4; 
+$mat = array(array(-1, 2, 3, 4), 
+             array(5, 3, -2, 1), 
+             array(6, 7, 2, -3), 
+             array(2, 9, 1, 4), 
+             array(2, 1, -2, 0)); 
+  
+echo maxRowDiff($mat, $m, $n); 
+  
+// This code is contributed by ajit 
+?>
+```
+
+输出：（无）
+
+时间复杂度：`O(m * n)`。
+
+辅助空间：`O(m)`。
