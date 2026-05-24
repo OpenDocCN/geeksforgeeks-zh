@@ -1,0 +1,304 @@
+# `M`个范围切换操作后的二进制数组
+
+> 原文： [https://www.geeksforgeeks.org/binary-array-m-range-toggle-operations/](https://www.geeksforgeeks.org/binary-array-m-range-toggle-operations/)
+
+考虑由`N`个元素组成的二进制数组（最初所有元素均为 0）。 之后，您将获得`M`条命令，其中每条命令的形式均为`a b`，这意味着您必须将`a`到`b`范围内的所有数组元素都进行切换（包括两端）。 执行完所有`M`条命令后，您必须找到结果数组。
+
+## 示例
+
+```
+Input : N = 5, M = 3
+        C1 = 1 3, C2 = 4 5, C3 = 1 4
+Output : Resultant array = {0, 0, 0, 0, 1} 
+Explanation :
+Initial array : {0, 0, 0, 0, 0}
+After first toggle : {1, 1, 1, 0, 0}
+After second toggle : {1, 1, 1, 1, 1}
+After third toggle :  {0, 0, 0, 0, 1}
+
+Input : N = 5, M = 5
+        C1 = 1 5, C2 = 1 5, C3 = 1 5,
+        C4 = 1 5, C5 = 1 5
+Output : Resultant array = {1, 1, 1, 1, 1} 
+```
+
+## 朴素的方法
+
+对于给定的`N`，我们应该创建一个`n + 1`个元素的布尔数组，对于`M`个命令中的每一个，我们都必须从`a`迭代到`b`，并借助`XOR`来切换`a`到`b`范围内的所有元素。
+
+此方法的复杂度为`O(n ^ 2)`。
+
+```
+for (int i = 1; i <= m; i++) {
+    for (int j = a; j <= b; j++)
+        arr[j] ^= 1;
+}
+```
+
+## 高效方法
+
+该思想基于[前缀和数组文章](https://www.geeksforgeeks.org/prefix-sum-array-implementation-applications-competitive-programming/)中讨论的样本问题。 对于给定的`n`，我们创建`n + 2`元素的布尔数组，对于`M`条命令中的每条命令，我们仅需借助`XOR`切换元素`a`和`b + 1`。 在所有命令之后，我们将数组处理为`arr[i] ^= arr[i-1]`；
+
+此方法的复杂度为`O(n)`。
+
+## C++
+
+```cpp
+// CPP program to find modified array after 
+// m range toggle operations. 
+#include<bits/stdc++.h> 
+using namespace std; 
+
+// function for toggle 
+void command(bool arr[], int a, int b) 
+{ 
+    arr[a] ^= 1; 
+    arr[b+1] ^= 1; 
+} 
+
+// function for final processing of array 
+void process(bool arr[], int n) 
+{ 
+    for (int k=1; k<=n; k++) 
+        arr[k] ^= arr[k-1]; 
+} 
+
+// function for printing result 
+void result(bool arr[], int n) 
+{ 
+    for (int k=1; k<=n; k++) 
+        cout << arr[k] <<" "; 
+} 
+
+// driver program 
+int main() 
+{ 
+    int n = 5, m = 3; 
+    bool arr[n+2] = {0}; 
+
+    // function call for toggle 
+    command(arr, 1, 5); 
+    command(arr, 2, 5); 
+    command(arr, 3, 5); 
+
+    // process array 
+    process(arr, n); 
+
+    // print result 
+    result(arr, n); 
+    return 0; 
+}
+```
+
+## Java
+
+```java
+// Java program to find modified array 
+// after m range toggle operations. 
+class GFG 
+{ 
+    // function for toggle 
+    static void command(boolean arr[], int a, int b) 
+    { 
+        arr[a] ^= true; 
+        arr[b + 1] ^= true; 
+    } 
+
+    // function for final processing of array 
+    static void process(boolean arr[], int n) 
+    { 
+        for (int k = 1; k <= n; k++) 
+        { 
+            arr[k] ^= arr[k - 1]; 
+        } 
+    } 
+
+    // function for printing result 
+    static void result(boolean arr[], int n) 
+    { 
+        for (int k = 1; k <= n; k++) 
+        { 
+            if(arr[k] == true) 
+                System.out.print("1" + " "); 
+            else
+                System.out.print("0" + " "); 
+        } 
+    } 
+
+    // Driver Code 
+    public static void main(String args[]) 
+    { 
+        int n = 5, m = 3; 
+        boolean arr[] = new boolean[n + 2]; 
+
+        // function call for toggle 
+        command(arr, 1, 5); 
+        command(arr, 2, 5); 
+        command(arr, 3, 5); 
+
+        // process array 
+        process(arr, n); 
+
+        // print result 
+        result(arr, n); 
+    } 
+} 
+
+// This code is contributed by PrinciRaj1992
+```
+
+## Python3
+
+```py
+# Python 3 program to find modified array after 
+# m range toggle operations. 
+
+# function for toggle 
+def command(arr, a, b): 
+    arr[a] ^= 1
+    arr[b+1] ^= 1
+
+# function for final processing of array 
+def process(arr, n): 
+    for k in range(1, n + 1, 1): 
+        arr[k] ^= arr[k - 1] 
+
+# function for printing result 
+def result(arr, n): 
+    for k in range(1, n + 1, 1): 
+        print(arr[k], end = " ") 
+
+# Driver Code 
+if __name__ == '__main__': 
+    n = 5
+    m = 3
+    arr = [0 for i in range(n+2)] 
+
+    # function call for toggle 
+    command(arr, 1, 5) 
+    command(arr, 2, 5) 
+    command(arr, 3, 5) 
+
+    # process array 
+    process(arr, n) 
+
+    # print result 
+    result(arr, n) 
+
+# This code is contributed by Surendra_Gangwar
+```
+
+## C#
+
+```cs
+// C# program to find modified array 
+// after m range toggle operations. 
+using System; 
+
+class GFG 
+{ 
+    // function for toggle 
+    static void command(bool[] arr, int a, int b) 
+    { 
+        arr[a] ^= true; 
+        arr[b + 1] ^= true; 
+    } 
+
+    // function for final processing of array 
+    static void process(bool[] arr, int n) 
+    { 
+        for (int k = 1; k <= n; k++) 
+        { 
+            arr[k] ^= arr[k - 1]; 
+        } 
+    } 
+
+    // function for printing result 
+    static void result(bool[] arr, int n) 
+    { 
+        for (int k = 1; k <= n; k++) 
+        { 
+            if(arr[k] == true) 
+                Console.Write("1" + " "); 
+            else
+                Console.Write("0" + " "); 
+        } 
+    } 
+
+    // Driver Code 
+    public static void Main() 
+    { 
+        int n = 5, m = 3; 
+        bool[] arr = new bool[n + 2]; 
+
+        // function call for toggle 
+        command(arr, 1, 5); 
+        command(arr, 2, 5); 
+        command(arr, 3, 5); 
+
+        // process array 
+        process(arr, n); 
+
+        // print result 
+        result(arr, n); 
+    } 
+} 
+
+// This code is contributed by Akanksha Rai
+```
+
+## PHP
+
+```php
+<?php 
+// PHP program to find modified array 
+// after m range toggle operations. 
+
+// function for toggle 
+function command($arr, $a, $b) 
+{ 
+    $arr[$a] = $arr[$a] ^ 1; 
+    $arr[$b + 1] ^= 1; 
+} 
+
+// function for final processing of array 
+function process($arr, $n) 
+{ 
+    for ($k = 1; $k <= $n; $k++) 
+    { 
+        $arr[$k] = $arr[$k] ^ $arr[$k - 1]; 
+    } 
+} 
+
+// function for printing result 
+function result($arr, $n) 
+{ 
+    for ($k = 1; $k <= $n; $k++) 
+    echo $arr[$k] . " "; 
+} 
+
+// Driver Code 
+$n = 5; $m = 3; 
+$arr = new SplFixedArray(7); 
+$arr[6] = array(0); 
+
+// function call for toggle 
+command($arr, 1, 5); 
+command($arr, 2, 5); 
+command($arr, 3, 5); 
+
+// process array 
+process($arr, $n); 
+
+// print result 
+result($arr, $n); 
+
+// This code is contributed by Mukul Singh 
+?>
+```
+
+## 输出
+
+```
+1 0 1 1 1
+```
