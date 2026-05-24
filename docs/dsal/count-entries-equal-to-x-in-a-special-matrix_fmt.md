@@ -1,0 +1,257 @@
+# 计算特殊矩阵中等于`x`的条目数量
+
+> 原文： [https://www.geeksforgeeks.org/count-entries-equal-to-x-in-a-special-matrix/](https://www.geeksforgeeks.org/count-entries-equal-to-x-in-a-special-matrix/)
+
+您将得到`n`阶方阵（`matrix[][]`），其中`matrix[i][j] = i * j`。查找具有等于给定数字`x`的条目的单元格数。
+
+注意：矩阵的索引从 1 开始，即`1 <= i, j < = n`。
+
+**示例**：
+
+```cpp
+Input : matrix[][] = {1, 2, 3, 4,
+                      2, 4, 6, 8,
+                      3, 6, 9, 12,
+                      4, 8, 12, 16}  
+                x = 4
+Output : 3
+
+Input : matrix[][] = {1, 2, 3, 4,
+                      2, 4, 6, 8,
+                      3, 6, 9, 12,
+                      4, 8, 12, 16}   
+                 x = 12
+Output : 2
+```
+
+**简单方法**是遍历整个矩阵并检查单元格值是否等于给定的`x`，然后相应地增加计数值。这种方法的时间复杂度很高，等于`O(n ^ 2)`。
+
+```cpp
+// traverse and check whole matrix
+for (int i=1; i<=n ; i++)
+{
+    for (int j=1; j<=n; j++)
+        if (i * j == x)
+            count++;
+}
+// return count 
+return count;
+```
+
+**有效方法**仅查找给定`x`的因子数量在 0 到`x`之间，并且那些因子（包括除数和商）必须小于或等于`n`（矩阵的阶数）。在这种情况下，时间复杂度将为`O(n)`。
+
+```cpp
+// traverse and find the factors
+for (int i=1; i<=n && i<=x ; i++)
+{
+    // x%i == 0 means i is factor of x
+    // x/i <= n means i and j are <= n (for i*j=x)
+    if ( x/i <= n && x%i ==0)
+        count++;
+}
+// return count 
+return count;
+```
+
+## C++
+
+```cpp
+// CPP program for counting number of cell 
+// equals to given x 
+#include<bits/stdc++.h> 
+using namespace std; 
+
+// function to count factors as number of cell 
+int count (int n, int x) 
+{ 
+    int count == 0; 
+    // traverse and find the factors 
+    for (int i=1; i<=n && i<=x ; i++) 
+    { 
+        // x%i == 0 means i is factor of x 
+        // x/i <= n means i and j are <= n (for i*j=x) 
+        if ( x/i <= n && x%i ==0) 
+            count++; 
+    } 
+    // return count 
+    return count; 
+} 
+
+// driver program 
+int main() 
+{ 
+    int n = 8; 
+    // we can manually assume matrix of order 8*8 
+    // where mat[i][j] = i*j , 0<i,j<=n 
+    int x =  24; 
+    cout << count(n, x); 
+    return 0; 
+}
+```
+
+## Java
+
+```java
+// Java program for counting number of 
+// cell equals to given x 
+class GFG 
+{ 
+    // function to count factors as 
+    // number of cell 
+    static int count (int n, int x) 
+    { 
+        int count = 0; 
+
+        // traverse and find the factors 
+        for (int i = 1; i <= n && i <= x ; 
+                                    i++) 
+        { 
+            // x%i == 0 means i is factor 
+            // of x. x/i <= n means i and 
+            // j are <= n (for i*j=x) 
+            if ( x / i <= n && x % i == 0) 
+                count++; 
+        } 
+
+        // return count 
+        return count; 
+    } 
+
+    // driver program 
+    public static void main(String args[]) 
+    { 
+        int n = 8; 
+
+        // we can manually assume matrix 
+        // of order 8*8 where 
+        // mat[i][j] = i*j , 0<i,j<=n 
+        int x = 24; 
+        System.out.println(count(n, x)); 
+    } 
+} 
+
+/*This code is contributed by Danish kaleem*/
+```
+
+## Python3
+
+```py
+# Python 3 program for counting 
+# number of cell equals to given x 
+
+# function to count factors 
+# as number of cell 
+def count(n, x): 
+    cnt = 0
+
+    # traverse and find the factors 
+    for i in range(1, n + 1): 
+
+        # // x%i == 0 means i is factor of x 
+        # x/i <= n means i and j are <= n (for i*j=x) 
+        if i <= x: 
+            if x // i <= n and x % i == 0: 
+                cnt += 1
+    return cnt 
+
+# Driver code 
+n = 8
+x = 24
+print(count(n, x)) 
+
+# This code is contributed by Shrikant13
+```
+
+## C#
+
+```cs
+// C# program for counting number 
+// of cell equals to given x 
+using System; 
+
+class GFG { 
+
+    // function to count factors as 
+    // number of cell 
+    static int count (int n, int x) { 
+
+        int count = 0; 
+
+        // traverse and find the factors 
+        for (int i = 1; i <= n && 
+             i <= x ; i++) 
+        { 
+
+            // x%i == 0 means i is factor 
+            // of x. x/i <= n means i and 
+            // j are <= n (for i*j=x) 
+            if ( x / i <= n && x % i == 0) 
+                count++; 
+        } 
+
+        // return count 
+        return count; 
+    } 
+
+    // Driver Code 
+    public static void Main() 
+    { 
+        int n = 8; 
+
+        // we can manually assume matrix 
+        // of order 8*8 where 
+        // mat[i][j] = i*j , 0<i,j<=n 
+        int x = 24; 
+        Console.Write(count(n, x)); 
+    } 
+} 
+
+// This code is contributed by Nitin Mittal.
+```
+
+## PHP
+
+```php
+<?php 
+// PHP program for counting 
+// number of cell equals to 
+// given x 
+
+// function to count factors 
+// as number of cell 
+function c_ount ( $n, $x) 
+{ 
+    $Count = 0; 
+    // traverse and find the factors 
+    for ( $i = 1; $i <= $n and 
+                  $i <= $x ; $i++) 
+    { 
+        // x%i == 0 means i is 
+        // factor of x x/i <= n 
+        // means i and j are 
+        // <= n (for i*j=x) 
+        if ( $x / $i <= $n and 
+                  $x % $i == 0) 
+            $Count++; 
+    } 
+    // return count 
+    return $Count; 
+} 
+
+// Driver Code 
+$n = 8; 
+
+// we can manually assume 
+// matrix of order 8*8 
+// where mat[i][j] = i*j , 
+// 0<i,j<=n 
+$x = 24; 
+echo c_ount($n, $x); 
+
+// This code is contributed by anuj_67\.
+?>
+```
+
+**输出**：
+
+```
