@@ -1,0 +1,812 @@
+# 两个元素之间的最大差异，使得较大的元素出现在较小的数字之后
+
+> 原文： [https://www.geeksforgeeks.org/maximum-difference-between-two-elements/](https://www.geeksforgeeks.org/maximum-difference-between-two-elements/)
+
+给定整数数组`arr[]`，找出任意两个元素之间的最大差值，以使较大的元素出现在较小的数字之后。
+
+**示例**：
+
+```
+Input : arr = {2, 3, 10, 6, 4, 8, 1}
+Output : 8
+Explanation : The maximum difference is between 10 and 2.
+
+Input : arr = {7, 9, 5, 6, 3, 2}
+Output : 2
+Explanation : The maximum difference is between 9 and 7.
+```
+
+**方法 1（简单）**：
+
+使用两个循环。 在外循环中，拾取元素一个接一个，在内循环中，计算拾取的元素与数组中每个其他元素的差，并将该差与到目前为止计算出的最大差进行比较。 下面是上述方法的实现：
+
+## C++
+
+```cpp
+// C++ program to find Maximum difference 
+// between two elements such that larger 
+// element appears after the smaller number 
+#include <bits/stdc++.h> 
+using namespace std; 
+
+/* The function assumes that there are 
+   at least two elements in array. The 
+   function returns a negative value if the 
+   array is sorted in decreasing order and  
+   returns 0 if elements are equal */
+int maxDiff(int arr[], int arr_size) 
+{     
+  int max_diff = arr[1] - arr[0]; 
+  for (int i = 0; i < arr_size; i++) 
+  { 
+    for (int j = i+1; j < arr_size; j++) 
+    {     
+      if (arr[j] - arr[i] > max_diff)  
+        max_diff = arr[j] - arr[i]; 
+    }  
+  }         
+  return max_diff; 
+}  
+
+/* Driver program to test above function */
+int main() 
+{ 
+  int arr[] = {1, 2, 90, 10, 110}; 
+  int n = sizeof(arr) / sizeof(arr[0]); 
+
+  // Function calling 
+  cout << "Maximum difference is " << maxDiff(arr, n); 
+
+  return 0; 
+}
+```
+
+## C
+
+```c
+#include<stdio.h> 
+
+/* The function assumes that there are at least two 
+   elements in array. 
+   The function returns a negative value if the array is 
+   sorted in decreasing order.  
+   Returns 0 if elements are equal */
+int maxDiff(int arr[], int arr_size) 
+{     
+  int max_diff = arr[1] - arr[0]; 
+  int i, j; 
+  for (i = 0; i < arr_size; i++) 
+  { 
+    for (j = i+1; j < arr_size; j++) 
+    {         
+      if (arr[j] - arr[i] > max_diff)    
+         max_diff = arr[j] - arr[i]; 
+    }     
+  }           
+  return max_diff; 
+}     
+
+/* Driver program to test above function */
+int main() 
+{ 
+  int arr[] = {1, 2, 90, 10, 110}; 
+  printf("Maximum difference is %d",  maxDiff(arr, 5)); 
+  getchar(); 
+  return 0; 
+}
+```
+
+## Java
+
+```java
+// Java program to find Maximum difference 
+// between two elements such that larger 
+// element appears after the smaller number 
+class MaximumDiffrence 
+{ 
+    /* The function assumes that there are at least two 
+       elements in array. 
+       The function returns a negative value if the array is 
+       sorted in decreasing order.  
+       Returns 0 if elements are equal */
+    int maxDiff(int arr[], int arr_size) 
+    { 
+        int max_diff = arr[1] - arr[0]; 
+        int i, j; 
+        for (i = 0; i < arr_size; i++) 
+        { 
+            for (j = i + 1; j < arr_size; j++) 
+            { 
+                if (arr[j] - arr[i] > max_diff) 
+                    max_diff = arr[j] - arr[i]; 
+            } 
+        } 
+        return max_diff; 
+    } 
+
+    /* Driver program to test above functions */
+    public static void main(String[] args) 
+    { 
+        MaximumDiffrence maxdif = new MaximumDiffrence(); 
+        int arr[] = {1, 2, 90, 10, 110}; 
+        System.out.println("Maximum differnce is " +  
+                                maxdif.maxDiff(arr, 5)); 
+    } 
+} 
+
+// This code has been contributed by Mayank Jaiswal
+```
+
+## Python3
+
+```py
+# Python 3 code to find Maximum difference 
+# between two elements such that larger 
+# element appears after the smaller number 
+
+# The function assumes that there are at 
+# least two elements in array. The function 
+# returns a negative value if the array is 
+# sorted in decreasing order. Returns 0 
+# if elements are equal 
+def maxDiff(arr, arr_size): 
+    max_diff = arr[1] - arr[0] 
+
+    for i in range( 0, arr_size ): 
+        for j in range( i+1, arr_size ): 
+            if(arr[j] - arr[i] > max_diff):  
+                max_diff = arr[j] - arr[i] 
+
+    return max_diff 
+
+# Driver program to test above function 
+arr = [1, 2, 90, 10, 110] 
+size = len(arr) 
+print ("Maximum difference is", maxDiff(arr, size)) 
+
+# This code is contributed by Swetank Modi
+```
+
+## C#
+
+```cs
+// C# code to find Maximum difference 
+using System; 
+
+class GFG { 
+
+    // The function assumes that there 
+    // are at least two elements in array. 
+    // The function returns a negative 
+    // value if the array is sorted in 
+    // decreasing order. Returns 0 if 
+    // elements are equal 
+    static int maxDiff(int[] arr, int arr_size) 
+    { 
+        int max_diff = arr[1] - arr[0]; 
+        int i, j; 
+        for (i = 0; i < arr_size; i++) { 
+            for (j = i + 1; j < arr_size; j++) { 
+                if (arr[j] - arr[i] > max_diff) 
+                    max_diff = arr[j] - arr[i]; 
+            } 
+        } 
+        return max_diff; 
+    } 
+
+    // Driver code 
+    public static void Main() 
+    { 
+
+        int[] arr = { 1, 2, 90, 10, 110 }; 
+        Console.Write("Maximum differnce is " +  
+                                maxDiff(arr, 5)); 
+    } 
+} 
+
+// This code is contributed by Sam007
+```
+
+## PHP
+
+```php
+<?php 
+// PHP program to find Maximum difference 
+// between two elements such that larger 
+// element appears after the smaller number 
+
+/* The function assumes that there are 
+at least two elements in array. The 
+function returns a negative value if the 
+array is sorted in decreasing order and 
+returns 0 if elements are equal */
+function maxDiff($arr, $arr_size) 
+{  
+$max_diff = $arr[1] - $arr[0]; 
+for ($i = 0; $i < $arr_size; $i++) 
+{ 
+    for ($j = $i+1; $j < $arr_size; $j++) 
+    {  
+    if ($arr[$j] - $arr[$i] > $max_diff)  
+        $max_diff = $arr[$j] - $arr[$i]; 
+    }  
+}      
+return $max_diff; 
+}  
+
+// Driver Code 
+$arr = array(1, 2, 90, 10, 110); 
+$n = sizeof($arr); 
+
+// Function calling 
+echo "Maximum difference is " .  
+             maxDiff($arr, $n); 
+
+// This code is contributed  
+// by Akanksha Rai(Abby_akku)
+```
+
+**输出**：
+
+```
+Maximum difference is 109
+```
+
+**时间复杂度**：`O(n ^ 2)`。
+
+**辅助空间**：`O(1)`。
+
+**方法 2（技巧和效率）**：
+
+在此方法中，我们采用已找到的最小元素作为差异，而不是采用每个元素之间的差异。 因此，我们需要跟踪 2 件事情：
+
+1.  到目前为止找到的最大差异（`max_diff`）。
+2.  到目前为止访问的最小人数（`min_element`）。
+
+## C++
+
+```cpp
+// C++ program to find Maximum difference 
+// between two elements such that larger 
+// element appears after the smaller number 
+#include <bits/stdc++.h> 
+using namespace std; 
+
+/* The function assumes that there are 
+   at least two elements in array. The 
+   function returns a negative value if the 
+   array is sorted in decreasing order and  
+   returns 0 if elements are equal */
+int maxDiff(int arr[], int arr_size) 
+{ 
+     // Maximum difference found so far 
+     int max_diff = arr[1] - arr[0]; 
+
+     // Minimum number visited so far 
+     int min_element = arr[0]; 
+     for(int i = 1; i < arr_size; i++) 
+     {     
+       if (arr[i] - min_element > max_diff)                              
+       max_diff = arr[i] - min_element; 
+
+       if (arr[i] < min_element) 
+       min_element = arr[i];                      
+     } 
+
+     return max_diff; 
+}  
+
+/* Driver program to test above function */
+int main() 
+{ 
+  int arr[] = {1, 2, 90, 10, 110}; 
+  int n = sizeof(arr) / sizeof(arr[0]); 
+
+  // Function calling 
+  cout << "Maximum difference is " << maxDiff(arr, n); 
+
+  return 0; 
+}
+```
+
+# 各种语言的实现
+
+## C
+
+```c
+#include<stdio.h> 
+
+/* The function assumes that there are at least two 
+elements in array. 
+The function returns a negative value if the array is 
+sorted in decreasing order. 
+Returns 0 if elements are equal */
+int maxDiff(int arr[], int arr_size) 
+{ 
+int max_diff = arr[1] - arr[0]; 
+int min_element = arr[0]; 
+int i; 
+for(i = 1; i < arr_size; i++) 
+{      
+    if (arr[i] - min_element > max_diff)                              
+    max_diff = arr[i] - min_element; 
+    if (arr[i] < min_element) 
+        min_element = arr[i];                      
+} 
+return max_diff; 
+}  
+
+/* Driver program to test above function */
+int main() 
+{ 
+int arr[] = {1, 2, 6, 80, 100}; 
+int size = sizeof(arr)/sizeof(arr[0]); 
+printf("Maximum difference is %d", maxDiff(arr, size)); 
+getchar(); 
+return 0; 
+} 
+```
+
+## Java
+
+```java
+// Java program to find Maximum difference  
+// between two elements such that larger  
+// element appears after the smaller number 
+class MaximumDiffrence  
+{ 
+    /* The function assumes that there are at least two 
+       elements in array. 
+       The function returns a negative value if the array is 
+       sorted in decreasing order. 
+       Returns 0 if elements are equal  */
+    int maxDiff(int arr[], int arr_size)  
+    { 
+        int max_diff = arr[1] - arr[0]; 
+        int min_element = arr[0]; 
+        int i; 
+        for (i = 1; i < arr_size; i++)  
+        { 
+            if (arr[i] - min_element > max_diff) 
+                max_diff = arr[i] - min_element; 
+            if (arr[i] < min_element) 
+                min_element = arr[i]; 
+        } 
+        return max_diff; 
+    } 
+
+    /* Driver program to test above functions */
+    public static void main(String[] args)  
+    { 
+        MaximumDiffrence maxdif = new MaximumDiffrence(); 
+        int arr[] = {1, 2, 90, 10, 110}; 
+        int size = arr.length; 
+        System.out.println("MaximumDifference is " +  
+                                maxdif.maxDiff(arr, size)); 
+    } 
+} 
+
+// This code has been contributed by Mayank Jaiswal 
+```
+
+## Python3
+
+```py
+# Python 3 code to find Maximum difference 
+# between two elements such that larger  
+# element appears after the smaller number 
+
+# The function assumes that there are  
+# at least two elements in array. 
+# The function returns a negative  
+# value if the array is sorted in  
+# decreasing order. Returns 0 if  
+# elements are equal 
+def maxDiff(arr, arr_size): 
+    max_diff = arr[1] - arr[0] 
+    min_element = arr[0] 
+
+    for i in range( 1, arr_size ): 
+        if (arr[i] - min_element > max_diff): 
+            max_diff = arr[i] - min_element 
+
+        if (arr[i] < min_element): 
+            min_element = arr[i] 
+    return max_diff 
+
+# Driver program to test above function  
+arr = [1, 2, 6, 80, 100] 
+size = len(arr) 
+print ("Maximum difference is",  
+        maxDiff(arr, size)) 
+
+# This code is contributed by Swetank Modi 
+```
+
+## C#
+
+```cs
+// C# code to find Maximum difference 
+using System; 
+
+class GFG { 
+
+    // The function assumes that there  
+    // are at least two elements in array. 
+    // The function returns a negative  
+    // value if the array is sorted in 
+    // decreasing order.Returns 0 if  
+    // elements are equal  
+    static int maxDiff(int[] arr, int arr_size) 
+    { 
+        int max_diff = arr[1] - arr[0]; 
+        int min_element = arr[0]; 
+        int i; 
+        for (i = 1; i < arr_size; i++) { 
+            if (arr[i] - min_element > max_diff) 
+                max_diff = arr[i] - min_element; 
+            if (arr[i] < min_element) 
+                min_element = arr[i]; 
+        } 
+        return max_diff; 
+    } 
+
+    // Driver code 
+    public static void Main() 
+    { 
+        int[] arr = { 1, 2, 90, 10, 110 }; 
+        int size = arr.Length; 
+        Console.Write("MaximumDifference is " + 
+                               maxDiff(arr, size)); 
+    } 
+} 
+
+// This code is contributed by Sam007 
+```
+
+## PHP
+
+```php
+<?php 
+// PHP program to find Maximum  
+// difference between two elements  
+// such that larger element appears 
+// after the smaller number 
+
+// The function assumes that there  
+// are at least two elements in array.  
+// The function returns a negative  
+// value if the array is sorted in  
+// decreasing order and returns 0  
+// if elements are equal   
+function maxDiff($arr, $arr_size) 
+{ 
+    // Maximum difference found so far 
+    $max_diff = $arr[1] - $arr[0]; 
+
+    // Minimum number visited so far  
+    $min_element = $arr[0]; 
+    for($i = 1; $i < $arr_size; $i++) 
+    {      
+    if ($arr[$i] - $min_element > $max_diff)                              
+    $max_diff = $arr[$i] - $min_element; 
+
+    if ($arr[$i] < $min_element) 
+    $min_element = $arr[$i];                      
+    } 
+
+    return $max_diff; 
+} 
+
+// Driver Code 
+$arr = array(1, 2, 90, 10, 110); 
+$n = count($arr); 
+
+// Function calling 
+echo "Maximum difference is " . 
+             maxDiff($arr, $n); 
+
+// This code is contributed by Sam007 
+?> 
+```
+
+### 输出
+
+```
+Maximum difference is 109
+```
+
+### 时间复杂度
+
+`O(n)`。
+
+### 辅助空间
+
+`O(1)`。
+
+像`min`元素一样，我们也可以从右侧跟踪`max`元素。感谢 Katamaran 建议这种方法。下面是实现：
+
+# 从右侧跟踪最大元素的方法
+
+## C++
+
+```cpp
+// C++ program to find Maximum difference  
+// between two elements such that larger  
+// element appears after the smaller number 
+#include <bits/stdc++.h> 
+using namespace std; 
+
+/* The function assumes that there are  
+   at least two elements in array. The  
+   function returns a negative value if the 
+   array is sorted in decreasing order and   
+   returns 0 if elements are equal */
+int maxDiff(int arr[], int n) 
+{ 
+    // Initialize Result 
+    int maxDiff = -1;  
+
+    // Initialize max element from right side 
+    int maxRight = arr[n-1];  
+
+    for (int i = n-2; i >= 0; i--) 
+    { 
+        if (arr[i] > maxRight) 
+            maxRight = arr[i]; 
+        else
+        { 
+            int diff = maxRight - arr[i]; 
+            if (diff > maxDiff) 
+            { 
+                maxDiff = diff; 
+            } 
+        } 
+    } 
+    return maxDiff; 
+} 
+
+/* Driver program to test above function */
+int main() 
+{ 
+  int arr[] = {1, 2, 90, 10, 110}; 
+  int n = sizeof(arr) / sizeof(arr[0]); 
+
+  // Function calling 
+  cout << "Maximum difference is " << maxDiff(arr, n); 
+
+  return 0; 
+} 
+```
+
+## Java
+
+```java
+// Java program to find Maximum  
+// difference between two elements  
+// such that larger element appears  
+// after the smaller number  
+class GFG 
+{ 
+      
+/* The function assumes that there 
+are at least two elements in array.  
+The function returns a negative  
+value if the array is sorted in  
+decreasing order and returns 0 if 
+elements are equal */
+static int maxDiff (int arr[], int n)  
+{  
+    // Initialize diff, current  
+    // sum and max sum  
+    int diff = arr[1] - arr[0];  
+    int curr_sum = diff;  
+    int max_sum = curr_sum;  
+  
+    for(int i = 1; i < n - 1; i++)  
+    {  
+        // Calculate current diff  
+        diff = arr[i + 1] - arr[i];  
+  
+        // Calculate current sum  
+        if (curr_sum > 0)  
+        curr_sum += diff;  
+        else
+        curr_sum = diff;  
+  
+        // Update max sum, if needed  
+        if (curr_sum > max_sum)  
+        max_sum = curr_sum;  
+    }  
+  
+    return max_sum;  
+}  
+  
+// Driver Code 
+public static void main(String[] args)  
+{  
+int arr[] = {80, 2, 6, 3, 100};  
+int n = arr.length;  
+      
+// Function calling  
+System.out.print("Maximum difference is " +  
+                          maxDiff(arr, n));  
+} 
+}  
+  
+// This code is contributed by Smitha 
+```
+
+## Python3
+
+```py
+# Python3 program to find Maximum difference  
+# between two elements such that larger  
+# element appears after the smaller number 
+  
+# The function assumes that there are  
+# at least two elements in array. The  
+# function returns a negative value if  
+# the array is sorted in decreasing  
+# order and returns 0 if elements are equal 
+def maxDiff (arr, n): 
+      
+    # Initialize diff, current  
+    # sum and max sum 
+    diff = arr[1] - arr[0] 
+    curr_sum = diff 
+    max_sum = curr_sum 
+  
+    for i in range(1, n - 1): 
+          
+        # Calculate current diff 
+        diff = arr[i + 1] - arr[i] 
+  
+        # Calculate current sum 
+        if (curr_sum > 0): 
+            curr_sum += diff 
+        else: 
+            curr_sum = diff 
+  
+        # Update max sum, if needed 
+        if (curr_sum > max_sum): 
+            max_sum = curr_sum 
+    return max_sum 
+  
+# Driver Code 
+if __name__ == '__main__': 
+    arr = [80, 2, 6, 3, 100] 
+    n = len(arr) 
+          
+    # Function calling 
+    print("Maximum difference is", 
+                  maxDiff(arr, n)) 
+  
+# This code is contributed  
+# by 29AjayKumar 
+```
+
+## C#
+
+```cs
+// C# program to find Maximum  
+// difference between two elements  
+// such that larger element appears  
+// after the smaller number  
+using System; 
+class GFG 
+{ 
+      
+/* The function assumes that there 
+are at least two elements in array.  
+The function returns a negative  
+value if the array is sorted in  
+decreasing order and returns 0 if 
+elements are equal */
+static int maxDiff (int[] arr, int n)  
+{  
+    // Initialize diff, current  
+    // sum and max sum  
+    int diff = arr[1] - arr[0];  
+    int curr_sum = diff;  
+    int max_sum = curr_sum;  
+  
+    for(int i = 1; i < n - 1; i++)  
+    {  
+        // Calculate current diff  
+        diff = arr[i + 1] - arr[i];  
+  
+        // Calculate current sum  
+        if (curr_sum > 0)  
+        curr_sum += diff;  
+        else
+        curr_sum = diff;  
+  
+        // Update max sum, if needed  
+        if (curr_sum > max_sum)  
+        max_sum = curr_sum;  
+    }  
+  
+    return max_sum;  
+}  
+  
+// Driver Code 
+public static void Main()  
+{  
+int[] arr = {80, 2, 6, 3, 100};  
+int n = arr.Length;  
+      
+// Function calling  
+Console.WriteLine("Maximum difference is " +  
+                        maxDiff(arr, n));  
+} 
+}  
+  
+// This code is contributed  
+// by Akanksha Rai(Abby_akku) 
+```
+
+## PHP
+
+```php
+<?php 
+// PHP program to find Maximum difference  
+// between two elements such that larger  
+// element appears after the smaller number 
+  
+/* The function assumes that there are  
+at least two elements in array. The  
+function returns a negative value if the 
+array is sorted in decreasing order and  
+returns 0 if elements are equal */
+function maxDiff ($arr, $n) 
+{ 
+    // Initialize diff, current sum  
+    // and max sum 
+    $diff = $arr[1] - $arr[0]; 
+    $curr_sum = $diff; 
+    $max_sum = $curr_sum; 
+  
+    for($i = 1; $i < $n - 1; $i++) 
+    { 
+        // Calculate current diff 
+        $diff = $arr[$i + 1] - $arr[$i]; 
+  
+        // Calculate current sum 
+        if ($curr_sum > 0) 
+            $curr_sum += $diff; 
+        else
+            $curr_sum = $diff; 
+  
+        // Update max sum, if needed 
+        if ($curr_sum > $max_sum) 
+            $max_sum = $curr_sum; 
+    } 
+  
+    return $max_sum; 
+} 
+  
+// Driver Code 
+$arr = array(80, 2, 6, 3, 100); 
+$n = sizeof($arr); 
+  
+// Function calling 
+echo "Maximum difference is ", 
+            maxDiff($arr, $n); 
+  
+// This code is contributed  
+// by Sach_code 
+?> 
+```
+
+输出：
+```
+Maximum difference is 98
+```
+
+时间复杂度：`O(n)`。
+
+辅助空间：`O(1)`。
+
+以下是此问题的变体：
+[矩阵中两行元素之和的最大差](https://www.geeksforgeeks.org/maximum-difference-sum-elements-two-rows-matrix/)。
