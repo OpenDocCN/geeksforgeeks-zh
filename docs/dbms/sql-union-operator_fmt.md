@@ -1,0 +1,103 @@
+# SQL UNION 运算符
+
+> 原文: [https://www.geeksforgeeks.org/sql-union-operator/](https://www.geeksforgeeks.org/sql-union-operator/)
+
+`UNION` 运算符可用于查找结果集或两个或多个表的组合。
+
+## 使用 UNION 的条款和条件
+
+*   `UNION` 中使用的每个表必须具有相同的列数。
+*   这些列必须具有相同的数据类型。
+*   每个表中的列必须顺序相同。
+
+## 1. UNION 语法
+
+```sql
+SELECT columnnames FROM table1
+UNION
+SELECT columnnames FROM table2;
+```
+
+默认情况下，`UNION` 运算符只提供唯一的值。要查找重复值，请使用 `UNION ALL`。
+
+## 2. UNION ALL 语法
+
+```sql
+SELECT columnnames FROM table1
+UNION ALL
+SELECT columnnames FROM table2;
+```
+
+假设我们有两张表 `Geeks1` 和 `Geeks2`。
+
+```sql
+Select * 
+from Geeks1;
+```
+
+| ID | Name | Salary | City |
+| :--- | :--- | :--- | :--- |
+| 1234 | Khushi | 23000 | Jaipur |
+| 2345 | Vivek | 24000 | Delhi |
+| 3456 | Kumar | 24500 | Bhilai |
+
+```sql
+Select * 
+from Geeks2;
+```
+
+| ID | Name | Salary | City |
+| :--- | :--- | :--- | :--- |
+| 5678 | Verma | 26000 | Indore |
+| 6789 | Mahesh | 24500 | Bhilai |
+| 7890 | Ashish | 25600 | Delhi |
+
+## SQL UNION 示例
+
+以下 SQL 语句从 `Geeks1` 和 `Geeks2` 表中查找城市（仅唯一值）。
+
+```sql
+SELECT City 
+FROM Geeks1
+
+UNION
+
+SELECT City 
+FROM Geeks2
+ORDER BY City;
+```
+
+**输出：**
+
+| City |
+| :--- |
+| Bhilai |
+| Delhi |
+| Indore |
+| Jaipur |
+
+## SQL UNION ALL 示例
+
+下面的 SQL 语句从 `Geeks1` 和 `Geeks2` 表中查找城市（包含重复值）。
+
+```sql
+SELECT City 
+FROM Geeks1
+
+UNION ALL
+
+SELECT City 
+FROM Geeks2
+ORDER BY City;
+```
+
+**输出：**
+
+| City |
+| :--- |
+| Bhilai |
+| Delhi |
+| Indore |
+| Jaipur |
+| Bhilai |
+| Delhi |
