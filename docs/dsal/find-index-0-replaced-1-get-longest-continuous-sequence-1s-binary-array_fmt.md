@@ -1,0 +1,359 @@
+# 查找 0 的索引，将其替换为 1 来在二进制数组中获得 1 的最长连续序列
+
+> 原文： [https://www.geeksforgeeks.org/find-index-0-replaced-1-get-longest-continuous-sequence-1s-binary-array/](https://www.geeksforgeeks.org/find-index-0-replaced-1-get-longest-continuous-sequence-1s-binary-array/)
+
+## 问题描述
+
+给定一个 0 和 1 的数组，找到 0 的位置要替换为 1，以获得最长的 1 连续序列。 预期时间复杂度为 `O(n)`，辅助空间为 `O(1)`。
+
+## 示例
+
+```
+Input: 
+   arr[] =  {1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1}
+Output:
+  Index 9
+Assuming array index starts from 0, replacing 0 with 1 at index 9 causes
+the maximum continuous sequence of 1s.
+
+Input: 
+   arr[] =  {1, 1, 1, 1, 0}
+Output:
+  Index 4
+```
+
+**我们强烈建议最小化浏览器，然后自己尝试。**
+
+## 解决方案
+
+一个简单解决方案是遍历该数组，对于每个 0，计算数组两侧的 1 的数量。 跟踪任意 0 的最大计数。最后返回 0 的索引，最大索引数为 1。 该解决方案的时间复杂度为 `O(n^2)`。
+
+使用有效解决方案可以在 `O(n)` 时间内解决问题。 这个想法是要跟踪三个索引，即当前索引（`curr`），先前的零索引（`prev_zero`）和先前的零索引（`prev_prev_zero`）。 遍历数组，如果当前元素为 0，则计算 `curr` 与 `prev_prev_zero` 之间的差（该差减 1 是 `prev_zero` 周围的 1 的数量）。 如果 `curr` 与 `prev_prev_zero` 之间的差值到目前为止尚未达到最大值，则更新最大值。 最后返回具有最大差异的 `prev_zero` 的索引。
+
+以下是上述算法的实现。
+
+## 代码实现
+
+### C++
+
+```cpp
+// C++ program to find Index of 0 to be replaced with 1 to get 
+// longest continuous sequence of 1s in a binary array 
+#include<iostream> 
+using namespace std; 
+
+// Returns index of 0 to be replaced with 1 to get longest 
+// continuous sequence of 1s.  If there is no 0 in array, then 
+// it returns -1. 
+int maxOnesIndex(bool arr[], int n) 
+{ 
+    int max_count = 0;  // for maximum number of 1 around a zero 
+    int max_index;  // for storing result 
+    int prev_zero = -1;  // index of previous zero 
+    int prev_prev_zero = -1; // index of previous to previous zero 
+
+    // Traverse the input array 
+    for (int curr=0; curr<n; ++curr) 
+    { 
+        // If current element is 0, then calculate the difference 
+        // between curr and prev_prev_zero 
+        if (arr[curr] == 0) 
+        { 
+            // Update result if count of 1s around prev_zero is more 
+            if (curr - prev_prev_zero > max_count) 
+            { 
+                max_count = curr - prev_prev_zero; 
+                max_index = prev_zero; 
+            } 
+
+            // Update for next iteration 
+            prev_prev_zero = prev_zero; 
+            prev_zero = curr; 
+        } 
+    } 
+
+    // Check for the last encountered zero 
+    if (n-prev_prev_zero > max_count) 
+       max_index = prev_zero; 
+
+    return max_index; 
+} 
+
+// Driver program 
+int main() 
+{ 
+    bool arr[] = {1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1}; 
+    int n = sizeof(arr)/sizeof(arr[0]); 
+    cout << "Index of 0 to be replaced is "
+         << maxOnesIndex(arr, n); 
+    return 0; 
+} 
+```
+
+### Java
+
+```java
+// Java program to find Index of 0 to be replaced with 1 to get 
+// longest continuous sequence of 1s in a binary array 
+
+import java.io.*; 
+
+class Binary  
+{     
+    // Returns index of 0 to be replaced with 1 to get longest 
+    // continuous sequence of 1s.  If there is no 0 in array, then 
+    // it returns -1. 
+    static int maxOnesIndex(int arr[], int n) 
+    { 
+        int max_count = 0;  // for maximum number of 1 around a zero 
+        int max_index=0;  // for storing result 
+        int prev_zero = -1;  // index of previous zero 
+        int prev_prev_zero = -1; // index of previous to previous zero 
+
+        // Traverse the input array 
+        for (int curr=0; curr<n; ++curr) 
+        { 
+            // If current element is 0, then calculate the difference 
+            // between curr and prev_prev_zero 
+            if (arr[curr] == 0) 
+            { 
+                // Update result if count of 1s around prev_zero is more 
+                if (curr - prev_prev_zero > max_count) 
+                { 
+                    max_count = curr - prev_prev_zero; 
+                    max_index = prev_zero; 
+                } 
+
+                // Update for next iteration 
+                prev_prev_zero = prev_zero; 
+                prev_zero = curr; 
+            } 
+        } 
+
+        // Check for the last encountered zero 
+        if (n-prev_prev_zero > max_count) 
+            max_index = prev_zero; 
+
+        return max_index; 
+    } 
+
+    // Driver program to test above function 
+    public static void main(String[] args) 
+    { 
+        int arr[] = {1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1}; 
+        int n = arr.length; 
+        System.out.println("Index of 0 to be replaced is "+  
+                           maxOnesIndex(arr, n));         
+    } 
+} 
+/* This code is contributed by Devesh Agrawal */
+```
+
+### Python3
+
+```py
+# Python program to find Index 
+# of 0 to be replaced with 1 to get 
+# longest continuous sequence 
+# of 1s in a binary array 
+
+# Returns index of 0 to be 
+# replaced with 1 to get longest 
+# continuous sequence of 1s. 
+#  If there is no 0 in array, then 
+# it returns -1. 
+def maxOnesIndex(arr,n): 
+
+    # for maximum number of 1 around a zero 
+    max_count = 0
+
+    # for storing result   
+    max_index =0   
+
+    # index of previous zero 
+    prev_zero = -1   
+
+    # index of previous to previous zero 
+    prev_prev_zero = -1 
+
+    # Traverse the input array 
+    for curr in range(n): 
+
+        # If current element is 0, 
+        # then calculate the difference 
+        # between curr and prev_prev_zero 
+        if (arr[curr] == 0): 
+
+            # Update result if count of 
+            # 1s around prev_zero is more 
+            if (curr - prev_prev_zero > max_count): 
+
+                max_count = curr - prev_prev_zero 
+                max_index = prev_zero 
+
+            # Update for next iteration 
+            prev_prev_zero = prev_zero 
+            prev_zero = curr 
+
+    # Check for the last encountered zero 
+    if (n-prev_prev_zero > max_count): 
+        max_index = prev_zero 
+
+    return max_index 
+
+# Driver program 
+
+arr = [1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1] 
+n = len(arr) 
+
+print("Index of 0 to be replaced is ", 
+    maxOnesIndex(arr, n)) 
+
+# This code is contributed 
+# by Anant Agarwal. 
+```
+
+### C#
+
+```cs
+// C# program to find Index of 0 to be replaced 
+// with 1 to get longest continuous sequence of 
+// 1s in a binary array 
+using System; 
+
+class GFG { 
+
+    // Returns index of 0 to be replaced with 
+    // 1 to get longest continuous sequence of 
+    // 1s. If there is no 0 in array, then it 
+    // returns -1. 
+    static int maxOnesIndex(int []arr, int n) 
+    { 
+
+        // for maximum number of 1 around a zero 
+        int max_count = 0;  
+
+        // for storing result 
+        int max_index = 0;  
+
+        // index of previous zero 
+        int prev_zero = -1;  
+
+        // index of previous to previous zero 
+        int prev_prev_zero = -1;  
+
+        // Traverse the input array 
+        for (int curr = 0; curr < n; ++curr) 
+        { 
+
+            // If current element is 0, then  
+            // calculate the difference 
+            // between curr and prev_prev_zero 
+            if (arr[curr] == 0) 
+            { 
+
+                // Update result if count of 1s  
+                // around prev_zero is more 
+                if (curr - prev_prev_zero > max_count) 
+                { 
+                    max_count = curr - prev_prev_zero; 
+                    max_index = prev_zero; 
+                } 
+
+                // Update for next iteration 
+                prev_prev_zero = prev_zero; 
+                prev_zero = curr; 
+            } 
+        } 
+
+        // Check for the last encountered zero 
+        if (n-prev_prev_zero > max_count) 
+            max_index = prev_zero; 
+
+        return max_index; 
+    } 
+
+    // Driver program to test above function 
+    public static void Main() 
+    { 
+        int []arr = {1, 1, 0, 0, 1, 0, 1, 1, 1, 
+                                     0, 1, 1, 1}; 
+        int n = arr.Length; 
+    Console.Write("Index of 0 to be replaced is "
+                         + maxOnesIndex(arr, n));       
+    } 
+} 
+
+// This code is contributed by nitin mittal. 
+```
+
+# PHP
+
+## 算法示例：寻找数组中应替换为1的0的索引
+
+```php
+<?php 
+// PHP program to find Index of 0 to be 
+// replaced with 1 to get longest continuous 
+// sequence of 1s in a binary array 
+
+// Returns index of 0 to be replaced with 
+// 1 to get longest continuous sequence of 1s. 
+// If there is no 0 in array, then it returns -1. 
+function maxOnesIndex( $arr, $n) 
+{ 
+    $max_count = 0; // for maximum number of 
+                    // 1 around a zero 
+    $max_index; // for storing result 
+    $prev_zero = -1; // index of previous zero 
+    $prev_prev_zero = -1; // index of previous to 
+                          // previous zero 
+
+    // Traverse the input array 
+    for ($curr = 0; $curr < $n; ++$curr) 
+    { 
+        // If current element is 0, then 
+        // calculate the difference 
+        // between curr and prev_prev_zero 
+        if ($arr[$curr] == 0) 
+        { 
+            // Update result if count of 1s 
+            // around prev_zero is more 
+            if ($curr - $prev_prev_zero > $max_count) 
+            { 
+                $max_count = $curr - $prev_prev_zero; 
+                $max_index = $prev_zero; 
+            } 
+
+            // Update for next iteration 
+            $prev_prev_zero = $prev_zero; 
+            $prev_zero = $curr; 
+        } 
+    } 
+
+    // Check for the last encountered zero 
+    if ($n - $prev_prev_zero > $max_count) 
+    $max_index = $prev_zero; 
+
+    return $max_index; 
+} 
+
+// Driver Code 
+$arr = array(1, 1, 0, 0, 1, 0, 1, 
+             1, 1, 0, 1, 1, 1); 
+$n = sizeof($arr); 
+echo "Index of 0 to be replaced is ", 
+      maxOnesIndex($arr, $n); 
+
+// This code is contributed by ajit 
+?> 
+```
+
+`输出`：
+```
+Index of 0 to be replaced is 9
+```
+
+`时间复杂度`：`O(n)`。
+
+`辅助空间`：`O(1)`。
