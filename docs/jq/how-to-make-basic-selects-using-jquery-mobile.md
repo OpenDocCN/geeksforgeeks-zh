@@ -1,0 +1,74 @@
+# 如何使用 jQuery Mobile 进行基本选择？
+
+> 原文:[https://www . geeksforgeeks . org/如何制作-基本-选择-使用-jquery-mobile/](https://www.geeksforgeeks.org/how-to-make-basic-selects-using-jquery-mobile/)
+
+**jQuery Mobile** 是一种基于网络的技术，用于制作可在所有智能手机、平板电脑和台式机上访问的响应内容。在本文中，我们将使用 jQuery Mobile 进行基本选择。
+
+**方法:**首先，添加项目所需的 jQuery Mobile 脚本。
+
+> <link rel="”stylesheet”" href="”http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css”/">
+> <脚本 src = " http://code . jquery . com/jquery-1 . 11 . 1 . min . js "></脚本>
+> <脚本 src = " http://code . jquery . com/mobile/1 . 4 . 5/jquery . mobile-1 . 4 . 5 . min . js "></脚本>
+
+**示例:**
+
+## 超文本标记语言
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href=
+"http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+
+    <script src=
+        "http://code.jquery.com/jquery-1.11.1.min.js">
+    </script>
+
+    <script src=
+"http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js">
+    </script>
+</head>
+
+<body>
+    <center>
+        <h1>GeeksforGeeks</h1>
+        <h4>
+            Basic Selects using
+            jQuery Mobile
+        </h4>
+    </center>
+
+    <form>
+        <div data-role="fieldcontain">
+            <label for="Geeks">
+                Select Element:
+            </label>
+            <select name="Geeks" id="Geeks">
+                <option value="1">
+                    Geek1
+                </option>
+
+                <option value="2">
+                    Geek2
+                </option>
+
+                <option value="3">
+                    Geek3
+                </option>
+
+                <option value="4">
+                    Geek4
+                </option>
+            </select>
+        </div>
+    </form>
+</body>
+
+</html>
+```
+
+**输出:**
+
+![](img/ce3b5990315a4630d06acd0f49b3a56b.png)
