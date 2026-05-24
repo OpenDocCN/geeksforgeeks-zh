@@ -1,0 +1,268 @@
+# 使所有元素相等的`k`次运算的最小增量
+
+> 原文： [https://www.geeksforgeeks.org/minimum-increment-k-operations-make-elements-equal/](https://www.geeksforgeeks.org/minimum-increment-k-operations-make-elements-equal/)
+
+给您一个`n`元素数组，您必须找到使数组的所有元素相等所需的操作数。单个操作可以将元素增加`k`。如果不可能使所有元素相等，则打印 -1。
+
+**示例**：
+
+```
+Input : arr[] = {4, 7, 19, 16},  k = 3
+Output : 10
+
+Input : arr[] = {4, 4, 4, 4}, k = 3
+Output : 0
+
+Input : arr[] = {4, 2, 6, 8}, k = 3
+Output : -1
+```
+
+为了解决这个问题，我们需要检查所有元素是否可以相等，也只能通过从元素值中增加`k`来检查。为此，我们必须检查任何两个元素的差应始终被`k`整除。如果是这样，那么所有元素都可以变得相等，否则无论如何都不能通过使它们递增`k`来变得相等。同样，可以通过找到所有元素的`(max – Ai) / k`值来计算所需的操作次数。其中`max`是数组的最大元素。
+
+算法：
+
+```
+// iterate for all elements
+for (int i=0; i<n; i++)
+{
+    // check if element can make equal to max
+    //  or not if not then return -1
+    if ((max - arr[i]) % k != 0 )
+        return -1;
+
+    // else update res for required operations
+    else
+        res += (max - arr[i]) / k ;
+}
+
+return res;
+```
+
+## C++
+
+```cpp
+// Program to make all array equal 
+#include <bits/stdc++.h> 
+using namespace std; 
+
+// function for calculating min operations 
+int minOps(int arr[], int n, int k) 
+{ 
+    // max elements of array 
+    int max = *max_element(arr, arr + n); 
+    int res = 0; 
+
+    // iterate for all elements 
+    for (int i = 0; i < n; i++) { 
+
+        // check if element can make equal to 
+        // max or not if not then return -1 
+        if ((max - arr[i]) % k != 0) 
+            return -1; 
+
+        // else update res for required operations 
+        else
+            res += (max - arr[i]) / k; 
+    } 
+
+    // return result 
+    return res; 
+} 
+
+// driver program 
+int main() 
+{ 
+    int arr[] = { 21, 33, 9, 45, 63 }; 
+    int n = sizeof(arr) / sizeof(arr[0]); 
+    int k = 6; 
+    cout << minOps(arr, n, k); 
+    return 0; 
+} 
+```
+
+## Java
+
+```java
+// Program to make all array equal 
+import java.io.*; 
+import java.util.Arrays; 
+
+class GFG { 
+    // function for calculating min operations 
+    static int minOps(int arr[], int n, int k) 
+    { 
+        // max elements of array 
+        Arrays.sort(arr); 
+        int max = arr[arr.length - 1]; 
+        int res = 0; 
+
+        // iterate for all elements 
+        for (int i = 0; i < n; i++) { 
+
+            // check if element can make equal to 
+            // max or not if not then return -1 
+            if ((max - arr[i]) % k != 0) 
+                return -1; 
+
+            // else update res for required operations 
+            else
+                res += (max - arr[i]) / k; 
+        } 
+
+        // return result 
+        return res; 
+    } 
+
+    // Driver program 
+    public static void main(String[] args) 
+    { 
+        int arr[] = { 21, 33, 9, 45, 63 }; 
+        int n = arr.length; 
+        int k = 6; 
+        System.out.println(minOps(arr, n, k)); 
+    } 
+} 
+
+// This code is contributed by vt_m 
+```
+
+## Python3
+
+```py
+# Python3 Program to make all array equal 
+
+# function for calculating min operations 
+def minOps(arr, n, k): 
+
+    # max elements of array 
+    max1 = max(arr) 
+    res = 0
+
+    # iterate for all elements 
+    for i in range(0, n):  
+
+        # check if element can make equal to 
+        # max or not if not then return -1 
+        if ((max1 - arr[i]) % k != 0): 
+            return -1
+
+        # else update res fo 
+        # required operations 
+        else: 
+            res += (max1 - arr[i]) / k 
+
+    # return result 
+    return int(res) 
+
+# driver program 
+arr = [21, 33, 9, 45, 63]  
+n = len(arr) 
+k = 6
+print(minOps(arr, n, k)) 
+
+# This code is contributed by  
+# Smitha Dinesh Semwal 
+```
+
+## C#
+
+```cs
+// C# program Minimum increment by 
+// k operations to make all elements equal. 
+using System; 
+
+class GFG { 
+
+    // function for calculating min operations 
+    static int minOps(int[] arr, int n, int k) 
+    { 
+
+        // max elements of array 
+        Array.Sort(arr); 
+        int max = arr[arr.Length - 1]; 
+        int res = 0; 
+
+        // iterate for all elements 
+        for (int i = 0; i < n; i++) { 
+
+            // check if element can make 
+            // equal to max or not if not 
+            // then return -1 
+            if ((max - arr[i]) % k != 0) 
+                return -1; 
+
+            // else update res for required 
+            // operations 
+            else
+                res += (max - arr[i]) / k; 
+        } 
+
+        // return result 
+        return res; 
+    } 
+
+    // Driver program 
+    public static void Main() 
+    { 
+        int[] arr = { 21, 33, 9, 45, 63 }; 
+        int n = arr.Length; 
+        int k = 6; 
+
+        Console.Write(minOps(arr, n, k)); 
+    } 
+} 
+
+// This code is contributed by nitin mittal. 
+```
+
+## PHP
+
+```php
+<?php 
+// Program to make all array equal 
+
+// function for calculating  
+// min operations 
+function minOps($arr, $n, $k) 
+{ 
+    // max elements of array 
+    $max = max($arr); 
+    $res = 0; 
+
+    // iterate for all elements 
+    for ($i = 0; $i < $n; $i++)  
+    { 
+
+        // check if element can  
+        // make equal to max or 
+        // not if not then return -1 
+        if (($max - $arr[$i]) % $k != 0) 
+            return -1; 
+
+        // else update res for 
+        // required operations 
+        else
+            $res += ($max -  
+                     $arr[$i]) / $k; 
+    } 
+
+    // return result 
+    return $res; 
+} 
+
+// Driver Code 
+$arr = array(21, 33, 9, 45, 63); 
+$n = count($arr); 
+$k = 6; 
+print (minOps($arr, $n, $k)); 
+
+// This code is contributed  
+// by Manish Shaw(manishshaw1) 
+?> 
+```
+
+**输出**：
+
+```
+
+```
