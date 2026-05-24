@@ -1,0 +1,71 @@
+# Scala Short 类型的小于方法
+
+T2】原文: `https://www.geeksforgeeks.org/scala-short-x-int-boolean-4/` T5】
+
+简言之，16 位有符号整数（相当于 Java 的 `short` 原始类型）是 `scala.AnyVal` 的子类型。如果该值小于 `x`，则使用
+
+### 方法定义
+`def <(x: Int): Boolean`
+
+### 返回类型
+如果该值小于 `x`，则返回 `true`，否则返回 `false`。
+
+## 示例 1
+
+```scala
+// Scala program of Short <(x: Int) 
+// method
+
+// Creating object 
+object GfG 
+{
+
+// Main method 
+    def main(args: Array[String]) 
+    {
+
+// Applying Short <(x: Int) function 
+        val result = (998.toShort).<(999:Int)
+
+// Displays output 
+        println(result)
+
+} 
+} 
+```
+
+**输出:**
+
+```scala
+true
+```
+
+## 示例 2
+
+```scala
+// Scala program of Short <(x: Int) 
+// method
+
+// Creating object 
+object GfG 
+{
+
+// Main method 
+    def main(args: Array[String]) 
+    {
+
+// Applying Short <(x: Int) function 
+        val result = (102.toShort).<(101:Int)
+
+// Displays output 
+        println(result)
+
+} 
+} 
+```
+
+**输出:**
+
+```scala
+false
+```
