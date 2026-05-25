@@ -1,0 +1,98 @@
+# jQWidgets jqxButton rtl 属性
+
+> 原文: [https://www.geeksforgeeks.org/jqwidgets-jqxbutton-rtl-property/](https://www.geeksforgeeks.org/jqwidgets-jqxbutton-rtl-property/)
+
+`jQWidgets` 是一个 JavaScript 框架，用于为 PC 和移动设备制作基于 web 的应用程序。它是一个非常强大、优化、独立于平台并且得到广泛支持的框架。`jqxButton` 用于说明 jQuery 按钮小部件，它使我们能够在所需的网页上显示按钮。
+
+`rtl` 属性用于设置或获取一个值，该值说明小部件的元素是否在从右到左字体的帮助下被安排为支持区域设置。它属于布尔类型，默认值为假。
+
+## 语法
+
+设置 `rtl` 属性。
+
+```javascript
+$('#jqxButton').jqxButton({rtl : true});  
+```
+
+获得 `rtl` 房产。
+
+```javascript
+var rtl = $('#jqxButton').jqxButton('rtl'); 
+```
+
+## 链接文件
+
+从链接下载 [jQWidgets](https://www.jqwidgets.com/download/) 。在 HTML 文件中，找到下载文件夹中的脚本文件。
+
+```html
+<link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css">
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
+<script type="text/javascript" src="jqwidgets/jqxbuttons.js"></script>
+```
+
+下面的例子说明了 jQWidgets 中的 `jqxButton` `rtl` 属性。
+
+## 示例
+
+### 示例代码
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" 
+          href="jqwidgets/styles/jqx.base.css" 
+          type="text/css" />
+    <script type="text/javascript" 
+            src="scripts/jquery-1.11.1.min.js">
+    </script>
+    <script type="text/javascript" 
+            src="jqwidgets/jqxcore.js">
+    </script>
+    <script type="text/javascript" 
+            src="jqwidgets/jqxbuttons.js">
+    </script>
+</head>
+
+<body>
+    <center>
+        <h1 style="color: green">GeeksforGeeks</h1>
+        <h3>jQWidgets jqxButton rtl Property</h3>
+        <br />
+        <input type="button" id="jqxBtn" 
+               style="padding: 5px 20px"
+               value="Click here" />
+        <div id="log"></div>
+    </center>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#jqxBtn").jqxButton({
+                width: "200px",
+                height: "80px",
+                rtl: true,
+            });
+
+            $("#jqxBtn").on("click", function (event) {
+                var rtl = $("#jqxBtn")
+                    .jqxButton("rtl");
+                $("#log").html(
+                    "Aligned right to left: " + rtl
+                );
+            });
+        });
+    </script>
+</body>
+
+</html>
+```
+
+## 输出
+
+![](img/73ce58f9d4433625fcf79d7d769a6c65.png)
+
+## 参考
+
+[https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxbutton/jquery-button-api.htm](https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxbutton/jquery-button-api.htm)
