@@ -1,0 +1,25 @@
+# Jumpshare 和 TitanFile 的区别
+
+> 原文: [https://www.geeksforgeeks.org/difference-between-jumpshare-and-titanfile/](https://www.geeksforgeeks.org/difference-between-jumpshare-and-titanfile/)
+
+## 1. Jumpshare
+`Jumpshare` 是由 `Jumpshare` 公司提供的文件共享服务。它使用户能够从个人电脑和网络上传文件。它提供免费和优质服务。它提供 2 GB 的可用存储空间。它由 `Jumpshare Incorporation` 于 2012 年推出。在 `Jumpshare` 中，最初用户不需要注册就可以上传文件，但后来注册成为强制性的。
+
+## 2. TitanFile
+`TitanFile` 是由 `TitanFile` 公司提供的文件共享服务和云存储服务。它是可用的安全云计算服务之一。它主要用于加拿大和美国。它为专业人员提供了一种安全的方式来共享文件和与他们的客户交流。它是由 `Titan File Corporation` 在 2011 年推出的。它不提供免费存储空间。
+
+## Jumpshare 和 TitanFile 的区别
+
+| S.No | JUMPSHARE | TitanFile |
+| --- | --- | --- |
+| 1 | 由`Jumpshare Incorporation`开发并拥有。 | 它由`Titan File Corporation`开发和拥有。 |
+| 2 | 它于 2012 年推出。 | 它于 2011 年推出。 |
+| 3 | 它提供 2 GB 的可用存储空间。 | 它不提供免费存储空间。 |
+| 4 | 它为付费用户提供有限的最大存储空间。 | 它为付费用户提供无限的最大存储空间。 |
+| 5 | 全世界都在使用它。 | 它主要用于加拿大和美国。 |
+| 6 | 此处的最大存储大小为 1 TB。 | 这里的最大存储空间是无限的。 |
+| 7 | 支持远程上传。 | 它不支持远程上传。 |
+| 8 | 最大文件大小为免费 250 MB，付费不限。 | 最大文件大小免费为 100 MB，付费为 1 GB，专业人士为 4 GB。 |
+| 9 | 它提供实时文件共享，内置截图、笔记和语音剪辑实用程序。 | 它不提供内置实用程序的实时文件共享。 |
+| 10 | 它的初始版本不需要注册，但后来被强制使用。 | 从第一个版本开始，注册就是强制性的。 |
+| 11 | 它有流量或带宽限制，免费每月 5 GB，付费每月 200 GB。 | 它没有流量或带宽限制。 |
