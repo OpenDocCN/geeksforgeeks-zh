@@ -1,0 +1,77 @@
+# Node.js `console.dirxml()`方法
+
+> 原文：[https://www.geeksforgeeks.org/node-js-console-dirxml-method/](https://www.geeksforgeeks.org/node-js-console-dirxml-method/)
+
+`console.dirxml()`方法通过传递接收到的参数调用 [`console.log()`](https://www.geeksforgeeks.org/node-js-console-log-function/) 方法，这个元素不产生任何 xml 格式。
+
+## 语法
+
+```js
+console.dirxml(object_or_element)
+```
+
+## 参数
+
+这个函数接受以下参数：
+
+*   `Object`：此方法接受一个 JavaScript 对象或元素。
+
+## 返回值
+
+该方法返回传递的对象或元素。
+
+下面的例子说明了 `process.memoryUsage()` 方法在 Node.js 中的使用。
+
+## 示例 1
+
+### index.js
+
+```js
+// Importing console module
+const console = require('console');
+
+var a = 'GeeksforGeeks';
+
+// Calling console.dirxml() function
+console.dirxml(a)
+```
+
+使用以下命令运行 `index.js` 文件：
+
+```js
+node index.js
+```
+
+**输出：**
+
+```js
+GeeksforGeeks
+```
+
+## 示例 2
+
+使用以下代码创建一个 `index.js` 文件。
+
+```js
+// Importing console module
+const console = require('console');
+
+// Calling console.dirxml() function
+console.dirxml("Hi there, Geeks")
+```
+
+使用以下命令运行 `index.js` 文件：
+
+```js
+node index.js
+```
+
+**输出：**
+
+```js
+Hi there, Geeks
+```
+
+## 参考
+
+[https://nodejs.org/api/console.html#console_console_dirxml_data](https://nodejs.org/api/console.html#console_console_dirxml_data)
