@@ -1,0 +1,98 @@
+# Node.js `v8.deserialize()` 方法
+
+> 原文：[https://www.geeksforgeeks.org/node-js-v8-deserialize-method/](https://www.geeksforgeeks.org/node-js-v8-deserialize-method/)
+
+`v8.deserialize()` 方法是 `v8` 模块的内置 API，用于使用默认反序列化程序将缓冲的数据反序列化为 JS 值。
+
+## 语法
+
+```js
+v8.deserialize( buffer );
+```
+
+## 参数
+
+该方法接受一个参数，如下所述：
+
+*   `Buffer`：这是一个必需的参数，类型为 `Buffer`/`TypedArray`/`DataView`，指代要反序列化的缓冲数据。
+
+## 返回值
+
+此方法在反序列化缓冲的数据后返回 JS 值。
+
+下面的例子说明了在 Node.js 中使用 `v8.deserialize()` 方法。
+
+### 示例 1
+
+**文件名：** `index.js`
+
+```js
+// Accessing v8 module
+const v8 = require('v8');
+
+// Calling v8.deserialize() 
+console.log(v8.deserialize(v8.serialize("geeksforgeeks")));
+```
+
+使用以下命令运行 `index.js` 文件：
+
+```bash
+node index.js
+```
+
+**输出：**
+
+```js
+geeksforgeeks
+```
+
+### 示例 2
+
+**文件名：** `index.js`
+
+```js
+// Accessing v8 module
+const v8 = require('v8');
+
+// Calling v8.deserialize() 
+deserialized_data = v8.deserialize(v8.serialize("abcdefg"));
+console.log("\nDeserialized data is ");
+console.log(deserialized_data);
+
+deserialized_data = v8.deserialize(v8.serialize(58375693));
+console.log("\nDeserialized data is ");
+console.log(deserialized_data);
+
+deserialized_data = v8.deserialize(v8.serialize(73847.0234));
+console.log("\nDeserialized data is ");
+console.log(deserialized_data);
+
+deserialized_data = v8.deserialize(v8.serialize('Geek'));
+console.log("\nDeserialized data is ");
+console.log(deserialized_data);
+```
+
+使用以下命令运行 `index.js` 文件：
+
+```bash
+node index.js
+```
+
+**输出：**
+
+```js
+Deserialized data is
+abcdefg
+
+Deserialized data is
+
+Deserialized data is
+73847.0234
+
+Deserialized data is
+Geek
+```
+
+## 参考
+
+[https://nodejs.org/api/v8.html#v8_v8_deserialize_buffer](https://nodejs.org/api/v8.html#v8_v8_deserialize_buffer)
