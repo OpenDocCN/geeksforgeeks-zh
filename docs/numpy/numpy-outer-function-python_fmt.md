@@ -1,0 +1,67 @@
+# numpy.outer()函数–Python
+
+> 原文:[https://www.geeksforgeeks.org/numpy-outer-function-python/](https://www.geeksforgeeks.org/numpy-outer-function-python/)
+
+`numpy.outer()` 函数计算两个向量的外积。
+
+> **语法:** `numpy.outer(a, b, out=None)`
+>
+> **参数:**
+> **a :** 【array_like】第一个输入向量。如果输入还不是一维的，则将其展平。
+> **b:** 【array_like】第二输入向量。如果输入还不是一维的，则将其展平。
+> **out:** 【ndarray，可选】存储结果的位置。
+>
+> **返回:** 【ndarray】返回两个向量的外积。`out[i, j] = a[i] * b[j]`
+
+## 代码#1 :
+
+```py
+# Python program explaining
+# numpy.outer() function
+
+# importing numpy as geek
+import numpy as geek
+
+a = geek.ones(4)
+b = geek.linspace(-1, 2, 4)
+
+gfg = geek.outer(a, b)
+
+print (gfg)
+```
+
+**输出:**
+
+```py
+[[-1.  0.  1.  2.]
+ [-1.  0.  1.  2.]
+ [-1.  0.  1.  2.]
+ [-1.  0.  1.  2.]]
+```
+
+## 代码#2 :
+
+```py
+# Python program explaining
+# numpy.outer() function
+
+# importing numpy as geek
+import numpy as geek
+
+a = geek.ones(5)
+b = geek.linspace(-2, 2, 5)
+
+gfg = geek.outer(a, b)
+
+print (gfg)
+```
+
+**输出:**
+
+```py
+[[-2. -1.  0.  1.  2.]
+ [-2. -1.  0.  1.  2.]
+ [-2. -1.  0.  1.  2.]
+ [-2. -1.  0.  1.  2.]
+ [-2. -1.  0.  1.  2.]]
+```

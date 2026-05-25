@@ -1,0 +1,63 @@
+# numpy.ndarray.resize() 函数 – Python
+
+> 原文: [https://www.geeksforgeeks.org/numpy-ndarray-resize-function-python/](https://www.geeksforgeeks.org/numpy-ndarray-resize-function-python/)
+
+`numpy.ndarray.resize()` 函数用于改变数组的形状和大小。
+
+## 语法
+`numpy.ndarray.resize(new_shape, refcheck=True)`
+
+## 参数
+- `new_shape`：【整数元组，或 n 个整数】调整后数组的形状。
+- `refcheck`：【bool，可选】如果为 `False`，将不检查引用计数。默认值为 `True`。
+
+## 返回值
+无
+
+## 代码示例 1
+
+```py
+# Python program explaining
+# numpy.ndarray.resize() function
+
+# importing numpy as geek 
+import numpy as geek
+
+arr = geek.array([[0, 1], [2, 3]])
+
+# this function change the shape and size
+# of the array & return None
+gfg = arr.resize((2, 1))
+
+print (gfg)
+```
+
+**输出:**
+
+```py
+None
+```
+
+## 代码示例 2
+
+```py
+# Python program explaining
+# numpy.ndarray.resize() function
+
+# importing numpy as geek 
+import numpy as geek
+
+arr = geek.array([[0, 1], [2, 3]], order = 'F')
+
+# this function change the shape and size
+# of the array & return None
+gfg = arr.resize((2, 1))
+
+print (gfg)
+```
+
+**输出:**
+
+```py
+None
+```
