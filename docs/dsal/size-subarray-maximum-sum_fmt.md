@@ -1,0 +1,252 @@
+# 具有最大总和的子数组的大小
+
+> 原文： [https://www.geeksforgeeks.org/size-subarray-maximum-sum/](https://www.geeksforgeeks.org/size-subarray-maximum-sum/)
+
+给定一个数组，找到具有最大和的子数组的长度。
+
+**示例**：
+
+```
+Input :  a[] = {1, -2, 1, 1, -2, 1}
+Output : Length of the subarray is 2
+Explanation: Subarray with consecutive elements 
+and maximum sum will be {1, 1}. So length is 2
+
+Input : ar[] = { -2, -3, 4, -1, -2, 1, 5, -3 }
+Output : Length of the subarray is 5
+Explanation: Subarray with consecutive elements 
+and maximum sum will be {4, -1, -2, 1, 5}. 
+```
+
+此问题主要是[最大和连续子数组问题](https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/)的变体。
+
+这个想法是，只要这里结束的总和小于 0，就更新起始索引。
+
+## C++
+
+```cpp
+// C++ program to print length of the largest 
+// contiguous array sum 
+#include<bits/stdc++.h> 
+using namespace std; 
+
+int maxSubArraySum(int a[], int size) 
+{ 
+    int max_so_far = INT_MIN, max_ending_here = 0, 
+       start =0, end = 0, s=0; 
+
+    for (int i=0; i< size; i++ ) 
+    { 
+        max_ending_here += a[i]; 
+
+        if (max_so_far < max_ending_here) 
+        { 
+            max_so_far = max_ending_here; 
+            start = s; 
+            end = i; 
+        } 
+
+        if (max_ending_here < 0) 
+        { 
+            max_ending_here = 0; 
+            s = i + 1; 
+        } 
+    } 
+
+    return (end - start + 1); 
+} 
+
+/*Driver program to test maxSubArraySum*/
+int main() 
+{ 
+    int a[] = {-2, -3, 4, -1, -2, 1, 5, -3}; 
+    int n = sizeof(a)/sizeof(a[0]); 
+    cout << maxSubArraySum(a, n); 
+    return 0; 
+} 
+```
+
+## Java
+
+```java
+// Java program to print length of the largest 
+// contiguous array sum 
+class GFG { 
+
+    static int maxSubArraySum(int a[], int size) 
+    { 
+        int max_so_far = Integer.MIN_VALUE, 
+        max_ending_here = 0,start = 0, 
+        end = 0, s = 0; 
+
+        for (int i = 0; i < size; i++)  
+        { 
+            max_ending_here += a[i]; 
+
+            if (max_so_far < max_ending_here)  
+            { 
+                max_so_far = max_ending_here; 
+                start = s; 
+                end = i; 
+            } 
+
+            if (max_ending_here < 0)  
+            { 
+                max_ending_here = 0; 
+                s = i + 1; 
+            } 
+        } 
+        return (end - start + 1); 
+    } 
+
+    // Driver code 
+    public static void main(String[] args) 
+    { 
+        int a[] = { -2, -3, 4, -1, -2, 1, 5, -3 }; 
+        int n = a.length; 
+        System.out.println(maxSubArraySum(a, n)); 
+    } 
+} 
+```
+
+## Python3
+
+```py
+# Python program to print largest contiguous array sum 
+
+from sys import maxsize 
+
+# Function to find the maximum contiguous subarray 
+# and print its starting and end index 
+def maxSubArraySum(a,size): 
+
+    max_so_far = -maxsize - 1
+    max_ending_here = 0
+    start = 0
+    end = 0
+    s = 0
+
+    for i in range(0,size): 
+
+        max_ending_here += a[i] 
+
+        if max_so_far < max_ending_here: 
+            max_so_far = max_ending_here 
+            start = s 
+            end = i 
+
+        if max_ending_here < 0: 
+            max_ending_here = 0
+            s = i+1
+
+    return (end - start + 1) 
+
+# Driver program to test maxSubArraySum 
+a = [-2, -3, 4, -1, -2, 1, 5, -3] 
+print(maxSubArraySum(a,len(a))) 
+```
+
+## C#
+
+```cs
+// C# program to print length of the 
+// largest contiguous array sum 
+using System; 
+
+class GFG { 
+
+    // Function to find maximum subarray sum 
+    static int maxSubArraySum(int []a, int size) 
+    { 
+        int max_so_far = int.MinValue, 
+        max_ending_here = 0,start = 0, 
+        end = 0, s = 0; 
+
+        for (int i = 0; i < size; i++)  
+        { 
+            max_ending_here += a[i]; 
+
+            if (max_so_far < max_ending_here)  
+            { 
+                max_so_far = max_ending_here; 
+                start = s; 
+                end = i; 
+            } 
+
+            if (max_ending_here < 0)  
+            { 
+                max_ending_here = 0; 
+                s = i + 1; 
+            } 
+        } 
+        return (end - start + 1); 
+    } 
+
+    // Driver code 
+    public static void Main(String[] args) 
+    { 
+        int []a = {-2, -3, 4, -1, -2, 1, 5, -3}; 
+        int n = a.Length; 
+        Console.Write(maxSubArraySum(a, n)); 
+    } 
+} 
+
+// This code is contributed by parashar... 
+```
+
+## PHP
+
+```php
+<?php 
+// PHP program for Bresenham’s 
+// Line Generation Assumptions : 
+
+// 1) Line is drawn from 
+// left to right. 
+// 2) x1 < x2 and y1 < y2 
+// 3) Slope of the line is 
+// between 0 and 1. 
+// We draw a line from lower 
+// left to upper right. 
+
+// function for line generation 
+function bresenham($x1, $y1, $x2, $y2) 
+{ 
+$m_new = 2 * ($y2 - $y1); 
+$slope_error_new = $m_new - ($x2 - $x1); 
+for ($x = $x1, $y = $y1; $x <= $x2; $x++) 
+{ 
+    echo "(" ,$x , "," , $y, ")\n"; 
+
+    // Add slope to increment 
+    // angle formed 
+    $slope_error_new += $m_new; 
+
+    // Slope error reached limit, 
+    // time to increment y and 
+    // update slope error. 
+    if ($slope_error_new >= 0) 
+    { 
+        $y++; 
+        $slope_error_new -= 2 * ($x2 - $x1); 
+    } 
+} 
+} 
+
+// Driver Code 
+$x1 = 3; $y1 = 2; $x2 = 15; $y2 = 5; 
+bresenham($x1, $y1, $x2, $y2); 
+
+// This code is contributed by nitin mittal. 
+?> 
+```
+
+**输出**：
+
+```
+
+```
+
+* * *
+
+* * *
