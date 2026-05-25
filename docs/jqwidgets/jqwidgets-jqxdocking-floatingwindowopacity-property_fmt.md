@@ -1,0 +1,124 @@
+# jQWidgets jqxDocking 浮动窗口不透明属性
+
+> 原文: [https://www.geeksforgeeks.org/jqwidgets-jqxdocking-floatingwindowopacity-property/](https://www.geeksforgeeks.org/jqwidgets-jqxdocking-floatingwindowopacity-property/)
+
+**jQWidgets** 是一个 JavaScript 框架，用于为 PC 和移动设备制作基于 web 的应用程序。它是一个非常强大、优化、独立于平台并且得到广泛支持的框架。`jqxDocking` 用于表示一个小部件来管理多个窗口以及一个网页的布局。在这里，指定的 `jqxDocking` 中的每个窗口都可以执行多个任务，例如可以在网页上拖动、停靠到停靠区域、从停靠中移除、折叠到最小化状态以隐藏其内容，还可以展开以显示其内容。
+
+`floatingWindowOpacity` 属性用于设置或获取用户当前拖动窗口的不透明度。
+
+## 语法
+
+*   设置 `floatingWindowOpacity` 属性:
+
+```javascript
+$('#jqxDocking').jqxDocking({ 
+    floatingWindowOpacity: 1 
+});
+```
+
+*   获取 `floatingWindowOpacity` 属性:
+
+```javascript
+var floatingWindowOpacity = $('#jqxDocking')
+        .jqxDocking('floatingWindowOpacity');
+```
+
+## 链接文件
+
+从给定链接下载 [jQWidgets](https://www.jqwidgets.com/download/)。在 HTML 文件中，找到下载文件夹中的脚本文件。
+
+```html
+<link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css"/>
+<script type="text/javascript" src="scripts/jquery.js"></script>
+<script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
+<script type="text/javascript" src="jqwidgets/jqxdocking.js"></script>
+```
+
+## 示例
+
+下面的示例说明了 jQWidgets `jqxDocking` `floatingWindowOpacity` 属性。在下面的例子中，`floatingWindowOpacity` 属性的值被设置为 1。
+
+### HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" 
+          href="jqwidgets/styles/jqx.base.css"
+          type="text/css"/>
+    <script type="text/javascript" 
+            src="scripts/jquery.js">
+    </script>
+    <script type="text/javascript" 
+            src="jqwidgets/jqxcore.js">
+    </script>
+    <script type="text/javascript" 
+            src="jqwidgets/jqxdocking.js">
+    </script>
+    <script type="text/javascript" 
+            src="jqwidgets/jqxwindow.js">
+    </script>
+</head>
+
+<body>
+    <center>
+        <h1 style="color: green;">
+            GeeksforGeeks
+        </h1>
+        <h3>
+            jQWidgets jqxDocking floatingWindowOpacity Property
+        </h3>
+        <div id="jqx_Docking" style="margin: 25px;" 
+             align="left">
+            <div>
+                <div id="Window">
+                    <div>Window</div>
+                    <div>
+                        <h8>Content of the window</h8>
+                        <ul>
+                            <li>GFG</li>
+                            <li>CSE</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="button" style="margin: 29px;"
+               id="jqxbutton_for_floatingWindowOpacity"
+                 value="Value of the floatingWindowOpacity property"/>
+        <div id="log"></div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#jqx_Docking").jqxDocking({
+                    width: 250,
+                    floatingWindowOpacity: 1
+                });
+                $("#jqxbutton_for_floatingWindowOpacity").
+                    jqxButton({
+                        width: 320
+                    });
+                $('#jqxbutton_for_floatingWindowOpacity').on(
+                    'click', function () {
+                        var floatingWindowOpacity_Value =
+                            $('#jqx_Docking').jqxDocking(
+                                'floatingWindowOpacity');
+                        $("#log").html(JSON.stringify(
+                            floatingWindowOpacity_Value));
+                    });
+            });
+        </script>
+    </center>
+</body>
+
+</html>
+```
+
+## 输出
+
+![](img/71c244b3e117aa4efd3bb8cd65a0aafb.png)
+
+## 参考
+
+[https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxdocking/jquery-docking-api.htm](https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxdocking/jquery-docking-api.htm)
