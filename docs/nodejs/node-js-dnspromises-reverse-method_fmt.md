@@ -1,0 +1,81 @@
+# Node.js dnsPromises.reverse() 方法
+
+> 原文: [https://www.geeksforgeeks.org/node-js-dnspromises-reverse-method/](https://www.geeksforgeeks.org/node-js-dnspromises-reverse-method/)
+
+`dnsPromises.reverse()` 方法是 `dns` 模块 `Promises` 对象的内置应用编程接口，用于使用反向 DNS 查询解析指定 IP 地址的主机名。
+
+## 语法
+
+```js
+dnsPromises.reverse(ip_address)
+```
+
+## 参数
+
+该方法有一个参数，描述如下：
+
+*   `ip_address`: 此参数指定要解析的 IP 地址（IPv4 或 IPv6）。
+
+## 返回值
+
+此方法返回错误和主机名。
+
+## 示例
+
+下面的例子说明了该方法在 Node.js 中的使用：
+
+### 例 1
+
+```js
+// Node.js program to demonstrate the
+// dnsPromises.reverse() method
+
+// Accessing promises object from dns module
+const dns = require('dns');
+const dnsPromises = dns.promises;
+
+// Calling dnsPromises.reverse() method
+dnsPromises.reverse('31.13.66.35').then((res) => {
+    console.log(res);
+});
+```
+
+**输出:**
+
+```js
+[ 'edge-star-mini-shv-01-iad3.facebook.com' ]
+```
+
+### 例 2
+
+```js
+// Node.js program to demonstrate the
+// dnsPromises.reverse() method
+
+// Accessing promises object from dns module
+const dns = require('dns');
+const dnsPromises = dns.promises;
+
+// Calling dnsPromises.reverse() method
+// asynchronously
+(async function() {
+
+    // Records from reverse function
+    const records = await dnsPromises.reverse('34.218.62.116');
+
+    // Printing records
+    console.log("from async: ");
+    console.log(records);
+})();
+```
+
+**输出:**
+
+```js
+from async:
+[ 'ec2-34-218-62-116.us-west-2.compute.amazonaws.com' ]
+```
+
+**注意:** 以上程序使用 `node index.js` 命令编译运行。
+
+**参考:** [https://nodejs.org/api/dns.html#dns_dnspromises_reverse_ip](https://nodejs.org/api/dns.html#dns_dnspromises_reverse_ip)
