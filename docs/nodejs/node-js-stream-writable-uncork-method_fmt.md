@@ -1,0 +1,117 @@
+# Node.js Stream 可写流 `uncork()` 方法
+
+> 原文：[https://www.geeksforgeeks.org/node-js-stream-writable-uncork-method/](https://www.geeksforgeeks.org/node-js-stream-writable-uncork-method/)
+
+`可写流.uncork()` 方法是 `stream` 模块的内置 API，用于在调用 `stream.cork()` 方法时刷新所有缓冲的数据。
+
+## 语法
+
+```js
+writable.uncork()
+```
+
+## 参数
+
+此方法不接受任何参数。
+
+## 返回值
+
+如果正在调用这个方法，那么被塞住的数据将再次显示在输出中。
+
+下面的例子说明了在 Node.js 中 `可写流.uncork()` 方法的使用：
+
+## 例 1
+
+```js
+// Node.js program to demonstrate the
+// writable.uncork() method
+const stream = require('stream');
+
+// Creating a stream and creating
+// a write function
+const writable = new stream.Writable({
+  // Write function with its
+  // parameters
+  write: function(chunk, encoding, next) {
+    // Converting the chunk of
+    // data to string
+    console.log(chunk.toString());
+    next();
+  }
+});
+
+// Writing data
+writable.write('hi');
+
+// Calling cork() function
+writable.cork();
+
+// Again writing some data
+writable.write('hello');
+writable.write('world');
+
+// Calling uncork() function
+writable.uncork();
+```
+
+## 输出
+
+```js
+hi
+hello
+world
+```
+
+在上面的例子中，被塞住的数据也在输出中返回，因为在此之后调用了 `uncork()` 函数。
+
+## 例 2
+
+```js
+// Node.js program to demonstrate the
+// writable.uncork() method
+const stream = require('stream');
+
+// Creating a stream and creating
+// a write function
+const writable = new stream.Writable({
+  // Write function with its
+  // parameters
+  write: function(chunk, encoding, next) {
+    // Converting the chunk of
+    // data to string
+    console.log(chunk.toString());
+    next();
+  }
+});
+
+// Calling cork() function
+writable.cork();
+
+// Writing data
+writable.write('hi');
+
+// Calling cork() function
+writable.cork();
+
+// Again writing some data
+writable.write('hello');
+
+// Calling uncork function
+// using nextTick()
+process.nextTick(() => {
+  // Calling uncork function
+  writable.uncork();
+  writable.uncork();
+});
+```
+
+## 输出
+
+```js
+hi
+hello
+```
+
+所以，你需要调用 `uncork()` 函数的次数与调用 `cork()` 函数的次数相同。在上面的例子中，我们已经调用了两次 `cork()` 函数，所以 `uncork()` 函数也被调用了两次。
+
+**参考：** [https://nodejs.org/api/stream.html#stream_writable_uncork](https://nodejs.org/api/stream.html#stream_writable_uncork)
