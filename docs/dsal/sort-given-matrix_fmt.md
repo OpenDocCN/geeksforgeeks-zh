@@ -1,0 +1,301 @@
+# 排序给定矩阵
+
+> 原文： [https://www.geeksforgeeks.org/sort-given-matrix/](https://www.geeksforgeeks.org/sort-given-matrix/)
+
+给定一个`n x n`矩阵。问题是要对给定矩阵进行严格排序。在这里，严格顺序表示矩阵的排序方式是，一行中的所有元素都以升序排序，并且对于行`i`，其中`1 <= i <= n-1`，行`i`的第一个元素大于或等于行`i-1`的最后一个元素。
+
+例子：
+
+```
+Input : mat[][] = { {5, 4, 7},
+                    {1, 3, 8},
+                    {2, 9, 6} }
+Output : 1 2 3
+         4 5 6
+         7 8 9
+```
+
+## 方法
+
+创建大小为`n ^ 2`的`temp[]`数组。从第一行开始，一个一个地复制给定矩阵的元素到`temp[]`中。排序`temp[]`。现在，将`temp[]`的元素一一复制到给定的矩阵中。
+
+### C++
+
+```cpp
+// C++ implementation to sort the given matrix 
+#include <bits/stdc++.h> 
+using namespace std; 
+
+#define SIZE 10 
+
+// function to sort the given matrix 
+void sortMat(int mat[SIZE][SIZE], int n) 
+{ 
+    // temporary matrix of size n^2 
+    int temp[n * n]; 
+    int k = 0; 
+
+    // copy the elements of matrix one by one 
+    // into temp[] 
+    for (int i = 0; i < n; i++) 
+        for (int j = 0; j < n; j++) 
+            temp[k++] = mat[i][j]; 
+
+    // sort temp[] 
+    sort(temp, temp + k); 
+
+    // copy the elements of temp[] one by one 
+    // in mat[][] 
+    k = 0; 
+    for (int i = 0; i < n; i++) 
+        for (int j = 0; j < n; j++) 
+            mat[i][j] = temp[k++]; 
+} 
+
+// function to print the given matrix 
+void printMat(int mat[SIZE][SIZE], int n) 
+{ 
+    for (int i = 0; i < n; i++) { 
+        for (int j = 0; j < n; j++) 
+            cout << mat[i][j] << " "; 
+        cout << endl; 
+    } 
+} 
+
+// Driver program to test above 
+int main() 
+{ 
+    int mat[SIZE][SIZE] = { { 5, 4, 7 }, 
+                            { 1, 3, 8 }, 
+                            { 2, 9, 6 } }; 
+    int n = 3; 
+
+    cout << "Original Matrix:\n"; 
+    printMat(mat, n); 
+
+    sortMat(mat, n); 
+
+    cout << "\nMatrix After Sorting:\n"; 
+    printMat(mat, n); 
+
+    return 0; 
+}
+```
+
+### Java
+
+```java
+// Java implementation to 
+// sort the given matrix 
+import java.io.*; 
+import java.util.*; 
+
+class GFG { 
+
+    static int SIZE = 10; 
+
+    // function to sort the given matrix 
+    static void sortMat(int mat[][], int n) 
+    { 
+        // temporary matrix of size n^2 
+        int temp[] = new int[n * n]; 
+        int k = 0; 
+
+        // copy the elements of matrix 
+        // one by one into temp[] 
+        for (int i = 0; i < n; i++) 
+            for (int j = 0; j < n; j++) 
+                temp[k++] = mat[i][j]; 
+
+        // sort temp[] 
+        Arrays.sort(temp); 
+
+        // copy the elements of temp[] 
+        // one by one in mat[][] 
+        k = 0; 
+        for (int i = 0; i < n; i++) 
+            for (int j = 0; j < n; j++) 
+                mat[i][j] = temp[k++]; 
+    } 
+
+    // function to print the given matrix 
+    static void printMat(int mat[][], int n) 
+    { 
+        for (int i = 0; i < n; i++) { 
+            for (int j = 0; j < n; j++) 
+                System.out.print( mat[i][j] + " "); 
+            System.out.println(); 
+        } 
+    } 
+
+    // Driver program to test above 
+    public static void main(String args[]) 
+    { 
+        int mat[][] = { { 5, 4, 7 }, 
+                        { 1, 3, 8 }, 
+                        { 2, 9, 6 } }; 
+        int n = 3; 
+
+        System.out.println("Original Matrix:"); 
+        printMat(mat, n); 
+
+        sortMat(mat, n); 
+
+        System.out.println("Matrix After Sorting:"); 
+        printMat(mat, n); 
+
+    } 
+} 
+
+// This code is contributed by Nikita Tiwari.
+```
+
+### Python3
+
+```py
+# Python3 implementation to sort 
+# the given matrix 
+
+SIZE = 10
+
+# Function to sort the given matrix 
+def sortMat(mat, n) : 
+
+    # Temporary matrix of size n^2 
+    temp = [0] * (n * n) 
+    k = 0
+
+    # Copy the elements of matrix 
+    # one by one into temp[] 
+    for i in range(0, n) : 
+
+        for j in range(0, n) : 
+
+            temp[k] = mat[i][j] 
+            k += 1
+
+    # sort temp[] 
+    temp.sort() 
+
+    # copy the elements of temp[] 
+    # one by one in mat[][] 
+    k = 0
+
+    for i in range(0, n) : 
+
+        for j in range(0, n) : 
+            mat[i][j] = temp[k] 
+            k += 1
+
+# Function to print the given matrix 
+def printMat(mat, n) : 
+
+    for i in range(0, n) : 
+
+        for j in range( 0, n ) : 
+
+            print(mat[i][j] , end = " ") 
+
+        print() 
+
+# Driver program to test above 
+mat = [ [ 5, 4, 7 ], 
+        [ 1, 3, 8 ], 
+        [ 2, 9, 6 ] ] 
+n = 3
+
+print( "Original Matrix:") 
+printMat(mat, n) 
+
+sortMat(mat, n) 
+
+print("\nMatrix After Sorting:") 
+printMat(mat, n) 
+
+# This code is contributed by Nikita Tiwari.
+```
+
+### C#
+
+```cs
+// C# implementation to 
+// sort the given matrix 
+using System; 
+
+class GFG { 
+    static int SIZE = 10; 
+
+    // function to sort the given matrix 
+    static void sortMat(int[, ] mat, int n) 
+    { 
+        // temporary matrix of size n^2 
+        int[] temp = new int[n * n]; 
+        int k = 0; 
+
+        // copy the elements of matrix 
+        // one by one into temp[] 
+        for (int i = 0; i < n; i++) 
+            for (int j = 0; j < n; j++) 
+                temp[k++] = mat[i, j]; 
+
+        // sort temp[] 
+        Array.Sort(temp); 
+
+        // copy the elements of temp[] 
+        // one by one in mat[][] 
+        k = 0; 
+        for (int i = 0; i < n; i++) 
+            for (int j = 0; j < n; j++) 
+            mat[i, j] = temp[k++]; 
+    } 
+
+    // function to print the given matrix 
+    static void printMat(int[, ] mat, int n) 
+    { 
+        for (int i = 0; i < n; i++) { 
+            for (int j = 0; j < n; j++) 
+            Console.Write(mat[i, j] + " "); 
+            Console.WriteLine(); 
+        } 
+    } 
+
+    // Driver code 
+    public static void Main() 
+    { 
+        int[, ] mat = { { 5, 4, 7 }, 
+                        { 1, 3, 8 }, 
+                        { 2, 9, 6 } }; 
+        int n = 3; 
+
+        Console.WriteLine("Original Matrix:"); 
+        printMat(mat, n); 
+
+        sortMat(mat, n); 
+
+        Console.WriteLine("Matrix After Sorting:"); 
+        printMat(mat, n); 
+    } 
+} 
+
+// This code is contributed by Sam007
+```
+
+Output :
+
+```
+Original Matrix:
+5 4 7
+1 3 8
+2 9 6
+
+Matrix After Sorting:
+1 2 3
+4 5 6
+7 8 9
+```
+
+时间复杂度：`O(n^2 log2(n))`。
+
+辅助空间：`O(n^2)`。
+
+---
