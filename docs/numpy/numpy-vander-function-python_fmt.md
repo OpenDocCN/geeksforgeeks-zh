@@ -1,0 +1,100 @@
+# numpy.vander()函数
+
+> 原文:[https://www.geeksforgeeks.org/numpy-vander-function-python/](https://www.geeksforgeeks.org/numpy-vander-function-python/)
+
+`numpy.vander()`函数用于生成范德蒙矩阵。
+
+## 语法
+
+`numpy.vander(arr, N=None, increasing=False)`
+
+## 参数
+
+- **arr:**【array_like】一维输入数组。
+- **N:**【int, 可选】输出中的列数。如果未指定`N`，则返回一个方形数组(`N = len(x)`)。
+- **increasing:**【bool, 可选】列幂的顺序。如果为`True`，功率从左向右增加，如果为`False`(默认值)，功率反向。
+
+## 返回值
+
+【ndarray】范德蒙矩阵。如果`increasing`是`False`，第一列是`x^(N-1)`，第二列是`x^(N-2)`等等。如果`increasing`是`True`，那么列是`x^0`，`x^1`，…，`x^(N-1)`。
+
+## 代码示例
+
+### 代码#1
+
+```py
+# Python program explaining
+# numpy.vander() function
+
+# importing numpy as geek 
+import numpy as geek
+
+arr = geek.array([1, 2, 3, 4, 5])
+
+gfg = geek.vander(arr)
+
+print (gfg)
+```
+
+**输出:**
+
+```py
+[[  1   1   1   1   1]
+ [ 16   8   4   2   1]
+ [ 81  27   9   3   1]
+ [256  64  16   4   1]
+ [625 125  25   5   1]]
+```
+
+### 代码#2
+
+```py
+# Python program explaining
+# numpy.vander() function
+
+# importing numpy as geek 
+import numpy as geek
+
+arr = geek.array([1, 2, 3, 4, 5])
+N = 3
+
+gfg = geek.vander(arr, N)
+
+print (gfg)
+```
+
+**输出:**
+
+```py
+[[ 1  1  1]
+ [ 4  2  1]
+ [ 9  3  1]
+ [16  4  1]
+ [25  5  1]]
+```
+
+### 代码#3
+
+```py
+# Python program explaining
+# numpy.vander() function
+
+# importing numpy as geek 
+import numpy as geek
+
+arr = geek.array([1, 2, 3, 4, 5])
+
+gfg = geek.vander(arr, increasing = True)
+
+print (gfg)
+```
+
+**输出:**
+
+```py
+[[  1   1   1   1   1]
+ [  1   2   4   8  16]
+ [  1   3   9  27  81]
+ [  1   4  16  64 256]
+ [  1   5  25 125 625]]
+```
