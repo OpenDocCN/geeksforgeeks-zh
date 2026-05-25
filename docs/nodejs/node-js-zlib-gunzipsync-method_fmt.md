@@ -1,0 +1,80 @@
+# Node.js `zlib.gunzipSync()`方法
+
+> 原文：[`https://www.geeksforgeeks.org/node-js-zlib-gunzipsync-method/`](https://www.geeksforgeeks.org/node-js-zlib-gunzipsync-method/)
+
+`zlib.gunzipSync()`方法是`zlib`模块的一个内置应用编程接口，用于使用Gunzip解压缩一大块数据。
+
+**语法：**
+
+```js
+zlib.gunzipSync( buffer, options )
+```
+
+**参数：** 该方法接受两个参数，如上所述，如下所述：
+
+*   **buffer：** `typed array`、`data view`、`array buffer`、字符串。
+*   **option：** 此参数存储`zlib`选项值。
+
+**返回值：** 用Gunzip返回数据块。
+
+下面的例子说明了在Node.js中使用`zlib.gunzipSync()`方法：
+
+**例 1：**
+
+```js
+// Node.js program to demonstrate the     
+// zlib.gunzipSync() method
+
+// Including zlib module
+var zlib = require('zlib');
+
+// Declaring input and assigning
+// it a value string
+var input = "Nidhi";
+
+// Calling gzipSync method
+var gzi = zlib.gzipSync(input);
+
+// Calling gunzipSync method
+var decom = zlib.gunzipSync(
+    new Buffer.from(gzi)).toString();
+
+console.log(decom);
+```
+
+**输出：**
+
+```js
+Nidhi
+```
+
+**例 2：**
+
+```js
+// Node.js program to demonstrate the     
+// zlib.gunzipSync() method
+
+// Including zlib module
+var zlib = require('zlib');
+
+// Declaring input and assigning
+// it a value string
+var input = "Nidhi";
+
+// Calling gzipSync method
+var gzi = zlib.gzipSync(input).toString('hex');
+
+// Calling gunzipSync method
+var decom = zlib.gunzipSync(new Buffer.from(
+        gzi, 'hex')).toString('base64');
+
+console.log(decom);
+```
+
+**输出：**
+
+```js
+TmlkaGk=
+```
+
+**参考资料：** [`https://nodejs.org/api/zlib.html#zlib_zlib_gunzipsync_buffer_options`](https://nodejs.org/api/zlib.html#zlib_zlib_gunzipsync_buffer_options)
