@@ -1,0 +1,50 @@
+# Python | Numpy MaskedArray.__and__
+
+> 原文: [https://www.geeksforgeeks.org/python-numpy-maskedarray-__and__/](https://www.geeksforgeeks.org/python-numpy-maskedarray-__and__/)
+
+``numpy.ma.MaskedArray class``是`ndarray`的一个子类，设计用于处理缺少数据的数值数组。借助 Numpy `MaskedArray.__and__`方法我们可以得到元素，这些元素被作为参数提供的值所 and。
+
+> **语法:** `numpy.ma.MaskedArray.__and__`
+> **返回:** 返回自身&值。
+
+## 示例 1
+
+在这个示例中，我们可以看到每个元素都由作为参数传递的值进行 and 运算。
+
+```py
+# import the important module in python
+import numpy as np
+
+# make an array with numpy
+gfg = np.ma.array([1, 2, 3, 4, 5])
+
+# applying MaskedArray.__and__() method
+print(gfg.__and__(2))
+```
+
+**Output:**
+
+```py
+[0 2 2 0 0]
+```
+
+## 示例 2
+
+```py
+# import the important module in python
+import numpy as np
+
+# make an array with numpy
+gfg = np.ma.array([[1, 2, 3, 4, 5],
+                [6, 5, 4, 3, 2]])
+
+# applying MaskedArray.__and__() method
+print(gfg.__and__(1))
+```
+
+**Output:**
+
+```py
+[[1 0 1 0 1]
+ [0 1 0 1 0]]
+```
