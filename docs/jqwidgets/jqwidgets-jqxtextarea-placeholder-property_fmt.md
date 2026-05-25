@@ -1,0 +1,113 @@
+# jQWidgets jqxTextArea 占位符属性
+
+> 原文：[https://www.geeksforgeeks.org/jqwidgets-jqxtextarea-placeholder-property/](https://www.geeksforgeeks.org/jqwidgets-jqxtextarea-placeholder-property/)
+
+## 简介
+
+jQWidgets 是一个 JavaScript 框架，用于为 PC 和移动设备制作基于 web 的应用程序。它是一个非常强大和优化的框架，独立于平台，并得到广泛支持。`jqxTextArea` 表示一个 jQuery textarea 小部件，用于在文本框中插入文本内容。
+
+`placeHolder` 属性用于设置或返回占位符值。它接受字符串类型值，默认值为空（`" "`）。
+
+## 语法
+
+设置 `placeHolder` 属性。
+
+```html
+$('selector').jqxTextArea({ placeHolder: String });
+```
+
+返回 `placeHolder` 属性。
+
+```html
+var placeHolder = $('selector').jqxTextArea('placeHolder');
+```
+
+## 链接文件
+
+从给定的链接 [https://www.jqwidgets.com/download/](https://www.jqwidgets.com/download/) 下载 jQWidgets。在 HTML 文件中，找到下载文件夹中的脚本文件。
+
+```html
+<link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css">
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="jqwidgets/jqx-all.js"></script>
+<script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
+<script type="text/javascript" src="jqwidgets/jqxbuttons.js"></script>
+<script type="text/javascript" src="jqwidgets/jqxscrollbar.js"></script>
+<script type="text/javascript" src="jqwidgets/jqxtextarea.js"></script>
+```
+
+下面的示例说明了 jQWidgets `jqxTextArea` `placeHolder` 属性。
+
+## 示例
+
+### HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href=
+        "jqwidgets/styles/jqx.base.css" 
+        type="text/css" />
+    <script type="text/javascript" 
+        src="scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqx-all.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqxtextarea.js"></script>
+</head>
+
+<body>
+    <center>
+        <h1 style="color: green;">
+            GeeksforGeeks
+        </h1>
+        <h3>
+            jQWidgets jqxTextArea placeHolder Property
+        </h3>
+        <textarea id='jqxTA'></textarea>
+    </center>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var data = [
+                "Computer Science",
+                "C Programming",
+                "C++ Programming",
+                "Java Programming",
+                "Python Programming",
+                "HTML",
+                "CSS",
+                "JavaScript",
+                "jQuery",
+                "PHP",
+                "Bootstrap"
+            ];
+
+            $('#jqxTA').jqxTextArea({
+                source: data,
+                width: 250,
+                height: 100,
+                placeHolder: 'Enter Subjects...'
+            })
+        });
+    </script>
+</body>
+
+</html>
+```
+
+### 输出
+
+![](img/6eaf3c488e23f86a0bb1d04a8c0c4db6.png)
+
+## 参考
+
+[https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxtextarea/jquery-textarea-api.htm](https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxtextarea/jquery-textarea-api.htm)
