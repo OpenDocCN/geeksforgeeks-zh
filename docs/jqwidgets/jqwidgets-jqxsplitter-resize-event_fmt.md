@@ -1,0 +1,115 @@
+# jqxSplitter 的 resize 事件
+
+> 原文：[https://www.geeksforgeeks.org/jqwidgets-jqxsplitter-resize-event/](https://www.geeksforgeeks.org/jqwidgets-jqxsplitter-resize-event/)
+
+`jQWidgets` 是一个 JavaScript 框架，用于为 PC 和移动设备制作基于 web 的应用程序。它是一个非常强大、优化、独立于平台并且得到广泛支持的框架。`jqxSplitter` 用于表示一个小部件，该小部件由一个可移动的分割条组成，该分割条将容器的显示区域分成两个或多个可调整大小和可折叠的面板。
+
+当指定 `jqxSplitter` 的“调整大小”操作结束时，将触发 `resize` 事件。
+
+## 语法
+
+```javascript
+$('#jqxSplitter').on('resize',
+function (event) {
+  var panels = event.args.panels;
+
+// Get first panel
+  var panel1 = panels[0];
+
+// Get second panel
+  var panel2 = panels[1];
+
+// Panel index
+  var index = event.args.index;
+});
+```
+
+## 链接文件
+
+从给定链接下载 [jQWidgets](https://www.jqwidgets.com/download/)。在 HTML 文件中，找到下载文件夹中的脚本文件。
+
+```html
+<link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css"/>
+<script type="text/javascript" src="scripts/jquery.js"></script>
+<script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
+<script type="text/javascript" src="jqwidgets/jqxbuttons.js"></script>
+```
+
+## 示例
+
+下面的示例说明了 `jQWidgets` `jqxSplitter` 的 `resize` 事件。
+
+### HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet"
+          href="jqwidgets/styles/jqx.base.css"
+          type="text/css"/>
+    <script type="text/javascript"
+            src="scripts/jquery.js">
+    </script>
+    <script type="text/javascript"
+            src="jqwidgets/jqxcore.js">
+    </script>
+    <script type="text/javascript"
+            src="jqwidgets/jqxbuttons.js">
+    </script>
+    <script type="text/javascript"
+            src="jqwidgets/jqxsplitter.js">
+    </script>
+    <script type="text/javascript"
+            src="jqwidgets/jqxscrollbar.js">
+    </script>
+    <script type="text/javascript"
+            src="jqwidgets/jqxpanel.js">
+    </script>
+    <script type="text/javascript"
+            src="jqwidgets/jqx-all.js">
+    </script>
+</head>
+
+<body>
+    <center>
+        <h1 style="color:green;">
+            GeeksforGeeks
+        </h1>
+        <h3>
+            jQWidgets jqxSplitter resize Event
+        </h3>
+        <div id='jqx_Splitter'>
+            <div style="background-color: #006400">
+            </div>
+            <div style="background-color: #000000">
+            </div>
+        </div>
+        <div id="log"></div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#jqx_Splitter").jqxSplitter({
+                    width: 300,
+                    height: 200,
+                    resizable: true
+                });
+                $('#jqx_Splitter').on('resize',
+                    function () {
+                        $("#log").html("Resized");
+                    });
+            });
+        </script>
+    </center>
+</body>
+
+</html>
+```
+
+## 输出
+
+![](img/1418b4bd8a3529eac4b09e0d3fa48663.png)
+
+## 参考
+
+[https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxsplitter/jquery-splitter-api.htm?search=](https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxsplitter/jquery-splitter-api.htm?search=)
