@@ -1,0 +1,485 @@
+# 二进制矩阵中的唯一单元
+
+> 原文： [https://www.geeksforgeeks.org/unique-cells-binary-matrix/](https://www.geeksforgeeks.org/unique-cells-binary-matrix/)
+
+给定一个大小为`n x m`的矩阵，该矩阵由 0 和 1 组成。我们需要查找具有值 1 的唯一单元格的数量，以使相应的整个行和整个列都没有另一个 1。返回唯一单元格的数量。
+
+**示例**：
+
+```
+Input : mat[][] = {0, 1, 0, 0
+                   0, 0, 1, 0
+                   1, 0, 0, 1}
+Answer : 2
+The two 1s that are unique
+in their rows and columns
+are highlighted.
+
+Input : mat[][] = { 
+{0, 0, 0, 0, 0, 0, 1}
+{0, 1, 0, 0, 0, 0, 0}
+{0, 0, 0, 0, 0, 1, 0}
+{1, 0, 0, 0, 0, 0, 0}
+{0, 0, 1, 0, 0, 0, 1}
+Output : 3
+```
+
+## 方法 1 - 暴力方法
+
+在这种方法中，我们将检查每个值为 1 的单元格是否对应的行是否满足我们的要求。 我们将检入每个值为 1 的单元格的对应行和列。
+
+### C++
+
+```cpp
+// C++ program to count unique cells in a matrix 
+#include <bits/stdc++.h> 
+using namespace std; 
+const int MAX = 100; 
+
+// Returns true if mat[i][j] is unique 
+bool isUnique(int mat[][MAX], int i, int j, int n, int m) 
+{ 
+    // checking in row calculating sumrow will be moving column wise 
+    int sumrow = 0; 
+    for (int k = 0; k < m; k++) { 
+        sumrow += mat[i][k]; 
+        if (sumrow > 1) 
+           return false;  
+    } 
+
+    // checking in column calculating sumcol will be moving row wise 
+    int sumcol = 0; 
+    for (int k = 0; k < n; k++) { 
+        sumcol += mat[k][j]; 
+        if (sumcol > 1) 
+            return false;  
+    } 
+
+    return true; 
+} 
+
+int countUnique(int mat[][MAX], int n, int m) 
+{ 
+    int uniquecount = 0; 
+    for (int i = 0; i < n; i++)  
+        for (int j = 0; j < m; j++)  
+            if (mat[i][j] && isUnique(mat, i, j, n, m)) 
+                    uniquecount++; 
+    return uniquecount; 
+} 
+
+// Driver code 
+int main() 
+{ 
+    int mat[][MAX] = {{0, 1, 0, 0}, 
+                   {0, 0, 1, 0}, 
+                   {1, 0, 0, 1}}; 
+    cout << countUnique(mat, 3, 4); 
+    return 0; 
+}
+```
+
+### Java
+
+```java
+// Efficient Java program to count unique cells in a binary matrix 
+class GFG { 
+    static final int MAX = 100; 
+
+    // Returns true if mat[i][j] is unique 
+    static boolean isUnique(int mat[][], int i, int j, int n, int m) { 
+        // checking in row calculating sumrow will be moving column wise 
+        int sumrow = 0; 
+        for (int k = 0; k < m; k++) { 
+            sumrow += mat[i][k]; 
+            if (sumrow > 1) 
+               return false;  
+        } 
+
+        // checking in column calculating sumcol will be moving row wise 
+        int sumcol = 0; 
+        for (int k = 0; k < n; k++) { 
+            sumcol += mat[k][j]; 
+            if (sumcol > 1) 
+                return false;  
+        } 
+
+        return true; 
+    } 
+
+    static int countUnique(int mat[][], int n, int m) { 
+        int uniquecount = 0; 
+        for (int i = 0; i < n; i++)  
+            for (int j = 0; j < m; j++)  
+                if (mat[i][j]!=0 && isUnique(mat, i, j, n, m)) 
+                        uniquecount++; 
+        return uniquecount; 
+    } 
+
+    // Driver code 
+    static public void main(String[] args) { 
+        int mat[][] = {{0, 1, 0, 0}, 
+        {0, 0, 1, 0}, 
+        {1, 0, 0, 1}}; 
+        System.out.print(countUnique(mat, 3, 4)); 
+    } 
+} 
+
+// This code is contributed by Rajput-Ji
+```
+
+### Python3
+
+```py
+# Python3 program to count unique cells in a matrix 
+MAX = 100
+
+# Returns true if mat[i][j] is unique 
+def isUnique(mat, i, j, n, m): 
+    # checking in row calculating sumrow will be moving column wise 
+    sumrow = 0
+    for k in range(m): 
+        sumrow += mat[i][k] 
+        if (sumrow > 1): 
+            return False
+
+    # checking in column calculating sumcol will be moving row wise 
+    sumcol = 0
+    for k in range(n): 
+        sumcol += mat[k][j] 
+        if (sumcol > 1): 
+            return False
+
+    return True
+
+def countUnique(mat, n, m): 
+    uniquecount = 0
+    for i in range(n): 
+        for j in range(m): 
+            if (mat[i][j] and isUnique(mat, i, j, n, m)): 
+                    uniquecount += 1
+    return uniquecount 
+
+# Driver code 
+mat = [[0, 1, 0, 0], 
+        [0, 0, 1, 0], 
+        [1, 0, 0, 1]] 
+print(countUnique(mat, 3, 4)) 
+
+# This code is contributed by mohit kumar 29
+```
+
+### C#
+
+```cs
+// Efficient C# program to count unique cells in a binary matrix 
+using System; 
+public class GFG { 
+    static readonly int MAX = 100; 
+
+    // Returns true if mat[i][j] is unique 
+    static bool isUnique(int [,]mat, int i, int j, int n, int m) { 
+        // checking in row calculating sumrow will be moving column wise 
+        int sumrow = 0; 
+        for (int k = 0; k < m; k++) { 
+            sumrow += mat[i,k]; 
+            if (sumrow > 1) 
+               return false;  
+        } 
+
+        // checking in column calculating sumcol will be moving row wise 
+        int sumcol = 0; 
+        for (int k = 0; k < n; k++) { 
+            sumcol += mat[k,j]; 
+            if (sumcol > 1) 
+                return false;  
+        } 
+
+        return true; 
+    } 
+
+    static int countUnique(int [,]mat, int n, int m) { 
+        int uniquecount = 0; 
+        for (int i = 0; i < n; i++)  
+            for (int j = 0; j < m; j++)  
+                if (mat[i,j]!=0 && isUnique(mat, i, j, n, m)) 
+                        uniquecount++; 
+        return uniquecount; 
+    } 
+
+    // Driver code 
+    static public void Main() { 
+        int [,]mat = {{0, 1, 0, 0}, 
+        {0, 0, 1, 0}, 
+        {1, 0, 0, 1}}; 
+        Console.Write(countUnique(mat, 3, 4)); 
+    } 
+} 
+
+// This code is contributed by Rajput-Ji
+```
+
+### PHP
+
+```php
+<?php 
+// PHP program to count unique cells in a matrix 
+$MAX = 100; 
+
+// Returns true if mat[i][j] is unique 
+function isUnique($mat, $i, $j, $n, $m) { 
+    global $MAX; 
+
+    // checking in row calculating sumrow will be moving column wise 
+    $sumrow = 0; 
+    for ($k = 0; $k < $m; $k++) { 
+        $sumrow += $mat[$i][$k]; 
+        if ($sumrow > 1) 
+        return false;  
+    } 
+
+    // checking in column calculating sumcol will be moving row wise 
+    $sumcol = 0; 
+    for ($k = 0; $k < $n; $k++) { 
+        $sumcol += $mat[$k][$j]; 
+        if ($sumcol > 1) 
+            return false;  
+    } 
+
+    return true; 
+} 
+
+function countUnique($mat, $n, $m) { 
+    $uniquecount = 0; 
+    for ($i = 0; $i < $n; $i++)  
+        for ($j = 0; $j < $m; $j++)  
+            if ($mat[$i][$j] && isUnique($mat, $i, $j, $n, $m)) 
+                    $uniquecount++; 
+    return $uniquecount; 
+} 
+
+// Driver code 
+$mat = array(array(0, 1, 0, 0), 
+             array(0, 0, 1, 0), 
+             array(1, 0, 0, 1)); 
+echo countUnique($mat, 3, 4); 
+
+// This code is contributed by ajit 
+?>
+```
+
+**输出**：
+
+```
+2
+```
+
+**时间复杂度**：`O((n * m) * (n + m))`。
+
+由于检查条件为每个对应的行和列，所以按立方顺序排列。
+
+## 方法 2 - `O(n * m)`方法
+
+在这种方法中，我们将为`rowum`数组和`colsum`数组使用额外的空间，然后检查每个值为 1 的单元格是否对应的`rowum`数组和`colsum`数组值为 1。
+
+# 计算二进制矩阵中的唯一单元格
+
+## C++
+
+```cpp
+// Efficient C++ program to count unique 
+// cells in a binary matrix 
+#include <bits/stdc++.h> 
+using namespace std; 
+
+const int MAX = 100; 
+
+int countUnique(int mat[][MAX], int n, int m) 
+{ 
+    int rowsum[n], colsum[m]; 
+    memset(colsum, 0, sizeof(colsum)); 
+    memset(rowsum, 0, sizeof(rowsum)); 
+
+    // Count number of 1s in each row 
+    // and in each column 
+    for (int i = 0; i < n; i++)  
+        for (int j = 0; j < m; j++)  
+            if (mat[i][j])  
+            { 
+                rowsum[i]++; 
+                colsum[j]++; 
+            } 
+
+    // Using above count arrays, find 
+    // cells 
+    int uniquecount = 0; 
+    for (int i = 0; i < n; i++) 
+        for (int j = 0; j < m; j++) 
+            if (mat[i][j] && 
+                rowsum[i] == 1 && 
+                colsum[j] == 1) 
+                    uniquecount++; 
+    return uniquecount; 
+} 
+
+// Driver code 
+int main() 
+{ 
+    int mat[][MAX] = {{0, 1, 0, 0}, 
+                {0, 0, 1, 0}, 
+                {1, 0, 0, 1}}; 
+    cout << countUnique(mat, 3, 4); 
+    return 0; 
+} 
+```
+
+## Java
+
+```java
+// Efficient Java program to count unique 
+// cells in a binary matrix 
+class GFG 
+{ 
+    static int MAX = 100; 
+
+    static int countUnique(int mat[][], int n, int m) 
+    { 
+        int []rowsum = new int[n]; 
+        int []colsum = new int[m]; 
+
+        // Count number of 1s in each row 
+        // and in each column 
+        for (int i = 0; i < n; i++)  
+            for (int j = 0; j < m; j++)  
+                if (mat[i][j] != 0)  
+                { 
+                    rowsum[i]++; 
+                    colsum[j]++; 
+                } 
+
+        // Using above count arrays, find 
+        // cells 
+        int uniquecount = 0; 
+        for (int i = 0; i < n; i++)  
+            for (int j = 0; j < m; j++)  
+                if (mat[i][j] != 0 &&  
+                    rowsum[i] == 1 && 
+                    colsum[j] == 1) 
+                        uniquecount++; 
+        return uniquecount; 
+    } 
+
+    // Driver code 
+    public static void main(String[] args) 
+    { 
+        int mat[][] = {{0, 1, 0, 0}, 
+                    {0, 0, 1, 0}, 
+                    {1, 0, 0, 1}}; 
+        System.out.print(countUnique(mat, 3, 4)); 
+    } 
+} 
+
+// This code is contributed by Rajput-Ji 
+```
+
+## Python3
+
+```py
+# Efficient Python3 program to count unique 
+# cells in a binary matrix 
+MAX = 100; 
+
+def countUnique(mat, n, m): 
+    rowsum = [0] * n; 
+    colsum = [0] * m; 
+
+    # Count number of 1s in each row 
+    # and in each column 
+    for i in range(n): 
+        for j in range(m): 
+            if (mat[i][j] != 0): 
+                rowsum[i] += 1; 
+                colsum[j] += 1; 
+
+    # Using above count arrays, 
+    # find cells 
+    uniquecount = 0; 
+    for i in range(n): 
+            for j in range(m): 
+                if (mat[i][j] != 0 and
+                    rowsum[i] == 1 and 
+                    colsum[j] == 1): 
+                    uniquecount += 1; 
+    return uniquecount; 
+
+# Driver code 
+if __name__ == '__main__': 
+    mat = [ 0, 1, 0, 0 ], 
+          [ 0, 0, 1, 0 ], 
+          [ 1, 0, 0, 1 ]; 
+    print(countUnique(mat, 3, 4)); 
+
+# This code is contributed by 29AjayKumar 
+```
+
+## C#
+
+```cs
+// Efficient C# program to count unique 
+// cells in a binary matrix 
+using System; 
+
+class GFG 
+{ 
+    static int MAX = 100; 
+
+    static int countUnique(int [,]mat, 
+                           int n, int m) 
+    { 
+        int []rowsum = new int[n]; 
+        int []colsum = new int[m]; 
+
+        // Count number of 1s in each row 
+        // and in each column 
+        for (int i = 0; i < n; i++)  
+            for (int j = 0; j < m; j++)  
+                if (mat[i, j] != 0)  
+                { 
+                    rowsum[i]++; 
+                    colsum[j]++; 
+                } 
+
+        // Using above count arrays, find 
+        // cells 
+        int uniquecount = 0; 
+        for (int i = 0; i < n; i++)  
+            for (int j = 0; j < m; j++)  
+                if (mat[i, j] != 0 &&  
+                    rowsum[i] == 1 && 
+                    colsum[j] == 1) 
+                        uniquecount++; 
+        return uniquecount; 
+    } 
+
+    // Driver code 
+    public static void Main(String[] args) 
+    { 
+        int [,]mat = {{0, 1, 0, 0}, 
+                      {0, 0, 1, 0}, 
+                      {1, 0, 0, 1}}; 
+        Console.Write(countUnique(mat, 3, 4)); 
+    } 
+} 
+
+// This code is contributed by Rajput-Ji 
+```
+
+**输出**：
+
+```
+
+```
+
+时间复杂度 – `O(n * m)`。
+
+辅助空间 – `O(n + m)`。
