@@ -1,0 +1,105 @@
+# Python中的`matplotlib.axis.Axis.set_clip_path()`函数
+
+> 原文：[`https://www.geeksforgeeks.org/matplotlib-axis-axis-set_clip_path-function-in-python/`](https://www.geeksforgeeks.org/matplotlib-axis-axis-set_clip_path-function-in-python/)
+
+[`Matplotlib`](https://www.geeksforgeeks.org/python-introduction-matplotlib/) 是Python中的一个库，是NumPy库的数值-数学扩展。这是一个神奇的Python可视化库，用于2D数组图，并用于处理更广泛的SciPy堆栈。
+
+## `matplotlib.axis.Axis.set_clip_path()`函数
+
+`matplotlib`库的`Axis`模块中的`Axis.set_clip_path()`函数用于设置艺术家的剪辑路径。
+
+> **语法:** `Axis.set_clip_path(自身，路径，变换=无)`
+>
+> **参数:** 该方法接受以下参数。
+>
+> *   **路径:** 此参数为剪辑路径。
+> *   **变换:** 使用变换将路径转换为已变换路径的参数。
+>
+> **返回值:** 此方法不返回值。
+
+以下示例说明`matplotlib.axis.Axis.set_clip_path()`函数在`matplotlib.axis`中的用法：
+
+### 示例1
+
+**输入图像**
+
+![](img/01b4c4a487799db375e5275e0d4480a1.png)
+
+## Python代码
+
+```py
+# Implementation of matplotlib function
+from matplotlib.axis import Axis
+import matplotlib.pyplot as plt 
+import matplotlib.patches as patches 
+import matplotlib.cbook as cbook
+
+with cbook.get_sample_data('geeksforgeeks-logo1.PNG') as image_file: 
+    image = plt.imread(image_file)
+
+fig, ax = plt.subplots() 
+im = ax.imshow(image) 
+patch = patches.Rectangle((10, 10), 
+                          560, 
+                          500,  
+                          transform = ax.transData)
+
+im.set_clip_path(patch)
+
+fig.suptitle('matplotlib.axis.Axis.set_clip_path() \
+function Example\n', fontweight ="bold")
+
+plt.show()
+```
+
+**输出:**
+
+![](img/74f065d0cf3fae22a4a5c6d3356022fc.png)
+
+### 示例2
+
+## Python代码
+
+```py
+# Implementation of matplotlib function
+from matplotlib.axis import Axis
+import numpy as np 
+import matplotlib.cm as cm 
+import matplotlib.pyplot as plt 
+from matplotlib.path import Path 
+from matplotlib.patches import PathPatch
+
+delta = 0.025
+
+x = y = np.arange(-3.0, 3.0, delta) 
+X, Y = np.meshgrid(x, y)
+
+Z1 = np.exp(-X**2 - Y**2) 
+Z2 = np.exp(-(X - 1)**2 - (Y - 1)**2) 
+Z = (Z1 - Z2) * 2
+
+path = Path([[0, 1], [1, 0], [0, -1], 
+            [-1, 0], [0, 1]]) 
+patch = PathPatch(path, facecolor ='none')
+
+fig, ax = plt.subplots() 
+ax.add_patch(patch)
+
+im = ax.imshow(Z, 
+               interpolation ='bilinear',  
+               cmap = cm.gray, 
+               origin ='lower',  
+               extent =[-3, 3, -3, 3], 
+               clip_path = patch,  
+               clip_on = True) 
+im.set_clip_path(patch)
+
+fig.suptitle('matplotlib.axis.Axis.set_clip_path() \
+function Example\n', fontweight ="bold")
+
+plt.show()
+```
+
+**输出:**
+
+![](img/aa15bbf26f79d77a308022a08e6555c2.png)
