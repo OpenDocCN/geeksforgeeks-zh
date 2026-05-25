@@ -1,0 +1,104 @@
+# jQWidgets jqxScheduler 完整参考
+
+> 原文：[https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-complete-reference/](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-complete-reference/)
+
+`jqxScheduler` 小部件用于以天、周、月、时间线日、时间线周以及时间线月视图显示一组约会。
+
+## 属性
+
+*   [`appointmentOpacity`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-appointmentopacity-property/)
+*   [`appointmentsMinHeight`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-appointmentsminheight-property/)
+*   [`appointmentTooltipFormatFunction`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-appointmenttooltipformatfunction-property/)
+*   [`appointmentTooltips`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-appointmenttooltips-property/)
+*   [`columnHeight`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-columnheight-property/)
+*   [`columnMinWidth`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-columnminwidth-property/)
+*   [`columns`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-columns-property/)
+*   [`contextMenu`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-contextmenu-property/)
+*   [`contextMenuCreate`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-contextmenucreate-property/)
+*   [`date`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-date-property/)
+*   [`dayNameFormat`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-daynameformat-property/)
+*   [`disabled`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-disabled-property/)
+*   [`editDialog`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-editdialog-property/)
+*   [`editDialogDateTimeFormatString`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-editdialogdatetimeformatstring-property/)
+*   [`editDialogDateFormatString`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-editdialogdateformatstring-property/)
+*   [`editDialogLocation`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-editdialoglocation-property/)
+*   [`editDialogOpen`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-editdialogopen-property/)
+*   [`editDialogTheme`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-editdialogtheme-property/)
+*   [`exportSettings`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-exportsettings-property/)
+*   [`height`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-height-property/)
+*   [`legendPosition`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-legendposition-property/)
+*   [`legendHeight`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-legendheight-property/)
+*   [`localization`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-localization-property/)
+*   [`min`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-min-property/)
+*   [`max`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-max-property/)
+*   [`ready`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-ready-property/)
+*   [`rendering`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-rendering-property/)
+*   [`resources`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-resources-property/)
+*   [`rowsHeight`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-rowsheight-property/)
+*   [`showToolbar`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-showtoolbar-property/)
+*   [`showLegend`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-showlegend-property/)
+*   [`source`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-source-property/)
+*   [`statusBar`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-statusbar-property/)
+*   [`theme`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-theme-property/)
+*   [`timeZone`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-timezone-property/)
+*   [`touchDayNameFormat`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-touchdaynameformat-property/)
+*   [`toolbarPosition`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-toolbarposition-property/)
+*   [`toolbarVisible`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-toolbarvisible-property/)
+*   [`view`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-view-property/)
+*   [`views`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-views-property/)
+*   [`width`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-width-property/)
+
+## 事件
+
+*   `onAppointmentClick`
+*   `onAppointmentDoubleClick`
+*   `onAppointmentMenuOpen`
+*   `onCellClick`
+*   `onCellDoubleClick`
+*   `onCellMenuOpen`
+*   `onDateChange`
+*   `onEditDialogCreate`
+*   `onEditDialogOpen`
+*   `onEditDialogClosing`
+*   `onEditDialogClose`
+*   `onViewChange`
+
+## 方法
+
+*   [`addAppointment()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-addappointment-method/)
+*   [`beginAppointmentsUpdate()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-beginappointmentsupdate-method/)
+*   [`clearAppointmentsSelection()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-clearappointmentsselection-method/)
+*   [`clearSelection()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-clearselection-method/)
+*   [`closeMenu()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-closemenu-method/)
+*   [`closeDialog()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-closedialog-method/)
+*   [`destroy()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-destroy-method/)
+*   [`exportData()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-exportdata-method/)
+*   [`focus()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-focus-method/)
+*   [`getAppointments()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-getappointments-method/)
+*   [`getAppointmenProperty()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-getappointmentproperty-method/)
+*   [`getSelection()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-getselection-method/)
+*   [`getVisibleAppointments()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-getvisibleappointments-method/)
+*   [`getView()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-getview-method/)
+*   [`goToDay()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-gotoday-method/)
+*   [`goToNextDay()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-gotonextday-method/)
+*   [`goToNextMonth()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-gotonextmonth-method/)
+*   [`goToNextWeek()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-gotonextweek-method/)
+*   [`goToNextYear()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-gotonextyear-method/)
+*   [`goToPreviousDay()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-gotopreviousday-method/)
+*   [`goToPreviousMonth()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-gotopreviousmonth-method/)
+*   [`goToPreviousWeek()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-gotopreviousweek-method/)
+*   [`goToPreviousYear()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-gotopreviousyear-method/)
+*   [`goToToday()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-gototoday-method/)
+*   [`hideAppointmentsByResource()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-hideappointmentsbyresource-method/)
+*   [`openDialog()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-opendialog-method/)
+*   [`print()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-print-method/)
+*   [`raiseAppointmentEvent()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-raiseappointmentevent-method/)
+*   [`removeAppointment()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-removeappointment-method/)
+*   [`scrollWidth()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-scrollwidth-method/)
+*   [`scrollHeight()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-scrollheight-method/)
+*   [`setAppointmentProperty()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-setappointmentproperty-method/)
+*   [`selectAppointment()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-selectappointment-method/)
+*   [`setView()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-setview-method/)
+*   [`showAppointmentsByResource()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-showappointmentsbyresource-method/)
+*   [`scrollTop()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-scrolltop-method/)
+*   [`scrollLeft()`](https://www.geeksforgeeks.org/jqwidgets-jqxscheduler-scrollleft-method/)
