@@ -1,0 +1,78 @@
+# jQWidgets jqxCalendar 宽度属性
+
+> 原文：[https://www.geeksforgeeks.org/jqwidgets-jqxcalendar-width-property/](https://www.geeksforgeeks.org/jqwidgets-jqxcalendar-width-property/)
+
+jQWidgets 是一个 JavaScript 框架，用于为 PC 和移动设备制作基于 web 的应用程序。它是一个非常强大和优化的框架，独立于平台，并得到广泛支持。`jqxCalendar` 代表一个 jQuery 日历小部件，使用户能够使用可视的月历显示来选择日期。
+
+`width` 属性用于设置或返回日历的宽度。它接受数字/字符串类型的值，默认值为空。
+
+## 语法
+
+```javascript
+$('.selector').jqxCalendar({
+  width: Number/String
+});
+```
+
+## 链接文件
+
+从 [https://www.jqwidgets.com/download/](https://www.jqwidgets.com/download/) 链接下载 jQWidgets。在 HTML 文件中，找到下载文件夹中的脚本文件：
+
+```html
+<link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css" />
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
+<script type="text/javascript" src="jqwidgets/jqxdatetimeinput.js"></script>
+```
+
+以下示例说明了 jQWidgets 中的 `jqxCalendar` `width` 属性。
+
+## 示例
+
+### HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css" />
+    <script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxdatetimeinput.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxcalendar.js"></script>
+    <script type="text/javascript" src="jqwidgets/globalization/globalize.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqx-all.js"></script>
+</head>
+
+<body>
+    <center>
+        <h1 style="color: green;">
+            GeeksforGeeks
+        </h1>
+        <h3>
+            jQWidgets jqxCalendar width Property
+        </h3>
+        <div id='jqxcal'></div>
+    </center>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#jqxcal").jqxCalendar({
+                width: '400px',
+                height: '300px'
+            });
+        });
+    </script>
+</body>
+
+</html>
+```
+
+## 输出
+
+![](img/53a32f7458ef45115f182724fbb6a66d.png)
+
+## 参考
+
+[https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxcalendar/jquery-calendar-API.htm](https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxcalendar/jquery-calendar-API.htm)

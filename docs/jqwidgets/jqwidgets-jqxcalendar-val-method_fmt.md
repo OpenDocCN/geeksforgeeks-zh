@@ -1,0 +1,92 @@
+# jQWidgets jqxCalendar val()方法
+
+> 原文: [https://www.geeksforgeeks.org/jqwidgets-jqxcalendar-val-method/](https://www.geeksforgeeks.org/jqwidgets-jqxcalendar-val-method/)
+
+## 介绍
+
+jQWidgets 是一个 JavaScript 框架，用于为 PC 和移动设备制作基于 web 的应用程序。它是一个非常强大和优化的框架，独立于平台，并得到广泛支持。`jqxCalendar` 代表一个 jQuery 日历小部件，使用户能够使用可视的月历显示来选择日期。
+
+`val()` 方法用于设置或返回 `jqxCalendar` 的值。此方法接受日期作为参数。当我们使用选择模式选择“范围”时，我们将使用开始和结束日期。
+
+## 语法
+
+```html
+$("selector").jqxCalendar('val', Date);
+```
+
+或者
+
+```html
+$("selector").val(Date);
+```
+
+## 链接文件
+
+从 [https://www.jqwidgets.com/download/](https://www.jqwidgets.com/download/) 链接下载 jQWidgets。在 HTML 文件中，找到下载文件夹中的脚本文件:
+
+> <link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css">
+
+以下示例说明了 jQWidgets 中的 `jqxCalendar` `val()` 方法:
+
+## 示例
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href=
+        "jqwidgets/styles/jqx.base.css" type="text/css" />
+    <script type="text/javascript" 
+        src="scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqxdatetimeinput.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqxcalendar.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/globalization/globalize.js">
+    </script>
+    <script tyle="text/javascript" 
+        src="jqwidgets/jqx-all.js"></script>
+</head>
+
+<body>
+    <center>
+        <h1 style="color: green;">
+            GeeksforGeeks
+        </h1>
+        <h3>
+            jQWidgets jqxCalendar val() Method
+        </h3>
+        <div id='jqxcal'></div>
+        <br>
+        <input type="button" id='jqxBtn' 
+            value="Today Date" style="padding: 8px 25px;" />
+    </center>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#jqxcal").jqxCalendar({
+                width: '400px',
+                height: '300px'
+            });
+
+            $('#jqxBtn').on('click', function () {
+                $('#jqxcal').val(new Date(2022, 06, 15));
+            });
+        });
+    </script>
+</body>
+
+</html>
+```
+
+## 输出
+
+![](img/86871f28cbc462f1c6f0b19e276ea78b.png)
+
+## 参考
+
+[https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxcalendar/jquery-calendar-api.htm](https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxcalendar/jquery-calendar-api.htm)
