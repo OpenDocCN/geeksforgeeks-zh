@@ -1,0 +1,108 @@
+# jQWidgets jqxRangeSelector `padding` 属性
+
+> 原文：[https://www.geeksforgeeks.org/jqwidgets-jqxrangeselector-padding-property/](https://www.geeksforgeeks.org/jqwidgets-jqxrangeselector-padding-property/)
+
+jQWidgets 是一个 JavaScript 框架，用于为 PC 和移动设备制作基于 web 的应用程序。它是一个非常强大、优化、独立于平台并且得到广泛支持的框架。`jqxRangeSelector` 小部件用于表示 jQuery 范围滑块，该滑块可轻松用于选择数值或日期范围值。这个小部件用于设置数字、天、周、月、年等范围。
+
+`padding` 属性用于设置或返回范围选择器是否被禁用。它接受布尔类型值，默认值为 `false`。
+
+### 语法
+
+设置 `padding` 属性。
+
+```javascript
+$('selector').jqxRangeSelector({ padding: Number/String });
+```
+
+返回 `padding` 属性。
+
+```javascript
+var padding = $('selector').jqxRangeSelector('padding');
+```
+
+### 链接文件
+
+从给定的链接 [https://www.jqwidgets.com/download/](https://www.jqwidgets.com/download/) 下载 jQWidgets。在 HTML 文件中，找到下载文件夹中的脚本文件。
+
+```html
+<link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css" />
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
+<script type="text/javascript" src="jqwidgets/jqx-all.js"></script>
+```
+
+下面的例子说明了 jQWidgets `jqxRangeSelector` `padding` 属性。
+
+### 示例
+
+## HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href=
+        "jqwidgets/styles/jqx.base.css" type="text/css" />
+    <script type="text/javascript" 
+        src="scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqx-all.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqxdata.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqxrangeselector.js"></script>
+
+    <style>
+        h1,
+        h3 {
+            text-align: center;
+        }
+
+        #jqxRS {
+            width: 100%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="color: green;">
+        GeeksforGeeks
+    </h1>
+
+    <h3>
+        jQWidgets jqxRangeSelector padding Property
+    </h3>
+
+    <div id="jqxRS"></div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#jqxRS").jqxRangeSelector({
+                width: 400,
+                height: 20,
+                min: 0,
+                max: 100,
+                range: {
+                    from: 10,
+                    to: 80
+                },
+                padding: '20px'
+            });
+        });
+    </script>
+</body>
+
+</html>
+```
+
+### 输出
+
+![](img/5af4e792898a72ae4c73757509bb408e.png)
+
+### 参考
+
+[https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxrangeselector/jquery-rangeselector-api.htm](https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxrangeselector/jquery-rangeselector-api.htm)
