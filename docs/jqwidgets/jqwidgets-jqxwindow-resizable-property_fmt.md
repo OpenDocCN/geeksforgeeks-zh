@@ -1,0 +1,94 @@
+# jQWidgets jqxWindow 可调整大小属性
+
+> 原文：[https://www.geeksforgeeks.org/jqwidgets-jqxwindow-resizable-property/](https://www.geeksforgeeks.org/jqwidgets-jqxwindow-resizable-property/)
+
+**jQWidgets** 是一个 JavaScript 框架，用于为 PC 和移动设备制作基于 web 的应用程序。它是一个非常强大、优化、独立于平台并且得到广泛支持的框架。`jqxWindow` 用于在应用程序中输入数据或查看信息。
+
+`resizable` 属性用于启用或禁用最终用户是否可以调整指定窗口的大小。
+
+## 语法
+
+设置 `resizable` 属性。
+
+```html
+$('#jqxWindow').jqxWindow({ resizable: false });
+```
+
+获取 `resizable` 属性。
+
+```html
+var resizable = $('#jqxWindow').jqxWindow('resizable');
+```
+
+## 链接文件
+
+从给定链接下载 [jQWidgets](https://www.jqwidgets.com/download/)。在 HTML 文件中，找到下载文件夹中的脚本文件。
+
+```html
+<link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css">
+<link rel="stylesheet" href="jqwidgets/styles/jqx.summer.css" type="text/css">
+<script type="text/javascript" src="scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
+```
+
+## 示例
+
+以下示例说明了 jQWidgets 中的 `jqxWindow` 可调整大小属性。对于本例，可调整大小设置为 `true`。
+
+### HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href=
+        "jqwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href=
+        "jqwidgets/styles/jqx.summer.css" type="text/css" />
+    <script type="text/javascript" 
+        src="scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqxwindow.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqxbuttons.js"></script>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $("#window").jqxWindow({
+                position: { x: 120, y: 180 },
+                autoOpen: true,
+                draggable: false,
+                resizable: true,
+                showCloseButton: false
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <center>
+        <h1 style="color:green;"> GeeksforGeeks </h1>
+        <h3>
+            jQWidgets jqxWindow resizable Property
+        </h3>
+        <div id='window'>
+            <div>Header</div>
+            <div>GeeksforGeeks</div>
+        </div>
+        <input type="button" value="Below window is resizable" />
+    </center>
+</body>
+
+</html>
+```
+
+## 输出
+
+![](img/384e8f57d004903c968323c9f1b8939a.png)
+
+## 参考
+
+[https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxwindow/jquery-window-api.htm?search=](https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxwindow/jquery-window-api.htm?search=)
