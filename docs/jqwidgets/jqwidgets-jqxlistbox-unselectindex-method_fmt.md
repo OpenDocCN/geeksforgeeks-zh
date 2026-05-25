@@ -1,0 +1,109 @@
+# jQWidgets jqxListBox unselectIndex()方法
+
+> 原文: [https://www.geeksforgeeks.org/jqwidgets-jqxlistbox-unselectindex-method/](https://www.geeksforgeeks.org/jqwidgets-jqxlistbox-unselectindex-method/)
+
+`jQWidgets`是一个JavaScript框架，用于为PC和移动设备制作基于web的应用程序。它是一个非常强大、优化、独立于平台并且得到广泛支持的框架。`jqxListBox`用于说明一个jQuery ListBox小部件，它包含一个可选择元素的列表。
+
+`unselectIndex()`方法用于从所述列表中取消选择一个项目。这里的索引是从零开始的，换句话说，为了取消选择列表的初始项，必须与参数零一起调用`unselectIndex`方法。它不返回任何东西。
+
+## 语法
+
+```html
+$("#jqxListBox").jqxListBox('unselectIndex', Index);
+```
+
+## 参数
+
+*   `Index`: 规定的索引。它是数字类型的。
+
+## 链接文件
+
+从链接下载 [jQWidgets](https://www.jqwidgets.com/download/)。在HTML文件中，找到下载文件夹中的脚本文件。
+
+```html
+<link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css" />
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="jqwidgets/jqx-all.js"></script>
+<script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
+```
+
+## 示例
+
+下面的示例说明了`jQWidgets`中的`jqxListBox` `unselectIndex()`方法。
+
+### HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href=
+        "jqwidgets/styles/jqx.base.css" type="text/css" />
+    <script type="text/javascript" 
+        src="scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqx-all.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" 
+        src="jqwidgets/jqxlistbox.js"></script>
+</head>
+
+<body>
+    <center>
+        <h1 style="color: green;">
+            GeeksforGeeks
+        </h1>
+        <h3>
+            jQWidgets jqxListBox unselectIndex() Method
+        </h3>
+        <div id="jqxLB"></div>
+        <br />
+        <input type="button" id="jqxBtn" 
+            style="padding: 5px 20px;" 
+            value="Unselect Computer Science" />
+    </center>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var data = [
+                "Computer Science",
+                "C Programming",
+                "C++ Programming",
+                "Java Programming",
+                "Python Programming",
+                "HTML",
+                "CSS",
+                "JavaScript"];
+
+            $("#jqxLB").jqxListBox({
+                source: data,
+                width: "200px",
+                height: "100px",
+                selectedIndex: 0
+            });
+
+            $("#jqxBtn").on("click", function () {
+                $("#jqxLB").jqxListBox('unselectIndex', 0);
+            });
+        });
+    </script>
+</body>
+
+</html>
+```
+
+## 输出
+
+![](img/0a48338140afeb723d6f18df622001c0.png)
+
+取消选择索引方法
+
+## 参考
+
+[https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxlistbox/jquery-listbox-api.htm?search=](https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxlistbox/jquery-listbox-api.htm?search=)
