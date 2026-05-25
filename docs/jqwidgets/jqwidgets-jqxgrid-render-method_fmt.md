@@ -1,0 +1,142 @@
+# jQWidgets jqxGrid render()方法
+
+> 原文：[https://www.geeksforgeeks.org/jqwidgets-jqxgrid-render-method/](https://www.geeksforgeeks.org/jqwidgets-jqxgrid-render-method/)
+
+`jQWidgets`是一个JavaScript框架，用于为PC和移动设备制作基于web的应用程序。它是一个非常强大、优化、独立于平台并且得到广泛支持的框架。`jqxGrid`用于说明以表格形式显示数据的jQuery小部件。此外，它完全支持与数据的连接，以及分页、分组、排序、过滤和编辑。
+
+`render()`方法用于返回显示的`jqxGrid`的内容。此外，它绝对模拟网格列，单元格，布局以及重新绘制网格视图。它没有参数，也不返回任何内容。
+
+**语法：**
+
+```javascript
+$('#Selector').jqxGrid('render');
+```
+
+**链接文件：** 从给定链接下载[jQWidgets](https://www.jqwidgets.com/download/)。在HTML文件中，找到下载文件夹中的脚本文件。
+
+```html
+<link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css">
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
+<script type="text/javascript" src="jqwidgets/jqxdata.js"></script>
+```
+
+**示例：** 以下示例说明了`jQWidgets`中的`jqxGrid` `render()`方法。
+
+## HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" 
+          href="jqwidgets/styles/jqx.base.css"
+          type="text/css" />
+    <script type="text/javascript" 
+            src="scripts/jquery-1.11.1.min.js">
+    </script>
+    <script type="text/javascript" 
+            src="jqwidgets/jqxcore.js">
+    </script>
+    <script type="text/javascript" 
+            src="jqwidgets/jqxdata.js">
+    </script>
+    <script type="text/javascript" 
+            src="jqwidgets/jqxbuttons.js">
+    </script>
+    <script type="text/javascript" 
+            src="jqwidgets/jqxscrollbar.js">
+    </script>
+    <script type="text/javascript" 
+            src="jqwidgets/jqxmenu.js">
+    </script>
+    <script type="text/javascript" 
+            src="jqwidgets/jqxgrid.js">
+    </script>
+    <script type="text/javascript" 
+            src="jqwidgets/jqxgrid.selection.js">
+    </script>
+</head>
+
+<body>
+    <center>
+        <h1 style="color: green">
+            GeeksforGeeks
+        </h1>
+
+        <h3>jQWidgets jqxGrid render() method
+        </h3>
+        <br />
+
+        <div id="jqxg"></div>
+
+        <div>
+            <input type="button" id="jqxBtn" 
+                style="margin-top: 25px" value="Render" />
+        </div>
+
+        <div id="log"></div>
+    </center>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var d = new Array();
+            var subjectNames =
+                ["C++", "Scala", "Java", "C", "R", "JavaScript"];
+            var pageNumber =
+                ["7", "8", "12", "11", "10", "19"];
+            for (var j = 0; j < 7; j++) {
+                var r = {};
+                r["subjectnames"] =
+                    subjectNames[Math.floor(
+                        Math.random() * subjectNames.length)
+                    ];
+                r["pagenumber"] =
+                    pageNumber[Math.floor(
+                        Math.random() * pageNumber.length)
+                    ];
+                d[j] = r;
+            }
+            var src = {
+                localdata: d,
+                datatype: "array",
+            };
+            var data_Adapter = new $.jqx.dataAdapter(src);
+            $("#jqxg").jqxGrid({
+                source: data_Adapter,
+                height: "220px",
+                width: "230px",
+                columns: [
+                    {
+                        text: "Subject Name",
+                        datafield: "subjectnames",
+                        width: "120px",
+                    },
+                    {
+                        text: "Page No.",
+                        datafield: "pagenumber",
+                        width: "120px",
+                    },
+                ],
+            });
+            $("#jqxBtn").jqxButton({
+                width: "180px",
+                height: "30px",
+            });
+            $("#jqxBtn").on("click", function () {
+                $('#jqxg').jqxGrid('render');
+                $("#log").html("Contents rendered!");
+            });
+        });
+    </script>
+</body>
+
+</html>
+```
+
+**输出：**
+
+![](img/be80c2e662fc61722c17658f916f98e1.png)
+
+**参考：** [https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxgrid/jquery-grid-api.htm?search=](https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxgrid/jquery-grid-api.htm?search=)
