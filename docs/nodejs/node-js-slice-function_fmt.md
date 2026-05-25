@@ -1,0 +1,63 @@
+# Node.js `slice()`功能
+
+> 原文：[https://www.geeksforgeeks.org/node-js-slice-function/](https://www.geeksforgeeks.org/node-js-slice-function/)
+
+`slice()`函数是 [Node.js](https://www.geeksforgeeks.org/introduction-to-nodejs/) 的字符串函数，用于从字符串中提取子字符串。
+
+## 语法
+
+```js
+string.slice(start, end)
+```
+
+## 参数
+
+这个函数使用上面提到的和下面描述的三个参数：
+
+*   `String`：It holds the contents of the string. A substring is extracted from the string.
+*   `Start`：This parameter holds the starting index of substring.
+*   `End`：This parameter stores the ending index od of substring.
+
+## 返回类型
+
+函数返回子串。
+
+下面的程序演示了该函数的工作原理：
+
+## 节目 1
+
+```js
+function findsubstr(str) {
+    var index = str.slice(12, 25);
+    console.log(index);
+}
+
+var str = "Welcome to GeeksforGeeks";
+findsubstr(str);
+```
+
+**输出：**
+
+```js
+GeeksforGeeks
+```
+
+## 节目 2
+
+```js
+function findsubstr(str, start, end) {
+    var index = str.slice(start, end);
+    console.log(index);
+}
+
+var str = "Welcome to GeeksforGeeks";
+var start = 0;
+var end = 6;
+findsubstr(str, start, end);
+```
+
+**输出：**
+
+```js
+Welcome
+```
