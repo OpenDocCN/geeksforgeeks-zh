@@ -1,0 +1,75 @@
+# Matplotlib.pyplot.quiver() 用法详解
+
+> 原文链接: [https://www.geeksforgeeks.org/matplotlib-pyplot-quiver-in-python/](https://www.geeksforgeeks.org/matplotlib-pyplot-quiver-in-python/)
+
+**Matplotlib** 是一个 Python 绑定库，为用户提供了一个类似 MATLAB 的绘图框架。Matplotlib 可用于 Python 脚本、Python 和 IPython 外壳、web 应用服务器以及各种图形用户界面工具包，如 Tkinter、wxPython 等。
+
+## Matplotlib.pyplot.quiver()
+
+`matplotlib.pyplot.quiver` 方法用于绘制箭头的 2D 场。
+
+### 语法
+```python
+matplotlib.pyplot.quiver(x_coordinate, y_coordinate, x_direction, y_direction)
+```
+
+### 参数
+- `x_coordinate`: 箭头位置的 x 坐标
+- `y_coordinate`: 箭头位置的 y 坐标
+- `x_direction`: 箭头方向的 x 分量
+- `y_direction`: 箭头方向的 y 分量
+
+### 可选参数
+- `scale`: 用于设置图形的比例
+- `scale_units`: 用于设置平面相对于 x 和 y 的单位
+- `angles`: 用于确定绘制的箭头向量的角度
+
+### 返回值
+返回带有箭头的 2D 图。
+
+## 示例 #1
+
+```python
+# Python program to explain
+# matplotlib.pyplot.quiver method
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+# defining necessary arrays
+x = np.linspace(0, 2, 8)
+y = np.linspace(2, 0, 8)
+x_dir = y_dir = np.zeros((8, 8))
+y_dir[5, 5] = 0.2
+
+# plotting the 2D graph
+plt.quiver(x, y, x_dir, y_dir, scale=1)
+```
+
+**输出:**
+![matplotlib.pyplot.quiver](img/f36b16e5537f1c91e6289f80714b2dde.png)
+
+## 示例 #2
+使用 `quiver` 方法在图形上绘制多个箭头。
+
+```python
+# Python program to explain
+# matplotlib.pyplot.quiver method
+
+# importing necessary libraries
+import matplotlib.pyplot as plt
+
+# defining necessary arrays
+x_coordinate = [0, 1.5]
+y_coordinate = [0.5, 1.5]
+x_direction = [1, -0.5]
+y_direction = [1, -1]
+
+# plotting the graph
+plt.quiver(x_coordinate, y_coordinate,
+           x_direction, y_direction,
+           scale_units='xy', scale=1.)
+```
+
+**输出:**
+![matplotlib.pyplot.quiver](img/a7f8e57898a6f1855a2b2d67b9ee1fba.png)
