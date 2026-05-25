@@ -1,0 +1,23 @@
+# Box 和 Wuala 的区别
+
+> 原文：[https://www.geeksforgeeks.org/difference-between-box-and-wuala/](https://www.geeksforgeeks.org/difference-between-box-and-wuala/)
+
+## 1. Box
+Box 是由 Box Incorporation 提供的云存储和文件托管服务。它是由 Aaron Levie 和 Dylan Smith 开发的。它基本上是面向企业的云内容管理和文件共享服务。它提供 10 GB 的存储空间。它由 Box Incorporation 于 2005 年推出。它适用于 Windows、macOS 等平台。
+
+## 2. Wuala
+Wuala 是一个文件同步服务、文件存储服务、文件版本服务和备份存储服务，最初由 Caleido Incorporation 提供，但后来归希捷科技所有。它是由 Truong Cheng 和 Lucius Chong 开发的。它主要是用 Java 开发的。它提供了 5 GB 的可用存储空间。它于 2008 年推出。
+
+## Box 和 Wuala 的区别
+
+| Box | Wuala |
+| --- | --- |
+| 它属于 Box 公司。 | 最初由 Caleido 公司拥有，但后来由希捷科技拥有。 |
+| 它于 2005 年推出。 | 它于 2008 年推出。 |
+| 它提供 10 GB 的可用存储空间。 | 它提供了 5 GB 的免费存储空间，但后来它变成了付费服务。 |
+| 它是由 Aaron Levie 和 Dylan Smith 开发的。 | 它是由 Truong Cheng 和 Lucius Chong 开发的。 |
+| 它没有获取额外可用存储空间的推荐系统。 | 最初它有转诊系统，但后来转诊服务暂停。 |
+| 个人账户最大存储容量为 100 GB，企业账户不受限制。 | 这里提供的最大存储大小为 2 TB。 |
+| 它仅支持高级帐户中的文件版本控制。 | 它完全支持文件版本控制。 |
+| 它不提供交换本地磁盘存储空间的能力。 | 它提供了用本地磁盘存储空间与云存储进行交易的能力。 |
+| 它仍在使用中。 | 这项服务于 2015 年暂停。 |

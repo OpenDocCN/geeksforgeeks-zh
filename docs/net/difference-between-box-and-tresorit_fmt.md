@@ -1,0 +1,26 @@
+# Box 和 Tresorit 的区别
+
+> 原文：[`https://www.geeksforgeeks.org/difference-between-box-and-tresorit/`](https://www.geeksforgeeks.org/difference-between-box-and-tresorit/)
+
+**1. Box：**
+Box 是由 `Box Incorporation` 提供的云存储和文件托管服务。它是由 `Aaron Levie` 和 `Dylan Smith` 开发的。它基本上是面向企业的云内容管理和文件共享服务。它提供 `10 GB` 的存储空间。它由 `Box Incorporation` 于 `2005` 年推出。它适用于 `Windows`、`macOS` 等平台。
+
+**2. Tresorit：**
+`Tresorit` 是由 `Tresorit` 提供的云存储、文件同步和文件共享服务。这是最安全的云计算服务之一。它提供了端到端的加密文件同步和文件共享服务。它由 `Tresorit` 于 `2014` 年推出。它提供 `3 GB` 的可用存储空间。`Windows`、`macOS`、`iOS`、`安卓`、`Windows Phone`、`Linux` 都支持。
+
+**Box 和 Tresorit 的区别：**
+
+| S.No | Box | Tresorit |
+| :--- | :--- | :--- |
+| 1 | 它由 `Box Corporation` 所有。 | 它归 `Tresorit` 所有。 |
+| 2 | 它于 `2005` 年推出。 | 它于 `2014` 年推出。 |
+| 3 | 它是由 `Aaron Levie` 和 `Dylan Smith` 开发的。 | 由 `Tresorit` 开发。 |
+| 4 | 它提供 `10 GB` 的可用存储空间。 | 它提供 `3 GB` 的可用存储空间。 |
+| 5 | 它为付费用户提供有限和无限的最大存储空间。 | 它为付费用户提供有限的最大存储空间。 |
+| 6 | 它没有客户端加密。 | 它有客户端加密。 |
+| 7 | 个人帐户的最大存储大小为 `100 GB`，企业帐户不受限制。 | 此处最大存储大小为 `1000 GB`。 |
+| 8 | 它支持开发者 `API`。 | 它不支持开发者 `API`。 |
+| 9 | 最大文件大小免费为 `250 MB`，付费为 `5 GB`。 | 免费的最大文件大小为 `500 MB`，高级的为 `5 GB`，其余付费计划为 `10 GB`。 |
+| 10 | 它的流量或带宽限制为每月免费 `10 GB`，每月付费 `2 TB`。 | 它没有流量或带宽限制。 |
+| 11 | 它仅支持高级帐户中的文件版本控制。 | 它只支持付费计划的文件版本控制。 |
+| 12 | 它支持通过 `IFTTT` 远程上传每个文件 `30 MB`。 | 它不支持远程上传。 |
