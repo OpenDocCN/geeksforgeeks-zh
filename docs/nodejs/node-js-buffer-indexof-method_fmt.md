@@ -1,0 +1,77 @@
+# Node.js Buffer.indexOf()方法
+
+> 原文：[https://www.geeksforgeeks.org/node-js-buffer-indexof-method/](https://www.geeksforgeeks.org/node-js-buffer-indexof-method/)
+
+**缓冲区**是一个临时存储器，当数据从一个地方移动到另一个地方时，它存储数据。它就像整数数组。
+
+**`Buffer.indexOf()`方法**首先检查输入值，如果输入值存在于缓冲区中，则返回值开始的第一个位置（索引）。
+
+## 语法：
+```js
+buffer.indexOf( value, start, encoding )
+```
+
+## 参数：
+这个方法接受三个参数，如上所述，如下所述：
+
+*   `value`：此参数保存要在缓冲区中查找的值。
+*   `start`：是一个可选参数。它指的是开始搜索输入缓冲区元素的起始索引。默认值为 `0`。
+*   `encoding`：是一个可选参数。如果所需值是字符串，您可以添加编码类型。默认值为 `utf-8`。
+
+## 返回值：
+搜索值开始的索引。如果缓冲区中没有该值，则返回 `-1`。
+
+下面的例子说明了 `Buffer.indexOf()`方法在 Node.js 中的使用：
+
+## 例 1：
+```js
+// Node.js program to demonstrate the
+// Buffer.indexOf() method
+
+// Creating a buffer
+const buffer = Buffer.from(
+    'GeeksforGeeks: A computer science portal');
+
+const output = buffer.indexOf('computer');
+
+console.log(output);
+```
+
+**输出：**
+```js
+
+```
+
+## 例 2：
+```js
+// Node.js program to demonstrate the
+// Buffer.indexOf() method
+
+const buffer = Buffer.from('geeks community');
+
+const output = buffer.indexOf(101);
+
+// Print: 1 as 101 is the ASCII value of 'e'
+// and 'e' occurs first at index 1
+const output1 = buffer.indexOf('geeks community');
+
+// Print: 0 as the whole value starts from 0 index only
+const output2 = buffer.indexOf('geeks', 6);
+
+// Print: -1 as we are starting the search from
+// 6 index but 'geek' is not present before it
+console.log(output);
+
+console.log(output1);
+
+console.log(output2);
+```
+
+**输出：**
+```js
+
+```
+
+**注意：** 以上程序使用 `node index.js` 命令编译运行。
+
+**参考：** [https://nodejs.org/api/buffer.html#buffer_buf_indexof_value_byteoffset_encoding](https://nodejs.org/api/buffer.html#buffer_buf_indexof_value_byteoffset_encoding)
