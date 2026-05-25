@@ -1,0 +1,202 @@
+# JavaScript 设置日期方法
+
+> 原文：[https://www.geeksforgeeks.org/javascript-set-date-methods/](https://www.geeksforgeeks.org/javascript-set-date-methods/)
+
+在 JavaScript 中有各种方法来设置日期。对于日期对象，数据值可以设置为年、月、日、小时、分钟、秒、毫秒。
+
+**方法：**
+
+*   `setDate()`：用于将日期设置为数字(1-31)。
+*   `setFullYear()`：用于设置年份(可选月、日)。
+*   `setHours()`：用于设置小时(0-23)。
+*   `setMilliseconds()`：用于设置毫秒(0-999)。
+*   `setMinutes()`：用于设置分钟(0-59)。
+*   `setMonth()`：用于设置月份(0-11)。
+*   `setSeconds()`：用于设置秒(0-59)。
+*   `setTime()`：用于设置时间。
+
+## `setSeconds()` 方法
+
+`setSeconds()` 方法用于设置日期对象的秒数(0-59)。
+
+**示例：**
+
+```html
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>
+        JavaScript setSeconds() method
+    </title>
+</head>
+<body style="text-align:center;">
+    <h1>GeeksForGeeks</h1>
+    <h2>JavaScript setSeconds()</h2>
+    <p id="GFG"></p>
+    <!-- Script to use setSeconds method -->
+    <script>
+        var d = new Date();
+        d.setSeconds(22);
+        document.getElementById("GFG").innerHTML = d;
+    </script>
+</body>
+</html>
+```
+
+**输出：**
+![](img/7d83a36951f01311cc6a10fb19be8155.png)
+
+## `setMinutes()` 方法
+
+`setMinutes()` 方法用于设置日期对象的分钟数(0-59)。
+
+**示例：**
+
+```html
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>
+        JavaScript setMinutes() method
+    </title>
+</head>
+<body style="text-align:center;">
+    <h1>GeeksForGeeks</h1>
+    <h2>JavaScript setMinutes()</h2>
+    <p id="GFG"></p>
+    <!-- Script to use setMinutes method -->
+    <script>
+        var d = new Date();
+        d.setMinutes(2);
+        document.getElementById("GFG").innerHTML = d;
+    </script>
+</body>
+</html>
+```
+
+**输出：**
+![](img/874128a036c2ba238f88e3cacd60a89b.png)
+
+## `setHours()` 方法
+
+`setHours()` 方法用于设置日期对象的小时数(0-23)。
+
+**示例：**
+
+```html
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>
+        JavaScript setHours() method
+    </title>
+</head>
+<body style="text-align:center;">
+    <h1>GeeksForGeeks</h1>
+    <h2>JavaScript setHours()</h2>
+    <p id="GFG"></p>
+    <!-- Script to use setHours() method -->
+    <script>
+        var d = new Date();
+        d.setHours(2);
+        document.getElementById("GFG").innerHTML = d;
+    </script>
+</body>
+</html>
+```
+
+**输出：**
+![](img/52d8ed1d13aa4c46d863804d7930d69a.png)
+
+## `setDate()` 方法
+
+`setDate()` 方法用于设置日期对象的日期(1-31)。
+
+**示例：**
+
+```html
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>
+        JavaScript setDate() method
+    </title>
+</head>
+<body style="text-align:center;">
+    <h1>GeeksForGeeks</h1>
+    <h2>JavaScript setDate()</h2>
+    <p id="GFG"></p>
+    <!-- Script to use setDate method -->
+    <script>
+        var d = new Date();
+        d.setDate(5);
+        document.getElementById("GFG").innerHTML = d;
+    </script>
+</body>
+</html>
+```
+
+**输出：**
+![](img/291a6ba02b7b8bcdf3186a5c07b53919.png)
+
+## `setFullYear()` 方法
+
+`setFullYear()` 方法用于设置日期对象的年份。
+
+**示例：**
+
+```html
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>
+        JavaScript setFullYear() method
+    </title>
+</head>
+<body style="text-align:center;">
+    <h1>GeeksForGeeks</h1>
+    <h2>JavaScript setFullYear()</h2>
+    <p id="GFG"></p>
+    <!-- Script to use setFullYear method -->
+    <script>
+        var d = new Date();
+        d.setFullYear(2020);
+        document.getElementById("GFG").innerHTML = d;
+    </script>
+</body>
+</html>
+```
+
+**输出：**
+![](img/afccee290d76c81c78717107b492a574.png)
+
+## `setMonth()` 方法
+
+`setMonth()` 方法用于设置日期对象的月份(0-11)。
+
+**示例：**
+
+```html
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>
+        JavaScript setMonth() method
+    </title>
+</head>
+<body style="text-align:center;">
+    <h1>GeeksForGeeks</h1>
+    <h2>JavaScript setMonth()</h2>
+    <p id="GFG"></p>
+    <!-- Script to use setMonth method -->
+    <script>
+        var d = new Date();
+        d.setMonth(5);
+        document.getElementById("GFG").innerHTML = d;
+    </script>
+</body>
+</html>
+```
+
+**输出：**
+![](img/d3097dce2c16f096071c06ce6381c357.png)
