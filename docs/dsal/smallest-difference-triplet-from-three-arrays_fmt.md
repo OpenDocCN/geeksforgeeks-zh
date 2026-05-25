@@ -1,0 +1,491 @@
+# 来自三个数组的最小差异三元组
+
+> 原文： [https://www.geeksforgeeks.org/smallest-difference-triplet-from-three-arrays/](https://www.geeksforgeeks.org/smallest-difference-triplet-from-three-arrays/)
+
+## 问题描述
+
+给出了三个相同大小的数组。找到一个三元组，以使最大值-最小的那个三元组是所有三元组的最小值。选择三元组的方式应使其在三个给定数组的每个数组中都有一个数字。
+
+如果存在 2 个或更多的最小差三元组，则应显示其元素总和最小的一个。
+
+## 示例
+
+```
+Input : arr1[] = {5, 2, 8}
+    arr2[] = {10, 7, 12}
+    arr3[] = {9, 14, 6}
+Output : 8, 7, 6
+
+Input : arr1[] = {15, 12, 18, 9}
+    arr2[] = {10, 17, 13, 8}
+    arr3[] = {14, 16, 11, 5}
+Output : 11, 10, 9
+```
+
+**注意**：三元组的元素以非降序显示。
+
+**简单解决方案**：考虑每个三元组，并从中找出所需的最小差异三元组。`O(n ^ 3)`的复杂度。
+
+**高效解决方案**：
+
+1.  对 3 个数组非降序排序。
+2.  从三个数组的最左边的元素创建三个指针。
+3.  现在找到`min`和`max`并从这三个元素计算`max-min`。
+4.  现在增加最小元素数组的指针。
+5.  对新的一组指针重复步骤 2、3、4，直到任何一个指针到达末尾为止。
+
+## C++
+
+```cpp
+// C++ implementation of smallest difference triplet 
+#include <bits/stdc++.h> 
+using namespace std; 
+
+// function to find maximum number 
+int maximum(int a, int b, int c) 
+{ 
+   return max(max(a, b), c); 
+} 
+
+// function to find minimum number 
+int minimum(int a, int b, int c) 
+{ 
+   return min(min(a, b), c); 
+} 
+
+// Finds and prints the smallest Difference Triplet 
+void smallestDifferenceTriplet(int arr1[], int arr2[], 
+                                    int arr3[], int n) 
+{ 
+    // sorting all the three arrays 
+    sort(arr1, arr1+n); 
+    sort(arr2, arr2+n); 
+    sort(arr3, arr3+n); 
+
+    // To store resultant three numbers 
+    int res_min, res_max, res_mid; 
+
+    // pointers to arr1, arr2, arr3 
+    // respectively 
+    int i = 0, j = 0, k = 0; 
+
+    // Loop until one array reaches to its end 
+    // Find the smallest difference. 
+    int diff = INT_MAX; 
+    while (i < n && j < n && k < n) 
+    { 
+        int sum = arr1[i] + arr2[j] + arr3[k]; 
+
+        // maximum number 
+        int max = maximum(arr1[i], arr2[j], arr3[k]); 
+
+        // Find minimum and increment its index. 
+        int min = minimum(arr1[i], arr2[j], arr3[k]); 
+        if (min == arr1[i]) 
+            i++; 
+        else if (min == arr2[j]) 
+            j++; 
+        else
+            k++; 
+
+        // comparing new difference with the 
+        // previous one and updating accordingly 
+        if (diff > (max-min)) 
+        { 
+            diff = max - min; 
+            res_max = max; 
+            res_mid = sum - (max + min); 
+            res_min = min; 
+        } 
+    } 
+
+    // Print result 
+    cout << res_max << ", " << res_mid << ", " << res_min; 
+} 
+
+// Driver program to test above 
+int main() 
+{ 
+    int arr1[] = {5, 2, 8}; 
+    int arr2[] = {10, 7, 12}; 
+    int arr3[] = {9, 14, 6}; 
+    int n = sizeof(arr1) / sizeof(arr1[0]); 
+    smallestDifferenceTriplet(arr1, arr2, arr3, n); 
+    return 0; 
+}
+```
+
+## Java
+
+```java
+// Java implementation of smallest difference 
+// triplet 
+import java.util.Arrays; 
+
+class GFG { 
+
+    // function to find maximum number 
+    static int maximum(int a, int b, int c) 
+    { 
+        return Math.max(Math.max(a, b), c); 
+    } 
+
+    // function to find minimum number 
+    static int minimum(int a, int b, int c) 
+    { 
+        return Math.min(Math.min(a, b), c); 
+    } 
+
+    // Finds and prints the smallest Difference 
+    // Triplet 
+    static void smallestDifferenceTriplet(int arr1[], 
+                       int arr2[], int arr3[], int n) 
+    { 
+
+        // sorting all the three arrays 
+        Arrays.sort(arr1); 
+        Arrays.sort(arr2); 
+        Arrays.sort(arr3); 
+
+        // To store resultant three numbers 
+        int res_min=0, res_max=0, res_mid=0; 
+
+        // pointers to arr1, arr2, arr3 
+        // respectively 
+        int i = 0, j = 0, k = 0; 
+
+        // Loop until one array reaches to its end 
+        // Find the smallest difference. 
+        int diff = 2147483647; 
+
+        while (i < n && j < n && k < n) 
+        { 
+            int sum = arr1[i] + arr2[j] + arr3[k]; 
+
+            // maximum number 
+            int max = maximum(arr1[i], arr2[j], arr3[k]); 
+
+            // Find minimum and increment its index. 
+            int min = minimum(arr1[i], arr2[j], arr3[k]); 
+            if (min == arr1[i]) 
+                i++; 
+            else if (min == arr2[j]) 
+                j++; 
+            else
+                k++; 
+
+            // comparing new difference with the 
+            // previous one and updating accordingly 
+            if (diff > (max - min)) 
+            { 
+                diff = max - min; 
+                res_max = max; 
+                res_mid = sum - (max + min); 
+                res_min = min; 
+            } 
+        } 
+
+        // Print result 
+        System.out.print(res_max + ", " + res_mid 
+                                 + ", " + res_min); 
+    } 
+
+    //driver code 
+    public static void main (String[] args) 
+    { 
+
+        int arr1[] = {5, 2, 8}; 
+        int arr2[] = {10, 7, 12}; 
+        int arr3[] = {9, 14, 6}; 
+
+        int n = arr1.length; 
+
+        smallestDifferenceTriplet(arr1, arr2, arr3, n); 
+    } 
+} 
+
+// This code is contributed by Anant Agarwal.
+```
+
+## Python3
+
+```py
+# Python3 implementation of smallest 
+# difference triplet 
+
+# Function to find maximum number 
+def maximum(a, b, c): 
+    return max(max(a, b), c) 
+
+# Function to find minimum number 
+def minimum(a, b, c): 
+    return min(min(a, b), c) 
+
+# Finds and prints the smallest 
+# Difference Triplet 
+def smallestDifferenceTriplet(arr1, arr2, arr3, n): 
+
+    # sorting all the three arrays 
+    arr1.sort() 
+    arr2.sort() 
+    arr3.sort() 
+
+    # To store resultant three numbers 
+    res_min = 0; res_max = 0; res_mid = 0
+
+    # pointers to arr1, arr2,  
+    # arr3 respectively 
+    i = 0; j = 0; k = 0
+
+    # Loop until one array reaches to its end 
+    # Find the smallest difference. 
+    diff = 2147483647
+    while (i < n and j < n and k < n): 
+
+        sum = arr1[i] + arr2[j] + arr3[k] 
+
+        # maximum number 
+        max = maximum(arr1[i], arr2[j], arr3[k]) 
+
+        # Find minimum and increment its index. 
+        min = minimum(arr1[i], arr2[j], arr3[k]) 
+        if (min == arr1[i]): 
+            i += 1
+        elif (min == arr2[j]): 
+            j += 1
+        else: 
+            k += 1
+
+        # Comparing new difference with the 
+        # previous one and updating accordingly 
+        if (diff > (max - min)): 
+
+            diff = max - min
+            res_max = max
+            res_mid = sum - (max + min) 
+            res_min = min
+
+    # Print result 
+    print(res_max, ",", res_mid, ",", res_min) 
+
+# Driver code 
+arr1 = [5, 2, 8] 
+arr2 = [10, 7, 12] 
+arr3 = [9, 14, 6] 
+n = len(arr1) 
+smallestDifferenceTriplet(arr1, arr2, arr3, n) 
+
+# This code is contributed by Anant Agarwal.
+```
+
+## C# 
+
+```cs
+// C# implementation of smallest  
+// difference triplet 
+using System; 
+
+class GFG 
+{ 
+
+    // function to find 
+    // maximum number 
+    static int maximum(int a, int b, int c) 
+    { 
+        return Math.Max(Math.Max(a, b), c); 
+    } 
+
+    // function to find 
+    // minimum number 
+    static int minimum(int a, int b, int c) 
+    { 
+        return Math.Min(Math.Min(a, b), c); 
+    } 
+
+    // Finds and prints the  
+    // smallest Difference Triplet 
+    static void smallestDifferenceTriplet(int []arr1, 
+                                          int []arr2,  
+                                          int []arr3,  
+                                          int n) 
+    { 
+
+        // sorting all the  
+        // three arrays 
+        Array.Sort(arr1); 
+        Array.Sort(arr2); 
+        Array.Sort(arr3); 
+
+        // To store resultant 
+        // three numbers 
+        int res_min = 0, res_max = 0, res_mid = 0; 
+
+        // pointers to arr1, arr2,  
+        // arr3 respectively 
+        int i = 0, j = 0, k = 0; 
+
+        // Loop until one array  
+        // reaches to its end 
+        // Find the smallest difference. 
+        int diff = 2147483647; 
+
+        while (i < n && j < n && k < n) 
+        { 
+            int sum = arr1[i] +  
+                      arr2[j] + arr3[k]; 
+
+            // maximum number 
+            int max = maximum(arr1[i],  
+                              arr2[j], arr3[k]); 
+
+            // Find minimum and  
+            // increment its index. 
+            int min = minimum(arr1[i],  
+                              arr2[j], arr3[k]); 
+            if (min == arr1[i]) 
+                i++; 
+            else if (min == arr2[j]) 
+                j++; 
+            else
+                k++; 
+
+            // comparing new difference  
+            // with the previous one and 
+            // updating accordingly 
+            if (diff > (max - min)) 
+            { 
+                diff = max - min; 
+                res_max = max; 
+                res_mid = sum - (max + min); 
+                res_min = min; 
+            } 
+        } 
+
+        // Print result 
+        Console.WriteLine(res_max + ", " +  
+                          res_mid + ", " +  
+                          res_min); 
+    } 
+
+    // Driver code 
+    static public void Main () 
+    { 
+        int []arr1 = {5, 2, 8}; 
+        int []arr2 = {10, 7, 12}; 
+        int []arr3 = {9, 14, 6}; 
+
+        int n = arr1.Length; 
+
+        smallestDifferenceTriplet(arr1, arr2,  
+                                  arr3, n); 
+    } 
+} 
+
+// This code is contributed by ajit. 
+```
+
+## PHP
+
+```php
+<?php 
+// PHP implementation of  
+// smallest difference triplet 
+
+// function to find 
+// maximum number 
+function maximum($a, $b, $c) 
+{ 
+    return max(max($a, $b), $c); 
+} 
+
+// function to find  
+// minimum number 
+function minimum($a, $b, $c) 
+{ 
+    return min(min($a, $b), $c); 
+} 
+
+// Finds and prints the 
+// smallest Difference Triplet 
+function smallestDifferenceTriplet($arr1, $arr2, 
+                                   $arr3, $n) 
+{ 
+    // sorting all the 
+    // three arrays 
+    sort($arr1); 
+    sort($arr2); 
+    sort($arr3); 
+
+    // To store resultant 
+    // three numbers 
+    $res_min; $res_max; $res_mid; 
+
+    // pointers to arr1, arr2,  
+    // arr3 respectively 
+    $i = 0; $j = 0; $k = 0; 
+
+    // Loop until one array reaches 
+    // to its end 
+    // Find the smallest difference. 
+    $diff = PHP_INT_MAX; 
+    while ($i < $n && $j < $n && $k < $n) 
+    { 
+        $sum = $arr1[$i] +  
+               $arr2[$j] + 
+               $arr3[$k]; 
+
+        // maximum number 
+        $max = maximum($arr1[$i], 
+                       $arr2[$j],  
+                       $arr3[$k]); 
+
+        // Find minimum and  
+        // increment its index. 
+        $min = minimum($arr1[$i],  
+                       $arr2[$j],  
+                       $arr3[$k]); 
+        if ($min == $arr1[$i]) 
+            $i++; 
+        else if ($min == $arr2[$j]) 
+            $j++; 
+        else
+            $k++; 
+
+        // comparing new difference  
+        // with the previous one  
+        // and updating accordingly 
+        if ($diff > ($max - $min)) 
+        { 
+            $diff = $max - $min; 
+            $res_max = $max; 
+            $res_mid = $sum - ($max + $min); 
+            $res_min = $min; 
+        } 
+    } 
+
+    // Print result 
+    echo $res_max , ", " ,  
+         $res_mid , ", " ,  
+         $res_min; 
+} 
+
+// Driver Code 
+$arr1 = array(5, 2, 8); 
+$arr2 = array(10, 7, 12); 
+$arr3 = array(9, 14, 6); 
+
+$n = sizeof($arr1); 
+smallestDifferenceTriplet($arr1, $arr2, 
+                          $arr3, $n); 
+
+// This code is contributed by ajit 
+?> 
+```
+
+**输出**：
+
+```
+7, 6, 5
+```
+
+**时间复杂度**：`O(N log N)`。
