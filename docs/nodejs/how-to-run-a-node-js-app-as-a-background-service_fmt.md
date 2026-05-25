@@ -1,0 +1,73 @@
+# 如何运行 Node.js 应用作为后台服务？
+
+> 原文：[https://www.geeksforgeeks.org/how-to-run-a-node-js-app-as-a-background-service/](https://www.geeksforgeeks.org/how-to-run-a-node-js-app-as-a-background-service/)
+
+[Node.js](https://www.geeksforgeeks.org/nodejs-tutorials/) 是一个建立在 Chrome 的 JavaScript V8 引擎上的平台，用于轻松构建快速、可扩展的网络应用。JavaScript 使用事件驱动、无阻塞的 I/O 模型，使其轻量、高效，非常适合跨分布式设备运行的数据密集型实时应用。为了利用 Node.js 中的工具（或包），我们需要能够安装在我们的机器上，并以一种有用的方式管理它们。
+
+要将 Node.js 应用作为后台服务运行，即使在关闭终端后，应用服务器也需要保持运行。
+
+## 运行 Node.js 应用作为后台服务的方法
+
+### 方法 1：使用 Forever 工具
+
+让 Node.js 应用作为后台服务运行最简单的方法就是使用 `forever` 工具。`forever` 是一个简单的命令行界面工具，确保给定的特定脚本连续运行，没有任何交互。
+
+**安装命令：** 以下命令在应用中安装 `forever` 工具。
+
+```js
+$ npm install forever -g
+```
+
+![](img/503854f2b16596a6f1a62c3d4cfcf58c.png)
+
+永久安装示例
+
+**命令 `forever start`：** 要启动 `forever` 工具，运行以下命令，将 `<app_name>` 替换为 Node.js 应用的名称。
+
+```js
+$ forever start /<app_name>/index.js
+```
+
+![](img/2f4e64b2e36d189b44eea8fecd28afae.png)
+
+永远开始的例子
+
+### 方法 2：创建服务文件
+
+第二种方法是创建一个服务文件，手动启动应用，使服务在后台保持运行。
+
+*   **第一步：** 新建文件 `<app_name>.service`（将 `<app_name>` 替换为 Node.js 应用的名称）。在文件中，输入以下值：
+
+```js
+ExecStart=/var/www/<app_name>/app.js
+Restart=always
+User=nobody
+Group=nogroup
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/var/www/<app_name>
+```
+
+*   **第二步：** 配置服务文件后，复制 `<app_name>.service` 文件到 `/etc/systemd/system`。
+
+*   **步骤 3：** 使用以下命令启动应用程序，使其使用服务文件运行：
+
+```js
+systemctl start <app_name>
+```
+
+### 方法 3：使用 nohup
+
+另一种可以使用 `nohup` 运行 Node.js 应用作为后台的方法。`nohup` 是另一个命令行界面工具，可以用来运行一个 Node.js 应用作为后台服务。
+
+运行以下命令启动 `nohup`，用 Node.js 应用的名称替换 `<app_name>`：
+
+```js
+$ nohup node /<app_name>/index.js &
+```
+
+即使命令终端关闭，`nohup` 命令也不会终止此过程。
+
+![](img/79d1743a71d2a069a8a401b8fd86309e.png)
+
+使用 nohup 的示例
