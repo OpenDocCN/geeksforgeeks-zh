@@ -1,0 +1,134 @@
+# jQWidgets jqxDataTable 过滤器事件
+
+> 原文：[https://www.geeksforgeeks.org/jqwidgets-jqxdatatable-filter-event/](https://www.geeksforgeeks.org/jqwidgets-jqxdatatable-filter-event/)
+
+`jQWidgets` 是一个 JavaScript 框架，用于为 PC 和移动设备制作基于 web 的应用程序。它是一个非常强大、优化、独立于平台并且得到广泛支持的框架。`jqxDataTable` 用于读取和显示 HTML 表格中的数据，也用于显示来自各种数据源的数据，如 XML、JSON、Array、CSV 或 TSV。
+
+`filter` 事件用于在指定 `jqxDataTable` 的行过滤器发生变化时触发。
+
+## 语法
+
+```javascript
+$('#dataTable').on('filter',
+function (event)
+{
+   var args = event.args;
+   // Here "operator" will be "0" or "1" depending on the 
+   // relation between the filter with the other filters within
+   // the filter group and "datafield" is the filter column's field 
+   var filters = args.filters;
+});
+```
+
+## 链接文件
+
+从给定链接下载 [jQWidgets](https://www.jqwidgets.com/download/)。在 HTML 文件中，找到下载文件夹中的脚本文件。
+
+```html
+<link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css">
+<script type="text/javascript" src="scripts/jquery.js"></script>
+<script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
+<script type="text/javascript" src="jqwidgets/jqxdata.js"></script>
+```
+
+## 示例
+
+以下示例说明了 `jQWidgets` 的 `filter` 事件。
+
+### HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="jqwidgets/styles/jqx.base.css"
+      type="text/css"/>
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxdata.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxlistbox.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxdropdownlist.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxdatatable.js"></script>
+  </head>
+<body>
+    <center>
+      <h1 style="color: green">GeeksforGeeks</h1>
+      <h3>jQWidgets jqxDataTable filter Event</h3>
+      <div id="#Data_Table"></div>
+      <div id="log"></div>
+      <script type="text/javascript">
+        $(document).ready(function () {
+          $("#Data_Table").jqxDataTable({
+            filterable: true,
+            columns: [
+              {
+                text: "Employee_Name",
+                dataField: "Employee_Name",
+                width: 190,
+              },
+              {
+                text: "Company",
+                dataField: "Company",
+                width: 160,
+              },
+              {
+                text: "Designation",
+                dataField: "Designation",
+                width: 190,
+              },
+            ],
+          });
+          $("#Data_Table").on("filter", function (event) {
+            var args = event.args;
+            var Filters = args.filters;
+            $("#log").html(JSON.stringify(Filters));
+          });
+        });
+      </script>
+      <table id="Data_Table" border="1">
+        <thead>
+          <tr>
+            <th>Employee_Name</th>
+            <th>Company</th>
+            <th>Designation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Rohit</td>
+            <td>GeeksforGeeks</td>
+            <td>HR</td>
+          </tr>
+          <tr>
+            <td>Rahul</td>
+            <td>Capgemini</td>
+            <td>Software Engineer</td>
+          </tr>
+          <tr>
+            <td>Vivek</td>
+            <td>CESC</td>
+            <td>Electrical Engineer</td>
+          </tr>
+          <tr>
+            <td>Amit</td>
+            <td>Apple</td>
+            <td>Manager</td>
+          </tr>
+        </tbody>
+      </table>
+    </center>
+  </body>
+</html>
+```
+
+## 输出
+
+![](img/8997c533608fd9c9e1472a6fa6550c11.png)
+
+## 参考
+
+[https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxdatatable/jquery-datatable-api.htm?search=](https://www.jqwidgets.com/jquery-widgets-documentation/documentation/jqxdatatable/jquery-datatable-api.htm?search=)
