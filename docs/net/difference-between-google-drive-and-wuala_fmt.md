@@ -1,0 +1,24 @@
+# 谷歌驱动和 Wuala 的区别
+
+> 原文：[https://www.geeksforgeeks.org/difference-between-google-drive-and-wuala/](https://www.geeksforgeeks.org/difference-between-google-drive-and-wuala/)
+
+## 谷歌驱动
+谷歌驱动是由谷歌提供的文件存储和同步服务。它允许用户存储文件和个人数据，并共享文件。它提供 15 GB 的可用存储空间。它是谷歌在 2012 年推出的。几乎每个与互联网有某种联系的人都在使用它。每个人都用它来存储一些专业和个人数据。
+
+## Wuala
+Wuala 是一个文件同步服务、文件存储服务、文件版本服务和备份存储服务，最初由 `Caleido Incorporation` 提供，但后来归 `Seagate Technology` 所有。它是由 `Tristan Grobelin` 和 `Lucius Messerli` 开发的。它主要是用 `Java` 开发的。它提供了 5 GB 的可用存储空间。它于 2008 年推出。
+
+## Google Drive 和 Wuala 的区别
+
+| GOOGLE DRIVE | WUALA |
+| --- | --- |
+| 它归 `Google LLC` 所有。 | 最初由 `Caleido Incorporation` 拥有，但后来由 `Seagate Technology` 拥有。 |
+| 它于 2012 年推出。 | 它于 2008 年推出。 |
+| 它提供 15 GB 的可用存储空间。 | 它提供了 5 GB 的可用存储空间。 |
+| 是 `Google` 开发的。 | 它是由 `Tristan Grobelin` 和 `Lucius Messerli` 开发的。 |
+| 它没有获取额外可用存储空间的推荐系统。 | 最初它有转诊系统，但后来转诊服务暂停。 |
+| 它的最大存储大小为 30 TB。 | 提供的最大存储大小为 2 TB。 |
+| 它支持文件版本控制。 | 它还支持文件版本控制。 |
+| 它不提供交换本地磁盘存储空间的能力。 | 它提供了用本地磁盘存储空间与云存储进行交易的能力。 |
+| 它提供了完全的数据安全性。 | 它提供的数据安全性不如谷歌硬盘。 |
+| 它仍在使用中。 | 这项服务于 2015 年暂停。 |
