@@ -1,0 +1,151 @@
+# Node.js `fs.rmdir()`方法
+
+> 原文:[https://www.geeksforgeeks.org/node-js-fs-rmdir-method/](https://www.geeksforgeeks.org/node-js-fs-rmdir-method/)
+
+`fs.rmdir()`方法用于删除给定路径的目录。它也可以递归地用于移除嵌套目录。
+
+**语法:**
+
+```js
+fs.rmdir( path, options, callback )
+```
+
+**参数:**该方法接受三个参数，如上所述，如下所述:
+
+*   `path`:保存需要删除的目录的路径。它可以是字符串、缓冲区或网址。
+*   `options`:是一个可以用来指定影响操作的可选参数的对象。它有三个可选参数:
+    *   `recursive`:是一个布尔值，指定是否执行递归目录删除。在这种模式下，如果找不到指定的路径，并且在失败时重试该操作，则不会报告错误。默认值为假。
+    *   `maxRetries`: 它是一个整数值，指定 Node.js 在由于任何错误而失败时尝试执行操作的次数。操作在给定的重试延迟后执行。如果`recursive`选项未设置为 true，则忽略此选项。默认值为 0。
+    *   `retrydley`:是一个整数值，指定重试操作前等待的时间(毫秒)。如果`recursive`选项未设置为 true，则忽略此选项。默认值为 100 毫秒。
+*   `callback`:是执行方法时会调用的函数。
+    *   `error`:如果操作失败，将会引发错误。
+
+下面的例子说明了 Node.js 中的 `fs.rmdir()`方法:
+
+**示例 1:** 本示例使用`fs.rmdir()`方法删除目录。
+
+## java 描述语言
+
+```js
+// Node.js program to demonstrate the
+// fs.rmdir() method
+
+// Import the filesystem module
+const fs = require('fs');
+
+// Get the current filenames
+// in the directory
+getCurrentFilenames();
+
+fs.rmdir("directory_one", () => {
+  console.log("Folder Deleted!");
+
+// Get the current filenames
+  // in the directory to verify
+  getCurrentFilenames();
+});
+
+// Function to get current filenames
+// in directory
+function getCurrentFilenames() {
+  console.log("\nCurrent filenames:");
+  fs.readdirSync(__dirname).forEach(file => {
+    console.log(file);
+  });
+  console.log("\n");
+}
+```
+
+**输出:**
+
+```js
+Current filenames:
+directory_one
+index.js
+package.json
+Folder Deleted!
+
+Current filenames:
+index.js
+package.json
+```
+
+**示例 2:** 本示例使用带有`recursive`参数的`fs.rmdir()`方法删除嵌套目录。
+
+## java 描述语言
+
+```js
+// Node.js program to demonstrate the
+// fs.rmdir() method
+
+// Import the filesystem module
+const fs = require('fs');
+
+// Get the current filenames
+// in the directory
+getCurrentFilenames();
+
+// Trying to delete nested directories
+// without the recursive parameter
+fs.rmdir("directory_one", {
+  recursive: false,
+}, (error) => {
+  if (error) {
+    console.log(error);
+  }
+  else {
+    console.log("Non Recursive: Directories Deleted!");
+  }
+});
+
+// Using the recursive option to delete
+// multiple directories that are nested
+fs.rmdir("directory_one", {
+  recursive: true,
+}, (error) => {
+  if (error) {
+    console.log(error);
+  }
+  else {
+    console.log("Recursive: Directories Deleted!");
+
+// Get the current filenames
+    // in the directory to verify
+    getCurrentFilenames();
+  }
+});
+
+// Function to get current filenames
+// in directory
+function getCurrentFilenames() {
+  console.log("\nCurrent filenames:");
+  fs.readdirSync(__dirname).forEach(file => {
+    console.log(file);
+  });
+  console.log("\n");
+}
+```
+
+**输出:**
+
+```js
+Current filenames:
+directory_one
+index.js
+package.json
+
+[Error: ENOTEMPTY: directory not empty, 
+rmdir 'G:\tutorials\nodejs-fs-rmdir\directory_one'] {
+  errno: -4051,
+  code: 'ENOTEMPTY',
+  syscall: 'rmdir',
+  path: 'G:\\tutorials\\nodejs-fs-rmdir\\directory_one'
+}
+Recursive: Directories Deleted!
+
+Current filenames:
+index.js
+package.json
+```
+
+**参考:**[https://nodejs.org/api/fs.html#fs_fs_rmdir_path_options_callback](https://nodejs.org/api/fs.html#fs_fs_rmdir_path_options_callback)
