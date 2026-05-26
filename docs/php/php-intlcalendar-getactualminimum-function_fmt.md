@@ -1,0 +1,70 @@
+# PHP IntlCalendar getActualMinimum()函数
+
+> Original: [https://www.geeksforgeeks.org/php-intlcalendar-getactualminimum-function/](https://www.geeksforgeeks.org/php-intlcalendar-getactualminimum-function/)
+
+`IntlCalendar::getActualMinimum()`函数是 PHP 中的一个内置函数，用于返回当前时间附近的字段相对最小值。
+
+## 语法
+
+*   Object-oriented style
+
+```php
+    *int* IntlCalendar::getActualMinimum( *int* $field )
+```
+
+*   Process style
+
+```php
+    *int* intlcal_get_actual_minimum( *IntlCalendar* $cal, *int* $field )
+```
+
+## 参数
+
+此函数使用上述两个参数：
+
+*   `$cal`: 此参数保存 `IntlCalendar` 的资源。
+*   `$field`: 此参数持有 `IntlCalendar` 日期/时间字段常量之一。此字段包含一个介于 0 和 `IntlCalendar::FIELD_COUNT` 之间的整数值。
+
+## 返回值
+
+此函数返回整数值，该整数值表示与给定字段关联的单位中的最小值(如果成功)或 `false`(如果失败)。
+
+下面的程序演示了 PHP 中的 `IntlCalendar::getActualMinimum()`函数：
+
+## 程序
+
+```php
+<?php
+
+// Set the DateTime object
+ini_set('date.timezone', 'Asia/Calcutta');
+
+// Declare an IntlCalendar DateTime object
+$calendar = IntlCalendar::fromDateTime('2010-09-22');
+
+// Use getActualMaximum() function to the DateTime object
+var_dump($calendar->getActualMinimum(IntlCalendar::FIELD_DAY_OF_MONTH));
+
+// Use getActualMaximum() function to the DateTime object
+var_dump($calendar->getActualMinimum(IntlCalendar::FIELD_DAY_OF_WEEK_IN_MONTH));
+
+var_dump($calendar->getActualMinimum(IntlCalendar::FIELD_MONTH));
+
+var_dump($calendar->getActualMinimum(IntlCalendar::FIELD_WEEK_OF_YEAR));
+
+var_dump($calendar->getActualMinimum(IntlCalendar::FIELD_WEEK_OF_MONTH));
+
+?>
+```
+
+## 输出
+
+```php
+int(1)
+int(-1)
+int(0)
+int(1)
+int(1)
+```
+
+**引用：**[https://www.php.net/manual/en/intlcalendar.getactualminimum.php](https://www.php.net/manual/en/intlcalendar.getactualminimum.php)

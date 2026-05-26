@@ -1,0 +1,58 @@
+# PHP Implode()函数
+
+> Original: [https://www.geeksforgeeks.org/php-implode-function/](https://www.geeksforgeeks.org/php-implode-function/)
+
+`Implode()`是 PHP 中的一个内置函数，用于联接数组的元素。`Implode()`是[PHP Join()函数](https://www.geeksforgeeks.org/php-join-function/)的别名，其工作方式与`Join()`函数完全相同。
+
+如果我们有一个元素数组，我们可以使用`implode()`函数将它们连接起来形成一个字符串。我们基本上是用字符串连接数组元素。与`Join()`函数一样，`implode()`函数也返回由数组元素组成的字符串。
+
+## 语法
+
+```php
+string implode(separator, array)
+```
+
+## 参数
+
+`implode()`函数接受两个参数，其中一个是可选的，另一个是必需的。
+
+1.  `separator`：可选参数，字符串类型。数组的值将被连接成一个字符串，并由这里提供的`separator`参数分隔。这是可选的，如果未提供，则默认为`""`（即空字符串）。
+2.  `array`：一个数组，其值将被连接以形成字符串。
+
+**注**：`implode()`的`separator`参数是可选的。但是，为了向后兼容，建议始终使用两个参数。
+
+## 返回类型
+
+`implode()`函数的返回类型为`String`。它将返回由`array`的元素组成的连接字符串。
+
+## 示例
+
+```php
+Input : implode(array('Geeks','for','Geeks'))
+Output : GeeksforGeeks
+
+Input : implode("-", array('Geeks','for','Geeks'))
+Output : Geeks-for-Geeks
+```
+
+下面的程序演示了 PHP 中的`implode()`函数的工作原理：
+
+```php
+<?php
+    // PHP Code to implement join function
+
+    $InputArray = array('Geeks','for','Geeks');
+
+    // Join without separator
+    print_r(implode($InputArray));
+
+    print_r("\n");
+
+    // Join with separator
+    print_r(implode("-", $InputArray));
+?>
+```
+
+帖子主题：Re：Колибри
+
+**参考**：[http://php.net/manual/en/function.implode.php](http://php.net/manual/en/function.implode.php)
