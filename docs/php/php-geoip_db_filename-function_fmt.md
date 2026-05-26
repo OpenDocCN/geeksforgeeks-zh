@@ -1,0 +1,88 @@
+# PHP `geoip_db_filename()` 函数
+
+> Original: [https://www.geeksforgeeks.org/php-geoip_db_filename-function/](https://www.geeksforgeeks.org/php-geoip_db_filename-function/)
+
+`geoip_db_filename()` 函数是 PHP 中的一个内置函数，用于生成作为参数接受的对应 GeoIP 数据库的文件名。该函数不检查文件是否实际存在于磁盘上，而只是返回库在其中搜索数据库的文件名。
+
+## 语法
+
+```php
+string geoip_db_filename ( $database )
+```
+
+## 参数
+
+此函数接受单个必需参数 `$database`，其类型为整型。下面列出了用作数据库的各种预定义常量：
+
+*   `GEOIP_COUNTRY_EDITION`
+*   `GEOIP_REGION_EDITION_REV0`
+*   `GEOIP_CITY_EDITION_REV0`
+*   `GEOIP_ORG_EDITION`
+*   `GEOIP_ISP_EDITION`
+*   `GEOIP_CITY_EDITION_REV1`
+*   `GEOIP_ASNUM_EDITION`
+*   `GEOIP_NETSPEED_EDITION`
+*   `GEOIP_DOMAIN_EDITION`
+
+以下常量用于网速：
+
+*   `GEOIP_UNKNOWN_SPEED`
+*   `GEOIP_DIALUP_SPEED`
+*   `GEOIP_CABLEDSL_SPEED`
+*   `GEOIP_CORPORATE_SPEED`
+
+## 返回值
+
+此函数成功时返回对应 GeoIP 数据库的文件名，失败或出错时返回 `NULL`。
+
+## 程序示例
+
+下面的程序演示了 PHP 中的 `geoip_db_filename()` 函数：
+
+### 程序 1
+
+```php
+<?php
+
+// PHP code implementing the geoip_db_filename() function
+
+// The function takes the database and returns
+//  the filename according to the database
+print geoip_db_filename(GEOIP_COUNTRY_EDITION);
+?>
+```
+
+发帖主题：Re：Колибри0.7.8.0
+
+### 程序 2
+
+```php
+<?php
+$arr = array(
+             'GEOIP_COUNTRY_EDITION' => GEOIP_COUNTRY_EDITION,
+             'GEOIP_REGION_EDITION_REV1' => GEOIP_REGION_EDITION_REV1,
+             'GEOIP_PROXY_EDITION' => GEOIP_PROXY_EDITION,
+             'GEOIP_ASNUM_EDITION' => GEOIP_ASNUM_EDITION,
+             'GEOIP_DOMAIN_EDITION' => GEOIP_DOMAIN_EDITION,
+             'GEOIP_UNKNOWN_SPEED' => GEOIP_UNKNOWN_SPEED,
+             'GEOIP_DIALUP_SPEED' => GEOIP_DIALUP_SPEED,
+             'GEOIP_CABLEDSL_SPEED' => GEOIP_CABLEDSL_SPEED,
+             'GEOIP_CORPORATE_SPEED' => GEOIP_CORPORATE_SPEED
+             );
+
+foreach ($arr as $val) {
+    echo geoip_db_filename($val) . (geoip_db_avail($val) ? 'Available':'') . '<br>';
+}
+?>
+```
+
+发帖主题：Re：Колибри0.7.8.0
+
+## 相关文章
+
+*   [php|geoip_country_code_by_name() 函数](https://www.geeksforgeeks.org/php-geoip_country_code_by_name-function/)
+*   [php|geoip_continent_code_by_name() 函数](https://www.geeksforgeeks.org/php-geoip_continent_code_by_name-function/)
+
+## 引用
+
+[http://php.net/manual/en/function.geoip-db-filename.php](http://php.net/manual/en/function.geoip-db-filename.php)
