@@ -1,0 +1,59 @@
+# Python | SymPy Permutation.descents()方法
+
+> 原文: [https://www.geeksforgeeks.org/python-sympy-permutation-descents-method/](https://www.geeksforgeeks.org/python-sympy-permutation-descents-method/)
+
+`Permutation.descents()` 是一个 SymPy Python 库函数，返回置换中 descents 的位置。下降是 `a[i] > a[i+1]` 的元素。
+
+## 语法
+`sympy.combinatorics.permutations.Permutation.descents()`
+
+## 返回
+下降在排列中的位置。
+
+## 代码#1: `descents()` 示例
+
+```py
+# Python code explaining
+# SymPy.descents()
+
+# importing SymPy libraries
+from sympy.combinatorics.partitions import Partition
+from sympy.combinatorics.permutations import Permutation
+
+# Using from sympy.combinatorics.permutations.Permutation.descents() method
+
+# creating Permutation
+a = Permutation([[2, 0], [3, 1]])
+
+b = Permutation([1, 3, 5, 4, 2, 0])
+
+print ("Permutation a - descents form : ", a.descents())
+print ("Permutation b - descents form : ", b.descents())
+```
+
+**输出:**
+> 排列 a–下降形式: [1]
+> 排列 b–下降形式: [2, 3, 4]
+
+## 代码#2: `descents()` 示例 – 2D 排列
+
+```py
+# Python code explaining
+# SymPy.descents()
+
+# importing SymPy libraries
+from sympy.combinatorics.partitions import Partition
+from sympy.combinatorics.permutations import Permutation
+
+# Using from sympy.combinatorics.permutations.Permutation.descents() method
+
+# creating Permutation
+a = Permutation([[2, 4, 0], 
+                 [3, 1, 2],
+                 [1, 5, 6]])
+
+print ("Permutation a - descents form : ", a.descents())
+```
+
+**输出:**
+> 排列 a–下降形式: [0, 3, 5]
