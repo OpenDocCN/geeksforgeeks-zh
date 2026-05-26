@@ -1,0 +1,103 @@
+# PHP `class_alias()` 函数
+
+> 原文: [https://www.geeksforgeeks.org/php-class_alias-function/](https://www.geeksforgeeks.org/php-class_alias-function/)
+
+`class_alias()` 函数是 PHP 中的一个内置函数，用于创建类的别名。别名类的功能类似于原始类。
+
+## 语法
+
+```php
+bool class_alias( string $original, string $alias, bool $autoload = TRUE )
+```
+
+## 参数
+
+该函数接受三个参数，如下所述：
+
+*   `$original`: 此参数保存原始类名。
+*   `$alias`: 此参数存储别名类名。
+*   `$autoload`: 如果找不到原始类，是否自动加载。
+
+## 返回值
+
+返回布尔值，即成功时为 `true`，失败时为 `false`。
+
+下面的程序说明了 PHP 中的 `class_alias()` 函数：
+
+## 程序 1
+
+```php
+<?php
+
+// Create a class
+class GFG {
+
+    public $Geek_name = "Welcome to GeeksforGeeks";
+
+    // Constructor is being implemented.
+    public function __construct($Geek_name) {
+        $this->Geek_name = $Geek_name;
+    }
+}
+
+// Create the class name alias
+class_alias('GFG', 'GeeksforGeeks');
+
+// Create an object
+$Geek = new GeeksforGeeks("GeeksforGeeks");
+
+// Display result
+echo $Geek->Geek_name;
+?>
+```
+
+### 输出
+
+```php
+GeeksforGeeks
+```
+
+## 程序 2
+
+```php
+<?php
+
+// Creating class
+class GFG {
+    public $data1;
+    public $data2;
+    public $data3;
+}
+
+// Create the class name alias
+class_alias('GFG', 'Geeks');
+
+// Creating an object
+$obj1 = new GFG();
+$obj2 = new Geeks();
+
+var_dump($obj1 === $obj2);
+
+// Set values of $obj object
+$obj2->data1 = "Geeks";
+$obj2->data2 = "for";
+$obj2->data3 = "Geeks";
+
+// Print values of $obj object
+echo "$obj2->data1  \n$obj2->data2  \n$obj2->data3";
+
+?>
+```
+
+### 输出
+
+```php
+bool(false)
+Geeks
+for
+Geeks
+```
+
+## 参考
+
+[https://www.php.net/manual/en/function.class-alias.php](https://www.php.net/manual/en/function.class-alias.php)
