@@ -1,0 +1,89 @@
+# PHP: ArrayObject::__construct() 函数
+
+> 原文: [https://www.geeksforgeeks.org/php-arrayobjects_construct-function/](https://www.geeksforgeeks.org/php-arrayobjects_construct-function/)
+
+`ArrayObject` 类允许对象像数组一样工作。`ArrayObject::__construct()` 是一个内置的 PHP 函数，用于构造一个新的数组对象。
+
+**语法:**
+
+```php
+public ArrayObject::__construct ($input = array(), int $flags = 0, 
+string $iterator_class = "ArrayIterator")
+```
+
+**参数:** 该函数接受三个参数，如上面的语法所示，描述如下:
+
+1.  `$input`: 该参数用于接受输入为数组或对象。
+2.  `$flags`: Flags 用于控制数组对象的行为。
+3.  `$iterator_class`: 用于指定将用于数组对象迭代的类。
+
+**返回值:** 该函数在构造成功时返回一个 `ArrayObject`。
+
+**错误和异常:**
+
+1.  如果 `$input` 不是数组或对象，构造器将显示错误。
+2.  如果 `$flags` 没有整数值，那么构造器将显示一条错误消息。
+
+下面的程序说明了 `ArrayObject::__construct()` 函数:
+
+**程序 1:**
+
+```php
+<?php
+$array = array('1' => 'one',
+               '2' => 'two',
+               '3' => 'three');
+
+$arrayobject = new ArrayObject($array);
+
+var_dump($arrayobject);
+?>
+```
+
+**输出:**
+
+```php
+object(ArrayObject)#1 (1) {
+  ["storage":"ArrayObject":private]=>
+  array(3) {
+    [1]=>
+    string(3) "one"
+    [2]=>
+    string(3) "two"
+    [3]=>
+    string(5) "three"
+  }
+}
+```
+
+**程序 2:**
+
+```php
+<?php
+$array = array('1' => 'Geeks',
+               '2' => 'for',
+               '3' => 'Geeks');
+
+$arrayobject = new ArrayObject($array);
+
+var_dump($arrayobject);
+?>
+```
+
+**输出:**
+
+```php
+object(ArrayObject)#1 (1) {
+  ["storage":"ArrayObject":private]=>
+  array(3) {
+    [1]=>
+    string(5) "Geeks"
+    [2]=>
+    string(3) "for"
+    [3]=>
+    string(5) "Geeks"
+  }
+}
+```
+
+**参考:** [http://php.net/manual/en/arrayobject.construct.php](http://php.net/manual/en/arrayobject.construct.php)
