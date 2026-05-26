@@ -1,0 +1,101 @@
+# React-Bootstrap ProgressBar 组件
+
+> Original: [https://www.geeksforgeeks.org/react-bootstrap-progressbar-component/](https://www.geeksforgeeks.org/react-bootstrap-progressbar-component/)
+
+React-Bootstrap 是一个前端框架，其设计考虑到了 React。`ProgressBar` 组件提供了一种以进度条的形式向用户显示任何任务/活动的进度的方法。我们可以在 ReactJS 中使用以下方法来使用 React-Bootstrap `ProgressBar` 组件。
+
+==同步，由 Elderman 更正==@ELDER_MAN
+
+*   `Animated`：用于将条纹动画应用于 `ProgressBar` 组件。
+*   `children`：用于仅允许子元素。
+*   `isChild`：布尔型，指示元素是否是子成员。
+*   `label`：用于显示表示视觉百分比的标签。
+*   `max`：进度可以达到的最大值。
+*   `min`：进度可以开始的最小值。
+*   `now`：用来表示进度的当前值。
+*   `srOnly`：用于直观地隐藏标签。
+*   `striped`：用于创建条纹效果。
+*   `variant`：用于设置进度条的背景类。
+*   `bsPrefix`：一个用于使用高度定制的引导 CSS 的逃生舱。
+
+## 创建 React 应用程序并安装模块
+
+### 步骤 1
+使用以下命令创建 React 应用程序：
+
+```jsx
+npx create-react-app foldername
+```
+
+### 步骤 2
+创建项目文件夹（即 `foldername`）后，使用以下命令移动到该文件夹：
+
+```jsx
+cd foldername
+```
+
+### 步骤 3
+创建 ReactJS 应用程序后，使用以下命令安装所需的模块：
+
+```jsx
+npm install react-bootstrap
+npm install bootstrap
+```
+
+## 项目结构
+项目结构如下所示。
+
+![](img/f04ae0d8b722a9fff0bd9bd138b29c23.png)
+
+## 示例
+现在在 `App.js` 文件中写下以下代码。在这里，`App` 是我们编写代码的默认组件。
+
+**文件名：App.js**
+
+```jsx
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+import ProgressBar from 'react-bootstrap/ProgressBar';
+
+export default function App() {
+
+const [countOfProgess, setCountOfProgess] = React.useState(0);
+
+React.useEffect(() => {
+    const timer = setInterval(() => {
+      setCountOfProgess((oldProgress) => {
+        if (100 == oldProgress) return 0;
+        return Math.min(oldProgress + Math.random() * 10, 100);
+      });
+    }, 499);
+
+return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+return (
+    <div style={{ display: 'block',
+                  width: 700, padding: 30 }}>
+      <h4>React-Bootstrap ProgressBar Component</h4>
+      Current Progress is: {parseInt(countOfProgess)} %
+      <ProgressBar now={countOfProgess} />
+    </div>
+  );
+}
+```
+
+## 运行应用程序的步骤
+使用以下命令从项目的根目录运行应用程序：
+
+```jsx
+npm start
+```
+
+## 输出
+现在打开浏览器，转到 `http://localhost:3000/`，您将看到以下输出：
+
+![](img/467a302421ad3d8b7d6f146fe9d9d7e1.png)
+
+## 引用
+[https://react-bootstrap.github.io/components/progress/](https://react-bootstrap.github.io/components/progress/)
