@@ -1,0 +1,40 @@
+# 如何在 PHP 中删除字符串中的所有空格？
+
+> 原文：[https://www.geeksforgeeks.org/how-to-remove-all-white-spaces-from-a-string-in-php/](https://www.geeksforgeeks.org/how-to-remove-all-white-spaces-from-a-string-in-php/)
+
+给定一个包含一些空格的字符串元素，任务是从给定的字符串中移除所有空格。为了完成这个任务，我们在 PHP 中有以下方法：
+
+## 方法 1：使用 `str_replace()` 方法
+
+`str_replace()` 方法用于通过替换给定字符串 `str` 中的字符串 `("")` 来替换搜索字符串 `()` 的所有出现。
+
+**语法**：
+
+```php
+str_replace($searchVal, $replaceVal, $subjectVal, $count)
+```
+
+**示例**：
+
+```php
+<?php
+// PHP program to remove all white
+// spaces from a string
+
+// Declare a string
+$str = "  Geeks for   Geeks  ";
+
+// Using str_replace() function 
+// to removes all whitespaces   
+$str = str_replace(' ', '', $str);
+
+// Printing the result
+echo $str; 
+?>
+```
+
+**输出**：
+
+```php
+GeeksforGeeks
+```
