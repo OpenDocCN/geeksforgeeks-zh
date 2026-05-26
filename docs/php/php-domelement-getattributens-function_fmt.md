@@ -1,0 +1,89 @@
+# PHP DOMElement::getAttributeNS() 函数
+
+> Original: [https://www.geeksforgeeks.org/php-domelement-getattributens-function/](https://www.geeksforgeeks.org/php-domelement-getattributens-function/)
+
+`DOMElement::getAttributeNS()` 函数是 PHP 中的一个内置函数，用于获取当前节点具有本地名称的特定命名空间中的属性值。
+
+## 语法
+
+```php
+string DOMElement::getAttributeNS( string $namespaceURI, string $localName )
+```
+
+## 参数
+
+此函数接受两个参数：
+
+*   `$namespaceURI`: 指定命名空间 URI。
+*   `$localName`: 指定本地名称。
+
+## 返回值
+
+此函数返回包含属性值的字符串值，如果未找到具有给定 `localName` 和命名空间 URI 的属性，则返回空字符串。
+
+## 示例
+
+以下示例说明 PHP 中的 `DOMElement::getAttributeNS()` 函数：
+
+### 示例 1
+
+```php
+<?php
+
+// Create a new DOMDocument
+$dom = new DOMDocument();
+
+// Load the XML
+$dom->loadXML("<?xml version=\"1.0\"?>
+<body xmlns:x=\"my_namespace\">
+    <x:div x:attr=\"value\" > DIV 1 </x:div>
+</body>");
+
+// Get the elements by tagname
+$elements = $dom->getElementsByTagName('div');
+
+// Get the attribute node value
+$nodeValue = $elements[0]->getAttributeNS('my_namespace', 'attr');
+
+echo $nodeValue;
+?>
+```
+
+### 示例 2
+
+```php
+<?php
+
+// Create a new DOMDocument
+$dom = new DOMDocument();
+
+// Load the XML
+$dom->loadXML("<?xml version=\"1.0\"?>
+<root>
+<body xmlns:x=\"my_namespace1\">
+    <x:div x:id=\"my_id1\" > DIV 1 </x:div>
+    <x:div x:id=\"my_id2\" > DIV 1 </x:div>
+</body>
+<body xmlns:xi=\"my_namespace2\">
+    <xi:div xi:id=\"new\" > DIV 1 </xi:div>
+</body>
+</root>");
+
+// Get the elements by tagname
+$elements = $dom->getElementsByTagName('div');
+
+foreach ($elements as $element) {
+
+// Get node value only from my_namespace1
+    $nodeValue = $element->getAttributeNS('my_namespace1', 'id');
+
+if ($nodeValue) {
+       echo $nodeValue . '<br>';
+    }
+}
+?>
+```
+
+## 引用
+
+[https://www.php.net/manual/en/domelement.getattributens.php](https://www.php.net/manual/en/domelement.getattributens.php)
